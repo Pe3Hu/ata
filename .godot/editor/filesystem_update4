@@ -1,0 +1,18 @@
+res://entities/isle/kernel/pie/slice/slice.tscn
+res://entities/isle/biome/matter.gdshader
+res://entities/isle/kernel/pie/slice/slice.gd
+res://entities/isle/kernel/pie/slice/slice border.gdshader
+res://entities/isle/kernel/kernel.tscn
+res://entities/isle/kernel/pie/pie.tscn
+res://entities/isle/kernel/pie/pie border.gdshader
+res://entities/isle/kernel/pie/pie.gd
+res://global/Bozo.gd
+res://global/Catalog.gd
+res://global/Digest.gd
+res://entities/isle/kernel/pie/slice/slice_data.gd
+res://entities/isle/kernel/pie/pie_data.gd
+res://entities/isle/kernel/kernel.gd
+res://entities/isle/kernel/kernel_data.gd
+res://entities/isle/isle.tscn
+res://entities/isle/isle_data.gd
+res://shared/labels/defaul label.tres

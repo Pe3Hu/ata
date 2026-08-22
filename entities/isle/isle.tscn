@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://b4uxyqcdfn3uo"]
+
+[ext_resource type="Script" uid="uid://c0fkxw18lt6u3" path="res://entities/isle/isle.gd" id="1_kwh8c"]
+[ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="2_5o34a"]
+[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_dc2yg"]
+[ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_yl3e5"]
+[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/atheneum.tscn" id="5_dd0e4"]
+[ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
+[ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
+[ext_resource type="PackedScene" uid="uid://cwon2bom7u1m2" path="res://entities/isle/ladder/stepladder.tscn" id="8_6kinf"]
+[ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/forge/forge.tscn" id="9_egsfe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
+shader = ExtResource("2_5o34a")
+shader_parameter/size = 45.00000209
+shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
+shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7mxt"]
+bg_color = Color(0, 0.39215687, 0.92156863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3vug"]
+
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "stepladder", "forge")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_kwh8c")
+kernel = NodePath("HBox/CardContainer/MarginContainer/VBox/Kernel")
+atheneum = NodePath("HBox/CardContainer/MarginContainer/Atheneum")
+odeum = NodePath("HBox/CardContainer/MarginContainer/VBox/Odeum")
+stepladder = NodePath("HBox/HelperPanel/StepladderPanel/Stepladder")
+forge = NodePath("HBox/HelperPanel/Forge")
+
+[node name="BG" type="ColorRect" parent="." unique_id=81403246]
+material = SubResource("ShaderMaterial_od30j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HomeBtn" parent="." unique_id=1483590883 instance=ExtResource("3_dc2yg")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 58.0
+text = "HOME"
+
+[node name="GoHome" type="Node" parent="HomeBtn" unique_id=1255954342]
+script = ExtResource("4_yl3e5")
+metadata/_custom_type_script = "uid://gmp1wxiwy1n8"
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=882534284]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.0
+offset_top = 32.0
+offset_right = 103.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 47
+theme_override_styles/normal = SubResource("StyleBoxFlat_n7mxt")
+bbcode_enabled = true
+text = "[wave]CARDS[/wave]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1735999487]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="CardContainer" type="PanelContainer" parent="HBox" unique_id=874406166]
+custom_minimum_size = Vector2(960, 1080)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox/CardContainer" unique_id=326275716]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 108
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 60
+
+[node name="VBox" type="VBoxContainer" parent="HBox/CardContainer/MarginContainer" unique_id=2051777643]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Kernel" parent="HBox/CardContainer/MarginContainer/VBox" unique_id=601409116 instance=ExtResource("5_gqudx")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Odeum" parent="HBox/CardContainer/MarginContainer/VBox" unique_id=975507563 instance=ExtResource("5_y02by")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Atheneum" parent="HBox/CardContainer/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
+layout_mode = 2
+isle = NodePath("../../../..")
+
+[node name="HelperPanel" type="PanelContainer" parent="HBox" unique_id=61712746]
+layout_mode = 2
+size_flags_stretch_ratio = 6.68
+theme_override_styles/panel = SubResource("StyleBoxEmpty_n3vug")
+
+[node name="StepladderPanel" type="PanelContainer" parent="HBox/HelperPanel" unique_id=1593362332]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Stepladder" parent="HBox/HelperPanel/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
+position = Vector2(-1442, 0)
+
+[node name="Forge" parent="HBox/HelperPanel" unique_id=1978344045 instance=ExtResource("9_egsfe")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8

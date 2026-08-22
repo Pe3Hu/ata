@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://daklpvjfjxxr0"]
+
+[ext_resource type="Script" uid="uid://di4j72fl1vypv" path="res://entities/isle/kernel/kernel.gd" id="1_is0h4"]
+[ext_resource type="PackedScene" uid="uid://brqqeyb4io5px" path="res://entities/isle/kernel/pie/pie.tscn" id="3_8c6r2"]
+[ext_resource type="PackedScene" uid="uid://b0gmh7bi4r5by" path="res://entities/isle/kernel/usurer/usurer.tscn" id="5_2vrfl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2o6og"]
+bg_color = Color(0.86, 0.86, 0.86, 0.41960785)
+
+[node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("usurer", "pie")]
+custom_minimum_size = Vector2(460, 460)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_bottom = 8.0
+grow_horizontal = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_2o6og")
+script = ExtResource("1_is0h4")
+usurer = NodePath("Usurer")
+pie = NodePath("Pie")
+
+[node name="Usurer" parent="." unique_id=1197846844 node_paths=PackedStringArray("kernel") instance=ExtResource("5_2vrfl")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+kernel = NodePath("..")
+
+[node name="Pie" parent="." unique_id=1767828878 instance=ExtResource("3_8c6r2")]

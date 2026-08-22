@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cfe1p2qnaebxk"]
+
+[ext_resource type="Script" uid="uid://sagwuyjgg51m" path="res://entities/isle/atheneum/card/card.gd" id="1_i4otp"]
+[ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/atheneum/card/stamp/stamp.tscn" id="2_y3gem"]
+
+[node name="Card" type="Control" unique_id=11887563 node_paths=PackedStringArray("stamp")]
+custom_minimum_size = Vector2(148, 296)
+layout_mode = 3
+anchors_preset = 0
+offset_transform_enabled = true
+mouse_filter = 1
+script = ExtResource("1_i4otp")
+stamp = NodePath("Stamp")
+
+[node name="Stamp" parent="." unique_id=1990971153 node_paths=PackedStringArray("card") instance=ExtResource("2_y3gem")]
+layout_mode = 0
+offset_right = 144.0
+card = NodePath("..")
