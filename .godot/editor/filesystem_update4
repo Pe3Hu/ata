@@ -1,18 +1,33 @@
-res://entities/isle/kernel/pie/slice/slice.tscn
+res://entities/isle/isle.tscn
 res://entities/isle/biome/matter.gdshader
-res://entities/isle/kernel/pie/slice/slice.gd
+res://entities/isle/kernel/pie/pie border.gdshader
 res://entities/isle/kernel/pie/slice/slice border.gdshader
 res://entities/isle/kernel/kernel.tscn
-res://entities/isle/kernel/pie/pie.tscn
-res://entities/isle/kernel/pie/pie border.gdshader
-res://entities/isle/kernel/pie/pie.gd
+res://entities/isle/atheneum/atheneum.gd
+res://entities/isle/atheneum/card/card.tscn
+res://entities/isle/atheneum/tribunal/scenario_data.gd
+res://entities/isle/odeum/odeum.gd
+res://entities/isle/atheneum/atheneum_data.gd
+res://entities/isle/atheneum/card/stamp/stamp.gd
+res://global/arbitrator/action/action_move_card.gd
+res://entities/isle/odeum/hymn/hymn_data.gd
 res://global/Bozo.gd
+res://entities/isle/atheneum/tribunal/tribunal_data.gd
 res://global/Catalog.gd
-res://global/Digest.gd
-res://entities/isle/kernel/pie/slice/slice_data.gd
-res://entities/isle/kernel/pie/pie_data.gd
-res://entities/isle/kernel/kernel.gd
-res://entities/isle/kernel/kernel_data.gd
-res://entities/isle/isle.tscn
-res://entities/isle/isle_data.gd
-res://shared/labels/defaul label.tres
+res://global/arbitrator/phase/phase_draw.gd
+res://entities/isle/atheneum/card/stamp/stamp.tscn
+res://entities/isle/atheneum/atheneum.tscn
+res://entities/isle/kernel/pie/slice/slice.gd
+res://entities/isle/atheneum/card/card.gd
+res://entities/isle/odeum/canto/tune/tune.gd
+res://entities/isle/atheneum/room/room.tscn
+res://entities/isle/atheneum/room/room.gd
+res://entities/isle/atheneum/tribunal/gyre_data.gd
+res://entities/isle/atheneum/house/room/room_data.gd
+res://entities/isle/atheneum/house/hose_data.gd
+res://entities/isle/policy/faction/chronicler_data.gd
+res://entities/isle/atheneum/house/house_data.gd
+res://entities/isle/atheneum/card/stamp/origin_data.gd
+res://entities/isle/atheneum/house/room/room.gd
+res://entities/isle/atheneum/house/room/room.tscn
+res://global/Gear.gd

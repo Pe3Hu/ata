@@ -24,9 +24,9 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 12
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3vug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
 
 [node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "stepladder", "forge")]
 layout_mode = 3
@@ -37,11 +37,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_kwh8c")
-kernel = NodePath("HBox/CardContainer/MarginContainer/VBox/Kernel")
-atheneum = NodePath("HBox/CardContainer/MarginContainer/Atheneum")
-odeum = NodePath("HBox/CardContainer/MarginContainer/VBox/Odeum")
-stepladder = NodePath("HBox/HelperPanel/StepladderPanel/Stepladder")
-forge = NodePath("HBox/HelperPanel/Forge")
+kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
+atheneum = NodePath("HBox/LeftPanel/MarginContainer/Atheneum")
+odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
+stepladder = NodePath("HBox/LeftPanel/StepladderPanel/Stepladder")
+forge = NodePath("HBox/LeftPanel/Forge")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -96,13 +96,12 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="CardContainer" type="PanelContainer" parent="HBox" unique_id=874406166]
-custom_minimum_size = Vector2(960, 1080)
+[node name="LeftPanel" type="PanelContainer" parent="HBox" unique_id=61712746]
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
+size_flags_stretch_ratio = 6.68
+theme_override_styles/panel = SubResource("StyleBoxEmpty_n3vug")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBox/CardContainer" unique_id=326275716]
+[node name="MarginContainer" type="MarginContainer" parent="HBox/LeftPanel" unique_id=668998591]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 32
@@ -110,38 +109,49 @@ theme_override_constants/margin_top = 108
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 60
 
-[node name="VBox" type="VBoxContainer" parent="HBox/CardContainer/MarginContainer" unique_id=2051777643]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Kernel" parent="HBox/CardContainer/MarginContainer/VBox" unique_id=601409116 instance=ExtResource("5_gqudx")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Odeum" parent="HBox/CardContainer/MarginContainer/VBox" unique_id=975507563 instance=ExtResource("5_y02by")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Atheneum" parent="HBox/CardContainer/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
+[node name="Atheneum" parent="HBox/LeftPanel/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
 layout_mode = 2
 isle = NodePath("../../../..")
 
-[node name="HelperPanel" type="PanelContainer" parent="HBox" unique_id=61712746]
-layout_mode = 2
-size_flags_stretch_ratio = 6.68
-theme_override_styles/panel = SubResource("StyleBoxEmpty_n3vug")
-
-[node name="StepladderPanel" type="PanelContainer" parent="HBox/HelperPanel" unique_id=1593362332]
+[node name="StepladderPanel" type="PanelContainer" parent="HBox/LeftPanel" unique_id=1593362332]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Stepladder" parent="HBox/HelperPanel/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
+[node name="Stepladder" parent="HBox/LeftPanel/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
 position = Vector2(-1442, 0)
 
-[node name="Forge" parent="HBox/HelperPanel" unique_id=1978344045 instance=ExtResource("9_egsfe")]
+[node name="Forge" parent="HBox/LeftPanel" unique_id=1978344045 instance=ExtResource("9_egsfe")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+
+[node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]
+custom_minimum_size = Vector2(960, 1080)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox/RightPanel" unique_id=326275716]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 108
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 60
+
+[node name="VBox" type="VBoxContainer" parent="HBox/RightPanel/MarginContainer" unique_id=2051777643]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Kernel" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=601409116 instance=ExtResource("5_gqudx")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Odeum" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=975507563 instance=ExtResource("5_y02by")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

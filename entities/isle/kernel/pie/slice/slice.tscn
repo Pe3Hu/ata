@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://86usnsbi56nk"]
+
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="1_2ge36"]
+[ext_resource type="Script" uid="uid://o74d6uqtt0l5" path="res://entities/isle/kernel/pie/slice/slice.gd" id="1_2he0k"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="2_les3i"]
+[ext_resource type="Texture2D" uid="uid://c6d88ihrthtvd" path="res://entities/dice/images/20.png" id="3_as5kp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ge36"]
+resource_local_to_scene = true
+shader = ExtResource("1_2ge36")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Slice" type="Polygon2D" unique_id=1215106218]
+material = SubResource("ShaderMaterial_2ge36")
+script = ExtResource("1_2he0k")
+
+[node name="Volume" type="TextureRect" parent="." unique_id=1354063481]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+offset_right = 32.0
+offset_bottom = 32.0
+offset_transform_position = Vector2(-12, -12)
+offset_transform_visual_only = false
+texture = ExtResource("3_as5kp")
+
+[node name="Amount" type="Label" parent="." unique_id=131518855]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+offset_right = 32.0
+offset_bottom = 32.0
+label_settings = ExtResource("2_les3i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BorderLine" type="Line2D" parent="." unique_id=1383510869]
+unique_name_in_owner = true
+closed = true
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="MiddleLine" type="Line2D" parent="." unique_id=96696897]
+unique_name_in_owner = true
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true

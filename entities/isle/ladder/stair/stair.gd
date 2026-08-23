@@ -1,0 +1,16 @@
+class_name Stair
+extends Node2D
+
+
+var data: StairData:
+	set(value_):
+		data = value_
+		
+		var coord = Vector2(Digest.volume_to_coord[data.volume])
+		position = coord * Catalog.STAIR_SIZE
+		%Number.texture = load("res://entities/dice/images/%d.png" % data.volume)
+
+var is_current: bool:
+	set(value_):
+		is_current = value_
+		%Highlight.visible = is_current

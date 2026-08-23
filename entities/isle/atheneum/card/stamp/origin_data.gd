@@ -55,7 +55,7 @@ func init_stamps() -> void:
 func add_stamp(intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	var stamp = StampData.new(self, intro_values_, verse_values_)
 	stamps.append(stamp)
-	atheneum.tribunal.hereafter.stamps.append(stamp)
+	atheneum.house.attic.stamps.append(stamp)
 	var str_mark = ""
 	
 	for _i in intro_values_.size():

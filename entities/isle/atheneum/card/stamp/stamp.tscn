@@ -66,23 +66,30 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="ActivateBG" type="ColorRect" parent="BGMargin/MouseTargetVBox" unique_id=375848123]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.8132577, 0.8132577, 0.81325763, 1)
+
 [node name="MouseTargetHBox" type="HBoxContainer" parent="BGMargin/MouseTargetVBox" unique_id=934271515]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
 theme_override_constants/separation = 0
 
 [node name="LeftShiftBG" type="ColorRect" parent="BGMargin/MouseTargetVBox/MouseTargetHBox" unique_id=1124159026]
-custom_minimum_size = Vector2(74, 210)
 layout_mode = 2
+size_flags_horizontal = 3
 color = Color(0.4584052, 0.45840496, 0.45840502, 1)
 
 [node name="RightShiftBG" type="ColorRect" parent="BGMargin/MouseTargetVBox/MouseTargetHBox" unique_id=750688295]
-custom_minimum_size = Vector2(74, 210)
 layout_mode = 2
+size_flags_horizontal = 3
 color = Color(0.67481464, 0.67481464, 0.6748146, 1)
 
 [node name="DesappearBG" type="ColorRect" parent="BGMargin/MouseTargetVBox" unique_id=376785594]
-custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+size_flags_vertical = 3
 color = Color(0.288518, 0.288518, 0.2885179, 1)
 
 [node name="BorderMargin" type="MarginContainer" parent="." unique_id=1487644318]

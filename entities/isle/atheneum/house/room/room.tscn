@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://wayxrf06dikj"]
+
+[ext_resource type="Script" uid="uid://rtdigskybube" path="res://entities/isle/atheneum/house/room/room.gd" id="1_l3aj6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_coyvt"]
+
+[node name="Room" type="PanelContainer" unique_id=2124731907]
+custom_minimum_size = Vector2(670, 426)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_coyvt")
+script = ExtResource("1_l3aj6")
+
+[node name="Cards" type="HBoxContainer" parent="." unique_id=1460517493]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -17)
+offset_transform_visual_only = false
+theme_override_constants/separation = 0
+alignment = 1

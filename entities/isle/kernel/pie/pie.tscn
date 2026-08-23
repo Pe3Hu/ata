@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://brqqeyb4io5px"]
+
+[ext_resource type="Script" uid="uid://cvh0ju7ilbs88" path="res://entities/isle/kernel/pie/pie.gd" id="1_8tr5b"]
+[ext_resource type="Shader" uid="uid://07ere7dyodxk" path="res://entities/isle/kernel/pie/pie border.gdshader" id="2_0hk4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+shader = ExtResource("2_0hk4x")
+shader_parameter/donut_color = Color(0, 0, 0, 1)
+shader_parameter/inner_radius = 0.39200001862
+shader_parameter/outer_radius = 0.5
+shader_parameter/edge_smoothness = 0.005
+
+[node name="Pie" type="Node2D" unique_id=1767828878]
+script = ExtResource("1_8tr5b")
+
+[node name="PieBorder" type="ColorRect" parent="." unique_id=1208431174]
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+custom_minimum_size = Vector2(404, 404)
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-202, -202)
+
+[node name="Slices" type="Node2D" parent="." unique_id=547516417]
+unique_name_in_owner = true

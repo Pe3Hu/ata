@@ -10,7 +10,7 @@ signal discard_phase
 
 var faction: FactionData
 
-var tribunal: TribunalData
+var house: HouseData
 var origins: Array[OriginData]
 var scenarios: Array[ScenarioData]
 
@@ -22,7 +22,7 @@ var recruiment_matters: Array[Bozo.Matter]
 func _init(faction_: FactionData) -> void:
 	faction = faction_
 	
-	tribunal = TribunalData.new(self)
+	house = HouseData.new(self)
 	init_origins()
 	#preparation()
 	#init_test()
@@ -46,7 +46,7 @@ func init_scenarios() -> void:
 
 func init_permutations() -> void:
 	scenarios.clear()
-	var stamp_queue = tribunal.actual.stamps.duplicate()
+	var stamp_queue = house.bedroom.stamps.duplicate()
 	var spoils: Array[StampData]
 	
 	if not stamp_queue.is_empty():
@@ -82,21 +82,21 @@ func init_permutations() -> void:
 
 func recalc_scenario() -> void:
 	var spoils: Array[StampData]
-	var permutation = tribunal.actual.stamps.duplicate()
+	var permutation = house.bedroom.stamps.duplicate()
 	faction.odeum.current_scenario = ScenarioData.new(self, permutation, spoils)
 
-func discard_actual(is_phase_: bool = true) -> void:
+func discard_bedroom(is_phase_: bool = true) -> void:
 	var forge_stamps: Array[StampData]
-	forge_stamps.append_array(tribunal.actual.stamps)
+	forge_stamps.append_array(house.bedroom.stamps)
 	forge_stamps.append_array(faction.treasury.kernel.fleet.stampss)
 	
 	faction.isle.forge.stamps.append_array(forge_stamps)
 	
-	tribunal.actual.clear()
+	house.bedroom.clear()
 	faction.treasury.kernel.fleet.stamps.clear()
 	
 	if is_phase_:
-		tribunal.atheneum.discard_phase.emit()
+		house.atheneum.discard_phase.emit()
 		faction.treasury.kernel.fleet.discard_phase.emit()
 
 func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
@@ -112,4 +112,4 @@ func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
 	var verse_index = Digest.matter_to_verse[matter].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var _origin = OriginData.new(self, matter, intro, verse)
-	tribunal.hereafter.stamps.shuffle()
+	house.attic.stamps.shuffle()

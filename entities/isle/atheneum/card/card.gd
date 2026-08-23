@@ -2,7 +2,7 @@ class_name Card
 extends Control
 
 
-@export var atheneum: Atheneum
+@export var room: Room
 @export var stamp: Stamp
 
 @export var angle_min: float = -0.0
@@ -19,6 +19,7 @@ var duration_shift: float = 0
 
 var hover_tween: Tween
 var appear_tween: Tween
+var activate_tween: Tween
 
 
 #region init
@@ -67,7 +68,7 @@ func disappear() -> void:
 	#appear_tween.tween_property(self, "custom_minimum_size:x", 0.0, 0.2)
 	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 1.25, Gear.appears[Gear.tempo])
 	await appear_tween.finished
-	atheneum.close_up_cards(self)
+	room.close_up_cards(self)
 
 func last_disappear() -> void:
 	rng_duration_shift()
@@ -79,19 +80,19 @@ func last_disappear() -> void:
 #region hover
 func hover() -> void:
 	if appear_tween and appear_tween.is_running(): return
-	if atheneum.shift_tween and atheneum.shift_tween.is_running(): return
+	if room.shift_tween and room.shift_tween.is_running(): return
 	z_index = 1
 	var current_x = stamp.position.x
 	
-	if atheneum.current_card and atheneum.current_card != self:
-		atheneum.current_card.unhover()
+	if room.current_card and room.current_card != self:
+		room.current_card.unhover()
 	
-	atheneum.current_card = self
+	room.current_card = self
 	
 	if hover_tween and hover_tween.is_running():
 		hover_tween.kill()
 	
-	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true)
+	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	hover_tween.tween_property(stamp, "offset_transform_scale", Vector2.ONE * 1.2, 0.1)
 	hover_tween.tween_property(stamp, "offset_transform_rotation", 0.0, 0.1)
 	hover_tween.tween_property(stamp, "offset_transform_position_ratio:y", -0.25, 0.15)
@@ -103,10 +104,10 @@ func unhover() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	z_index = 0
 	
-	if atheneum.current_card == self:
-		atheneum.current_card = null
+	if room.current_card == self:
+		room.current_card = null
 	
-	if atheneum.shift_tween and atheneum.shift_tween.is_running():
+	if room.shift_tween and room.shift_tween.is_running():
 		z_index = 1
 	
 	if hover_tween and hover_tween.is_running():
@@ -119,6 +120,8 @@ func unhover() -> void:
 	hover_tween.tween_property(self, "custom_minimum_size:x", min_size_x_default, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	hover_tween.tween_property(stamp, "position:x", 0, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
+#endregion
+
 func spoil() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	stamp.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -126,4 +129,53 @@ func spoil() -> void:
 	await hover_tween.finished
 	disappear()
 	await appear_tween.finished
-#endregion
+
+func activate() -> void:
+	if not room.atheneum.room_to_fol.has(room): return
+	unhover()
+	
+	var fol_room = room.atheneum.room_to_fol[room]
+	var target_global = await fol_room.get_card_target(self)
+	var target_offset = target_global - global_position
+
+	offset_transform_position = Vector2.ZERO
+	room.jalousie(self)
+	fol_room.slide_away()
+	var duration = Gear.jalousies[Gear.tempo]
+	
+	activate_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
+	activate_tween.tween_property(self, "offset_transform_position", target_offset, duration)
+	room.atheneum.active_tweens.append(activate_tween)
+	activate_tween.tween_callback(room.atheneum.on_tween_finished.bind(activate_tween))
+	
+	await activate_tween.finished
+	room.atheneum.active_card = self
+	room.atheneum.active_room = fol_room
+	
+	if room.atheneum.active_tweens.is_empty():
+		room.atheneum.finish_activate(self, fol_room)
+
+func deactivate() -> void:
+	if not room.atheneum.room_to_ere.has(room): return
+	unhover()
+	
+	var ere_room = room.atheneum.room_to_ere[room]
+	var target_global = await ere_room.get_card_target(self)
+	var target_offset = target_global - global_position
+
+	offset_transform_position = Vector2.ZERO
+	room.jalousie(self)
+	ere_room.slide_away()
+	var duration = Gear.jalousies[Gear.tempo]
+	
+	activate_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
+	activate_tween.tween_property(self, "offset_transform_position", target_offset, duration)
+	room.atheneum.active_tweens.append(activate_tween)
+	activate_tween.tween_callback(room.atheneum.on_tween_finished.bind(activate_tween))
+	
+	await activate_tween.finished
+	room.atheneum.active_card = self
+	room.atheneum.active_room = ere_room
+	
+	if room.atheneum.active_tweens.is_empty():
+		room.atheneum.finish_activate(self, ere_room)

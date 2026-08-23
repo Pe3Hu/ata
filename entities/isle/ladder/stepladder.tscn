@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cwon2bom7u1m2"]
+
+[ext_resource type="Script" uid="uid://eeqtbqgfomex" path="res://entities/isle/ladder/stepladder.gd" id="1_dxj4w"]
+
+[node name="Stepladder" type="Node2D" unique_id=1091981830]
+script = ExtResource("1_dxj4w")
+
+[node name="Girders" type="Node2D" parent="." unique_id=483646083]
+unique_name_in_owner = true
+
+[node name="Stairs" type="Node2D" parent="." unique_id=1061868530]
+unique_name_in_owner = true
