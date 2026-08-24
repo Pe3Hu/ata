@@ -1,8 +1,8 @@
-class_name Atheneum 
+class_name House
 extends PanelContainer
 
 
-var data: AtheneumData:
+var data: HouseData:
 	set(value_):
 		data = value_
 		
@@ -20,17 +20,17 @@ var room_to_ere: Dictionary
 
 var active_tweens: Array[Tween]
 
-var active_card: Card
-var active_room: Room
-
 
 func connect_datas() -> void:
-	parlor.data = data.house.parlor
-	kitchen.data = data.house.kitchen
-	bedroom.data = data.house.bedroom
+	parlor.data = data.parlor
+	kitchen.data = data.kitchen
+	bedroom.data = data.bedroom
 	
 	room_to_fol[bedroom] = kitchen
+	room_to_fol[parlor] = bedroom
+	
 	room_to_ere[kitchen] = bedroom
+	#room_to_ere[bedroom] = parlor
 
 func connect_signals() -> void:
 	data.draw_phase.connect(_on_draw_phase)
@@ -40,8 +40,7 @@ func connect_signals() -> void:
 
 func _on_draw_phase() -> void:
 	bedroom.init_cards()
-	kitchen.init_cards()
-
+	parlor.init_cards()
 
 #func _on_discard_phase() -> void:
 	#for card in cards:
@@ -50,13 +49,13 @@ func _on_draw_phase() -> void:
 func on_tween_finished(tween_: Tween) -> void:
 	if active_tweens.has(tween_):
 		active_tweens.erase(tween_)
-	
-	#if active_tweens.is_empty():
-	#	finish_activate(active_card, active_room)
 
-func finish_activate(card_: Card = null, next_room_: Room = null) -> void:
-	if card_ == null or next_room_ == null: return
-	var previous_room = card_.room
-	next_room_.plus_card(card_)
-	previous_room.reset_offsets()
-	next_room_.reset_offsets()
+func switch_parlor_face() -> void:
+	var card = parlor.cards[0]
+	card.switch_face()
+
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_SPACE:
+				switch_parlor_face()

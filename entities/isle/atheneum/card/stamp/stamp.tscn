@@ -45,8 +45,8 @@ corner_detail = 12
 
 [node name="Stamp" type="PanelContainer" unique_id=1990971153 node_paths=PackedStringArray("border")]
 custom_minimum_size = Vector2(144, 0)
-offset_right = 148.0
-offset_bottom = 296.0
+offset_right = 144.0
+offset_bottom = 312.0
 offset_transform_enabled = true
 offset_transform_visual_only = false
 mouse_filter = 1

@@ -58,16 +58,17 @@ func update_marks() -> void:
 
 func process_click() -> void:
 	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
+	data.origin.atheneum.faction.odeum.current_canto = null
 	var local_mouse_pos = get_local_mouse_position()
 	
-	var part_height = size.y / 2
+	var part_height = size.y / 5
 	
 	if local_mouse_pos.y < part_height:
 		card.activate()
 		return
 	
 	if local_mouse_pos.y > size.y - part_height:
-		card.deactivate()
+		card.activate(false)
 		return
 	
 	var half_width = size.x / 2

@@ -1,9 +1,11 @@
+HBoxContainer
+ColorRect
+GridContainer
 VBoxContainer
 TextureRect
+Control
 Line2D
 Node2D
-ColorRect
 Polygon2D
 Label
-Control
 PanelContainer

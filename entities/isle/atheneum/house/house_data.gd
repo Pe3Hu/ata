@@ -2,6 +2,11 @@ class_name HouseData
 extends RefCounted
 
 
+@warning_ignore("unused_signal")
+signal draw_phase
+@warning_ignore("unused_signal")
+signal discard_phase
+
 var atheneum: AtheneumData
 
 var attic: RoomData = RoomData.new(self, Bozo.Room.ATTIC)
@@ -9,12 +14,15 @@ var bedroom: RoomData = RoomData.new(self, Bozo.Room.BEDROOM)
 var kitchen: RoomData = RoomData.new(self, Bozo.Room.KITCHEN)
 var parlor: RoomData = RoomData.new(self, Bozo.Room.PARLOR)
 var cellar: RoomData = RoomData.new(self, Bozo.Room.CELLAR)
+
 var rooms: Array[RoomData]
+var type_to_room: Dictionary
 
 
 #region init
 func _init(atheneum_: AtheneumData) -> void:
 	atheneum = atheneum_
+	
 	update_room_fol()
 	update_room_ere()
 	
@@ -22,8 +30,15 @@ func _init(atheneum_: AtheneumData) -> void:
 		attic,
 		parlor,
 		bedroom,
+		kitchen,
 		cellar,
 	]
+	
+	type_to_room[Bozo.Room.ATTIC] = attic
+	type_to_room[Bozo.Room.PARLOR] = parlor
+	type_to_room[Bozo.Room.BEDROOM] = bedroom
+	type_to_room[Bozo.Room.KITCHEN] = kitchen
+	type_to_room[Bozo.Room.CELLAR] = cellar
 
 func update_room_fol() -> void:
 	attic.fol = parlor

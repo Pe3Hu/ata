@@ -2,9 +2,10 @@ class_name ScenarioData
 extends Resource
 
 
-var atheneum: AtheneumData
+var odeum: OdeumData
 var chains: Array[StampData]
 var spoils: Array[StampData]
+var room: Bozo.Room
 
 var active_spoil: StampData
 
@@ -14,15 +15,16 @@ var pulse_weight: int = 0
 var hymns: Array[HymnData]
 
 
-func _init(atheneum_: AtheneumData, chains_: Array[StampData], spoils_: Array[StampData]) -> void:
-	atheneum = atheneum_
+func _init(odeum_: OdeumData, chains_: Array[StampData], spoils_: Array[StampData], room_: Bozo.Room) -> void:
+	odeum = odeum_
 	chains.append_array(chains_)
 	spoils.append_array(spoils_)
+	room = room_
 	
 	init_hymns()
 	calc_spoil_weight()
 	calc_pulse_weight()
-	atheneum.scenarios.append(self)
+	odeum.room_to_scenarios[room].append(self)
 
 func init_hymns() -> void:
 	hymns.clear()

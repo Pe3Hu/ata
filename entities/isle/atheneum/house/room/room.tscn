@@ -5,10 +5,15 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_coyvt"]
 
 [node name="Room" type="PanelContainer" unique_id=2124731907]
-custom_minimum_size = Vector2(670, 426)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -17,13 +22,11 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_coyvt")
 script = ExtResource("1_l3aj6")
 
-[node name="Cards" type="HBoxContainer" parent="." unique_id=1460517493]
+[node name="Cards" type="HBoxContainer" parent="." unique_id=1696965754]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 0
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -17)
 offset_transform_visual_only = false
 theme_override_constants/separation = 0
-alignment = 1

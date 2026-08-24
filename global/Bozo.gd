@@ -95,7 +95,6 @@ enum Catastrophe {
 	VOLCANO = 50,
 }
 
-
 enum Status {
 	IDLE = 0,
 	PLAYING_ANIMATION = 100,
@@ -105,7 +104,7 @@ enum Status {
 enum Action {
 	NONE = 0,
 	MOVE_CARD = 150,
-	MOVE_ARK = 151,
+	ATTACK_SHADOW = 151,
 }
 
 enum Phase {

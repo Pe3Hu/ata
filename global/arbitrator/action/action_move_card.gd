@@ -17,9 +17,9 @@ func execute() -> void:
 		var card = room.stamp_to_card[stamp]
 		room.shift_card(card, shift)
 	else:
-		room = stamp.room
-		var new_index = room.stamps.find(stamp) + shift
-		if new_index < 0 or new_index >= room.stamps.size(): return
-		room.stamps.erase(stamp)
-		room.stamps(new_index, stamp)
+		var room_data = stamp.room
+		var new_index = room_data.stamps.find(stamp) + shift
+		if new_index < 0 or new_index >= room_data.stamps.size(): return
+		room_data.stamps.erase(stamp)
+		room_data.stamps(new_index, stamp)
 		stamp.origin.atheneum.recalc_scenario()

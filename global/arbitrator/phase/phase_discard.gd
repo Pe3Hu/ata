@@ -10,10 +10,10 @@ func enter_phase():
 	super.enter_phase()
 	Arbitrator.current_chronicler.faction.odeum.current_scenario = null
 	
-	Arbitrator.current_chronicler.tribunal.actual.clear()
+	#Arbitrator.current_chronicler.house.bedroom.clear()
 	
 	if Arbitrator.is_player():
-		Arbitrator.current_chronicler.tribunal.atheneum.discard_phase.emit()
+		Arbitrator.current_chronicler.house.atheneum.discard_phase.emit()
 	else:
 		exit_phase()
 

@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="2_5o34a"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_dc2yg"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_yl3e5"]
-[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/atheneum.tscn" id="5_dd0e4"]
+[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/house/house.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
 [ext_resource type="PackedScene" uid="uid://cwon2bom7u1m2" path="res://entities/isle/ladder/stepladder.tscn" id="8_6kinf"]
@@ -28,7 +28,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "stepladder", "forge")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "stepladder", "forge")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,10 +38,10 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_kwh8c")
 kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
-atheneum = NodePath("HBox/LeftPanel/MarginContainer/Atheneum")
+house = NodePath("HBox/LeftPanel/MarginContainer/House")
 odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
-stepladder = NodePath("HBox/LeftPanel/StepladderPanel/Stepladder")
-forge = NodePath("HBox/LeftPanel/Forge")
+stepladder = NodePath("HBox/RightPanel/MarginContainer/StepladderPanel/Stepladder")
+forge = NodePath("HBox/RightPanel/MarginContainer/Forge")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -98,39 +98,25 @@ alignment = 1
 
 [node name="LeftPanel" type="PanelContainer" parent="HBox" unique_id=61712746]
 layout_mode = 2
-size_flags_stretch_ratio = 6.68
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_n3vug")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBox/LeftPanel" unique_id=668998591]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 108
+theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 60
+theme_override_constants/margin_bottom = 64
 
-[node name="Atheneum" parent="HBox/LeftPanel/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
+[node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
 layout_mode = 2
-isle = NodePath("../../../..")
-
-[node name="StepladderPanel" type="PanelContainer" parent="HBox/LeftPanel" unique_id=1593362332]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Stepladder" parent="HBox/LeftPanel/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
-position = Vector2(-1442, 0)
-
-[node name="Forge" parent="HBox/LeftPanel" unique_id=1978344045 instance=ExtResource("9_egsfe")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]
-custom_minimum_size = Vector2(960, 1080)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
 
@@ -142,9 +128,25 @@ theme_override_constants/margin_top = 108
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 60
 
+[node name="StepladderPanel" type="PanelContainer" parent="HBox/RightPanel/MarginContainer" unique_id=1593362332]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Stepladder" parent="HBox/RightPanel/MarginContainer/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
+position = Vector2(-1442, 0)
+
+[node name="Forge" parent="HBox/RightPanel/MarginContainer" unique_id=1978344045 instance=ExtResource("9_egsfe")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
 [node name="VBox" type="VBoxContainer" parent="HBox/RightPanel/MarginContainer" unique_id=2051777643]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/separation = 64
 
 [node name="Kernel" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=601409116 instance=ExtResource("5_gqudx")]
 layout_mode = 2

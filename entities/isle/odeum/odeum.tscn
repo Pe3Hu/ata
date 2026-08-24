@@ -2,12 +2,32 @@
 
 [ext_resource type="Script" uid="uid://bbe13338sggis" path="res://entities/isle/odeum/odeum.gd" id="1_btoev"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqudx"]
+
 [node name="Odeum" type="PanelContainer" unique_id=975507563]
 custom_minimum_size = Vector2(280, 208)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gqudx")
 script = ExtResource("1_btoev")
 
-[node name="Hymns" type="VBoxContainer" parent="." unique_id=1348268798]
-unique_name_in_owner = true
+[node name="Hymns" type="HBoxContainer" parent="." unique_id=1605454635]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BedroomHymns" type="VBoxContainer" parent="Hymns" unique_id=1348268798]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 208)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="KitchenHymns" type="VBoxContainer" parent="Hymns" unique_id=1908652434]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 208)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 8
 alignment = 1

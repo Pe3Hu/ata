@@ -15,3 +15,4 @@ func _init(canto_: CantoData, stamp_: StampData, type_: Bozo.Tune) -> void:
 	type = type_
 	
 	stake = stamp.get_stake(canto_.joint, Digest.tune_to_stake[type])
+	canto.type_to_stake[stake.type] = stake

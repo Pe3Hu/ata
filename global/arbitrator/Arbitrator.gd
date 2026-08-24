@@ -21,7 +21,7 @@ func _ready() -> void:
 	phases = [
 		PhaseDraw.new(),
 		PhaseDecision.new(),
-		PhaseDiscard.new(),
+		#PhaseDiscard.new(),
 	]
 
 #region round

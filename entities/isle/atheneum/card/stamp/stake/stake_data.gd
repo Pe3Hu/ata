@@ -2,11 +2,18 @@ class_name StakeData
 extends RefCounted
 
 
+signal canto_changed
+
 var stamp: StampData
 var type: Bozo.Stake
 var tune: Bozo.Tune
 var joints: Array[int]
 var value: int
+
+var canto: CantoData:
+	set(value_):
+		canto = value_
+		canto_changed.emit()
 
 
 func _init(stamp_: StampData, tune_: Bozo.Tune, joints_: Array, value_: int) -> void:

@@ -3,6 +3,7 @@ extends RefCounted
 
 
 signal is_critical_changed
+signal is_selected_changed
 
 var hymn: HymnData
 
@@ -10,14 +11,23 @@ var intro: TuneData
 var verse: TuneData
 var outro: TuneData
 
+var type_to_stake: Dictionary
+
 var joint: int
 
 var pulse_value: int = 0
+
 var is_critical: bool = false:
 	set(value_):
 		if is_critical != value_:
 			is_critical = value_
 			is_critical_changed.emit()
+
+var is_selected: bool = false:
+	set(value_):
+		if is_selected != value_:
+			is_selected = value_
+			is_selected_changed.emit()
 
 
 #region init
@@ -48,7 +58,7 @@ func update_pulse() -> void:
 	
 	if outro:
 		pulse_value *= outro.stake.value
-		
+	
 	if Catalog.pulses.has(pulse_value) and pulse_value > 0:
 		if is_affordable():
 			hymn.cantos.append(self)

@@ -1,10 +1,21 @@
 [gd_scene format=3 uid="uid://ddqqetmqeecl1"]
 
 [ext_resource type="Script" uid="uid://c6ltuuyncvun7" path="res://entities/isle/atheneum/card/stamp/stake/stake.gd" id="1_7pr5n"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_tax58"]
 [ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="2_wq5lf"]
 [ext_resource type="Texture2D" uid="uid://ujxv1y8cen1o" path="res://entities/isle/atheneum/card/stamp/stake/images/multiply.png" id="3_wq5lf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wq5lf"]
+resource_local_to_scene = true
+shader = ExtResource("2_tax58")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_limb2"]
 resource_local_to_scene = true
@@ -30,6 +41,11 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
+
+[node name="CantoBG" type="ColorRect" parent="MarginContainer" unique_id=1457471449]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_wq5lf")
+layout_mode = 2
 
 [node name="Border" type="Panel" parent="MarginContainer" unique_id=1249372101]
 unique_name_in_owner = true

@@ -30,3 +30,16 @@ func transfer_stamp() -> StampData:
 	fol.stamps.append(stamp)
 	return stamp
 #endregion
+
+func reset_canto_stakes() -> void:
+	for stamp in stamps:
+		for stake in stamp.type_to_stakes[Bozo.Stake.LEFT]:
+			stake.canto = null
+
+func apply_scenario_canto_stakes() -> void:
+	reset_canto_stakes()
+	var scenario = house.atheneum.faction.odeum.get_scenario(type)
+	
+	for hymn in scenario.hymns:
+		for canto in hymn.cantos:
+			canto.type_to_stake[Bozo.Stake.LEFT].canto = canto

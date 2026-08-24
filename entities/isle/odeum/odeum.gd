@@ -7,34 +7,36 @@ extends PanelContainer
 var data: OdeumData:
 	set(value_):
 		data = value_
+		
 		connect_signals()
 
-var current_canto: Canto:
-	set(value_):
-		if value_ != current_canto:
-			if current_canto:
-				current_canto.is_selected = false
-			
-			current_canto = value_
-			
-			if current_canto:
-				current_canto.is_selected = true
+
 
 
 #region init
 func connect_signals() -> void:
-	data.scenario_changed.connect(_on_scenario_changed)
+	data.bedroom_scenario_changed.connect(_on_bedroom_scenario_changed)
+	data.kitchen_scenario_changed.connect(_on_kitchen_scenario_changed)
 
-func _on_scenario_changed() -> void:
-	Helper.clear_children(%Hymns)
+func _on_bedroom_scenario_changed() -> void:
+	var hbox = %BedroomHymns
+	Helper.clear_children(hbox)
 	
-	if data.current_scenario:
-		for hymn_data in data.current_scenario.hymns:
-			add_hymn(hymn_data)
+	if data.bedroom_scenario:
+		for hymn_data in data.bedroom_scenario.hymns:
+			add_hymn(hymn_data, hbox)
 
-func add_hymn(hymn_data_: HymnData) -> void:
+func _on_kitchen_scenario_changed() -> void:
+	var hbox = %KitchenHymns
+	Helper.clear_children(hbox)
+	
+	if data.kitchen_scenario:
+		for hymn_data in data.kitchen_scenario.hymns:
+			add_hymn(hymn_data, hbox)
+
+func add_hymn(hymn_data_: HymnData, hbox_: VBoxContainer) -> void:
 	var hymn = hymn_scene.instantiate()
-	%Hymns.add_child(hymn)
+	hbox_.add_child(hymn)
 	hymn.data = hymn_data_
 	hymn.odeum = self
 #endregion

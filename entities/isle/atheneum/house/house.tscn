@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bhlusn1ccigiy"]
+
+[ext_resource type="Script" uid="uid://ctcnv6e3kcvpy" path="res://entities/isle/atheneum/house/house.gd" id="1_6sg17"]
+[ext_resource type="PackedScene" uid="uid://wayxrf06dikj" path="res://entities/isle/atheneum/house/room/room.tscn" id="2_36mcd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bvn2"]
+
+[node name="House" type="PanelContainer" unique_id=2124731907 node_paths=PackedStringArray("parlor", "kitchen", "bedroom")]
+custom_minimum_size = Vector2(864, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -678.0
+offset_top = -360.0
+offset_right = 678.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3bvn2")
+script = ExtResource("1_6sg17")
+parlor = NodePath("Rooms/Parlor")
+kitchen = NodePath("Rooms/Kitchen")
+bedroom = NodePath("Rooms/Bedrom")
+
+[node name="Rooms" type="VBoxContainer" parent="." unique_id=1534556831]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(576, 624)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_constants/separation = 48
+
+[node name="Parlor" parent="Rooms" unique_id=1347349431 node_paths=PackedStringArray("house") instance=ExtResource("2_36mcd")]
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+house = NodePath("../..")
+
+[node name="Kitchen" parent="Rooms" unique_id=1806055693 node_paths=PackedStringArray("house") instance=ExtResource("2_36mcd")]
+custom_minimum_size = Vector2(600, 312)
+layout_mode = 2
+house = NodePath("../..")
+
+[node name="Bedrom" parent="Rooms" unique_id=1743930688 node_paths=PackedStringArray("house") instance=ExtResource("2_36mcd")]
+custom_minimum_size = Vector2(600, 312)
+layout_mode = 2
+house = NodePath("../..")

@@ -13,11 +13,13 @@ func enter_phase():
 	if Arbitrator.current_round == 1:
 		Arbitrator.current_chronicler.house.direct_refill_bedroom()
 	
-	Arbitrator.current_chronicler.house.atheneum.init_scenarios()
+	Arbitrator.current_chronicler.house.refill_parlor()
+	
+	Arbitrator.current_chronicler.faction.odeum.init_scenarios()
 	
 	if Arbitrator.is_player():
 		status = Bozo.Status.PLAYING_ANIMATION
-		Arbitrator.current_chronicler.house.atheneum.draw_phase.emit()
+		Arbitrator.current_chronicler.house.draw_phase.emit()
 	else:
 		exit_phase()
 

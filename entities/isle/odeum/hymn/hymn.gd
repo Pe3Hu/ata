@@ -23,7 +23,7 @@ var active_canto_index: int = 0:
 		canto.visible = true
 		
 		if odeum:
-			odeum.current_canto = null
+			odeum.data.current_canto = null
 
 
 #region init
