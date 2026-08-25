@@ -26,6 +26,7 @@ func connect_signals() -> void:
 	pulse._on_is_critical_changed()
 	data.is_selected_changed.connect(_on_is_selected_changed)
 	_on_is_selected_changed()
+	data.voice.connect(_on_voice)
 
 func connect_datas() -> void:
 	pulse.value = data.pulse_value
@@ -49,6 +50,11 @@ func _on_is_selected_changed() -> void:
 			%Selection.color = Color.LIGHT_GRAY
 		false:
 			%Selection.color = Color.WEB_GRAY
+
+func _on_voice() -> void:
+	hymn.get_parent().remove_child(hymn)
+	hymn.queue_free()
+	queue_free()
 #endregion
 
 func _on_button_pressed() -> void:
@@ -56,18 +62,5 @@ func _on_button_pressed() -> void:
 
 func update_selection() -> void:
 	if hymn.odeum.data.current_canto == data: return
-	#if hymn.odeum.data.current_canto:
-	#	hymn.odeum.current_canto.data.is_selected = false
-	
 	hymn.odeum.data.current_canto = data
 	data.is_selected = true
-
-func voice() -> void:
-	data.voice()
-	hymn.get_parent().remove_child(hymn)
-	hymn.queue_free()
-	queue_free()
-	
-	if hymn.odeum.current_canto:
-		hymn.odeum.current_canto = null
-		#hymn.odeum.update_visible_cantos()

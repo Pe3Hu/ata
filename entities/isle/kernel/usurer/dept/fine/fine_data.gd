@@ -18,4 +18,5 @@ func _init(debt_: DebtData) -> void:
 	update_value()
 
 func update_value() -> void:
-	value = ceil(sqrt(debt.current_value))
+	if debt.current_value < 0: return
+	value = max(ceil(sqrt(debt.current_value)), 0)

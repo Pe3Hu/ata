@@ -86,3 +86,19 @@ func is_available(volume_: int, amount_: int = 1, matter_: Bozo.Matter = Bozo.Ma
 			available_amount += slice.amount
 	
 	return amount_ <= available_amount
+
+func get_payment_matter(volume_: int, amount_: int = 1) -> Variant:
+	if not is_available(volume_, amount_): return null
+	var options = []
+	
+	for matter in volume_to_matter_to_slice[volume_]:
+		var slice = volume_to_matter_to_slice[volume_][matter]
+		
+		if slice.amount >= amount_:
+			options.append(matter)
+	
+	return options.pick_random()
+
+func bite_off(matter_: Bozo.Matter, volume_: int, amount_: int = 1) -> void:
+	var slice = matter_to_volume_to_slice[matter_][volume_]
+	slice.amount -= amount_

@@ -13,6 +13,8 @@ func _init(shadow_: ShadowData, room_: Room = null) -> void:
 
 func execute() -> void:
 	var canto = shadow.stamp.origin.atheneum.faction.odeum.current_canto
+	if not canto: return
+	canto.apply_voice()
 	
 	if canto:
 		var damage = shadow.current_shade - canto.pulse_value

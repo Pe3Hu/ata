@@ -40,6 +40,7 @@ func apply_scenario_canto_stakes() -> void:
 	reset_canto_stakes()
 	var scenario = house.atheneum.faction.odeum.get_scenario(type)
 	
-	for hymn in scenario.hymns:
-		for canto in hymn.cantos:
-			canto.type_to_stake[Bozo.Stake.LEFT].canto = canto
+	if scenario:
+		for hymn in scenario.hymns:
+			for canto in hymn.cantos:
+				canto.type_to_stake[Bozo.Stake.LEFT].canto = canto

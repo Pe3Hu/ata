@@ -13,6 +13,7 @@ var current_value: int:
 			current_value = value_
 			fine.update_value()
 			current_value_changed.emit()
+var next_value: int
 var limit_value: int
 
 var fine: FineData
@@ -25,7 +26,6 @@ func _init(usurer_: UsurerData, matter_: Bozo.Matter) -> void:
 	
 	fine = FineData.new(self)
 	limit_value = Catalog.DEBT_MAX_AMOUNT
-	current_value = int(limit_value * 0.5)
 	usurer.debts.append(self)
 	usurer.matter_to_debt[matter] = self
 #endregion
