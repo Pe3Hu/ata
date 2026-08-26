@@ -2,6 +2,8 @@ class_name StampData
 extends RefCounted
 
 
+signal is_locked_changed
+
 var origin: OriginData
 var shadow: ShadowData
 var intro_values: Array[int]
@@ -16,6 +18,11 @@ var mark_digits: String:
 	set(value_):
 		mark_digits = value_
 		init_stakes()
+
+var is_locked: bool = false:
+	set(value_):
+		is_locked = value_
+		is_locked_changed.emit()
 
 
 #region init
@@ -65,9 +72,6 @@ func can_outro(pulse_: int) -> bool:
 	
 	return false
 
-func get_spoil_weight() -> int:
-	#var weight = 0
-	#weight += intro_values.size()
-	#return weight
-	return intro_values.size()
+func get_mark() -> String:
+	return origin.mark_letter + mark_digits
 #endregion

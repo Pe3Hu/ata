@@ -20,6 +20,7 @@ func init_debts() -> void:
 		var _debt = DebtData.new(self, matter)
 
 func borrow(matter_: Bozo.Matter, value_: int) -> void:
-	var debt = matter_to_debt[matter_]
-	debt.next_value += value_
-	update_debts.emit()
+	if value_ != 0:
+		var debt = matter_to_debt[matter_]
+		debt.next_value += value_
+		update_debts.emit()

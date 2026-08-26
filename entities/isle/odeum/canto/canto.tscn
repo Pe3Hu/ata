@@ -4,13 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://budert8pgb7eo" path="res://entities/isle/odeum/canto/pulse/pulse.tscn" id="2_hbuk6"]
 [ext_resource type="PackedScene" uid="uid://b0rrpj5bjfot0" path="res://entities/isle/odeum/canto/tune/tune.tscn" id="2_qochn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qochn"]
-bg_color = Color(0.32915837, 0.3291584, 0.3291583, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrexh"]
 
 [node name="Canto" type="PanelContainer" unique_id=2120647071 node_paths=PackedStringArray("pulse", "intro", "verse", "outro")]
 visible = false
-custom_minimum_size = Vector2(216, 64)
-theme_override_styles/panel = SubResource("StyleBoxFlat_qochn")
+custom_minimum_size = Vector2(0, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lrexh")
 script = ExtResource("1_u4bj0")
 pulse = NodePath("VBox/Pulse")
 intro = NodePath("VBox/Tunes/IntroTune")
@@ -19,12 +20,13 @@ outro = NodePath("VBox/Tunes/OutroTune")
 
 [node name="Selection" type="ColorRect" parent="." unique_id=27016779]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
 [node name="VBox" type="HBoxContainer" parent="." unique_id=95371064]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Tunes" type="HBoxContainer" parent="VBox" unique_id=1744103215]
@@ -33,6 +35,7 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="IntroTune" parent="VBox/Tunes" unique_id=4534137 node_paths=PackedStringArray("canto") instance=ExtResource("2_qochn")]
+visible = false
 layout_mode = 2
 canto = NodePath("../../..")
 

@@ -16,6 +16,7 @@ var stamp_to_card: Dictionary
 var current_card: Card
 
 var shift_tween: Tween
+var sort_tween: Tween
 
 
 #region init
@@ -52,11 +53,6 @@ func remove_card() -> void:
 	var card = cards.pop_back()
 	stamp_to_card.erase(card.stamp)
 
-func appear_card(stamp_data_: StampData) -> void:
-	var card = stamp_to_card[stamp_data_]
-	push_aside_cards(card)
-	#fleet.kernel.isle.
-
 func disappear_card(stamp_data_: StampData) -> void:
 	var card = stamp_to_card[stamp_data_]
 	card.disappear()
@@ -68,21 +64,26 @@ func shift_card(card_: Card, shift_: int) -> void:
 	if new_index < 0 or new_index >= %Cards.get_child_count(): return
 	if shift_tween and shift_tween.is_running(): return
 	
-	var neighbour_card = %Cards.get_child(new_index)
 	shift_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
-	var l = get_card_shift_length(neighbour_card)
-	
-	card_.z_index = 1
-	if shift_ < 0:
-		l *= -1
-	
 	var duration = Gear.jalousies[Gear.tempo]
 	
-	shift_tween.tween_property(card_, "offset_transform_position:x", l, duration)
-	shift_tween.tween_property(neighbour_card, "offset_transform_position:x", -l, duration)
+	var l = get_card_shift_length(card_)
+	card_.z_index = 1
+	
+	shift_tween.tween_property(card_, "offset_transform_position:x", l * shift_, duration)
+	
+	for _i in abs(shift_):
+		var neighbour_index = card_.get_index() + (_i + 1) * sign(shift_)
+		var neighbour_card = %Cards.get_child(neighbour_index)
+		shift_tween.tween_property(neighbour_card, "offset_transform_position:x", -l * sign(shift_), duration)
 	
 	await shift_tween.finished
-	neighbour_card.offset_transform_position.x = 0
+	
+	for _i in abs(shift_):
+		var neighbour_index = card_.get_index() + (_i + 1) * sign(shift_)
+		var neighbour_card = %Cards.get_child(neighbour_index)
+		neighbour_card.offset_transform_position.x = 0
+	
 	card_.offset_transform_position.x = 0
 	card_.z_index = 0
 	%Cards.move_child(card_, new_index)
@@ -104,44 +105,44 @@ func sort_cards(with_animation_: bool = true) -> void:
 	if %Cards.get_child_count() == 0: return
 	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION and Arbitrator.current_phase.type != Bozo.Phase.DRAW: return
 	if data.stamps.is_empty(): return
-	if shift_tween and shift_tween.is_running(): return
+	
 	var scenarios = data.house.atheneum.faction.odeum.room_to_scenarios[data.type]
 	if scenarios.is_empty(): return
 	
 	var scenario = scenarios.front()
-	var hiden_cards = cards.filter(func (a): return not scenario.chains.has(a.stamp.data))
-	var visible_cards = cards.filter(func (a): return scenario.chains.has(a.stamp.data))
-	var sorted_cards = cards.filter(func (a): return scenario.chains.has(a.stamp.data))
+	var sorted_cards = cards.duplicate()
+	if sorted_cards.size() == 1: return
+	
+	for card in cards:
+		card.unhover()
+	
+	if sort_tween and sort_tween.is_running():
+		sort_tween.kill()
+	
 	sorted_cards.sort_custom(func (a, b): return scenario.chains.find(a.stamp.data) < scenario.chains.find(b.stamp.data))
-	var last_index = cards.size() - 1
-	
-	for card in hiden_cards:
-		%Cards.move_child(card, last_index)
-	
+
 	if not with_animation_:
 		for _i in sorted_cards.size():
 			%Cards.move_child(sorted_cards[_i], _i)
 	else:
-		if shift_tween and shift_tween.is_running(): return
-		var duration = Gear.jalousies[Gear.tempo]
-		shift_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
+		var duration = Gear.sorts[Gear.tempo]
+		sort_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 		
 		for new_index in sorted_cards.size():
 			var card = sorted_cards[new_index]
-			var old_index = visible_cards.find(card)
-			var l = get_card_shift_length(card) * (new_index - old_index)
-			shift_tween.tween_property(card, "offset_transform_position:x", l, duration)
-	
-		await shift_tween.finished
+			var old_index = cards.find(card)
+			var l = card.min_size_x_default * (new_index - old_index)
+			sort_tween.tween_property(card.stamp, "offset_transform_position:x", l, duration)
+		
+		await sort_tween.finished
 		
 		for _i in sorted_cards.size():
 			var card = sorted_cards[_i]
 			%Cards.move_child(card, _i)
-			card.offset_transform_position.x = 0
+			card.stamp.offset_transform_position.x = 0
 	
 	cards.clear()
 	cards.append_array(sorted_cards)
-	cards.append_array(hiden_cards)
 	data.apply_scenario_canto_stakes()
 
 func close_up_cards(card_: Card) -> void:
@@ -152,30 +153,11 @@ func close_up_cards(card_: Card) -> void:
 	await shift_tween.finished
 	card_.visible = false
 	
-	for card in %Cards.get_children():
-		card.offset_transform_position.x = 0
+	reset_offsets()
 	
 	if data.stamps.has(card_.stamp.data):
 		data.stamps.erase(card_.stamp.data)
-		data.house.atheneum.faction.odeum.init_scenarios(data.type)
-		sort_cards()
-
-func push_aside_cards(card_: Card) -> void:
-	if shift_tween and shift_tween.is_running(): return
-	if %Cards.get_child_count() == 0: return
-	jalousie(card_, false)
-	await shift_tween.finished
-	
-	for card in %Cards.get_children():
-		card.offset_transform_position.x = 0
-	
-	card_.appear()
-	await card_.appear_tween.finished
-	
-	if not data.stamps.has(card_.stamp.data):
-		data.stamps.append(card_.stamp.data)
-		data.house.atheneum.faction.odeum.init_scenarios(data.type)
-		sort_cards()
+		find_best_scenario()
 
 func slide_away() -> void:
 	if shift_tween and shift_tween.is_running(): return
@@ -209,15 +191,10 @@ func jalousie(card_: Card = null, is_inside_: bool = true) -> void:
 			
 			shift_tween.tween_property(neighbour_card, "offset_transform_position:x", l, duration)
 
-func get_card_shift_length(card_: Card) -> int:
+func get_card_shift_length(card_: Card) -> float:
 	return card_.size.x + %Cards.get("theme_override_constants/separation")
 
 func reset_offsets() -> void:
-	if shift_tween and shift_tween.is_running(): 
-		shift_tween.kill()
-	
-	if %Cards.get_child_count() == 0: return
-	
 	for card in %Cards.get_children():
 		card.offset_transform_position = Vector2.ZERO
 #endregion
@@ -243,14 +220,18 @@ func plus_card(card_: Card) -> void:
 	card_.room.stamp_to_card.erase(card_.stamp.data)
 	card_.room.cards.erase(card_)
 	card_.room.data.stamps.erase(card_.stamp.data)
-	house.data.atheneum.faction.odeum.recalc_scenario(card_.room.data.type)
+	card_.room.find_best_scenario()
 	
 	%Cards.add_child(card_)
 	stamp_to_card[card_.stamp.data] = card_
 	cards.append(card_)
 	card_.room = self
 	data.stamps.append(card_.stamp.data)
-	house.data.atheneum.faction.odeum.recalc_scenario(data.type)
+	find_best_scenario()
+
+func find_best_scenario() -> void:
+	data.house.atheneum.faction.odeum.init_scenarios(data.type)
+	sort_cards()
 
 func skip_phase() -> void:
 	Arbitrator.current_phase.exit_phase()

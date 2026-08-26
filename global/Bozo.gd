@@ -163,6 +163,7 @@ const type_to_enum = {
 	Type.STAKE: Bozo.Stake,
 	Type.MATH: Bozo.Math,
 	Type.EVALUATION : Bozo.Evaluation,
+	Type.ROOM: Bozo.Room,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

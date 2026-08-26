@@ -14,6 +14,7 @@ const expands: Array[float] = [0.8, 0.8]
 const cants: Array[float] = [0.4, 0.4]
 const flips: Array[float] = [0.4, 0.4]
 const debts: Array[float] = [1.4, 0.4]
+const sorts: Array[float] = [0.4, 0.4]
 
 
 const min_appear_factor: float = -0.9#0.8

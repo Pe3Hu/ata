@@ -1,18 +1,9 @@
-res://entities/isle/atheneum/house/room/room_data.gd
-res://entities/isle/odeum/canto/canto_data.gd
-res://entities/isle/isle.tscn
+res://entities/isle/odeum/canto/canto.tscn
 res://entities/isle/biome/matter.gdshader
+res://entities/isle/atheneum/card/stamp/stake/ban.gdshader
+res://entities/isle/odeum/canto/pulse/critical pulse.gdshader
 res://entities/isle/kernel/pie/pie border.gdshader
 res://entities/isle/kernel/pie/slice/slice border.gdshader
-res://entities/isle/kernel/usurer/dept/debt_data.gd
-res://entities/isle/kernel/pie/pie_data.gd
-res://entities/isle/kernel/pie/slice/slice_data.gd
-res://entities/isle/kernel/usurer/usurer_data.gd
-res://entities/isle/odeum/canto/canto.gd
-res://global/arbitrator/action/action_attack_shadow.gd
-res://entities/isle/policy/faction/warlord/raid_data.gd
-res://entities/isle/kernel/usurer/usurer.gd
-res://global/Gear.gd
-res://entities/isle/kernel/usurer/dept/fine/fine_data.gd
-res://entities/isle/kernel/usurer/dept/fine/fine.gd
-res://entities/isle/policy/faction/faction_data.gd
+res://entities/isle/odeum/odeum_data.gd
+res://entities/isle/atheneum/card/stamp/stamp_data.gd
+res://entities/isle/odeum/canto/canto_data.gd

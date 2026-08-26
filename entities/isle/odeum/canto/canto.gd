@@ -34,33 +34,38 @@ func connect_datas() -> void:
 	
 	if data.verse:
 		verse.data = data.verse
-		verse.visible = true
-	else:
-		verse.visible = false
 	
 	if data.outro:
 		outro.data = data.outro
-		outro.visible = true
-	else:
-		outro.visible = false
+		pulse.icon.offset_transform_rotation = PI / 2
 
 func _on_is_selected_changed() -> void:
-	match data.is_selected:
-		true:
-			%Selection.color = Color.LIGHT_GRAY
-		false:
-			%Selection.color = Color.WEB_GRAY
+	var bg_color: Color = Digest.canto_to_selection[data.is_selected]
+	pulse.icon.material.set_shader_parameter("bg_color", bg_color)
 
 func _on_voice() -> void:
-	hymn.get_parent().remove_child(hymn)
-	hymn.queue_free()
+	var is_last = get_parent().get_child_count() == 1
+	get_parent().remove_child(self)
 	queue_free()
+	
+	if is_last:
+		hymn.get_parent().remove_child(hymn)
+		hymn.queue_free()
+	
+	if hymn.active_canto_index > 0:
+		hymn.active_canto_index -= 1
+	else:
+		hymn.active_canto_index = 0
 #endregion
 
+#region selection
 func _on_button_pressed() -> void:
 	update_selection()
 
 func update_selection() -> void:
 	if hymn.odeum.data.current_canto == data: return
-	hymn.odeum.data.current_canto = data
-	data.is_selected = true
+	
+	if data.hymn.scenario.room == Bozo.Room.KITCHEN:
+		hymn.odeum.data.current_canto = data
+		data.is_selected = true
+#endregion

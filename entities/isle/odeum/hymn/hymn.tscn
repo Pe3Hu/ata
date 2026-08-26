@@ -6,32 +6,35 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baho7"]
 
 [node name="Hymn" type="PanelContainer" unique_id=1644121454]
-custom_minimum_size = Vector2(280, 64)
-offset_right = 280.0
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 128)
+clip_contents = true
+offset_right = 128.0
 offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_baho7")
 script = ExtResource("1_baho7")
 
-[node name="HBox" type="HBoxContainer" parent="." unique_id=1928794907]
+[node name="VBox" type="VBoxContainer" parent="." unique_id=2083055518]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="PreviousCanto" parent="HBox" unique_id=1371860958 instance=ExtResource("2_ud6sx")]
+[node name="PreviousCanto" parent="VBox" unique_id=1371860958 instance=ExtResource("2_ud6sx")]
 unique_name_in_owner = true
 layout_mode = 2
-flip_h = true
+offset_transform_rotation = -1.5707964
 
-[node name="Cantos" type="HBoxContainer" parent="HBox" unique_id=1518176692]
+[node name="Cantos" type="VBoxContainer" parent="VBox" unique_id=713926260]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="NextCanto" parent="HBox" unique_id=1363361623 instance=ExtResource("2_ud6sx")]
+[node name="NextCanto" parent="VBox" unique_id=1363361623 instance=ExtResource("2_ud6sx")]
 unique_name_in_owner = true
 layout_mode = 2
+offset_transform_rotation = 1.5707964
 
-[connection signal="pressed" from="HBox/PreviousCanto" to="." method="_on_previous_canto_pressed"]
-[connection signal="pressed" from="HBox/NextCanto" to="." method="_on_next_canto_pressed"]
+[connection signal="pressed" from="VBox/PreviousCanto" to="." method="_on_previous_canto_pressed"]
+[connection signal="pressed" from="VBox/NextCanto" to="." method="_on_next_canto_pressed"]

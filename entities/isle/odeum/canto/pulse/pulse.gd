@@ -10,6 +10,8 @@ extends PanelContainer
 		
 		%Number.texture = load("res://entities/dice/images/%d.png" % value)
 
+@export var icon: TextureRect
+
 
 func _on_is_critical_changed() -> void:
-	%Background.material.set_shader_parameter("is_critical", canto.data.is_critical)
+	icon.material.set_shader_parameter("is_critical", canto.data.is_critical)

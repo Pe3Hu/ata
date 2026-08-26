@@ -116,9 +116,11 @@ const DEBT_MAX_AMOUNT: int = 100
 
 const biomes = [Bozo.Biome.PLAIN, Bozo.Biome.SWAMP, Bozo.Biome.MOUNTAIN]
 
+#region pie
 const slice_volumes = [30, 20, 18, 12, 10, 6, 2, 4, 8, 32, 30, 20, 15, 10, 5, 25, 30, 18, 15, 12, 6, 3, 9, 27]
 const slice_matters = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2]
 const SLICE_INDEX_SHIFT = 8#10
 
 const STARTER_HARVEST_AMOUNT: int = 40
 const STARTER_PRIME_AMOUNT: int = 18
+#endregion

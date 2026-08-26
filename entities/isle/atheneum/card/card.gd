@@ -86,6 +86,7 @@ func hover() -> void:
 	#if room.current_card == self: return
 	if hover_tween and hover_tween.is_running(): return
 	if room.data.type == Bozo.Room.PARLOR: return
+	if stamp.data.is_locked: return
 	
 	z_index = 1
 	var current_x = stamp.position.x
@@ -116,6 +117,7 @@ func unhover() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	if hover_tween and hover_tween.is_running(): return
 	if room.data.type == Bozo.Room.PARLOR: return
+	if stamp.data.is_locked: return
 	z_index = 0
 	
 	if room.shift_tween and room.shift_tween.is_running():

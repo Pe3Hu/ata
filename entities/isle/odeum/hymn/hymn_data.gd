@@ -41,3 +41,19 @@ func init_cantos() -> void:
 func get_canto_with_max_pulse() -> CantoData:
 	cantos.sort_custom(func (a, b): return a.pulse_value > b.pulse_value)
 	return cantos.front()
+
+func get_pulse_sum() -> int:
+	var pulse_sum: int = 0
+	
+	for canto in cantos:
+		pulse_sum += canto.pulse_value
+	
+	return pulse_sum
+
+func get_canto_pulses() -> Array:
+	var pulses: Array[int]
+	
+	for canto in cantos:
+		pulses.append(canto.pulse_value)
+	
+	return pulses

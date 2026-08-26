@@ -55,9 +55,11 @@ func update_pulse() -> void:
 	pulse_value = intro.stake.value
 	
 	if verse:
+		if verse.stake.is_voiced: return
 		pulse_value += verse.stake.value
 	
 	if outro:
+		if outro.stake.is_voiced: return
 		pulse_value *= outro.stake.value
 	
 	if Catalog.pulses.has(pulse_value) and pulse_value > 0:
@@ -95,12 +97,15 @@ func is_affordable() -> bool:
 #endregion
 
 func apply_voice() -> void:
+	type_to_stake[Bozo.Stake.LEFT].is_voiced = true
 	var pie = hymn.scenario.odeum.faction.kernel.pie
 	var penalty_values = []
 	var penalty_matters = []
 	
+	
 	for type in type_to_stake:
 		var stake = type_to_stake[type]
+		stake.stamp.is_locked = true
 		stake.canto = null
 		var volume = stake.value
 		
@@ -128,6 +133,7 @@ func apply_voice() -> void:
 	if hymn.scenario.odeum.current_canto:
 		hymn.scenario.odeum.current_canto = null
 	
+	hymn.scenario.odeum.update_locked_stamps()
 	hymn.cantos.erase(self)
 	voice.emit()
 

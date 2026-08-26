@@ -341,6 +341,11 @@ var matter_to_pallete = [
 	Color.from_hsv(0.0416, 0.6, 0.7),
 	Color.from_hsv(0.0416, 0.8, 1.0),
 ]
+
+var canto_to_selection = {
+	true: Color.LIGHT_GRAY,
+	false: Color.WEB_GRAY,
+}
 #endregion
 
 

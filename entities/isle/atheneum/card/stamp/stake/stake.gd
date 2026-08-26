@@ -17,11 +17,13 @@ var data: StakeData:
 
 #region init
 func connect_signals() -> void:
-	data.canto_changed.connect(_on_canto_changed)
-	_on_canto_changed()
+	data.canto_changed.connect(_on_bg_changed)
+	data.is_voiced_changed.connect(_on_bg_changed)
+	_on_bg_changed()
 
-func _on_canto_changed() -> void:
-	%CantoBG.visible = data.canto != null
+func _on_bg_changed() -> void:
+	%BanBG.visible = data.is_voiced
+	%CantoBG.visible = data.canto != null and not %BanBG.visible
 
 func update_texture() -> void:
 	%Number.frame_coords = Helper.get_coord_based_on_value(data.value)

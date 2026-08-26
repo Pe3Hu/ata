@@ -3,6 +3,7 @@ extends RefCounted
 
 
 signal canto_changed
+signal is_voiced_changed
 
 var stamp: StampData
 var type: Bozo.Stake
@@ -14,6 +15,11 @@ var canto: CantoData:
 	set(value_):
 		canto = value_
 		canto_changed.emit()
+
+var is_voiced: bool = false:
+	set(value_):
+		is_voiced = value_
+		is_voiced_changed.emit()
 
 
 func _init(stamp_: StampData, tune_: Bozo.Tune, joints_: Array, value_: int) -> void:

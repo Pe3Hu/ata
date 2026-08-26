@@ -18,7 +18,6 @@ var kitchen_scenario: ScenarioData:
 		kitchen_scenario = value_
 		kitchen_scenario_changed.emit()
 
-
 var current_canto: CantoData:
 	set(value_):
 		if value_ != current_canto:
@@ -29,6 +28,8 @@ var current_canto: CantoData:
 			
 			if current_canto:
 				current_canto.is_selected = true
+
+var locked_stamps: Array[StampData]
 
 
 func _init(faction_: FactionData) -> void:
@@ -44,25 +45,34 @@ func init_scenarios(type_: Bozo.Room = Bozo.Room.BEDROOM) -> void:
 func init_permutations(type_: Bozo.Room) -> void:
 	room_to_scenarios[type_].clear()
 	var stamp_queue = faction.atheneum.house.type_to_room[type_].stamps.duplicate()
-	var spoils: Array[StampData]
+	
+	if type_ == Bozo.Room.KITCHEN and not locked_stamps.is_empty():
+		stamp_queue = stamp_queue.filter(func (a): return not locked_stamps.has(a))
 	
 	if not stamp_queue.is_empty():
 		var permutations = Helper.generate_permutations(stamp_queue)
 		
 		for permutation in permutations:
-			var _scenario = ScenarioData.new(self, permutation, spoils, type_)
-		
-		for _i in range(2, stamp_queue.size() - 2, 1):
-			var arrangements = Helper.generate_arrangements_fixed_size(stamp_queue, _i)
-		
-			for arrangement in arrangements:
-				spoils = stamp_queue.filter(func (a): return not arrangement.has(a))
-				var _scenario = ScenarioData.new(self, arrangement, spoils, type_)
+			if type_ == Bozo.Room.KITCHEN and not locked_stamps.is_empty():
+				var chains = permutation.duplicate()
+				chains.append_array(locked_stamps)
+				var _scenario = ScenarioData.new(self, chains, type_)
+				
+				for _i in permutation.size():
+					chains = permutation.duplicate()
+					
+					for _j in range(locked_stamps.size()-1, -1, -1):
+						var locked_stamp = locked_stamps[_j]
+						chains.insert(_i, locked_stamp)
+				
+					_scenario = ScenarioData.new(self, chains, type_)
+			else:
+				var _scenario = ScenarioData.new(self, permutation, type_)
 	else:
-		for ark in Arbitrator.chronicler.fleet.arks:
-			spoils.append(ark.stamp)
-		
-		var _scenario = ScenarioData.new(self, [], spoils, type_)
+		return
+	
+	#if type_ == Bozo.Room.KITCHEN:
+	#	print([Bozo.enum_to_string(Bozo.Type.ROOM, type_), room_to_scenarios[type_].size()])
 	
 	room_to_scenarios[type_].sort_custom(func (a, b): return a.pulse_weight > b.pulse_weight)
 	
@@ -71,16 +81,15 @@ func init_permutations(type_: Bozo.Room) -> void:
 		var pulses = []
 		
 		for hymn in scenario.hymns:
-			pulses.append(hymn.get_canto_with_max_pulse().pulse_value)
+			pulses.append_array(hymn.get_canto_pulses())
 		
-		print([scenario.pulse_weight, pulses])
+		#print([Bozo.enum_to_string(Bozo.Type.ROOM, type_), scenario.pulse_weight, pulses])
 	
 	update_scenario(type_, room_to_scenarios[type_].front())
 
 func recalc_scenario(type_: Bozo.Room) -> void:
-	var spoils: Array[StampData]
 	var permutation = faction.atheneum.house.type_to_room[type_].stamps.duplicate()
-	var scenario = ScenarioData.new(self, permutation, spoils, type_)
+	var scenario = ScenarioData.new(self, permutation, type_)
 	update_scenario(type_, scenario)
 
 func update_scenario(type_: Bozo.Room, scenario_: ScenarioData) -> void:
@@ -100,3 +109,14 @@ func get_scenario(type_: Bozo.Room) -> Variant:
 			return kitchen_scenario
 	
 	return null
+
+func update_locked_stamps() -> void:
+	locked_stamps.clear()
+	#for stamp in kitchen.stamps:
+	#	if stamp.is_locked:
+	#		locked_stamps.append(stamp)
+	locked_stamps = kitchen_scenario.chains.filter(func (a): return a.is_locked)
+	#locked_stamps.sort_custom(func (a, b): return kitchen.stamps.find(a) > kitchen.stamps.find(b))
+	print("___")
+	for stamp in locked_stamps:
+		print(["lock", stamp.get_mark()])
