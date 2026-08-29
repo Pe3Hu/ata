@@ -8,16 +8,5 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	Arbitrator.current_chronicler.faction.odeum.current_scenario = null
 	
-	#Arbitrator.current_chronicler.house.bedroom.clear()
-	
-	if Arbitrator.is_player():
-		Arbitrator.current_chronicler.house.atheneum.discard_phase.emit()
-	else:
-		exit_phase()
-
-func _on_all_animations_finished() -> void:
-	super._on_all_animations_finished()
-	status = Bozo.Status.IDLE
-	exit_phase()
+	Arbitrator.faction.atheneum.house.discard_phase.emit()

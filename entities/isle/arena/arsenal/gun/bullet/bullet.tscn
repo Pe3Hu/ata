@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://njw7gblmc085"]
+
+[ext_resource type="Texture2D" uid="uid://bwy1hl160x2ty" path="res://entities/isle/arena/arsenal/gun/gun.png" id="1_kanui"]
+[ext_resource type="Script" uid="uid://cdyukl2g8t3lh" path="res://entities/isle/arena/arsenal/gun/bullet/bullet.gd" id="2_6aq72"]
+
+[sub_resource type="Animation" id="Animation_mdgri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fkr1s"]
+resource_name = "appear"
+length = 0.2
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xhrrm"]
+resource_name = "disappear"
+length = 0.2
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5cv0"]
+_data = {
+&"RESET": SubResource("Animation_mdgri"),
+&"appear": SubResource("Animation_fkr1s"),
+&"disappear": SubResource("Animation_xhrrm")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxk3t"]
+radius = 3.0
+height = 10.0
+
+[node name="Bullet" type="Sprite2D" unique_id=1127137959]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+texture_filter = 1
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_kanui")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("2_6aq72")
+
+[node name="Halo" type="Sprite2D" parent="." unique_id=582225623]
+unique_name_in_owner = true
+show_behind_parent = true
+texture = ExtResource("1_kanui")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1143409065]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+z_index = -1
+position = Vector2(-2, 2)
+texture = ExtResource("1_kanui")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=412761754]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_q5cv0")
+speed_scale = 2.0
+
+[node name="RayCast" type="RayCast2D" parent="." unique_id=156733338]
+unique_name_in_owner = true
+position = Vector2(-4, 0)
+target_position = Vector2(8, 0)
+collision_mask = 5
+
+[node name="DistanceTimer" type="Timer" parent="." unique_id=772164137]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1727878240 groups=["bullet"]]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=532094172]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lxk3t")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="DistanceTimer" to="." method="_on_distance_timer_timeout"]

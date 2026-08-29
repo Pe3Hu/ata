@@ -24,6 +24,7 @@ func connect_signals() -> void:
 func _on_current_value_changed() -> void:
 	var percentage = remap(data.current_value, 0.0, data.limit_value, 0.0, 1.0)
 	%Volume.material.set_shader_parameter("percentage", percentage)
+	%Amount.text = "%d/%d" % [data.current_value, data.limit_value]
 
 func update_textures() -> void:
 	var matter = Bozo.enum_to_string(Bozo.Type.MATTER, data.matter)

@@ -112,11 +112,4 @@ func get_scenario(type_: Bozo.Room) -> Variant:
 
 func update_locked_stamps() -> void:
 	locked_stamps.clear()
-	#for stamp in kitchen.stamps:
-	#	if stamp.is_locked:
-	#		locked_stamps.append(stamp)
 	locked_stamps = kitchen_scenario.chains.filter(func (a): return a.is_locked)
-	#locked_stamps.sort_custom(func (a, b): return kitchen.stamps.find(a) > kitchen.stamps.find(b))
-	print("___")
-	for stamp in locked_stamps:
-		print(["lock", stamp.get_mark()])

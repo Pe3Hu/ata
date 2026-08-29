@@ -5,6 +5,8 @@ extends RefCounted
 @warning_ignore("unused_signal")
 signal draw_phase
 @warning_ignore("unused_signal")
+signal punishment_phase
+@warning_ignore("unused_signal")
 signal discard_phase
 
 var atheneum: AtheneumData

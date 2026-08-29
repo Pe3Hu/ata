@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://d1cgfxb85qjh3" path="res://entities/isle/kernel/usurer/dept/debt volume.gdshader" id="1_iv8g3"]
 [ext_resource type="Texture2D" uid="uid://b7ml57hj61ysv" path="res://entities/isle/kernel/usurer/dept/images/gas outline.png" id="2_wsjvb"]
 [ext_resource type="Texture2D" uid="uid://b5kjkvfb8i465" path="res://entities/isle/kernel/usurer/dept/images/gas volume.png" id="3_wsjvb"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="5_dkecd"]
 [ext_resource type="PackedScene" uid="uid://bk0314oaose1v" path="res://entities/isle/kernel/usurer/dept/fine/fine.tscn" id="5_hmusm"]
 [ext_resource type="Texture2D" uid="uid://dp7vnk5xl70wj" path="res://entities/isle/kernel/usurer/dept/fine/images/gas volume.png" id="6_v8o1i"]
 
@@ -21,7 +22,13 @@ shader_parameter/wave_frequency_2 = 1.0
 shader_parameter/wave_amplitude_2 = 0.0250000011875
 shader_parameter/wave_phase_offset = 0.0
 
-[sub_resource type="Shader" id="Shader_dkecd"]
+[sub_resource type="LabelSettings" id="LabelSettings_x4qix"]
+resource_local_to_scene = true
+font = ExtResource("5_dkecd")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Shader" id="Shader_t4yh6"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -130,9 +137,9 @@ void fragment() {
 	COLOR = vec4(res_color, mask_alpha);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4qix"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txvao"]
 resource_local_to_scene = true
-shader = SubResource("Shader_dkecd")
+shader = SubResource("Shader_t4yh6")
 shader_parameter/mask_texture = ExtResource("6_v8o1i")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
 shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
@@ -169,6 +176,26 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_wsjvb")
 
+[node name="Amount" type="Label" parent="VBox/Volume" unique_id=1099980721]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(51, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_x4qix")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Fine" parent="VBox" unique_id=1257049765 instance=ExtResource("5_hmusm")]
-material = SubResource("ShaderMaterial_x4qix")
+material = SubResource("ShaderMaterial_txvao")
 layout_mode = 2

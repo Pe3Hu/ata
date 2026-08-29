@@ -53,3 +53,9 @@ house = NodePath("../..")
 custom_minimum_size = Vector2(600, 312)
 layout_mode = 2
 house = NodePath("../..")
+
+[node name="DiscardTimer" type="Timer" parent="." unique_id=1924665033]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="DiscardTimer" to="." method="_on_discard_timer_timeout"]

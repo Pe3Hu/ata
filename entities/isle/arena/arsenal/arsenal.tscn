@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dvxam7we1ct0q"]
+
+[ext_resource type="Script" uid="uid://d4goky0myyo7k" path="res://entities/isle/arena/arsenal/arsenal.gd" id="1_p8jh0"]
+[ext_resource type="PackedScene" uid="uid://dyfog1aiuiqml" path="res://entities/isle/arena/arsenal/gun/gun.tscn" id="2_xoucx"]
+
+[node name="Arsenal" type="Node2D" unique_id=2031815039]
+script = ExtResource("1_p8jh0")
+
+[node name="Gun" parent="." unique_id=1801495731 instance=ExtResource("2_xoucx")]
+unique_name_in_owner = true

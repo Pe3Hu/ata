@@ -11,17 +11,13 @@ func enter_phase():
 	super.enter_phase()
 	
 	if Arbitrator.current_round == 1:
-		Arbitrator.current_chronicler.house.direct_refill_bedroom()
+		Arbitrator.faction.atheneum.house.direct_refill_bedroom()
 	
-	Arbitrator.current_chronicler.house.refill_parlor()
+	Arbitrator.faction.atheneum.house.refill_parlor()
+	Arbitrator.faction.odeum.init_scenarios()
 	
-	Arbitrator.current_chronicler.faction.odeum.init_scenarios()
-	
-	if Arbitrator.is_player():
-		status = Bozo.Status.PLAYING_ANIMATION
-		Arbitrator.current_chronicler.house.draw_phase.emit()
-	else:
-		exit_phase()
+	status = Bozo.Status.PLAYING_ANIMATION
+	Arbitrator.faction.atheneum.house.draw_phase.emit()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

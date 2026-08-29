@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ctbwsejp73e8b"]
+
+[ext_resource type="Script" uid="uid://t60l6v2avmi" path="res://entities/isle/arena/horde/horde.gd" id="1_l0pov"]
+
+[node name="Horde" type="Node2D" unique_id=1682789778]
+script = ExtResource("1_l0pov")

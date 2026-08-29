@@ -9,7 +9,6 @@ var index: int
 var kernel: KernelData
 var atheneum: AtheneumData
 var odeum: OdeumData
-var chronicler: ChroniclerData
 
 var settlements: Array[SettlementData]
 
@@ -27,5 +26,4 @@ func _init(policy_: PolicyData, is_active_: bool = false) -> void:
 		kernel = KernelData.new(self)
 		
 		atheneum = AtheneumData.new(self)
-		chronicler = ChroniclerData.new(self)
 #endregion

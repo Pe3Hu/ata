@@ -112,12 +112,11 @@ enum Phase {
 	GROWTH = 200,
 	DRAW = 201,
 	DECISION = 202,
-	STOCK = 203,
-	DISCARD = 204,
-	FUSION = 205,
+	DISCARD = 203,
+	FUSION = 204,
+	PUNISHMENT = 205,
 	RECRUITMENT = 206,
 }
-
 
 #region string
 enum Type {

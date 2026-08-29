@@ -29,3 +29,5 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_ESCAPE:
 				get_tree().quit()
+			KEY_SPACE:
+				Arbitrator.apply_pass()

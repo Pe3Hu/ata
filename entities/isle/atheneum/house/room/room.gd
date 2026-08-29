@@ -235,10 +235,3 @@ func find_best_scenario() -> void:
 
 func skip_phase() -> void:
 	Arbitrator.current_phase.exit_phase()
-
-func _input(event) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_SPACE:
-				pass
-				#skip_phase()

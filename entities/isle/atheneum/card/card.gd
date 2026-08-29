@@ -45,7 +45,7 @@ func _ready() -> void:
 	first_appear()
 
 func first_appear() -> void:
-	stamp.offset_transform_position_ratio.y = 1.25
+	offset_transform_position.x = Catalog.CARD_APPEAR_DISTANCE
 	rng_duration_shift()
 	appear()
 	Arbitrator.queue_an_animation(appear_tween)
@@ -59,7 +59,7 @@ func appear() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	visible = true
 	appear_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 0.0, Gear.appears[Gear.tempo] + duration_shift)
+	appear_tween.parallel().tween_property(self, "offset_transform_position:x", 0.0, Gear.appears[Gear.tempo] + duration_shift)
 
 	await appear_tween.finished
 	mouse_filter = Control.MOUSE_FILTER_PASS
@@ -68,7 +68,7 @@ func appear() -> void:
 func disappear() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	appear_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)#TRANS_CIRC
-	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 1.25, Gear.appears[Gear.tempo])
+	appear_tween.parallel().tween_property(self, "offset_transform_position:x", Catalog.CARD_APPEAR_DISTANCE, Gear.appears[Gear.tempo])
 	await appear_tween.finished
 	room.close_up_cards(self)
 
@@ -180,6 +180,7 @@ func activate(is_fol: bool = true) -> void:
 	
 	await activate_tween.finished
 	finish_activate(is_fol)
+	z_index = 0
 
 func finish_activate(is_fol: bool = true) -> void:
 	room.house.on_tween_finished(activate_tween)
@@ -217,6 +218,7 @@ func flip_on_shadow() -> void:
 
 func flip_on_stamp() -> void:
 	var duration = Gear.flips[Gear.tempo]
+	z_index = 10
 	
 	if flip_tween and flip_tween.is_running():
 		flip_tween.kill()

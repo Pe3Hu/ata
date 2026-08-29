@@ -7,5 +7,6 @@ func _init() -> void:
 	type = Bozo.Phase.DECISION
 
 func enter_phase():
-	#exit_phase()
+	super.enter_phase()
+	
 	pass

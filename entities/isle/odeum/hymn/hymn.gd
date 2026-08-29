@@ -15,7 +15,7 @@ var active_canto_index: int = 0:
 	set(value_):
 		var canto: Canto
 	
-		if %Cantos.get_child_count() > 0:
+		if %Cantos.get_child_count() > 0 and %Cantos.get_child_count() > active_canto_index:
 			canto = %Cantos.get_child(active_canto_index)
 			canto.visible = false
 		
