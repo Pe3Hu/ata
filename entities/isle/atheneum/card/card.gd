@@ -65,16 +65,20 @@ func appear() -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	stamp.mouse_filter = Control.MOUSE_FILTER_PASS
 
-func disappear() -> void:
+func disappear(is_last_: bool = false) -> void:
 	if appear_tween and appear_tween.is_running(): return
 	appear_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)#TRANS_CIRC
 	appear_tween.parallel().tween_property(self, "offset_transform_position:x", Catalog.CARD_APPEAR_DISTANCE, Gear.appears[Gear.tempo])
 	await appear_tween.finished
 	room.close_up_cards(self)
+	
+	if is_last_:
+		get_parent().remove_child(self)
+		queue_free()
 
 func last_disappear() -> void:
 	rng_duration_shift()
-	disappear()
+	disappear(true)
 	
 	Arbitrator.queue_an_animation(appear_tween)
 #endregion

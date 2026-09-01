@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="OpportunityData" format=3 uid="uid://dd5lo420slqv7"]
+
+[ext_resource type="Script" uid="uid://42wosuom5j36" path="res://entities/isle/mission/gang/idea/intention/intention_data.gd" id="1_5inc1"]
+[ext_resource type="Script" uid="uid://cm5ac6b8x3mmc" path="res://entities/isle/mission/gang/idea/opportunity/opportunity_data.gd" id="2_00b2q"]
+
+[sub_resource type="Resource" id="Resource_8l61p"]
+script = ExtResource("1_5inc1")
+element = 49
+aspect = 60
+metadata/_custom_type_script = "uid://42wosuom5j36"
+
+[sub_resource type="Resource" id="Resource_j13uw"]
+script = ExtResource("1_5inc1")
+element = 50
+aspect = 61
+metadata/_custom_type_script = "uid://42wosuom5j36"
+
+[sub_resource type="Resource" id="Resource_rk2rx"]
+script = ExtResource("1_5inc1")
+element = 46
+aspect = 59
+metadata/_custom_type_script = "uid://42wosuom5j36"
+
+[sub_resource type="Resource" id="Resource_sx0y7"]
+script = ExtResource("1_5inc1")
+element = 45
+aspect = 60
+metadata/_custom_type_script = "uid://42wosuom5j36"
+
+[sub_resource type="Resource" id="Resource_wwi40"]
+script = ExtResource("1_5inc1")
+element = 51
+aspect = 61
+metadata/_custom_type_script = "uid://42wosuom5j36"
+
+[resource]
+script = ExtResource("2_00b2q")
+intentions = Array[ExtResource("1_5inc1")]([SubResource("Resource_8l61p"), SubResource("Resource_j13uw"), SubResource("Resource_rk2rx"), SubResource("Resource_sx0y7"), SubResource("Resource_wwi40")])
+metadata/_custom_type_script = "uid://cm5ac6b8x3mmc"

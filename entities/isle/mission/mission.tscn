@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bfxpchr7aa5bp"]
+
+[ext_resource type="Script" uid="uid://b66vpjd2mmwf8" path="res://entities/isle/mission/mission.gd" id="1_23oni"]
+
+[node name="Mission" type="PanelContainer" unique_id=475274081]
+script = ExtResource("1_23oni")
+
+[node name="Ideas" type="VBoxContainer" parent="." unique_id=2093602413]
+unique_name_in_owner = true
+layout_mode = 2

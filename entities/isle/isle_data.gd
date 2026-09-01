@@ -8,6 +8,7 @@ var odeum: OdeumData
 
 var policy: PolicyData
 var forge: ForgeData
+var mission: MissionData
 
 
 func _init() -> void:
@@ -17,3 +18,5 @@ func _init() -> void:
 	atheneum = policy.player_faction.atheneum
 	kernel = policy.player_faction.kernel
 	odeum = policy.player_faction.odeum
+	
+	mission = MissionData.new(self)

@@ -1,12 +1,12 @@
-Timer
+Control
+TextureRect
 VBoxContainer
+PanelContainer
+Timer
 HBoxContainer
 ColorRect
 GridContainer
-TextureRect
-Control
 Line2D
 Node2D
 Polygon2D
 Label
-PanelContainer

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bhtnr3epno3wi"]
+
+[ext_resource type="Texture2D" uid="uid://b6u56xhg0vsu2" path="res://entities/isle/mission/gang/idea/intention/images/intellect.png" id="1_4a8ei"]
+[ext_resource type="Script" uid="uid://h4bbf1j2mkfa" path="res://entities/isle/mission/gang/idea/intention/intention.gd" id="2_h5lrr"]
+
+[node name="Intention" type="TextureRect" unique_id=309311870]
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("1_4a8ei")
+script = ExtResource("2_h5lrr")

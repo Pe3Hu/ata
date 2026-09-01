@@ -85,14 +85,57 @@ enum Temperature {
 	HEAT = 44,
 }
 
+enum Element {
+	NONE = 0,
+	CLOUD = 45,
+	VAPOR = 46,
+	DUST = 47,
+	SAND = 48,
+	ICE = 49,
+	LAVA = 50,
+	CHAOS = 51,
+}
+
 enum Catastrophe {
 	NONE = 0,
-	STORM = 45,
-	MIST = 46,
-	TORNADO = 47,
-	HABOOB = 48,
-	BLIZZARD = 49,
-	VOLCANO = 50,
+	STORM = 52,
+	MIST = 53,
+	TORNADO = 54,
+	HABOOB = 55,
+	BLIZZARD = 56,
+	VOLCANO = 57,
+	VOID = 58,
+}
+
+enum Aspect {
+	NONE = 0,
+	STRENGTH = 59,
+	DEXTERITY = 60,
+	INTELLECT = 61,
+}
+
+enum Obstacle {
+	NONE = 0,
+	LOCK = 62,
+	WALL = 63,
+	CUSTODIAN = 64,
+}
+
+enum Mandate {
+	NONE = 0,
+	PASSWORD = 65,
+	OUTLET = 66,
+	KEY = 67,
+}
+
+enum Method {
+	NONE = 0,
+	RAKE = 68,
+	HACK = 69,
+	BREAK = 70,
+	FIND = 71,
+	KILL = 72,
+	STEAL = 73,
 }
 
 enum Status {
@@ -131,7 +174,13 @@ enum Type {
 	EVALUATION = -8,
 	RELIC = -9,
 	TEMPERATURE = -10,
-	CATASTROPHE = -12,
+	ELENMENT = -12,
+	CATASTROPHE = -13,
+	ASPECT = -14, 
+	OBSTACLE = -15,
+	MANDATE = -16,
+	METHOD = -17,
+	
 	
 	ACTION = -100,
 	PHASE = -200,
@@ -149,7 +198,12 @@ const type_to_index = {
 	Type.EVALUATION: 36,
 	Type.RELIC: 39,
 	Type.TEMPERATURE: 42,
-	Type.CATASTROPHE: 45,
+	Type.ELENMENT: 45,
+	Type.CATASTROPHE: 52,
+	Type.ASPECT: 59,
+	Type.OBSTACLE: 62,
+	Type.MANDATE: 65,
+	Type.METHOD: 68,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -163,6 +217,12 @@ const type_to_enum = {
 	Type.MATH: Bozo.Math,
 	Type.EVALUATION : Bozo.Evaluation,
 	Type.ROOM: Bozo.Room,
+	Type.ELENMENT: Bozo.Element,
+	Type.CATASTROPHE: Bozo.Catastrophe,
+	Type.ASPECT: Bozo.Aspect,
+	Type.OBSTACLE: Bozo.Obstacle,
+	Type.MANDATE: Bozo.Mandate,
+	Type.METHOD: Bozo.Method,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

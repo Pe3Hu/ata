@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bug16p4odki30"]
+
+[ext_resource type="Script" uid="uid://br62xuqxsn2i2" path="res://entities/isle/mission/gang/idea/idea.gd" id="1_j0n04"]
+
+[node name="Idea" type="Control" unique_id=1802051140]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j0n04")
+
+[node name="Intentions" type="Control" parent="." unique_id=1000345934]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -157,3 +157,6 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="MissionPanel" type="PanelContainer" parent="HBox" unique_id=1081499684]
+layout_mode = 2

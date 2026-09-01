@@ -41,7 +41,8 @@ func connect_signals() -> void:
 func _on_draw_phase() -> void:
 	bedroom.init_cards()
 	parlor.init_cards()
-	
+
+func test_card_animation() -> void:
 	await get_tree().create_timer(0.5).timeout
 	var card = bedroom.cards.front()
 	card.activate()
@@ -90,7 +91,6 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_SPACE:
 				switch_parlor_face()
-
 
 func _on_discard_timer_timeout() -> void:
 	var card = deactivate_cards.pop_back()

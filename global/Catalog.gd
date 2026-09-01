@@ -125,3 +125,19 @@ const SLICE_INDEX_SHIFT = 8#10
 const STARTER_HARVEST_AMOUNT: int = 40
 const STARTER_PRIME_AMOUNT: int = 18
 #endregion
+
+const elements = [
+	Bozo.Element.CLOUD,
+	Bozo.Element.VAPOR,
+	Bozo.Element.DUST,
+	Bozo.Element.SAND,
+	Bozo.Element.ICE,
+	Bozo.Element.LAVA,
+	Bozo.Element.CHAOS
+]
+
+const aspects = [
+	Bozo.Aspect.STRENGTH,
+	Bozo.Aspect.DEXTERITY,
+	Bozo.Aspect.INTELLECT
+]
