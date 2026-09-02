@@ -1,10 +1,20 @@
 [gd_scene format=3 uid="uid://bfxpchr7aa5bp"]
 
 [ext_resource type="Script" uid="uid://b66vpjd2mmwf8" path="res://entities/isle/mission/mission.gd" id="1_23oni"]
+[ext_resource type="PackedScene" uid="uid://boghsuc83roqn" path="res://entities/isle/mission/gang/gang.tscn" id="2_jce5p"]
+[ext_resource type="PackedScene" uid="uid://dagb3csq52hrm" path="res://entities/isle/mission/bank/bank.tscn" id="3_22t61"]
 
-[node name="Mission" type="PanelContainer" unique_id=475274081]
+[node name="Mission" type="PanelContainer" unique_id=475274081 node_paths=PackedStringArray("bank", "gang")]
+custom_minimum_size = Vector2(499, 499)
 script = ExtResource("1_23oni")
+bank = NodePath("HBox/Bank")
+gang = NodePath("HBox/Gang")
 
-[node name="Ideas" type="VBoxContainer" parent="." unique_id=2093602413]
-unique_name_in_owner = true
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1375652975]
+layout_mode = 2
+
+[node name="Gang" parent="HBox" unique_id=421912675 instance=ExtResource("2_jce5p")]
+layout_mode = 2
+
+[node name="Bank" parent="HBox" unique_id=898567607 instance=ExtResource("3_22t61")]
 layout_mode = 2

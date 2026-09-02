@@ -6,10 +6,12 @@ var data: MissionData:
 	set(value_):
 		data = value_
 		
-		init_ideas()
+		connect_data()
+
+@export var bank: Bank
+@export var gang: Gang
 
 
-
-func init_ideas() -> void:
-	for idea in Catalog.ideas:
-		var a 
+func connect_data() -> void:
+	bank.data = data.bank
+	gang.data = data.gang

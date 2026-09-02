@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oj7ci1re10n1"
-path="res://.godot/imported/dexterity.png-68a7d16d007bce2b03a5c354d76f5734.ctex"
+uid="uid://b5ji12545byqg"
+path="res://.godot/imported/strength.png-bcc387b6f6ba87824f7df7912ebb470f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/isle/mission/gang/idea/intention/images/dexterity.png"
-dest_files=["res://.godot/imported/dexterity.png-68a7d16d007bce2b03a5c354d76f5734.ctex"]
+source_file="res://entities/isle/mission/gang/idea/intention/images/body/strength.png"
+dest_files=["res://.godot/imported/strength.png-bcc387b6f6ba87824f7df7912ebb470f.ctex"]
 
 [params]
 

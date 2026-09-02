@@ -1,18 +1,43 @@
 [gd_scene format=3 uid="uid://bug16p4odki30"]
 
 [ext_resource type="Script" uid="uid://br62xuqxsn2i2" path="res://entities/isle/mission/gang/idea/idea.gd" id="1_j0n04"]
+[ext_resource type="Texture2D" uid="uid://hfq4bk7bsjyk" path="res://entities/isle/mission/gang/idea/idea.png" id="2_gncho"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="2_hltds"]
 
-[node name="Idea" type="Control" unique_id=1802051140]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gncho"]
+
+[node name="Idea" type="PanelContainer" unique_id=2127844489]
+custom_minimum_size = Vector2(136, 136)
+offset_right = 136.0
+offset_bottom = 136.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gncho")
 script = ExtResource("1_j0n04")
+
+[node name="Lines" type="Node2D" parent="." unique_id=905295003]
+unique_name_in_owner = true
+visible = false
+
+[node name="CustomButton" type="TextureButton" parent="." unique_id=312577639]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+texture_normal = ExtResource("2_gncho")
+texture_pressed = ExtResource("2_gncho")
+texture_hover = ExtResource("2_gncho")
+script = ExtResource("2_hltds")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
 
 [node name="Intentions" type="Control" parent="." unique_id=1000345934]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+z_index = 6
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+mouse_filter = 1
+
+[connection signal="pressed" from="CustomButton" to="." method="_on_custom_button_pressed"]

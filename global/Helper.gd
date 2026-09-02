@@ -129,3 +129,17 @@ func update_colors(node_, matter_: Bozo.Matter) -> void:
 	node_.material.set_shader_parameter("colorA", color_a)
 	node_.material.set_shader_parameter("colorB", color_b)
 	node_.material.set_shader_parameter("colorC", color_c)
+
+func get_idea_radius(n_: int) -> float:
+	#return Catalog.IDEA_SIZE.x / 2 * (1 + 1 / sin(PI / n_))
+	return Catalog.IDEA_SIZE.x / 2 / sin(PI / n_) * 1.1
+
+func find_intersection(a, b) -> Array:
+	var result = []
+	
+	for _a in a:
+		for _b in b:
+			if _a.aspect == _b.aspect and _a.element == _b.element:
+				result.append(_a)
+	
+	return result

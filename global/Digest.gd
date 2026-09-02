@@ -344,13 +344,13 @@ var matter_to_pallete = [
 
 
 var element_to_color = {
-	Bozo.Element.CLOUD: Color.from_hsv(0.0 / 360.0, 0.0, 0.75),
-	Bozo.Element.VAPOR: Color.from_hsv(0.35 / 360.0, 0.75, 0.75),
-	Bozo.Element.DUST: Color.from_hsv(0.0 / 360.0, 0.0, 0.75),
-	Bozo.Element.SAND: Color.from_hsv(0.15 / 360.0, 0.75, 0.25),
-	Bozo.Element.ICE: Color.from_hsv(0.55 / 360.0, 0.75, 0.75),
-	Bozo.Element.LAVA: Color.from_hsv(0.0 / 360.0, 0.75, 0.75),
-	Bozo.Element.CHAOS: Color.from_hsv(0.85 / 360.0, 0.75, 0.75),
+Bozo.Element.CLOUD: Color.from_hsv(0 / 360.0, 0.0, 0.75),
+Bozo.Element.DUST: Color.from_hsv(125 / 360.0, 0.75, 0.75),
+Bozo.Element.VAPOR: Color.from_hsv(0 / 360.0, 0.0, 0.25),
+Bozo.Element.SAND: Color.from_hsv(55 / 360.0, 0.75, 0.75),
+Bozo.Element.ICE: Color.from_hsv(205 / 360.0, 0.75, 0.75),
+Bozo.Element.LAVA: Color.from_hsv(0 / 360.0, 0.75, 0.75),
+Bozo.Element.CHAOS: Color.from_hsv(305 / 360.0, 0.75, 0.75),
 }
 
 

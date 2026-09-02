@@ -14,6 +14,8 @@ var data: IsleData:
 @export var stepladder: Stepladder
 @export var forge: Forge
 
+@export var misson: Mission
+
 
 func _ready() -> void:
 	data = IsleData.new()
@@ -23,6 +25,7 @@ func connect_datas() -> void:
 	kernel.data = data.kernel
 	house.data = data.atheneum.house
 	odeum.data = data.odeum
+	misson.data = data.mission
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

@@ -1,10 +1,35 @@
 [gd_scene format=3 uid="uid://bhtnr3epno3wi"]
 
-[ext_resource type="Texture2D" uid="uid://b6u56xhg0vsu2" path="res://entities/isle/mission/gang/idea/intention/images/intellect.png" id="1_4a8ei"]
 [ext_resource type="Script" uid="uid://h4bbf1j2mkfa" path="res://entities/isle/mission/gang/idea/intention/intention.gd" id="2_h5lrr"]
+[ext_resource type="Texture2D" uid="uid://oj7ci1re10n1" path="res://entities/isle/mission/gang/idea/intention/images/body/dexterity.png" id="2_qssmu"]
+[ext_resource type="Texture2D" uid="uid://do3brfq5osdpk" path="res://entities/isle/mission/gang/idea/intention/images/border/dexterity.png" id="3_i8aen"]
+[ext_resource type="Shader" uid="uid://cksg4po4awjwb" path="res://entities/isle/mission/gang/idea/intention/border.gdshader" id="3_qssmu"]
 
-[node name="Intention" type="TextureRect" unique_id=309311870]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5lrr"]
+shader = ExtResource("3_qssmu")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 0.150000007125
+shader_parameter/add_margins = true
+
+[node name="Intention" type="PanelContainer" unique_id=18713569]
 offset_right = 48.0
 offset_bottom = 48.0
-texture = ExtResource("1_4a8ei")
+offset_transform_enabled = true
+offset_transform_visual_only = false
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
 script = ExtResource("2_h5lrr")
+
+[node name="Body" type="TextureRect" parent="." unique_id=1579639152]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_qssmu")
+
+[node name="Border" type="TextureRect" parent="." unique_id=1352178321]
+unique_name_in_owner = true
+z_index = 1
+material = SubResource("ShaderMaterial_h5lrr")
+layout_mode = 2
+texture = ExtResource("3_i8aen")

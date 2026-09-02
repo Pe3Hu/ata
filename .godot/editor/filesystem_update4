@@ -1,39 +1,14 @@
-res://entities/isle/atheneum/house/house.tscn
+res://entities/isle/mission/gang/idea/idea.tscn
 res://entities/isle/biome/matter.gdshader
 res://entities/isle/atheneum/card/stamp/stake/ban.gdshader
 res://entities/isle/odeum/canto/pulse/critical pulse.gdshader
 res://entities/isle/kernel/pie/pie border.gdshader
 res://entities/isle/kernel/pie/slice/slice border.gdshader
-res://entities/isle/bank/bank_data.gd
-res://entities/isle/bank/opportunity/1.tres
-res://entities/isle/bank/opportunity/2.tres
-res://entities/isle/bank/opportunity/3.tres
-res://global/Bozo.gd
-res://entities/isle/bank/opportunity/6.tres
-res://entities/isle/bank/opportunity/7.tres
-res://entities/isle/bank/opportunity/8.tres
-res://entities/isle/bank/opportunity/9.tres
-res://entities/isle/bank/opportunity/10.tres
-res://entities/isle/bank/opportunity/11.tres
-res://entities/isle/bank/opportunity/21.tres
-res://entities/isle/bank/opportunity/20.tres
-res://entities/isle/bank/opportunity/19.tres
-res://entities/isle/bank/opportunity/14.tres
-res://entities/isle/bank/opportunity/12.tres
-res://global/Digest.gd
-res://global/Helper.gd
-res://entities/isle/mission/mission.tscn
-res://global/Catalog.gd
-res://entities/isle/mission/mission.gd
-res://entities/isle/mission/opportunity/opportunity.gd
-res://entities/isle/isle.tscn
-res://entities/isle/mission/opportunity/opportunity.tscn
-res://entities/isle/mission/opportunity/intention/intention.gd
-res://entities/isle/mission/gang/opportunity/opportunity.tscn
+res://entities/isle/mission/gang/gang.gd
 res://entities/isle/mission/gang/gang_data.gd
-res://entities/isle/mission/gang/idea/opportunity.tscn
-res://entities/isle/mission/gang/idea/idea.tscn
 res://entities/isle/mission/gang/idea/idea.gd
 res://entities/isle/mission/gang/idea/idea_data.gd
 res://entities/isle/mission/gang/idea/intention/intention.tscn
-res://entities/isle/mission/gang/idea/intention/intention_data.gd
+res://entities/isle/mission/gang/idea/intention/intention.gd
+res://entities/isle/mission/gang/idea/intention/border.gdshader
+res://global/Helper.gd

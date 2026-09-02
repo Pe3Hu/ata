@@ -23,28 +23,24 @@ func _button_enter() -> void:
 	if scale_tween and scale_tween.is_running():
 		scale_tween.kill()
 	
-	scale_tween = create_tween()
-	scale_tween.tween_property(self, "offset_transform_scale", hover_scale, 0.1)\
-		.set_trans(Tween.TRANS_SINE)
+	scale_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	scale_tween.tween_property(self, "offset_transform_scale", hover_scale, 0.1)
 
 func _button_exit() -> void:
 	if scale_tween and scale_tween.is_running():
 		scale_tween.kill()
 	
-	scale_tween = create_tween()
-	scale_tween.tween_property(self, "offset_transform_scale", Vector2.ONE, 0.1)\
-		.set_trans(Tween.TRANS_SINE)
+	scale_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	scale_tween.tween_property(self, "offset_transform_scale", Vector2.ONE, 0.1)
 
 func _button_pressed() -> void:
 	if scale_tween and scale_tween.is_running():
 		scale_tween.kill()
 	
-	scale_tween = create_tween()
-	scale_tween.tween_property(self, "offset_transform_scale", pressed_scale, 0.1)\
-		.set_trans(Tween.TRANS_SINE)
+	scale_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	scale_tween.tween_property(self, "offset_transform_scale", pressed_scale, 0.1)
 	
 	await scale_tween.finished
-	scale_tween = create_tween()
-	scale_tween.tween_property(self, "offset_transform_scale", Vector2.ONE, 0.1)\
-		.set_trans(Tween.TRANS_SINE)
+	scale_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	scale_tween.tween_property(self, "offset_transform_scale", Vector2.ONE, 0.1)
 #endregion

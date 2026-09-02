@@ -8,6 +8,7 @@ extends Resource
 var value: int = 1
 
 
-func _init(original_: IntentionData) -> void:
-	element = original_.element
-	aspect = original_.aspect
+func _init(original_: IntentionData = null) -> void:
+	if original_:
+		element = original_.element
+		aspect = original_.aspect

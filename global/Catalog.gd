@@ -141,3 +141,11 @@ const aspects = [
 	Bozo.Aspect.DEXTERITY,
 	Bozo.Aspect.INTELLECT
 ]
+
+const IDEA_INTENTION_AMOUNT: int = 5
+const INENTION_OFFSET: float = 48
+const INENTION_SIZE: Vector2 = Vector2(48, 48)
+
+const IDEA_OFFSET: float = 200
+const IDEA_SIZE: Vector2 = Vector2(136, 136)#Vector2.ONE * INENTION_OFFSET * 2 + INENTION_SIZE
+const IDEA_ROTATION_SPEED: float = 0.5

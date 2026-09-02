@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://boghsuc83roqn"]
+
+[ext_resource type="Script" uid="uid://ctheq842y5ru2" path="res://entities/isle/mission/gang/gang.gd" id="1_wdykg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6oka"]
+
+[node name="Gang" type="PanelContainer" unique_id=421912675]
+custom_minimum_size = Vector2(560, 560)
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b6oka")
+script = ExtResource("1_wdykg")
+
+[node name="Ideas" type="Control" parent="." unique_id=695238100]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false

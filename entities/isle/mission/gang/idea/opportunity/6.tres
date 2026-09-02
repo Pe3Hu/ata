@@ -5,35 +5,35 @@
 
 [sub_resource type="Resource" id="Resource_8l61p"]
 script = ExtResource("1_a5h0n")
-element = 49
+element = 50
 aspect = 60
 metadata/_custom_type_script = "uid://42wosuom5j36"
 
 [sub_resource type="Resource" id="Resource_j13uw"]
 script = ExtResource("1_a5h0n")
-element = 50
-aspect = 59
+element = 46
+aspect = 61
 metadata/_custom_type_script = "uid://42wosuom5j36"
 
 [sub_resource type="Resource" id="Resource_rk2rx"]
 script = ExtResource("1_a5h0n")
-element = 47
+element = 51
 aspect = 59
 metadata/_custom_type_script = "uid://42wosuom5j36"
 
 [sub_resource type="Resource" id="Resource_sx0y7"]
 script = ExtResource("1_a5h0n")
-element = 51
+element = 45
 aspect = 60
 metadata/_custom_type_script = "uid://42wosuom5j36"
 
-[sub_resource type="Resource" id="Resource_wwi40"]
+[sub_resource type="Resource" id="Resource_gncho"]
 script = ExtResource("1_a5h0n")
-element = 48
+element = 49
 aspect = 61
 metadata/_custom_type_script = "uid://42wosuom5j36"
 
 [resource]
 script = ExtResource("2_pg0gb")
-intentions = Array[ExtResource("1_a5h0n")]([SubResource("Resource_8l61p"), SubResource("Resource_j13uw"), SubResource("Resource_rk2rx"), SubResource("Resource_sx0y7"), SubResource("Resource_wwi40")])
+intentions = Array[ExtResource("1_a5h0n")]([SubResource("Resource_8l61p"), SubResource("Resource_j13uw"), SubResource("Resource_rk2rx"), SubResource("Resource_sx0y7"), SubResource("Resource_gncho")])
 metadata/_custom_type_script = "uid://cm5ac6b8x3mmc"
