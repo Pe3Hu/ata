@@ -132,13 +132,13 @@ func update_colors(node_, matter_: Bozo.Matter) -> void:
 
 func get_idea_radius(n_: int) -> float:
 	#return Catalog.IDEA_SIZE.x / 2 * (1 + 1 / sin(PI / n_))
-	return Catalog.IDEA_SIZE.x / 2 / sin(PI / n_) * 1.1
+	return max(Catalog.IDEA_SIZE.x / 2 / sin(PI / n_) * 1.1, Catalog.AMBITION_RADIUS)
 
-func find_intersection(a, b) -> Array:
+func find_intersection(a_: IdeaData, b_: IdeaData) -> Array:
 	var result = []
 	
-	for _a in a:
-		for _b in b:
+	for _a in a_.intentions:
+		for _b in b_.intentions:
 			if _a.aspect == _b.aspect and _a.element == _b.element:
 				result.append(_a)
 	

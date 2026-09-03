@@ -2,76 +2,28 @@ class_name GangData
 extends RefCounted
 
 
-signal idea_chaged
-
 var mission: MissionData
+var ambition: AmbitionData
+var attempt: AttemptData
 
 var ideas: Array[IdeaData]
-
-var first_idea: IdeaData:
-	set(value_):
-		if first_idea != value_:
-			if value_ != null:
-				if first_idea != null:
-					second_idea = value_
-				else:
-					if first_idea:
-						first_idea.is_active = false
-					
-					first_idea = value_
-			
-					if first_idea:
-						first_idea.is_active = true
-					
-					idea_chaged.emit()
-			else:
-				first_idea = value_
-			
-				if first_idea:
-					first_idea.is_active = true
-				
-				idea_chaged.emit()
-		else:
-			if second_idea:
-				first_idea.is_active = false
-				second_idea = null
-				first_idea = null
-			else:
-				if first_idea:
-					first_idea.is_active = false
-				
-				first_idea = null
-
-var second_idea: IdeaData:
-	set(value_):
-		if second_idea != value_:
-			if second_idea:
-				second_idea.is_active = false
-			
-			second_idea = value_
-			
-			if second_idea:
-				second_idea.is_active = true
-			
-			idea_chaged.emit()
-		else:
-			if second_idea:
-				second_idea.is_active = false
-			
-			second_idea = null
-			
 
 
 func _init(mission_: MissionData) -> void:
 	mission = mission_
 	
+	attempt = AttemptData.new(self)
+	ambition = AmbitionData.new(self)
 	init_ideas()
 
 func init_ideas() -> void:
 	var indexs = 8
+	var options = range(1, Catalog.OPPORTUNINITY_AMOUNT + 1)
+	options.shuffle()
 	
-	for index in indexs:
-		var _idea = IdeaData.new(self, index + 1)
+	for _i in indexs:
+		var index = options.pop_back()
+		var _idea = IdeaData.new(self, index)
 
 func test() -> void:
 	var n = 21

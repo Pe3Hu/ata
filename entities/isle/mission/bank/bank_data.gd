@@ -8,6 +8,10 @@ var lock: ObstacleData
 var wall: ObstacleData
 var custodian: ObstacleData
 
+var methods: Array[MethodData]
+
+var avg_difficulty: int = 10
+
 
 func _init(mission_: MissionData) -> void:
 	mission = mission_

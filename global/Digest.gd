@@ -321,6 +321,59 @@ var normal_to_mirror = {
 }
 #endregion
 
+
+const obstacle_to_methods = {
+	Bozo.Obstacle.LOCK: [
+		Bozo.Method.RAKE,
+		Bozo.Method.HACK,
+	],
+	Bozo.Obstacle.WALL: [
+		Bozo.Method.BREAK,
+		Bozo.Method.FIND,
+	],
+	Bozo.Obstacle.CUSTODIAN: [
+		Bozo.Method.KILL,
+		Bozo.Method.STEAL,
+	],
+}
+
+const method_to_aspect_to_factor = {
+	Bozo.Method.RAKE: {
+		Bozo.Aspect.STRENGTH: 1,
+		Bozo.Aspect.DEXTERITY: 2,
+	},
+	Bozo.Method.HACK: {
+		Bozo.Aspect.STRENGTH: 1,
+		Bozo.Aspect.INTELLECT: 2,
+	},
+	Bozo.Method.BREAK: {
+		Bozo.Aspect.STRENGTH: 2,
+		Bozo.Aspect.DEXTERITY: 1,
+	},
+	Bozo.Method.FIND: {
+		Bozo.Aspect.DEXTERITY: 1,
+		Bozo.Aspect.INTELLECT: 2,
+	},
+	Bozo.Method.KILL: {
+		Bozo.Aspect.STRENGTH: 2,
+		Bozo.Aspect.INTELLECT: 1,
+	},
+	Bozo.Method.STEAL: {
+		Bozo.Aspect.DEXTERITY: 2,
+		Bozo.Aspect.INTELLECT: 1,
+	},
+}
+
+const method_to_element = {
+	Bozo.Method.RAKE: Bozo.Element.SAND,
+	Bozo.Method.HACK: Bozo.Element.ICE,
+	Bozo.Method.BREAK: Bozo.Element.LAVA,
+	Bozo.Method.FIND: Bozo.Element.CLOUD,
+	Bozo.Method.KILL: Bozo.Element.DUST,
+	Bozo.Method.STEAL: Bozo.Element.VAPOR,
+}
+
+
 #region color
 var matter_to_color = {
 	Bozo.Matter.NONE: Color.WHITE,
@@ -342,7 +395,6 @@ var matter_to_pallete = [
 	Color.from_hsv(0.0416, 0.8, 1.0),
 ]
 
-
 var element_to_color = {
 Bozo.Element.CLOUD: Color.from_hsv(0 / 360.0, 0.0, 0.75),
 Bozo.Element.DUST: Color.from_hsv(125 / 360.0, 0.75, 0.75),
@@ -351,6 +403,12 @@ Bozo.Element.SAND: Color.from_hsv(55 / 360.0, 0.75, 0.75),
 Bozo.Element.ICE: Color.from_hsv(205 / 360.0, 0.75, 0.75),
 Bozo.Element.LAVA: Color.from_hsv(0 / 360.0, 0.75, 0.75),
 Bozo.Element.CHAOS: Color.from_hsv(305 / 360.0, 0.75, 0.75),
+}
+
+var aspect_to_color = {
+	Bozo.Aspect.STRENGTH: Color.from_hsv(30.0 / 360.0, 0.75, 0.75),
+	Bozo.Aspect.INTELLECT: Color.from_hsv(150.0 / 360.0, 0.75, 0.75),
+	Bozo.Aspect.DEXTERITY: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
 }
 
 

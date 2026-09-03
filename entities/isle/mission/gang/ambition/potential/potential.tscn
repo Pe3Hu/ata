@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cdggi3dd7fivl"]
+
+[ext_resource type="Texture2D" uid="uid://c7kl4o4b4fta6" path="res://entities/isle/mission/gang/ambition/potential/potential background.png" id="1_ytcs6"]
+[ext_resource type="Script" uid="uid://dq74jsgbc70e" path="res://entities/isle/mission/gang/ambition/potential/potential.gd" id="2_81wd2"]
+[ext_resource type="Texture2D" uid="uid://dw4jkefccwnce" path="res://entities/isle/mission/gang/idea/intention/images/body/element.png" id="3_lagfh"]
+[ext_resource type="Shader" uid="uid://cksg4po4awjwb" path="res://entities/isle/mission/gang/idea/intention/intention border.gdshader" id="4_8upm4"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_81wd2"]
+[ext_resource type="Texture2D" uid="uid://bl6cyarq5xgvg" path="res://entities/isle/mission/gang/idea/intention/images/border/element.png" id="5_wrbuf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xuec"]
+shader = ExtResource("4_8upm4")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 0.15
+shader_parameter/add_margins = true
+
+[node name="Potential" type="TextureRect" unique_id=25309524]
+texture = ExtResource("1_ytcs6")
+script = ExtResource("2_81wd2")
+
+[node name="Body" type="TextureRect" parent="." unique_id=51418187]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lagfh")
+
+[node name="Border" type="TextureRect" parent="." unique_id=257348849]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1xuec")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_wrbuf")
+
+[node name="Value" type="Label" parent="." unique_id=759667547]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("4_81wd2")
+horizontal_alignment = 1
+vertical_alignment = 1

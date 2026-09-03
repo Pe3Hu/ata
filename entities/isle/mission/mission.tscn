@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://boghsuc83roqn" path="res://entities/isle/mission/gang/gang.tscn" id="2_jce5p"]
 [ext_resource type="PackedScene" uid="uid://dagb3csq52hrm" path="res://entities/isle/mission/bank/bank.tscn" id="3_22t61"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xuec"]
+
 [node name="Mission" type="PanelContainer" unique_id=475274081 node_paths=PackedStringArray("bank", "gang")]
 custom_minimum_size = Vector2(499, 499)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1xuec")
 script = ExtResource("1_23oni")
 bank = NodePath("HBox/Bank")
 gang = NodePath("HBox/Gang")

@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://boghsuc83roqn"]
 
 [ext_resource type="Script" uid="uid://ctheq842y5ru2" path="res://entities/isle/mission/gang/gang.gd" id="1_wdykg"]
+[ext_resource type="PackedScene" uid="uid://bp26pss2vvex8" path="res://entities/isle/mission/gang/ambition/ambition.tscn" id="2_1xuec"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6oka"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8upm4"]
 
-[node name="Gang" type="PanelContainer" unique_id=421912675]
+[node name="Gang" type="PanelContainer" unique_id=421912675 node_paths=PackedStringArray("ambition")]
 custom_minimum_size = Vector2(560, 560)
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_b6oka")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8upm4")
 script = ExtResource("1_wdykg")
+ambition = NodePath("Ambition")
 
 [node name="Ideas" type="Control" parent="." unique_id=695238100]
 unique_name_in_owner = true
@@ -17,3 +19,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_visual_only = false
+
+[node name="Ambition" parent="." unique_id=1410252468 instance=ExtResource("2_1xuec")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

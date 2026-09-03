@@ -1,14 +1,14 @@
+VBoxContainer
 PanelContainer
 TextureRect
+Label
+Control
 Node2D
 CustomButton
 TextureButton
-Control
 HBoxContainer
-VBoxContainer
 Timer
 ColorRect
 GridContainer
 Line2D
 Polygon2D
-Label

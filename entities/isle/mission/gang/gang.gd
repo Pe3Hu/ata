@@ -9,23 +9,29 @@ var data: GangData:
 		data = value_
 		
 		connect_signals()
+		connect_datas()
 		init_ideas()
+
+@export var ambition: Ambition
 
 var data_to_idea: Dictionary
 
 
+#region init
 func connect_signals() -> void:
-	data.idea_chaged.connect(_on_idea_changed)
+	data.attempt.idea_chaged.connect(_on_idea_changed)
+
+func connect_datas() -> void:
+	ambition.data = data.ambition
 
 func _on_idea_changed() -> void:
-	pass
-	#if data.first_idea:
-		#var first_idea = data_to_idea[data.first_idea]
-		#first_idea.apply_active()
-	#
-	#if data.second_idea:
-		#var second_idea = data_to_idea[data.second_idea]
-		#second_idea.apply_active()
+	if data.attempt.first_idea and data.attempt.second_idea:
+		var intention_data = Helper.find_intersection(data.attempt.first_idea, data.attempt.second_idea).front()
+		data.attempt.first_idea.bond_aspect = intention_data.aspect
+		data.attempt.first_idea.bond_element = intention_data.element
+		data.attempt.second_idea.bond_aspect = intention_data.aspect
+		data.attempt.second_idea.bond_element = intention_data.element
+		data.ambition.recalc_potentials()
 
 func init_ideas() -> void:
 	%Ideas.offset_transform_position = -Catalog.IDEA_SIZE / 2
@@ -38,3 +44,4 @@ func add_idea(idea_data_: IdeaData) -> void:
 	%Ideas.add_child(idea)
 	idea.data = idea_data_
 	data_to_idea[idea_data_] = idea
+#endregion

@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform vec4 line_color : source_color = vec4(1);
-uniform float line_thickness : hint_range(0, 20) = 0.0;
+uniform vec4 line_color : source_color = vec4(0, 0, 0, 1);
+uniform float line_thickness : hint_range(0, 20) = 0.15;
 uniform bool add_margins = true;
 
 void vertex() {

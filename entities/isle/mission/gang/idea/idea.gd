@@ -14,11 +14,54 @@ var data: IdeaData:
 		init_lines()
 
 var anchor_angle: float
-var bound_angle: float
+var bond_angle: float
+
+var bond_tween: Tween
 
 
+#region init
 func connect_signals() -> void:
 	data.active_changed.connect(_on_active_changed)
+	data.bond_changed.connect(_on_bond_changed)
+
+func _on_active_changed() -> void:
+	%Lines.visible = data.is_active
+	
+	if data.is_active:
+		%CustomButton.self_modulate.a = 0.0
+	else:
+		%CustomButton.self_modulate.a = 1.0
+
+func _on_bond_changed() -> void:
+	if bond_tween and bond_tween.is_running():
+		bond_tween.kill()
+	
+	bond_angle = -data.bond_index * TAU / data.intentions.size()
+	var duration = Gear.bonds[Gear.tempo]
+	bond_tween = create_tween().set_parallel(true)
+	
+	var current_button = %CustomButton.offset_transform_rotation
+	var desired_button = bond_angle + anchor_angle
+	var delta_button = wrapf(desired_button - current_button, -PI, PI)
+	bond_tween.tween_property(%CustomButton, 'offset_transform_rotation', current_button + delta_button, duration)
+	
+	var current_lines = %Lines.rotation
+	var desired_lines = bond_angle
+	var delta_lines = wrapf(desired_lines - current_lines, -PI, PI)
+	bond_tween.tween_property(%Lines, 'rotation', current_lines + delta_lines, duration)
+	
+	for intention in %Intentions.get_children():
+		var current_total = intention.bond_angle + intention.anchor_angle + intention.idea.anchor_angle
+		var desired_total = bond_angle + intention.anchor_angle + intention.idea.anchor_angle
+		var delta = wrapf(desired_total - current_total, -PI, PI)
+		var target_bond = intention.bond_angle + delta
+		bond_tween.tween_property(intention, 'bond_angle', target_bond, duration)
+	
+	await bond_tween.finished
+	
+	if data.is_active:
+		var bond_intention = data.intentions[data.bond_index]
+		bond_intention.is_bond = true
 
 func calc_anchor() -> void:
 	%CustomButton.hover_scale = Vector2(1.05, 1.05)
@@ -71,16 +114,7 @@ func add_line(a_: Intention, b_: Intention) -> void:
 	grad.set_color(0, a_.modulate)
 	grad.set_color(1, b_.modulate)   
 	line.gradient = grad
+#endregion
 
 func _on_custom_button_pressed() -> void:
-	data.gang.first_idea = data
-	#data.is_active = !data.is_active
-	#_on_active_changed()
-
-func _on_active_changed() -> void:
-	%Lines.visible = data.is_active
-	
-	if data.is_active:
-		%CustomButton.self_modulate.a = 0.0
-	else:
-		%CustomButton.self_modulate.a = 1.0
+	data.gang.attempt.first_idea = data

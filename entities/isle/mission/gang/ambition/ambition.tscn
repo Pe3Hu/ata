@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bp26pss2vvex8"]
+
+[ext_resource type="Script" uid="uid://b5rg7l7phmupp" path="res://entities/isle/mission/gang/ambition/ambition.gd" id="1_ai72x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai72x"]
+bg_color = Color(0.28485027, 0.2848503, 0.28485018, 1)
+
+[node name="Ambition" type="PanelContainer" unique_id=1410252468]
+theme_override_styles/panel = SubResource("StyleBoxFlat_ai72x")
+script = ExtResource("1_ai72x")
+
+[node name="Potentials" type="Control" parent="." unique_id=1417805834]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false

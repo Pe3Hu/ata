@@ -142,10 +142,33 @@ const aspects = [
 	Bozo.Aspect.INTELLECT
 ]
 
+const OPPORTUNINITY_AMOUNT: int = 21
+
 const IDEA_INTENTION_AMOUNT: int = 5
-const INENTION_OFFSET: float = 48
+const INENTION_OFFSET: float = 48#48
 const INENTION_SIZE: Vector2 = Vector2(48, 48)
 
 const IDEA_OFFSET: float = 200
 const IDEA_SIZE: Vector2 = Vector2(136, 136)#Vector2.ONE * INENTION_OFFSET * 2 + INENTION_SIZE
 const IDEA_ROTATION_SPEED: float = 0.5
+
+const AMBITION_RADIUS: float = 80 + IDEA_SIZE.x
+const POTENTIAL_SIZE: Vector2 = Vector2(35, 35)
+const AMBITION_CENTER: Vector2 = Vector2(1, 4)
+const POTENTIAL_OFFSET: float = 4
+
+const aspect_anchors = [
+	Vector2i(0, 0),
+	Vector2i(-1, 1),
+	Vector2i(1, 1),
+]
+
+const element_anchors = [
+	Vector2i(0, 2),
+	Vector2i(-1, 3),
+	Vector2i(1, 3),
+	Vector2i(0, 4),
+	Vector2i(-1, 5),
+	Vector2i(1, 5),
+	Vector2i(0, 6),
+]
