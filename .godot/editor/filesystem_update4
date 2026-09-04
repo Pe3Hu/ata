@@ -1,31 +1,20 @@
-res://entities/isle/mission/gang/ambition/potential/potential.gd
-res://entities/isle/mission/gang/gang_data.gd
-res://entities/isle/mission/gang/ambition/ambition.gd
-res://entities/isle/mission/gang/ambition/ambition_data.gd
-res://entities/isle/mission/gang/idea/idea_data.gd
-res://entities/isle/mission/gang/ambition/potential/potential_data.gd
-res://entities/isle/mission/gang/gang.gd
-res://entities/isle/mission/gang/idea/idea.gd
-res://entities/isle/mission/gang/idea/intention/intention.gd
-res://entities/isle/mission/gang/ambition/potential/potential.tscn
+res://entities/isle/mission/bank/method/method.tscn
 res://entities/isle/biome/matter.gdshader
 res://entities/isle/atheneum/card/stamp/stake/ban.gdshader
 res://entities/isle/odeum/canto/pulse/critical pulse.gdshader
 res://entities/isle/mission/gang/idea/intention/intention border.gdshader
 res://entities/isle/kernel/pie/pie border.gdshader
 res://entities/isle/kernel/pie/slice/slice border.gdshader
-res://entities/isle/mission/gang/gang.tscn
-res://entities/isle/mission/mission.tscn
-res://entities/isle/mission/gang/idea/intention/intention.tscn
-res://entities/isle/mission/gang/idea/intention/intention_data.gd
-res://entities/isle/mission/bank/bank.gd
-res://entities/isle/mission/bank/obstacle/obstacle.tscn
 res://global/Digest.gd
-res://entities/isle/mission/bank/bank.tscn
-res://entities/isle/mission/bank/method/method_data.gd
 res://entities/isle/mission/bank/method/method.gd
-res://entities/isle/mission/bank/method/obstacle_data.gd
-res://entities/isle/mission/bank/bank_data.gd
+res://entities/isle/mission/gang/idea/intention/intention.gd
+res://entities/isle/mission/gang/idea/intention/intention.tscn
+res://entities/isle/mission/gang/ambition/potential/potential.tscn
+res://entities/isle/mission/gang/ambition/potential/potential.gd
+res://entities/isle/mission/bank/bank.tscn
+res://entities/isle/mission/mission_data.gd
 res://entities/isle/mission/gang/attempt/attempt_data.gd
-res://entities/isle/mission/bank/method/method.tscn
-res://entities/isle/mission/gang/attempt/impulse_data.gd
+res://entities/isle/mission/gang/idea/intention/intention_data.gd
+res://entities/isle/mission/mission.tscn
+res://global/Catalog.gd
+res://entities/isle/mission/bank/bank_data.gd

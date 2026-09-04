@@ -2,13 +2,13 @@ class_name ObstacleData
 extends RefCounted
 
 
+
 var bank: BankData
 var type: Bozo.Obstacle
 
 var mandate: Bozo.Mandate
 var methods: Array[MethodData]
 
-var current_difficulty: int
 var limit_difficulty: int
 
 

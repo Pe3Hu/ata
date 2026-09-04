@@ -1,6 +1,134 @@
 [gd_scene format=3 uid="uid://b17pieyxi25xn"]
 
 [ext_resource type="Script" uid="uid://cnt243gajxl8s" path="res://entities/isle/mission/bank/method/method.gd" id="1_i61tk"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="2_51i02"]
+[ext_resource type="PackedScene" uid="uid://bhtnr3epno3wi" path="res://entities/isle/mission/gang/idea/intention/intention.tscn" id="3_dmfkq"]
+[ext_resource type="Texture2D" uid="uid://c48c572idkvx3" path="res://entities/isle/mission/bank/method/images/body/difficulty.png" id="3_r2hyf"]
+[ext_resource type="Texture2D" uid="uid://b042a0qkk4j6" path="res://entities/isle/mission/bank/method/images/border/difficulty.png" id="4_4ad3u"]
+[ext_resource type="Texture2D" uid="uid://dylkfbddl8q64" path="res://entities/isle/mission/bank/method/images/body/impulse.png" id="5_qj25r"]
+[ext_resource type="Texture2D" uid="uid://cdd86p0gpwa4" path="res://entities/isle/mission/bank/method/images/border/impulse.png" id="6_6e2lp"]
 
 [node name="Method" type="PanelContainer" unique_id=1137265849]
+custom_minimum_size = Vector2(0, 24)
+offset_right = 116.0
+offset_bottom = 23.0
 script = ExtResource("1_i61tk")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1287536069]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBox" unique_id=404648499]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+text = "break"
+label_settings = ExtResource("2_51i02")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="VBox" unique_id=1713082335]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="DifficultyContainer" type="Control" parent="VBox/HBox" unique_id=475013064]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="Body" type="TextureRect" parent="VBox/HBox/DifficultyContainer" unique_id=808957670]
+visible = false
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_r2hyf")
+
+[node name="Border" type="TextureRect" parent="VBox/HBox/DifficultyContainer" unique_id=313361692]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("4_4ad3u")
+
+[node name="Difficulty" type="Label" parent="VBox/HBox/DifficultyContainer" unique_id=986493305]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "0"
+label_settings = ExtResource("2_51i02")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ImpulseContainer" type="Control" parent="VBox/HBox" unique_id=720008075]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="Body" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=30565713]
+visible = false
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_qj25r")
+
+[node name="Border" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=1272480606]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("6_6e2lp")
+
+[node name="Impulse" type="Label" parent="VBox/HBox/ImpulseContainer" unique_id=1232997497]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "9"
+label_settings = ExtResource("2_51i02")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Aspects" type="HBoxContainer" parent="VBox" unique_id=1375553803]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Intention1" parent="VBox/Aspects" unique_id=18713569 instance=ExtResource("3_dmfkq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Intention2" parent="VBox/Aspects" unique_id=476463097 instance=ExtResource("3_dmfkq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Intention3" parent="VBox/Aspects" unique_id=780229363 instance=ExtResource("3_dmfkq")]
+unique_name_in_owner = true
+layout_mode = 2

@@ -5,12 +5,21 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdykg"]
 
 [node name="Bank" type="PanelContainer" unique_id=898567607]
+custom_minimum_size = Vector2(312, 397)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wdykg")
 script = ExtResource("1_b6oka")
 
-[node name="Methods" type="VBoxContainer" parent="." unique_id=940463176]
+[node name="Methods" type="GridContainer" parent="." unique_id=1701531953]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2

@@ -31,5 +31,6 @@ func update_textures() -> void:
 	%Border.texture = load('res://entities/isle/mission/gang/idea/intention/images/border/%s.png' % path)
 
 func calc_anchor_angle() -> void:
+	if not idea: return
 	anchor_angle = TAU / Catalog.IDEA_INTENTION_AMOUNT * get_index() + PI / 2
 	bond_angle = 0

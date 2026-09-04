@@ -364,6 +364,54 @@ const method_to_aspect_to_factor = {
 	},
 }
 
+const method_to_factor_to_aspect = {
+	Bozo.Method.RAKE: {
+		1: Bozo.Aspect.STRENGTH,
+		2: Bozo.Aspect.DEXTERITY,
+	},
+	Bozo.Method.HACK: {
+		1: Bozo.Aspect.STRENGTH,
+		2: Bozo.Aspect.INTELLECT,
+	},
+	Bozo.Method.BREAK: {
+		2: Bozo.Aspect.STRENGTH,
+		1: Bozo.Aspect.DEXTERITY,
+	},
+	Bozo.Method.FIND: {
+		1: Bozo.Aspect.DEXTERITY,
+		2: Bozo.Aspect.INTELLECT,
+	},
+	Bozo.Method.KILL: {
+		2: Bozo.Aspect.STRENGTH,
+		1: Bozo.Aspect.INTELLECT,
+	},
+	Bozo.Method.STEAL: {
+		2: Bozo.Aspect.DEXTERITY,
+		1: Bozo.Aspect.INTELLECT,
+	},
+}
+
+const aspect_to_method_to_factor = {
+	Bozo.Aspect.STRENGTH: {
+		Bozo.Method.RAKE: 1,
+		Bozo.Method.HACK: 1,
+		Bozo.Method.BREAK: 2,
+		Bozo.Method.KILL: 2,
+	},
+	Bozo.Aspect.DEXTERITY: {
+		Bozo.Method.RAKE: 2,
+		Bozo.Method.BREAK: 1,
+		Bozo.Method.FIND: 1,
+		Bozo.Method.STEAL: 2,
+	},
+	Bozo.Aspect.INTELLECT: {
+		Bozo.Method.HACK: 2,
+		Bozo.Method.FIND: 2,
+		Bozo.Method.KILL: 1,
+		Bozo.Method.STEAL: 1,
+	},
+}
+
 const method_to_element = {
 	Bozo.Method.RAKE: Bozo.Element.SAND,
 	Bozo.Method.HACK: Bozo.Element.ICE,
@@ -371,6 +419,15 @@ const method_to_element = {
 	Bozo.Method.FIND: Bozo.Element.CLOUD,
 	Bozo.Method.KILL: Bozo.Element.DUST,
 	Bozo.Method.STEAL: Bozo.Element.VAPOR,
+}
+
+const element_to_method = {
+	Bozo.Element.SAND: Bozo.Method.RAKE,
+	Bozo.Element.ICE: Bozo.Method.HACK,
+	Bozo.Element.LAVA: Bozo.Method.BREAK,
+	Bozo.Element.CLOUD: Bozo.Method.FIND,
+	Bozo.Element.DUST: Bozo.Method.KILL,
+	Bozo.Element.VAPOR: Bozo.Method.STEAL,
 }
 
 

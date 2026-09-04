@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1788455185
+::res://::1788543662
 ::res://entities/::1787374912
 ::res://entities/dice/::1787374906
 ::res://entities/dice/datas/::1787374906
@@ -195,8 +195,8 @@ d.png::CompressedTexture2D::8062553940862451384::1786589182::1787332069::1::::<>
 e.png::CompressedTexture2D::8902795341320896587::1786589182::1787332069::1::::<><><>0<>0<>65077f937b727ad8acfc1b49d8c95eaa<>res://.godot/imported/e.png-25c783b4131df72148cb4a08e8df8398.ctex::
 f.png::CompressedTexture2D::5145181942011126399::1786589182::1787332069::1::::<><><>0<>0<>04e9621b22376f411896d44b1cee6517<>res://.godot/imported/f.png-fa435f9959abf52b961e7783366d4ada.ctex::
 s.png::CompressedTexture2D::4170454870492617725::1786589234::1787332069::1::::<><><>0<>0<>6ecddf3667ef947b3bf1224e4131f388<>res://.godot/imported/s.png-59a9dbb21d2f58025e4328ae407c714a.ctex::
-::res://entities/isle/atheneum/card/stamp/stake/::1788451200
-ban.gdshader::Shader::6635414401178000039::1788451200::0::1::::<><><>0<>0<><>::
+::res://entities/isle/atheneum/card/stamp/stake/::1788542155
+ban.gdshader::Shader::6635414401178000039::1788542155::0::1::::<><><>0<>0<><>::
 stake.gd::GDScript::6972594102337015314::1787717649::0::1::::Stake<>PanelContainer<><>0<>0<><>::
 stake.tscn::PackedScene::7403838258332017528::1787717250::0::1::::<><><>0<>0<><>::uid://c6ltuuyncvun7::::res://entities/isle/atheneum/card/stamp/stake/stake.gd<>uid://bq3tymajw0eqn::::res://entities/isle/biome/matter.gdshader<>uid://dq7y50ghm1n16::::res://entities/dice/images/numbers.png<>uid://c1sikno4agtpn::::res://entities/isle/atheneum/card/stamp/stake/ban.gdshader<>uid://ujxv1y8cen1o::::res://entities/isle/atheneum/card/stamp/stake/images/multiply.png
 stake_data.gd::GDScript::8013929954295614541::1787717649::0::1::::StakeData<>RefCounted<><>0<>0<><>::
@@ -213,9 +213,9 @@ house_data.gd::GDScript::6694464499012405251::1787742733::0::1::::HouseData<>Ref
 room.gd::GDScript::1232630299936293950::1787741173::0::1::::Room<>PanelContainer<><>0<>0<><>::
 room.tscn::PackedScene::1545653742921334245::1787524894::0::1::::<><><>0<>0<><>::uid://rtdigskybube::::res://entities/isle/atheneum/house/room/room.gd
 room_data.gd::GDScript::165544052144901868::1787537920::0::1::::RoomData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/biome/::1788451200
+::res://entities/isle/biome/::1788542155
 biome_data.gd::GDScript::6623329315482779414::1787331013::0::1::::BiomeData<>RefCounted<><>0<>0<><>::
-matter.gdshader::Shader::3568441871651080965::1788451200::0::1::::<><><>0<>0<><>::
+matter.gdshader::Shader::3568441871651080965::1788542155::0::1::::<><><>0<>0<><>::
 ::res://entities/isle/biome/source/::1787374910
 mountain.tres::Resource/SourceData::6939183451128292073::1787331944::0::1::::<><><>0<>0<><>::uid://dvlf3ko8pqwro::::res://entities/isle/biome/source/source_data.gd
 plain.tres::Resource/SourceData::6232961380686480505::1787331944::0::1::::<><><>0<>0<><>::uid://dvlf3ko8pqwro::::res://entities/isle/biome/source/source_data.gd
@@ -240,13 +240,13 @@ fusion 2.png::CompressedTexture2D::2019139835402175164::1786481527::1787332069::
 kernel.gd::GDScript::7781244779781014619::1787742708::0::1::::Kernel<>PanelContainer<><>0<>0<><>::
 kernel.tscn::PackedScene::7180601619582633567::1787442625::0::1::::<><><>0<>0<><>::uid://di4j72fl1vypv::::res://entities/isle/kernel/kernel.gd<>uid://brqqeyb4io5px::::res://entities/isle/kernel/pie/pie.tscn<>uid://b0gmh7bi4r5by::::res://entities/isle/kernel/usurer/usurer.tscn
 kernel_data.gd::GDScript::16686515259412305::1787742411::0::1::::KernelData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/kernel/pie/::1788451200
-pie border.gdshader::Shader::1821054665244246260::1788451200::0::1::::<><><>0<>0<><>::
+::res://entities/isle/kernel/pie/::1788542155
+pie border.gdshader::Shader::1821054665244246260::1788542155::0::1::::<><><>0<>0<><>::
 pie.gd::GDScript::6262792825306594819::1787374229::0::1::::Pie<>Node2D<><>0<>0<><>::
 pie.tscn::PackedScene::3613640948098602333::1787373588::0::1::::<><><>0<>0<><>::uid://cvh0ju7ilbs88::::res://entities/isle/kernel/pie/pie.gd<>uid://07ere7dyodxk::::res://entities/isle/kernel/pie/pie border.gdshader
 pie_data.gd::GDScript::9109847662270713126::1787539539::0::1::::PieData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/kernel/pie/slice/::1788451200
-slice border.gdshader::Shader::7103816040999501418::1788451200::0::1::::<><><>0<>0<><>::
+::res://entities/isle/kernel/pie/slice/::1788542155
+slice border.gdshader::Shader::7103816040999501418::1788542155::0::1::::<><><>0<>0<><>::
 slice.gd::GDScript::1050471709107384384::1787445126::0::1::::Slice<>Polygon2D<><>0<>0<><>::
 slice.tscn::PackedScene::2381474745243912016::1787374139::0::1::::<><><>0<>0<><>::uid://bq3tymajw0eqn::::res://entities/isle/biome/matter.gdshader<>uid://o74d6uqtt0l5::::res://entities/isle/kernel/pie/slice/slice.gd<>uid://br1lubxromts8::::res://shared/labels/defaul label.tres<>uid://c6d88ihrthtvd::::res://entities/dice/images/20.png
 slice_data.gd::GDScript::5360533322048213222::1787539539::0::1::::SliceData<>RefCounted<><>0<>0<><>::
@@ -302,54 +302,65 @@ portal.jpg::CompressedTexture2D::1400199264303141754::1786272959::1787332069::1:
 stair.gd::GDScript::5571014714143195937::1786296493::0::1::::Stair<>Node2D<><>0<>0<><>::
 stair.tscn::PackedScene::7663173745816323819::1786274432::0::1::::<><><>0<>0<><>::uid://clmv2e7tl7rj2::::res://entities/isle/ladder/stair/stair.gd<>uid://c1dbbsc7army1::::res://entities/isle/terrain/flow/blob/images/circle.png<>uid://chlh4giymkr0a::::res://entities/isle/ladder/stair/portal.gdshader
 stair_data.gd::GDScript::3541385004639438272::1786206682::0::1::::StairData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/::1788451734
+::res://entities/isle/mission/::1788547560
 mission.gd::GDScript::4627572869192481507::1788343517::0::1::::Mission<>PanelContainer<><>0<>0<><>::
 mission.tscn::PackedScene::2785760312085038953::1788451734::0::1::::<><><>0<>0<><>::uid://b66vpjd2mmwf8::::res://entities/isle/mission/mission.gd<>uid://boghsuc83roqn::::res://entities/isle/mission/gang/gang.tscn<>uid://dagb3csq52hrm::::res://entities/isle/mission/bank/bank.tscn
-mission_data.gd::GDScript::5295253207346525417::1788340909::0::1::::MissionData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/bank/::1788455179
-bank.gd::GDScript::7300356967751573200::1788453460::0::1::::Bank<>PanelContainer<><>0<>0<><>::
-bank.tscn::PackedScene::7171759170447071906::1788343018::0::1::::<><><>0<>0<><>::uid://dcal2vo6kwa2k::::res://entities/isle/mission/bank/bank.gd
-bank_data.gd::GDScript::2588524491496467562::1788272142::0::1::::BankData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/bank/method/::1788455185
-method.tscn::PackedScene::4278315995880100683::1788455007::0::1::::<><><>0<>0<><>::
-method_data.gd::GDScript::6360752406475170679::1788455095::0::1::::<>Node<><>0<>0<><>::
-obstacle_data.gd::GDScript::8836785808782119867::1788255229::0::1::::ObstacleData<>Resource<><>0<>0<><>::
-method.gd::GDScript::5726212138771270760::1788455034::0::1::::<>PanelContainer<><>0<>0<><>::
-::res://entities/isle/mission/gang/::1788451633
-gang.gd::GDScript::6121153260790690839::1788451042::0::1::::Gang<>PanelContainer<><>0<>0<><>::
+mission_data.gd::GDScript::5295253207346525417::1788547560::0::1::::MissionData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/bank/::1788547560
+bank.gd::GDScript::7300356967751573200::1788464235::0::1::::Bank<>PanelContainer<><>0<>0<><>::
+bank.tscn::PackedScene::7171759170447071906::1788547560::0::1::::<><><>0<>0<><>::uid://dcal2vo6kwa2k::::res://entities/isle/mission/bank/bank.gd
+bank_data.gd::GDScript::2588524491496467562::1788464053::0::1::::BankData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/bank/method/::1788548718
+method.gd::GDScript::5726212138771270760::1788542298::0::1::::Method<>PanelContainer<><>0<>0<><>::
+method.tscn::PackedScene::4278315995880100683::1788544938::0::1::::<><><>0<>0<><>::uid://cnt243gajxl8s::::res://entities/isle/mission/bank/method/method.gd<>uid://br1lubxromts8::::res://shared/labels/defaul label.tres<>uid://bhtnr3epno3wi::::res://entities/isle/mission/gang/idea/intention/intention.tscn
+method_data.gd::GDScript::6360752406475170679::1788464121::0::1::::MethodData<>RefCounted<><>0<>0<><>::
+obstacle_data.gd::GDScript::8836785808782119867::1788527413::0::1::::ObstacleData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/bank/method/images/::1788548728
+::res://entities/isle/mission/bank/method/images/body/::1788548754
+difficulty.png::CompressedTexture2D::6876619029400628030::1788548754::1788548755::1::::<><><>0<>0<>0f29b25c0933fca34d9f03b9c9d1a73a<>res://.godot/imported/difficulty.png-2821c49e2b6eb018ca8f02eac35d9623.ctex::
+impulse.png::CompressedTexture2D::8867118609894013011::1788548754::1788548755::1::::<><><>0<>0<>c5d94f10581adf69ced70a329e6ae869<>res://.godot/imported/impulse.png-54a0a11d55fe1444a959c3190d2d740f.ctex::
+::res://entities/isle/mission/bank/method/images/border/::1788548735
+difficulty.png::CompressedTexture2D::123607336076053877::1788548734::1788548735::1::::<><><>0<>0<>5cdf933a1de1cc495ac6a966f4ceb916<>res://.godot/imported/difficulty.png-a80ea943c60b3946a0dddb20fc4f7a96.ctex::
+impulse.png::CompressedTexture2D::146813555255844397::1788548734::1788548735::1::::<><><>0<>0<>28e6b747145851ac28132b3104846729<>res://.godot/imported/impulse.png-9f8b321cf7c58f6b120c2518c4e28754.ctex::
+::res://entities/isle/mission/gang/::1788536145
+gang.gd::GDScript::6121153260790690839::1788466141::0::1::::Gang<>PanelContainer<><>0<>0<><>::
 gang.tscn::PackedScene::3381908979483649485::1788451633::0::1::::<><><>0<>0<><>::uid://ctheq842y5ru2::::res://entities/isle/mission/gang/gang.gd<>uid://bp26pss2vvex8::::res://entities/isle/mission/gang/ambition/ambition.tscn
-gang_data.gd::GDScript::6345225806021171282::1788451604::0::1::::GangData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/gang/ambition/::1788451070
+gang_data.gd::GDScript::6345225806021171282::1788536145::0::1::::GangData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/gang/ambition/::1788456202
 ambition.gd::GDScript::4527602489896618125::1788450989::0::1::::Ambition<>PanelContainer<><>0<>0<><>::
 ambition.tscn::PackedScene::3496901525789966999::1788445318::0::1::::<><><>0<>0<><>::uid://b5rg7l7phmupp::::res://entities/isle/mission/gang/ambition/ambition.gd
-ambition_data.gd::GDScript::1323698568521254472::1788451070::0::1::::AmbitionData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/gang/ambition/potential/::1788451354
+ambition_data.gd::GDScript::1323698568521254472::1788456202::0::1::::AmbitionData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/gang/ambition/potential/::1788547134
 potential background.png::CompressedTexture2D::7040248596498147011::1788442768::1788442769::1::::<><><>0<>0<>1ccf5d0d1d6e5848468b9893b7d844ae<>res://.godot/imported/potential background.png-1e66533e09da8b22044e8787f9e2b32d.ctex::
-potential.gd::GDScript::245591807561518518::1788451354::0::1::::Potenital<>TextureRect<><>0<>0<><>::
-potential.tscn::PackedScene::4996174228599988669::1788451200::0::1::::<><><>0<>0<><>::uid://c7kl4o4b4fta6::::res://entities/isle/mission/gang/ambition/potential/potential background.png<>uid://dq74jsgbc70e::::res://entities/isle/mission/gang/ambition/potential/potential.gd<>uid://dw4jkefccwnce::::res://entities/isle/mission/gang/idea/intention/images/body/element.png<>uid://cksg4po4awjwb::::res://entities/isle/mission/gang/idea/intention/intention border.gdshader<>uid://br1lubxromts8::::res://shared/labels/defaul label.tres<>uid://bl6cyarq5xgvg::::res://entities/isle/mission/gang/idea/intention/images/border/element.png
-potential_data.gd::GDScript::7392136849879680335::1788451200::0::1::::PotentialData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/gang/idea/::1788453329
-idea.gd::GDScript::3645308244233496575::1788453329::0::1::::Idea<>PanelContainer<><>0<>0<><>::
+potential.gd::GDScript::245591807561518518::1788547134::0::1::::Potenital<>TextureRect<><>0<>0<><>::
+potential.tscn::PackedScene::4996174228599988669::1788546802::0::1::::<><><>0<>0<><>::uid://c7kl4o4b4fta6::::res://entities/isle/mission/gang/ambition/potential/potential background.png<>uid://dq74jsgbc70e::::res://entities/isle/mission/gang/ambition/potential/potential.gd<>uid://dw4jkefccwnce::::res://entities/isle/mission/gang/idea/intention/images/body/element.png<>uid://br1lubxromts8::::res://shared/labels/defaul label.tres
+potential_data.gd::GDScript::7392136849879680335::1788535975::0::1::::PotentialData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/gang/attempt/::1788548329
+attempt_data.gd::GDScript::6661567130849122472::1788548329::0::1::::AttemptData<>RefCounted<><>0<>0<><>::
+impulse_data.gd::GDScript::4298583197852969455::1788536187::0::1::::ImpulseData<>RefCounted<><>0<>0<><>::
+plan_data.gd::GDScript::7247031090967244398::1788531798::0::1::::PlanData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/gang/idea/::1788465146
+idea.gd::GDScript::3645308244233496575::1788456160::0::1::::Idea<>PanelContainer<><>0<>0<><>::
 idea.png::CompressedTexture2D::502667123571413886::1788436447::1788436447::1::::<><><>0<>0<>1fbbe58c3a4ba59073bea0c481155db4<>res://.godot/imported/idea.png-0cbcfa392b8ab84057a574cca811f193.ctex::
 idea.tscn::PackedScene::3804218657691175665::1788438010::0::1::::<><><>0<>0<><>::uid://br62xuqxsn2i2::::res://entities/isle/mission/gang/idea/idea.gd<>uid://hfq4bk7bsjyk::::res://entities/isle/mission/gang/idea/idea.png<>uid://c3ji6eownkceu::::res://shared/buttons/custom button.gd
-idea_data.gd::GDScript::6026904078074377959::1788452411::0::1::::IdeaData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/mission/gang/idea/intention/::1788453228
-intention border.gdshader::Shader::5512305504115459809::1788451200::0::1::::<><><>0<>0<><>::
-intention.gd::GDScript::551251666347780354::1788452262::0::1::::Intention<>PanelContainer<><>0<>0<><>::
-intention.tscn::PackedScene::2917786923421319556::1788453228::0::1::::<><><>0<>0<><>::uid://h4bbf1j2mkfa::::res://entities/isle/mission/gang/idea/intention/intention.gd<>uid://oj7ci1re10n1::::res://entities/isle/mission/gang/idea/intention/images/body/dexterity.png<>uid://do3brfq5osdpk::::res://entities/isle/mission/gang/idea/intention/images/border/dexterity.png<>uid://cksg4po4awjwb::::res://entities/isle/mission/gang/idea/intention/intention border.gdshader<>uid://cylrd3wax6miw::::res://entities/isle/mission/gang/idea/intention/images/circle.png
-intention_data.gd::GDScript::2092576416787797227::1788452156::0::1::::IntentionData<>Resource<><>0<>0<><>::
+idea_data.gd::GDScript::6026904078074377959::1788465146::0::1::::IdeaData<>RefCounted<><>0<>0<><>::
+::res://entities/isle/mission/gang/idea/intention/::1788548355
+intention border.gdshader::Shader::5512305504115459809::1788542155::0::1::::<><><>0<>0<><>::
+intention.gd::GDScript::551251666347780354::1788542279::0::1::::Intention<>PanelContainer<><>0<>0<><>::
+intention.tscn::PackedScene::2917786923421319556::1788546989::0::1::::<><><>0<>0<><>::uid://h4bbf1j2mkfa::::res://entities/isle/mission/gang/idea/intention/intention.gd<>uid://ywv006cqxoc::::res://entities/isle/mission/gang/idea/intention/images/body/dexterity.png<>uid://do3brfq5osdpk::::res://entities/isle/mission/gang/idea/intention/images/border/dexterity.png<>uid://cylrd3wax6miw::::res://entities/isle/mission/gang/idea/intention/images/circle.png
+intention_data.gd::GDScript::2092576416787797227::1788548355::0::1::::IntentionData<>Resource<><>0<>0<><>::
 ::res://entities/isle/mission/gang/idea/intention/images/::1788453091
 circle.png::CompressedTexture2D::6481120820923850942::1788453086::1788453091::1::::<><><>0<>0<>7e276f3ffcba480159a114aa0a4df83b<>res://.godot/imported/circle.png-fcda4087c7e4450798b0cccde476b01d.ctex::
-::res://entities/isle/mission/gang/idea/intention/images/body/::1788442925
-dexterity.png::CompressedTexture2D::1003170187205842792::1788274513::1788370114::1::::<><><>0<>0<>8244dd270bfd7f1bd1474108c1a26424<>res://.godot/imported/dexterity.png-c2420261749af2fb3fdd65e3e7b3f684.ctex::
-element.png::CompressedTexture2D::8763848094769542220::1788442925::1788442925::1::::<><><>0<>0<>206dde96ab2653989e6d7509a327247d<>res://.godot/imported/element.png-021d80228e17e200135f0945ff7a03e1.ctex::
-intellect.png::CompressedTexture2D::4605440480104898243::1788274513::1788370114::1::::<><><>0<>0<>518a8f38b1cf0f599f3d73153d2f5241<>res://.godot/imported/intellect.png-c53dde9e6f03a9dc7f444e2aaeabdcea.ctex::
-strength.png::CompressedTexture2D::4511199025036640910::1788274513::1788370114::1::::<><><>0<>0<>435a2e896f09ada80b1703c3072466e7<>res://.godot/imported/strength.png-bcc387b6f6ba87824f7df7912ebb470f.ctex::
-::res://entities/isle/mission/gang/idea/intention/images/border/::1788443090
-dexterity.png::CompressedTexture2D::8199799803330684228::1788370169::1788370170::1::::<><><>0<>0<>c9589fac05170ea3de54bde8be478b00<>res://.godot/imported/dexterity.png-e25f9957145a8e6554c425b96c2d568d.ctex::
-element.png::CompressedTexture2D::3222657994156204352::1788443089::1788443090::1::::<><><>0<>0<>dbafa40fa5c13d2e3df3da981f02976c<>res://.godot/imported/element.png-0f1e337994912720041651d5d674be1d.ctex::
-intellect.png::CompressedTexture2D::7631349978556761464::1788370169::1788370170::1::::<><><>0<>0<>a95108b9c6204cade35ed77abc30b1da<>res://.godot/imported/intellect.png-fe480e0b4216eee74b49fe662d33bb4c.ctex::
-strength.png::CompressedTexture2D::431522031135684105::1788370169::1788370170::1::::<><><>0<>0<>0c57e7919269f50aae5823c550a85266<>res://.godot/imported/strength.png-072fbe4222fcce42f0b9709445410022.ctex::
+::res://entities/isle/mission/gang/idea/intention/images/body/::1788547080
+dexterity.png::CompressedTexture2D::50919694725990394::1788546702::1788546703::1::::<><><>0<>0<>b2ffe4f2424871ed2adc3f541707269d<>res://.godot/imported/dexterity.png-c2420261749af2fb3fdd65e3e7b3f684.ctex::
+element.png::CompressedTexture2D::8763848094769542220::1788547080::1788547080::1::::<><><>0<>0<>206dde96ab2653989e6d7509a327247d<>res://.godot/imported/element.png-021d80228e17e200135f0945ff7a03e1.ctex::
+intellect.png::CompressedTexture2D::4605440480104898243::1788546337::1788546337::1::::<><><>0<>0<>518a8f38b1cf0f599f3d73153d2f5241<>res://.godot/imported/intellect.png-c53dde9e6f03a9dc7f444e2aaeabdcea.ctex::
+strength.png::CompressedTexture2D::4511199025036640910::1788546337::1788546337::1::::<><><>0<>0<>435a2e896f09ada80b1703c3072466e7<>res://.godot/imported/strength.png-bcc387b6f6ba87824f7df7912ebb470f.ctex::
+::res://entities/isle/mission/gang/idea/intention/images/border/::1788547070
+dexterity.png::CompressedTexture2D::8199799803330684228::1788546709::1788546709::1::::<><><>0<>0<>c9589fac05170ea3de54bde8be478b00<>res://.godot/imported/dexterity.png-e25f9957145a8e6554c425b96c2d568d.ctex::
+element.png::CompressedTexture2D::3222657994156204352::1788547070::1788547070::1::::<><><>0<>0<>dbafa40fa5c13d2e3df3da981f02976c<>res://.godot/imported/element.png-0f1e337994912720041651d5d674be1d.ctex::
+intellect.png::CompressedTexture2D::7631349978556761464::1788546305::1788546306::1::::<><><>0<>0<>a95108b9c6204cade35ed77abc30b1da<>res://.godot/imported/intellect.png-fe480e0b4216eee74b49fe662d33bb4c.ctex::
+strength.png::CompressedTexture2D::431522031135684105::1788546305::1788546306::1::::<><><>0<>0<>0c57e7919269f50aae5823c550a85266<>res://.godot/imported/strength.png-072fbe4222fcce42f0b9709445410022.ctex::
 ::res://entities/isle/mission/gang/idea/opportunity/::1788359635
 1.tres::Resource/OpportunityData::7453139750757936851::1788359395::0::1::::<><><>0<>0<><>::uid://42wosuom5j36::::res://entities/isle/mission/gang/idea/intention/intention_data.gd<>uid://cm5ac6b8x3mmc::::res://entities/isle/mission/gang/idea/opportunity/opportunity_data.gd
 2.tres::Resource/OpportunityData::7176035159662600987::1788359395::0::1::::<><><>0<>0<><>::uid://42wosuom5j36::::res://entities/isle/mission/gang/idea/intention/intention_data.gd<>uid://cm5ac6b8x3mmc::::res://entities/isle/mission/gang/idea/opportunity/opportunity_data.gd
@@ -381,8 +392,8 @@ odeum_data.gd::GDScript::74105217386876491::1787741029::0::1::::OdeumData<>RefCo
 canto.gd::GDScript::624639254685922820::1787728005::0::1::::Canto<>PanelContainer<><>0<>1<><>::
 canto.tscn::PackedScene::5794291642626876166::1787741173::0::1::::<><><>0<>0<><>::uid://i5tynflme317::::res://entities/isle/odeum/canto/canto.gd<>uid://budert8pgb7eo::::res://entities/isle/odeum/canto/pulse/pulse.tscn<>uid://b0rrpj5bjfot0::::res://entities/isle/odeum/canto/tune/tune.tscn
 canto_data.gd::GDScript::6786759322254090231::1787740106::0::1::::CantoData<>RefCounted<><>0<>0<><>::
-::res://entities/isle/odeum/canto/pulse/::1788451200
-critical pulse.gdshader::Shader::2695979821987991973::1788451200::0::1::::<><><>0<>0<><>::
+::res://entities/isle/odeum/canto/pulse/::1788542155
+critical pulse.gdshader::Shader::2695979821987991973::1788542155::0::1::::<><><>0<>0<><>::
 pulse.gd::GDScript::5057901610553825599::1787726209::0::1::::Pulse<>PanelContainer<><>0<>0<><>::
 pulse.png::CompressedTexture2D::5779000448376401015::1786187352::1787332069::1::::<><><>0<>0<>cbe807420d520c6b8e8e2a4e903743ef<>res://.godot/imported/pulse.png-58cee39269abda96a3ca630cdb0b8fdc.ctex::
 pulse.tscn::PackedScene::3796664965795201438::1787726669::0::1::::<><><>0<>0<><>::uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png<>uid://cecc5vbq64dtv::::res://entities/isle/odeum/canto/pulse/pulse.gd<>uid://colnj71rusu28::::res://entities/isle/odeum/canto/pulse/pulse.png<>uid://ben7nnhfe0fe8::::res://entities/isle/odeum/canto/pulse/critical pulse.gdshader
@@ -418,10 +429,10 @@ home.tscn::PackedScene::3430173726489050937::1786183000::0::1::::<><><>0<>0<><>:
 button.gd::GDScript::5702632235251211706::1784950012::0::1::::<>Button<><>0<>0<><>::
 button.tscn::PackedScene::6294881423661078859::1786183000::0::1::::<><><>0<>0<><>::uid://cninrw3idbd8u::::res://entities/world/home/button/button.gd
 go_home.gd::GDScript::446863971847997219::1787012045::0::1::::GoHome<>Node<><>0<>0<><>::
-::res://global/::1788455007
+::res://global/::1788542155
 Bozo.gd::GDScript::7266829781729311716::1788270927::0::1::::<>Node<><>0<>0<><>::
-Catalog.gd::GDScript::3495370124140258623::1788445637::0::1::::<>Node<><>0<>0<><>::
-Digest.gd::GDScript::3495288910934536794::1788455007::0::1::::<>Node<><>0<>0<><>::
+Catalog.gd::GDScript::3495370124140258623::1788465573::0::1::::<>Node<><>0<>0<><>::
+Digest.gd::GDScript::3495288910934536794::1788542155::0::1::::<>Node<><>0<>0<><>::
 Gear.gd::GDScript::4929632050575132711::1788376533::0::1::::<>Node<><>0<>0<><>::
 Helper.gd::GDScript::2099051315008643958::1788444757::0::1::::<>Node<><>0<>0<><>::
 ::res://global/arbitrator/::1787743181

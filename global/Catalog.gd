@@ -172,3 +172,20 @@ const element_anchors = [
 	Vector2i(1, 5),
 	Vector2i(0, 6),
 ]
+
+const methods = [
+	Bozo.Method.KILL,
+	Bozo.Method.BREAK,
+	Bozo.Method.FIND,
+	Bozo.Method.HACK,
+	Bozo.Method.RAKE,
+	Bozo.Method.STEAL,
+	#Bozo.Method.RAKE,
+	#Bozo.Method.HACK,
+	#Bozo.Method.BREAK,
+	#Bozo.Method.FIND,
+	#Bozo.Method.KILL
+	#Bozo.Method.STEAL,
+]
+
+const ELEMENT_IMPULSE_FACTOR: int = 1

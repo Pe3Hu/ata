@@ -9,6 +9,7 @@ var wall: ObstacleData
 var custodian: ObstacleData
 
 var methods: Array[MethodData]
+var type_to_method: Dictionary
 
 var avg_difficulty: int = 10
 
@@ -19,3 +20,4 @@ func _init(mission_: MissionData) -> void:
 	lock = ObstacleData.new(self, Bozo.Obstacle.LOCK)
 	wall = ObstacleData.new(self, Bozo.Obstacle.WALL)
 	custodian = ObstacleData.new(self, Bozo.Obstacle.CUSTODIAN)
+	methods.sort_custom(func (a, b): return Catalog.methods.find(a.type) < Catalog.methods.find(b.type))

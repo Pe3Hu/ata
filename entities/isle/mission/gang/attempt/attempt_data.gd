@@ -42,6 +42,7 @@ var first_idea: IdeaData:
 		
 		if second_idea == null:
 			gang.ambition.reset_potentials()
+			gang.attempt.reset_impulses()
 
 var second_idea: IdeaData:
 	set(value_):
@@ -53,6 +54,7 @@ var second_idea: IdeaData:
 			
 			if second_idea:
 				second_idea.is_active = true
+				#recalc_impulses()
 			
 			idea_chaged.emit()
 		else:
@@ -67,6 +69,31 @@ var impulses: Array
 
 func _init(gang_: GangData) -> void:
 	gang = gang_
+	
+	init_impulses()
+
+func init_impulses() -> void:
+	for method in Catalog.methods:
+		var _impulse = ImpulseData.new(self, method)
 
 func recalc_impulses() -> void:
-	pass
+	reset_impulses()
+	var ideas = [first_idea, second_idea]
+	
+	for idea in ideas:
+		for intention in idea.intentions:
+			if intention.aspect == idea.bond_aspect and intention.element == idea.bond_element: continue
+			intention.update_impulses(self)
+
+func reset_impulses() -> void:
+	for impulse in impulses:
+		impulse.value = 0
+
+func reset_ideas() -> void:
+	first_idea = null
+
+func get_idea_indexs() -> Array:
+	var indexs: Array
+	indexs.append(gang.ideas.find(first_idea))
+	indexs.append(gang.ideas.find(second_idea))
+	return indexs

@@ -37,11 +37,15 @@ func _init(gang_: GangData, index_: int) -> void:
 	gang = gang_
 	gang.ideas.append(self)
 	
+	init_intentions(index_)
+
+func init_intentions(index_: int) -> void:
 	var opportinity = load("res://entities/isle/mission/gang/idea/opportunity/%d.tres" % index_)
 	
 	for original_intention in opportinity.intentions:
 		var intention = IntentionData.new(original_intention)
 		intentions.append(intention)
+		intention.idea = self
 
 func update_bond_index() -> void:
 	if bond_aspect == null: return

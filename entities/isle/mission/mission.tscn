@@ -18,6 +18,10 @@ layout_mode = 2
 
 [node name="Gang" parent="HBox" unique_id=421912675 instance=ExtResource("2_jce5p")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 
 [node name="Bank" parent="HBox" unique_id=898567607 instance=ExtResource("3_22t61")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6

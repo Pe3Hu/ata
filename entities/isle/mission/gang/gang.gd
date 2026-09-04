@@ -32,6 +32,7 @@ func _on_idea_changed() -> void:
 		data.attempt.second_idea.bond_aspect = intention_data.aspect
 		data.attempt.second_idea.bond_element = intention_data.element
 		data.ambition.recalc_potentials()
+		data.attempt.recalc_impulses()
 
 func init_ideas() -> void:
 	%Ideas.offset_transform_position = -Catalog.IDEA_SIZE / 2

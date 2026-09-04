@@ -26,8 +26,8 @@ func _on_index_changed() -> void:
 
 func _on_value_changed() -> void:
 	%Body.visible = data.value != 0
-	%Border.visible = data.value != 0
 	%Value.visible = data.value != 0
+	%Border.visible = data.value != 0
 	
 	%Value.text = str(data.value)
 
