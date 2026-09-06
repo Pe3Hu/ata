@@ -97,3 +97,16 @@ func get_idea_indexs() -> Array:
 	indexs.append(gang.ideas.find(first_idea))
 	indexs.append(gang.ideas.find(second_idea))
 	return indexs
+
+func implement() -> void:
+	gang.ambition.reset_potentials()
+	gang.attempt.reset_impulses()
+	
+	first_idea.attempt_implemented.emit()
+	second_idea.attempt_implemented.emit()
+	
+	gang.ideas.erase(first_idea)
+	gang.ideas.erase(second_idea)
+	
+	second_idea = null
+	first_idea = null

@@ -3,14 +3,14 @@ extends RefCounted
 
 
 signal difficulty_changed
-
+ 
 var obstacle: ObstacleData
 var type: Bozo.Method
 var methods: Array[Bozo.Method]
 
-var difficulty: int:
+var current_difficulty: int:
 	set(value_):
-		difficulty = value_
+		current_difficulty = value_
 		difficulty_changed.emit()
 var impulse: ImpulseData
 
@@ -22,3 +22,7 @@ func _init(obstacle_: ObstacleData, type_: Bozo.Method) -> void:
 	obstacle.methods.append(self)
 	obstacle.bank.methods.append(self)
 	obstacle.bank.type_to_method[type] = self
+
+func execute() -> void:
+	current_difficulty -= impulse.value
+	obstacle.bank.mission.gang.attempt.implement()

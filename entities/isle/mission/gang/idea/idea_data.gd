@@ -4,6 +4,8 @@ extends RefCounted
 
 signal active_changed
 signal bond_changed
+@warning_ignore("unused_signal")
+signal attempt_implemented
 
 var gang: GangData
 var intentions: Array[IntentionData]

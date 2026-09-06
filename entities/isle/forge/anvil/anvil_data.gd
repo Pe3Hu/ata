@@ -52,8 +52,8 @@ func fusion() -> void:
 	
 	for stamp in stamps:
 		origin.stamps.erase(stamp)
-		origin.atheneum.tribunal.bygone.stamps.erase(stamp)
+		origin.atheneum.house.cellar.stamps.erase(stamp)
 	
 	origin.stamps.append(new_stamp)
-	origin.atheneum.tribunal.bygone.stamps.append(new_stamp)
+	origin.atheneum.house.cellar.stamps.append(new_stamp)
 	Arbitrator.current_phase.exit_phase()

@@ -2,11 +2,40 @@
 
 [ext_resource type="Script" uid="uid://cnt243gajxl8s" path="res://entities/isle/mission/bank/method/method.gd" id="1_i61tk"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="2_51i02"]
+[ext_resource type="Shader" uid="uid://btb3r5ubp2qvr" path="res://entities/isle/mission/bank/method/perfect method.gdshader" id="3_4ad3u"]
 [ext_resource type="PackedScene" uid="uid://bhtnr3epno3wi" path="res://entities/isle/mission/gang/idea/intention/intention.tscn" id="3_dmfkq"]
 [ext_resource type="Texture2D" uid="uid://c48c572idkvx3" path="res://entities/isle/mission/bank/method/images/body/difficulty.png" id="3_r2hyf"]
 [ext_resource type="Texture2D" uid="uid://b042a0qkk4j6" path="res://entities/isle/mission/bank/method/images/border/difficulty.png" id="4_4ad3u"]
 [ext_resource type="Texture2D" uid="uid://dylkfbddl8q64" path="res://entities/isle/mission/bank/method/images/body/impulse.png" id="5_qj25r"]
 [ext_resource type="Texture2D" uid="uid://cdd86p0gpwa4" path="res://entities/isle/mission/bank/method/images/border/impulse.png" id="6_6e2lp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3v272"]
+resource_local_to_scene = true
+shader = ExtResource("3_4ad3u")
+shader_parameter/circle_width = 0.2500000037253
+shader_parameter/wait_time = 0.20000000298024
+shader_parameter/speed = 0.40000000596048
+shader_parameter/alpha_boost = 2.0
+shader_parameter/async_origin_offset = 0.25
+shader_parameter/async_phase_offset = 0.25
+shader_parameter/async_speed_factor = 0.1
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/center_offset = 0.5
+shader_parameter/circle_radius = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ad3u"]
+resource_local_to_scene = true
+shader = ExtResource("3_4ad3u")
+shader_parameter/circle_width = 0.2500000037253
+shader_parameter/wait_time = 0.20000000298024
+shader_parameter/speed = 0.40000000596048
+shader_parameter/alpha_boost = 2.0
+shader_parameter/async_origin_offset = 0.25
+shader_parameter/async_phase_offset = 0.25
+shader_parameter/async_speed_factor = 0.1
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/center_offset = 0.5
+shader_parameter/circle_radius = 0.25
 
 [node name="Method" type="PanelContainer" unique_id=1137265849]
 custom_minimum_size = Vector2(0, 24)
@@ -35,8 +64,9 @@ alignment = 1
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="Body" type="TextureRect" parent="VBox/HBox/DifficultyContainer" unique_id=808957670]
-visible = false
+[node name="DifficultyPerfect" type="TextureRect" parent="VBox/HBox/DifficultyContainer" unique_id=808957670]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_3v272")
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -76,8 +106,28 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="Body" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=30565713]
-visible = false
+[node name="ImpulsePerfect" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=84183478]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_4ad3u")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_r2hyf")
+
+[node name="Body" type="TextureButton" parent="VBox/HBox/ImpulseContainer" unique_id=1739924008]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -85,12 +135,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_scale = Vector2(0.9, 0.9)
-texture = ExtResource("5_qj25r")
+texture_hover = ExtResource("5_qj25r")
 
-[node name="Border" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=1272480606]
+[node name="Border" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=811703606]
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
+mouse_filter = 2
 texture = ExtResource("6_6e2lp")
 
 [node name="Impulse" type="Label" parent="VBox/HBox/ImpulseContainer" unique_id=1232997497]
@@ -132,3 +183,5 @@ size_flags_vertical = 4
 [node name="Intention3" parent="VBox/Aspects" unique_id=780229363 instance=ExtResource("3_dmfkq")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[connection signal="pressed" from="VBox/HBox/ImpulseContainer/Body" to="." method="_on_body_pressed"]

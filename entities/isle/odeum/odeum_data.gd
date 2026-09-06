@@ -69,6 +69,7 @@ func init_permutations(type_: Bozo.Room) -> void:
 			else:
 				var _scenario = ScenarioData.new(self, permutation, type_)
 	else:
+		update_scenario(type_, null)
 		return
 	
 	#if type_ == Bozo.Room.KITCHEN:
@@ -113,3 +114,8 @@ func get_scenario(type_: Bozo.Room) -> Variant:
 func update_locked_stamps() -> void:
 	locked_stamps.clear()
 	locked_stamps = kitchen_scenario.chains.filter(func (a): return a.is_locked)
+
+func has_kitchen_not_locked_stamps() -> bool:
+	if not kitchen_scenario: return false
+	var not_locked_stamps = kitchen_scenario.chains.filter(func (a): return not a.is_locked)
+	return not not_locked_stamps.is_empty()

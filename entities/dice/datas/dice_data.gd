@@ -11,7 +11,6 @@ var result: int
 func _init() -> void:
 	pass
 
-
 func init_values() -> void:
 	pass
 #endregion

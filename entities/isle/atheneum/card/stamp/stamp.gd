@@ -28,11 +28,13 @@ func connect_signals() -> void:
 
 func _on_locked_changed() -> void:
 	if data.is_locked:
-		card.custom_minimum_size.x = card.min_size_x_hover
+		if card:
+			card.custom_minimum_size.x = card.min_size_x_hover
+			offset_transform_position.x = (card.min_size_x_hover - card.min_size_x_default) / 2
 		border.self_modulate.a = 1.0
-		offset_transform_position.x = (card.min_size_x_hover - card.min_size_x_default) / 2
 	else:
-		card.custom_minimum_size.x = card.min_size_x_default
+		if card:
+			card.custom_minimum_size.x = card.min_size_x_default
 		border.self_modulate.a = 0.0
 		offset_transform_position.x = 0
 
@@ -65,6 +67,8 @@ func update_colors() -> void:
 	border.get_theme_stylebox("panel").border_color = color
 	%Top.get_theme_stylebox("panel").bg_color = color
 	%Bottom.get_theme_stylebox("panel").bg_color = color
+	if card:
+		card.dice.background_cube.material.set_shader_parameter('cube_color', color)
 
 func update_marks() -> void:
 	%CardMarkLetter.text = data.origin.mark_letter

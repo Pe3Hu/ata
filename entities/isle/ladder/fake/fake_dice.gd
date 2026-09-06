@@ -2,6 +2,16 @@ class_name FakeDice
 extends PanelContainer
 
 
+var data: DiceData:
+	set(value_):
+		data = value_
+		
+		for _i in data.values.size():
+			var value = data.values[_i]
+			var texture = load('res://entities/dice/images/%d.png' % value)
+			var face_path = 'tex_%s' % Catalog.faces[_i]
+			digit_cube.material.set_shader_parameter(face_path, texture)
+
 @export var digit_cube: ColorRect
 @export var background_cube: ColorRect
 
@@ -129,16 +139,14 @@ func animate_steps() -> void:
 			func(progress: float) -> void:
 				var ease_progress = 1.0 - pow(1.0 - progress, 3.0)
 				var interpolated = step_start.lerp(step_end, ease_progress)
-				background_cube.material.set_shader_parameter("rotation_deg", interpolated)
-				,
+				background_cube.material.set_shader_parameter("rotation_deg", interpolated),
 				0.0, 1.0, duration
 		)
 		digit_tween.tween_method(
 			func(progress: float) -> void:
 				var ease_progress = 1.0 - pow(1.0 - progress, 3.0)
 				var interpolated = step_start.lerp(step_end, ease_progress)
-				digit_cube.material.set_shader_parameter("rotation_deg", interpolated)
-				,
+				digit_cube.material.set_shader_parameter("rotation_deg", interpolated),
 				0.0, 1.0, duration
 		)
 		
@@ -164,9 +172,16 @@ func get_visible_face() -> int:
 	current_rotation.z = fmod(current_rotation.z, 360.0)
 	return Digest.rotation_to_face[current_rotation]
 
+func get_current_value() -> int:
+	var current_index = get_visible_face()
+	return data.values[current_index]
+
 func apply_normal() -> void:
 	if background_tween and background_tween.is_running():
-		await background_tween.finished
+		background_tween.kill()
+	
+	if digit_tween and digit_tween.is_running():
+		digit_tween.kill()
 	
 	background_tween = create_tween()
 	digit_tween = create_tween()
@@ -182,16 +197,14 @@ func apply_normal() -> void:
 		func(progress: float) -> void:
 			var ease_progress = 1.0 - pow(1.0 - progress, 3.0)
 			var interpolated = start.lerp(end, ease_progress)
-			background_cube.material.set_shader_parameter("rotation_deg", interpolated)
-			,
+			background_cube.material.set_shader_parameter("rotation_deg", interpolated),
 			0.0, 1.0, duration
 	)
 	digit_tween.tween_method(
 		func(progress: float) -> void:
 			var ease_progress = 1.0 - pow(1.0 - progress, 3.0)
 			var interpolated = start.lerp(end, ease_progress)
-			digit_cube.material.set_shader_parameter("rotation_deg", interpolated)
-			,
+			digit_cube.material.set_shader_parameter("rotation_deg", interpolated),
 			0.0, 1.0, duration
 	)
 	
@@ -216,7 +229,6 @@ func find_closest_rotation() -> Vector3:
 	var best_diff = INF
 	var best_key = -1
 	
-	# Ищем ближайшее положение среди всех
 	for key in Digest.face_to_rotations.keys():
 		var rotations = Digest.face_to_rotations[key]
 		for rot in rotations:
@@ -226,7 +238,6 @@ func find_closest_rotation() -> Vector3:
 				best_rotation = rot
 				best_key = key
 	
-	# Теперь находим соответствующее нормализованное положение
 	var normals = Digest.face_to_normals[best_key]
 	var best_normal = normals[0]
 	var best_normal_diff = INF
@@ -251,7 +262,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_Q:
 			#prev_index()
-			start_roll()
+			#start_roll()
+			pass
 		#if event.keycode == KEY_E:
 			#next_index()
 		#if event.keycode == KEY_S:
@@ -271,11 +283,11 @@ func test_data() -> void:
 	digit_cube.material.set_shader_parameter("rotation_deg", current_rotation)
 
 func apply_mirror() -> void:
-	var face = get_visible_face()
-	print([test_index, current_rotation, face])
+	var _face = get_visible_face()
+	#print([test_index, current_rotation, _face])
 	apply_normal()
-	face = get_visible_face()
-	print([current_rotation, face])
+	_face = get_visible_face()
+	#print([current_rotation, _face])
 
 func next_index() -> void:
 	test_index+= 1

@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://sagwuyjgg51m" path="res://entities/isle/atheneum/card/card.gd" id="1_i4otp"]
 [ext_resource type="PackedScene" uid="uid://cryhfovvi1v70" path="res://entities/isle/atheneum/card/shadow/shadow.tscn" id="2_mxkpx"]
 [ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/atheneum/card/stamp/stamp.tscn" id="2_y3gem"]
+[ext_resource type="PackedScene" uid="uid://t1702e0u2fqx" path="res://entities/isle/ladder/fake/fake_dice.tscn" id="4_nol8u"]
 
-[node name="Card" type="Control" unique_id=11887563 node_paths=PackedStringArray("stamp", "shadow")]
+[node name="Card" type="Control" unique_id=11887563 node_paths=PackedStringArray("stamp", "shadow", "dice")]
 layout_mode = 3
 anchors_preset = 0
 offset_transform_enabled = true
@@ -13,6 +14,7 @@ mouse_filter = 1
 script = ExtResource("1_i4otp")
 stamp = NodePath("Stamp")
 shadow = NodePath("Shadow")
+dice = NodePath("PunishmentDice")
 
 [node name="Stamp" parent="." unique_id=181464811 node_paths=PackedStringArray("card") instance=ExtResource("2_y3gem")]
 layout_mode = 0
@@ -24,3 +26,12 @@ offset_top = 113.0
 offset_bottom = 425.0
 offset_transform_scale = Vector2(0, 1)
 card = NodePath("..")
+
+[node name="PunishmentDice" parent="." unique_id=518126039 instance=ExtResource("4_nol8u")]
+visible = false
+layout_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 166)
+offset_transform_visual_only = false

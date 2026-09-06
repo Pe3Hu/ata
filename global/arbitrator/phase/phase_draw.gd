@@ -10,7 +10,9 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	
-	if Arbitrator.current_round == 1:
+	if Arbitrator.faction.atheneum.house.bedroom.stamps.size() < 2:
+		if Arbitrator.current_round > 1:
+			pass
 		Arbitrator.faction.atheneum.house.direct_refill_bedroom()
 	
 	Arbitrator.faction.atheneum.house.refill_parlor()

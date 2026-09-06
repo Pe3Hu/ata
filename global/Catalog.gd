@@ -1,6 +1,22 @@
 extends Node
 
 
+#region dice
+var axes: Array[Vector3] = [
+	Vector3(90, 0, 0),
+	Vector3(0, 90, 0),
+	Vector3(0, 0, 90)
+]
+
+var faces = [
+	"front",
+	"bottom",
+	"left",
+	"right",
+	"top",
+	"back",
+]
+#endregion
 
 #region matter
 const matters: Array[Bozo.Matter] = [
@@ -189,3 +205,7 @@ const methods = [
 ]
 
 const ELEMENT_IMPULSE_FACTOR: int = 1
+
+const obstacles = [Bozo.Obstacle.LOCK, Bozo.Obstacle.WALL, Bozo.Obstacle.CUSTODIAN]
+const AVG_OBSTACLE_DIFFICULTY: int = 23
+const difficulty_shifts = [-3, -1, 1]

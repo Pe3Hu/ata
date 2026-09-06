@@ -25,6 +25,7 @@ var flip_tween: Tween
 
 var is_face_stamp: bool = true
 
+@export var dice: FakeDice
 
 
 #region init
@@ -43,6 +44,15 @@ func _ready() -> void:
 	custom_minimum_size.x = min_size_x_default
 	position.x = 0
 	first_appear()
+
+func update_dice() -> void:
+	var matter = Bozo.enum_to_string(Bozo.Type.MATTER, stamp.data.origin.matter)
+	dice.data = load('res://entities/dice/datas/punishment/%s.tres' % matter)
+
+func _on_punishment_roll_end() -> void:
+	var debt_data = stamp.data.origin.atheneum.faction.kernel.usurer.matter_to_debt[stamp.data.origin.matter]
+	debt_data.next_value += dice.get_current_value()
+	stamp.data.origin.atheneum.faction.kernel.usurer.update_debts.emit()
 
 func first_appear() -> void:
 	offset_transform_position.x = Catalog.CARD_APPEAR_DISTANCE
@@ -69,6 +79,10 @@ func disappear(is_last_: bool = false) -> void:
 	if appear_tween and appear_tween.is_running(): return
 	appear_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)#TRANS_CIRC
 	appear_tween.parallel().tween_property(self, "offset_transform_position:x", Catalog.CARD_APPEAR_DISTANCE, Gear.appears[Gear.tempo])
+	
+	#if is_last_:
+		#Arbitrator.queue_an_animation(appear_tween)
+	
 	await appear_tween.finished
 	room.close_up_cards(self)
 	
@@ -86,19 +100,20 @@ func last_disappear() -> void:
 #region hover
 func hover() -> void:
 	if appear_tween and appear_tween.is_running(): return
-	if room.shift_tween and room.shift_tween.is_running(): return
+	if room and room.shift_tween and room.shift_tween.is_running(): return
 	#if room.current_card == self: return
 	if hover_tween and hover_tween.is_running(): return
-	if room.data.type == Bozo.Room.PARLOR: return
+	if room and room.data.type == Bozo.Room.PARLOR: return
 	if stamp.data.is_locked: return
 	
 	z_index = 1
 	var current_x = stamp.position.x
 	
-	if room.current_card and room.current_card != self:
+	if room and room.current_card and room.current_card != self:
 		room.current_card.unhover()
 	
-	room.current_card = self
+	if room:
+		room.current_card = self
 	
 	#if hover_tween and hover_tween.is_running():
 	#	hover_tween.kill()
@@ -157,7 +172,7 @@ func spoil() -> void:
 	disappear()
 	await appear_tween.finished
 
-func activate(is_fol: bool = true) -> void:
+func activate(is_fol: bool = true, is_last_: bool = false) -> void:
 	if is_fol and not room.house.room_to_fol.has(room): return
 	if not is_fol and not room.house.room_to_ere.has(room): return
 	if not room.house.active_tweens.is_empty(): return
@@ -181,6 +196,9 @@ func activate(is_fol: bool = true) -> void:
 	activate_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 	activate_tween.tween_property(self, "offset_transform_position", target_offset, duration)
 	room.house.active_tweens.append(activate_tween)
+	
+	if is_last_:
+		Arbitrator.queue_an_animation(activate_tween)
 	
 	await activate_tween.finished
 	finish_activate(is_fol)
@@ -273,3 +291,12 @@ func switch_face() -> void:
 	
 	is_face_stamp = !is_face_stamp
 #endregion
+
+func apply_punushment() -> void:
+	dice.visible = true
+	dice.start_roll()
+	dice.digit_tween.finished.connect(_on_punishment_roll_end)
+	Arbitrator.queue_an_animation(dice.digit_tween)
+	
+	#await dice.digit_tween.finished
+	#dice.visible = false

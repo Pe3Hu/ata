@@ -28,6 +28,8 @@ func transfer_stamp() -> StampData:
 	
 	var stamp = stamps.pop_back()
 	fol.stamps.append(stamp)
+	if fol.type == Bozo.Room.PARLOR or fol.type == Bozo.Room.CELLAR:
+		stamp.reset()
 	return stamp
 #endregion
 

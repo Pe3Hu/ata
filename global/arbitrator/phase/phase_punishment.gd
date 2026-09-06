@@ -3,14 +3,16 @@ extends Phase
 
 
 func _init() -> void:
-	super._init()
+	super._init() 
 	type = Bozo.Phase.PUNISHMENT
 
 func enter_phase():
 	super.enter_phase()
-	Arbitrator.faction.odeum.current_scenario = null
-	
-	Arbitrator.faction.house.punishment_phase.emit()
+	#Arbitrator.faction.odeum.current_scenario = null
+	if Arbitrator.faction.atheneum.house.kitchen.stamps.is_empty():
+		exit_phase()
+	else:
+		Arbitrator.faction.atheneum.house.punishment_phase.emit()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

@@ -10,6 +10,8 @@ var status: Bozo.Status = Bozo.Status.IDLE
 
 var animation_tweens: Array[Tween]
 
+var is_waiting_animations: bool = true
+
 
 func _init() -> void:
 	all_animations_finished.connect(_on_all_animations_finished)
@@ -35,6 +37,8 @@ func _on_tween_finished(tween_: Tween) -> void:
 	animation_tweens.erase(tween_)
 	
 	if animation_tweens.is_empty():
+		if not is_waiting_animations: 
+			return
 		all_animations_finished.emit()
 
 func _on_all_animations_finished() -> void:

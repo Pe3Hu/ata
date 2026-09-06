@@ -9,25 +9,33 @@
 [ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="6_eb5lj"]
 [ext_resource type="Texture2D" uid="uid://clsqeoqwua702" path="res://entities/dice/images/5.png" id="7_hdbth"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
 shader = ExtResource("2_i50pc")
 shader_parameter/rotation_deg = Vector3(0, 0, 0)
 shader_parameter/position_offset = Vector2(0, 0)
 shader_parameter/cube_size = 0.50000002212006
 shader_parameter/perspective = 3.0
+shader_parameter/use_color = true
+shader_parameter/cube_color = Color(0.77566206, 0.31673005, 0.5100661, 1)
 shader_parameter/light_dir = Vector3(0.4, 0.8, 0.5)
 shader_parameter/ambient = 0.35
 shader_parameter/shading_strength = 0.65
 shader_parameter/draw_outline = true
 shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/outline_width = 0.01
+shader_parameter/outline_width = 0.030000001425
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+resource_local_to_scene = true
 shader = ExtResource("2_i50pc")
 shader_parameter/rotation_deg = Vector3(0, 0, 0)
 shader_parameter/position_offset = Vector2(0, 0)
 shader_parameter/cube_size = 0.51000002259506
 shader_parameter/perspective = 3.0
+shader_parameter/use_color = false
+shader_parameter/cube_color = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/tex_top = ExtResource("6_eb5lj")
 shader_parameter/tex_bottom = ExtResource("4_qcfxj")
 shader_parameter/tex_front = ExtResource("5_i50pc")
@@ -45,6 +53,7 @@ shader_parameter/outline_width = 0.01
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
 script = ExtResource("1_8tmk5")
 digit_cube = NodePath("Digit")
 background_cube = NodePath("Background")

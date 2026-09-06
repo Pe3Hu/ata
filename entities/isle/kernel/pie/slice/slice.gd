@@ -26,7 +26,6 @@ func _on_amount_changed() -> void:
 	%Amount.text = str(data.amount)
 	%Amount.visible = data.amount > 0
 
-
 func calc_angles() -> void:
 	var angle_step = TAU / float(Catalog.slice_matters.size())
 	var index = data.index - Catalog.SLICE_INDEX_SHIFT

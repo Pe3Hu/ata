@@ -5,6 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_t67cj"]
 [ext_resource type="Script" uid="uid://bawqj8lxqkwvh" path="res://entities/isle/kernel/usurer/dept/fine/fine.gd" id="3_vulxe"]
 [ext_resource type="Texture2D" uid="uid://01uxq8f6bfll" path="res://entities/isle/kernel/usurer/dept/fine/images/solid outline.png" id="4_ah4b4"]
+[ext_resource type="Shader" uid="uid://cksg4po4awjwb" path="res://entities/isle/mission/gang/idea/intention/intention border.gdshader" id="4_fir6q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8o1i"]
 resource_local_to_scene = true
@@ -16,6 +17,12 @@ shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
 shader_parameter/discomode = false
 shader_parameter/speed = 0.2
 shader_parameter/scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkecd"]
+shader = ExtResource("4_fir6q")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 0.15
+shader_parameter/add_margins = true
 
 [node name="Fine" type="TextureRect" unique_id=1257049765]
 material = SubResource("ShaderMaterial_v8o1i")
@@ -29,6 +36,7 @@ script = ExtResource("3_vulxe")
 
 [node name="Outline" type="TextureRect" parent="." unique_id=929467587]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dkecd")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -35,7 +35,7 @@ func init_start_amounts() -> void:
 			slice.amount += amount
 			slice.next_amount += amount
 			amount_left -= amount
-	print(amount_left)
+	
 	fill_prime_matters()
 
 func fill_prime_matters() -> void:

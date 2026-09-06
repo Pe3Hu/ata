@@ -15,7 +15,7 @@ var current_value: int:
 			current_value_changed.emit()
 var next_value: int
 var limit_value: int
-
+ 
 var fine: FineData
 
 

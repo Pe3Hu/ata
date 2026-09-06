@@ -43,6 +43,7 @@ func add_card(stamp_data_: StampData) -> void:
 	card.stamp.data = stamp_data_
 	card.shadow.data = stamp_data_.shadow
 	cards.append(card)
+	card.update_dice()
 	
 	if data.type == Bozo.Room.PARLOR:
 		card.skip_on_shadow()
@@ -110,14 +111,14 @@ func sort_cards(with_animation_: bool = true) -> void:
 	if scenarios.is_empty(): return
 	
 	var scenario = scenarios.front()
-	var sorted_cards = cards.duplicate()
+	var sorted_cards = %Cards.get_children()
 	if sorted_cards.size() == 1: return
 	
 	for card in cards:
 		card.unhover()
 	
-	if sort_tween and sort_tween.is_running():
-		sort_tween.kill()
+	if sort_tween and sort_tween.is_running(): return
+		#sort_tween.kill()
 	
 	sorted_cards.sort_custom(func (a, b): return scenario.chains.find(a.stamp.data) < scenario.chains.find(b.stamp.data))
 
@@ -132,14 +133,16 @@ func sort_cards(with_animation_: bool = true) -> void:
 			var card = sorted_cards[new_index]
 			var old_index = cards.find(card)
 			var l = card.min_size_x_default * (new_index - old_index)
-			sort_tween.tween_property(card.stamp, "offset_transform_position:x", l, duration)
+			sort_tween.tween_property(card, "offset_transform_position:x", l, duration)
 		
 		await sort_tween.finished
 		
 		for _i in sorted_cards.size():
 			var card = sorted_cards[_i]
+			if not %Cards.get_children().has(card):
+				pass
 			%Cards.move_child(card, _i)
-			card.stamp.offset_transform_position.x = 0
+			card.offset_transform_position.x = 0
 	
 	cards.clear()
 	cards.append_array(sorted_cards)
@@ -220,7 +223,15 @@ func plus_card(card_: Card) -> void:
 	card_.room.stamp_to_card.erase(card_.stamp.data)
 	card_.room.cards.erase(card_)
 	card_.room.data.stamps.erase(card_.stamp.data)
+	#data.house.atheneum.faction.odeum.kitchen_scenario.chains.erase(card_.stamp.data)
 	card_.room.find_best_scenario()
+	
+	#if not data.house.atheneum.faction.odeum.has_kitchen_not_locked_stamps():
+		#pass
+	#if card_.room.data.type == Bozo.Room.KITCHEN:
+		#pass
+	#if card_.room.data.type == Bozo.Room.KITCHEN and not data.house.atheneum.faction.odeum.has_kitchen_not_locked_stamps():
+		#data.house.atheneum.faction.odeum.kitchen_scenario = null
 	
 	%Cards.add_child(card_)
 	stamp_to_card[card_.stamp.data] = card_
@@ -235,3 +246,14 @@ func find_best_scenario() -> void:
 
 func skip_phase() -> void:
 	Arbitrator.current_phase.exit_phase()
+
+func reset_cards() -> void:
+	cards.clear()
+	
+	for _i in range(%Cards.get_child_count()-1, -1, -1):
+		var card = %Cards.get_child(_i)
+		
+		if card:
+			cards.append(card)
+		else:
+			%Cards.remove_child(card)

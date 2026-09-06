@@ -88,3 +88,9 @@ func direct_refill_bedroom() -> void:
 func get_remaining_amount() -> int:
 	return attic.stamps.size() + cellar.stamps.size() + parlor.stamps.size()
 #endregion
+
+func _on_discard_phase_end() -> void:
+	parlor.reset_cards()
+	kitchen.reset_cards()
+	bedroom.reset_cards()
+	atheneum.faction.odeum.locked_stamps.clear()

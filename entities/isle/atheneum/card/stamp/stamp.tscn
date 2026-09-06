@@ -16,10 +16,10 @@ corner_detail = 12
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwofj"]
 resource_local_to_scene = true
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color(0, 0.7529412, 0.47058824, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
@@ -74,7 +74,7 @@ color = Color(0.8132577, 0.8132577, 0.81325763, 1)
 [node name="MouseTargetHBox" type="HBoxContainer" parent="BGMargin/MouseTargetVBox" unique_id=934271515]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 7.0
+size_flags_stretch_ratio = 8.0
 theme_override_constants/separation = 0
 
 [node name="LeftShiftBG" type="ColorRect" parent="BGMargin/MouseTargetVBox/MouseTargetHBox" unique_id=1124159026]
@@ -224,7 +224,7 @@ offset_top = -16.0
 offset_right = 7.0
 grow_vertical = 0
 offset_transform_enabled = true
-offset_transform_position = Vector2(4, -4)
+offset_transform_position = Vector2(8, -4)
 mouse_filter = 2
 bbcode_enabled = true
 text = "A"
@@ -247,7 +247,7 @@ offset_top = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 offset_transform_enabled = true
-offset_transform_position = Vector2(-4, -4)
+offset_transform_position = Vector2(-8, -4)
 mouse_filter = 2
 bbcode_enabled = true
 text = "123456"
@@ -259,6 +259,7 @@ vertical_alignment = 2
 
 [node name="Spoil" type="TextureRect" parent="VBoxContainer/Bottom" unique_id=1124751600]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

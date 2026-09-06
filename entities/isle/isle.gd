@@ -26,6 +26,7 @@ func connect_datas() -> void:
 	house.data = data.atheneum.house
 	odeum.data = data.odeum
 	misson.data = data.mission
+	forge.data = data.forge
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -33,4 +34,4 @@ func _input(event) -> void:
 			KEY_ESCAPE:
 				get_tree().quit()
 			KEY_SPACE:
-				Arbitrator.apply_pass()
+				Arbitrator.skip_phase()

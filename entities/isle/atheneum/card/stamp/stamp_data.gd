@@ -75,3 +75,10 @@ func can_outro(pulse_: int) -> bool:
 func get_mark() -> String:
 	return origin.mark_letter + mark_digits
 #endregion
+
+func reset() -> void:
+	is_locked = false
+	
+	for type in type_to_stakes:
+		for stake in type_to_stakes[type]:
+			stake.is_voiced = false

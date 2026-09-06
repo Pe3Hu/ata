@@ -17,7 +17,7 @@ func _init(mission_: MissionData) -> void:
 	ambition = AmbitionData.new(self)
 	init_ideas()
 	init_plans()
-	show_best_methods()
+	show_perfect_methods()
 
 func init_ideas() -> void:
 	var indexs = 4
@@ -44,15 +44,14 @@ func init_plans() -> void:
 			var b = plan_attempts[_j]
 			var _plan = PlanData.new(self, [a, b])
 	
-	print('___')
-	print(plans.size())
+	#print_debug([plans.size(), 'plans'])
 	
 	#for plan in plans:
-		#print('___')
+		#print_debug('___')
 		#for plan_attempt in plan.attempts:
 			#var a = ideas.find(plan_attempt.first_idea)
 			#var b = ideas.find(plan_attempt.second_idea)
-			#print([a, b])
+			#print_debug([a, b])
 
 func show_best_methods() -> void:
 	plans.sort_custom(func (a, b): return a.best_sum > b.best_sum)
@@ -61,6 +60,10 @@ func show_best_methods() -> void:
 	for plan in plans:
 		if plan.best_sum != best_impulse: break
 		plan.show_best_methods()
+
+func show_perfect_methods() -> void:
+	for plan in plans:
+		plan.show_perfect_methods()
 
 
 func test() -> void:

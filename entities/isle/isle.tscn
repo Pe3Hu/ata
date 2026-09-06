@@ -29,8 +29,6 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdykg"]
-
 [node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "stepladder", "forge", "misson")]
 layout_mode = 3
 anchors_preset = 15
@@ -43,9 +41,9 @@ script = ExtResource("1_kwh8c")
 kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
 house = NodePath("HBox/LeftPanel/MarginContainer/House")
 odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
-stepladder = NodePath("HBox/RightPanel/MarginContainer/StepladderPanel/Stepladder")
-forge = NodePath("HBox/RightPanel/MarginContainer/Forge")
-misson = NodePath("HBox/MissionPanel/Mission")
+stepladder = NodePath("HBox/LeftPanel/MarginContainer/StepladderPanel/Stepladder")
+forge = NodePath("HBox/LeftPanel/MarginContainer/Forge")
+misson = NodePath("Mission")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -90,6 +88,23 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Mission" parent="." unique_id=475274081 instance=ExtResource("10_6kinf")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -438.0
+offset_top = -280.0
+offset_right = 438.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1735999487]
 layout_mode = 1
 anchors_preset = 15
@@ -101,7 +116,6 @@ mouse_filter = 2
 alignment = 1
 
 [node name="LeftPanel" type="PanelContainer" parent="HBox" unique_id=61712746]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
@@ -115,11 +129,26 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
+[node name="Forge" parent="HBox/LeftPanel/MarginContainer" unique_id=1978344045 node_paths=PackedStringArray("isle") instance=ExtResource("9_egsfe")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+isle = NodePath("../../../..")
+
+[node name="StepladderPanel" type="PanelContainer" parent="HBox/LeftPanel/MarginContainer" unique_id=1593362332]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Stepladder" parent="HBox/LeftPanel/MarginContainer/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
+position = Vector2(-1442, 0)
+
 [node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
 layout_mode = 2
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -134,21 +163,6 @@ theme_override_constants/margin_top = 108
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 60
 
-[node name="StepladderPanel" type="PanelContainer" parent="HBox/RightPanel/MarginContainer" unique_id=1593362332]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Stepladder" parent="HBox/RightPanel/MarginContainer/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
-position = Vector2(-1442, 0)
-
-[node name="Forge" parent="HBox/RightPanel/MarginContainer" unique_id=1978344045 instance=ExtResource("9_egsfe")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
 [node name="VBox" type="VBoxContainer" parent="HBox/RightPanel/MarginContainer" unique_id=2051777643]
 layout_mode = 2
 size_flags_vertical = 0
@@ -160,15 +174,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Odeum" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=975507563 instance=ExtResource("5_y02by")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MissionPanel" type="PanelContainer" parent="HBox" unique_id=1081499684]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_wdykg")
-
-[node name="Mission" parent="HBox/MissionPanel" unique_id=475274081 instance=ExtResource("10_6kinf")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PunishmentDiceData" format=3 uid="uid://bqson6noywlxa"]
+
+[ext_resource type="Script" uid="uid://c3drm2c73bqv5" path="res://entities/dice/datas/punishment/punishment_data.gd" id="1_djefy"]
+
+[resource]
+script = ExtResource("1_djefy")
+matter = 3
+values = Array[int]([5, 5, 5, 7, 7, 11])
+metadata/_custom_type_script = "uid://c3drm2c73bqv5"

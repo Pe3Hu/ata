@@ -23,6 +23,7 @@ var bond_tween: Tween
 func connect_signals() -> void:
 	data.active_changed.connect(_on_active_changed)
 	data.bond_changed.connect(_on_bond_changed)
+	data.attempt_implemented.connect(_on_attempt_implemented)
 
 func _on_active_changed() -> void:
 	%Lines.visible = data.is_active
@@ -62,6 +63,10 @@ func _on_bond_changed() -> void:
 	if data.is_active:
 		var bond_intention = data.intentions[data.bond_index]
 		bond_intention.is_bond = true
+
+func _on_attempt_implemented() -> void:
+	get_parent().remove_child(self)
+	queue_free()
 
 func calc_anchor() -> void:
 	%CustomButton.hover_scale = Vector2(1.05, 1.05)

@@ -7,10 +7,10 @@ signal fusion_phase
 signal phase_finished
 
 var anvils: Array[AnvilData]
-var stamps: Array[StampData]:
-	set(value_):
-		stamps = value_
-		init_anvils()
+var stamps: Array[StampData]
+	#set(value_):
+		#stamps = value_
+		#init_anvils()
 
 var biome_to_source: Dictionary
 

@@ -1,10 +1,7 @@
 extends Node
 
 
-signal round_started
 signal phase_changed(phase: Bozo.Phase)
-signal round_completed
-
 var current_round: int = 0
 
 var phases: Array[Phase]
@@ -28,12 +25,7 @@ func start_new_round() -> void:
 	current_round += 1
 	current_phase_index = 0
 	print("### ROUND %d ###" % [current_round])
-	round_started.emit()
 	start_next_phase()
-
-func complete_round() -> void:
-	round_completed.emit()
-	start_new_round()
 #endregion
 
 #region phase
@@ -48,7 +40,11 @@ func _on_phase_completed() -> void:
 	current_phase.exit_phase()
 	current_phase = null
 	current_phase_index += 1
-	start_next_phase()
+	
+	if current_phase_index == phases.size():
+		start_new_round()
+	else:
+		start_next_phase()
 #endregion
 
 func queue_an_animation(tween_: Tween) -> void:
@@ -56,5 +52,5 @@ func queue_an_animation(tween_: Tween) -> void:
 	current_phase.animation_tweens.append(tween_)
 	tween_.finished.connect(current_phase._on_tween_finished.bind(tween_))
 
-func apply_pass() -> void:
+func skip_phase() -> void:
 	current_phase.phase_completed.emit()

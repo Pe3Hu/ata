@@ -9,6 +9,9 @@ var method_to_sum: Dictionary
 var best_sum: int
 var best_methods: Array[Bozo.Method]
 
+var perfect_methods: Array[Bozo.Method]
+var defect_methods: Array[Bozo.Method]
+
 
 func _init(gang_: GangData, attempts_: Array) -> void:
 	gang = gang_
@@ -58,6 +61,14 @@ func calc_sums() -> void:
 			method_to_sum[impulse.method] += impulse.value
 	
 	for method in method_to_sum:
+		var bank_method = gang.mission.bank.type_to_method[method]
+		
+		if bank_method.current_difficulty == method_to_sum[method]:
+			perfect_methods.append(method)
+		
+		if bank_method.current_difficulty < method_to_sum[method]:
+			defect_methods.append(method)
+		
 		if best_sum == method_to_sum[method]:
 			best_methods.append(method)
 		
@@ -77,4 +88,38 @@ func show_best_methods() -> void:
 	for attempt in attempts:
 		idea_indexs.append(attempt.get_idea_indexs())
 	
-	print([best_sum, str_methods, idea_indexs])
+	print_debug([best_sum, str_methods, idea_indexs])
+
+func show_perfect_methods() -> void:
+	if perfect_methods.is_empty(): 
+		showe_defect_methods()
+		return
+	
+	var str_methods = []
+	
+	for method in perfect_methods:
+		var str_method = Bozo.enum_to_string(Bozo.Type.METHOD, method)
+		str_methods.append(str_method)
+	
+	var idea_indexs = []
+	
+	for attempt in attempts:
+		idea_indexs.append(attempt.get_idea_indexs())
+	
+	print_debug(['perfect', str_methods, idea_indexs])
+
+func showe_defect_methods() -> void:
+	if defect_methods.is_empty(): return
+	
+	var str_methods = []
+	
+	for method in defect_methods:
+		var str_method = Bozo.enum_to_string(Bozo.Type.METHOD, method)
+		str_methods.append(str_method)
+	
+	var idea_indexs = []
+	
+	for attempt in attempts:
+		idea_indexs.append(attempt.get_idea_indexs())
+	
+	print_debug(['defect', str_methods, idea_indexs])

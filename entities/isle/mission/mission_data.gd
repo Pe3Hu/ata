@@ -54,7 +54,7 @@ func test_avg_difficulty() -> void:
 	gang.attempt.reset_ideas()
 	avg_max /= counter
 	avg_min /= counter
-	print([gang.ideas.size(), snapped(avg_min, 0.1), snapped(avg_max, 0.1)])
+	print_debug([gang.ideas.size(), snapped(avg_min, 0.1), snapped(avg_max, 0.1)])
 	#for method in method_to_sum:
 		#method_to_sum[method] /= _k
-		#print([Bozo.enum_to_string(Bozo.Type.METHOD, method), snapped(method_to_sum[method], 0.1)])
+		#print_debug([Bozo.enum_to_string(Bozo.Type.METHOD, method), snapped(method_to_sum[method], 0.1)])

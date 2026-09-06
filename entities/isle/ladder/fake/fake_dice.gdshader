@@ -19,6 +19,8 @@ uniform float cube_size : hint_range(0.05, 1.0) = 0.6;
 // Higher values = weaker perspective.
 // Lower values = stronger perspective.
 uniform float perspective : hint_range(0.5, 10.0) = 3.0;
+uniform bool use_color = false;
+uniform vec4 cube_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
 
 // ----------------------------------------------------
 // Face Textures
@@ -163,7 +165,7 @@ void fragment() {
 			hit_position.y
 		) + 0.5;
 
-		tex_color = texture(tex_right, face_uv);
+		tex_color = use_color ? cube_color : texture(tex_right, face_uv);
 
 	} else if (hit_position.x < -0.5 + epsilon) {
 
@@ -174,7 +176,7 @@ void fragment() {
 			hit_position.y
 		) + 0.5;
 
-		tex_color = texture(tex_left, face_uv);
+		tex_color = use_color ? cube_color : texture(tex_left, face_uv);
 
 	} else if (hit_position.y > 0.5 - epsilon) {
 
@@ -185,7 +187,7 @@ void fragment() {
 			-hit_position.z
 		) + 0.5;
 
-		tex_color = texture(tex_top, face_uv);
+		tex_color = use_color ? cube_color : texture(tex_top, face_uv);
 
 	} else if (hit_position.y < -0.5 + epsilon) {
 
@@ -196,7 +198,7 @@ void fragment() {
 			hit_position.z
 		) + 0.5;
 
-		tex_color = texture(tex_bottom, face_uv);
+		tex_color = use_color ? cube_color : texture(tex_bottom, face_uv);
 
 	} else if (hit_position.z > 0.5 - epsilon) {
 
@@ -207,7 +209,7 @@ void fragment() {
 			hit_position.y
 		) + 0.5;
 
-		tex_color = texture(tex_front, face_uv);
+		tex_color = use_color ? cube_color : texture(tex_front, face_uv);
 
 	} else {
 
@@ -218,7 +220,7 @@ void fragment() {
 			hit_position.y
 		) + 0.5;
 
-		tex_color = texture(tex_back, face_uv);
+		tex_color = use_color ? cube_color : texture(tex_back, face_uv);
 
 	}
 

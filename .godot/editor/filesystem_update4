@@ -1,20 +1,20 @@
-res://entities/isle/mission/bank/method/method.tscn
+res://global/arbitrator/phase/phase_data.gd
+res://global/arbitrator/phase/phase_discard.gd
+res://entities/isle/atheneum/house/room/room.gd
+res://entities/isle/forge/forge_data.gd
+res://global/arbitrator/phase/phase_fusion.gd
+res://entities/isle/forge/forge.gd
+res://entities/isle/atheneum/house/house.gd
+res://global/arbitrator/phase/phase_draw.gd
+res://entities/isle/atheneum/house/room/room_data.gd
+res://entities/isle/atheneum/card/stamp/stamp_data.gd
+res://entities/isle/kernel/pie/slice/slice.tscn
 res://entities/isle/biome/matter.gdshader
 res://entities/isle/atheneum/card/stamp/stake/ban.gdshader
+res://entities/isle/ladder/fake/fake_dice.gdshader
 res://entities/isle/odeum/canto/pulse/critical pulse.gdshader
-res://entities/isle/mission/gang/idea/intention/intention border.gdshader
+res://entities/isle/mission/bank/method/perfect method.gdshader
 res://entities/isle/kernel/pie/pie border.gdshader
+res://entities/isle/mission/gang/idea/intention/intention border.gdshader
 res://entities/isle/kernel/pie/slice/slice border.gdshader
-res://global/Digest.gd
-res://entities/isle/mission/bank/method/method.gd
-res://entities/isle/mission/gang/idea/intention/intention.gd
-res://entities/isle/mission/gang/idea/intention/intention.tscn
-res://entities/isle/mission/gang/ambition/potential/potential.tscn
-res://entities/isle/mission/gang/ambition/potential/potential.gd
-res://entities/isle/mission/bank/bank.tscn
-res://entities/isle/mission/mission_data.gd
-res://entities/isle/mission/gang/attempt/attempt_data.gd
-res://entities/isle/mission/gang/idea/intention/intention_data.gd
-res://entities/isle/mission/mission.tscn
-res://global/Catalog.gd
-res://entities/isle/mission/bank/bank_data.gd
+res://entities/isle/kernel/pie/slice/slice.gd

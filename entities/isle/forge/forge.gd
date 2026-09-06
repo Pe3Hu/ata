@@ -7,7 +7,10 @@ var anvil_scene = preload("uid://bf50ul084wkr1")
 var data: ForgeData:
 	set(value_):
 		data = value_
+		
 		connect_signals()
+
+@export var isle: Isle
 
 var current_anvil_index: int = 0:
 	set(value_):
@@ -32,11 +35,13 @@ func _on_fusion_phase() -> void:
 	Helper.clear_children(%Anvils)
 	if data.anvils.is_empty(): return
 	visible = true
+	isle.house.visible = false
 	
 	for anvil_data in data.anvils:
 		add_anvil(anvil_data)
 	
 	current_anvil_index = 0
+	%Buttons.visible = data.anvils.size() > 0
 
 func add_anvil(anvil_data: AnvilData) -> void:
 	var anvil = anvil_scene.instantiate()
@@ -46,6 +51,13 @@ func add_anvil(anvil_data: AnvilData) -> void:
 
 func _on_phase_finished() -> void:
 	visible = false
+	isle.house.visible = true
+	Helper.clear_children(%Anvils)
+	
+	isle.house.parlor.reset_cards()
+	isle.house.kitchen.reset_cards()
+	isle.house.bedroom.reset_cards()
+	isle.data.odeum.locked_stamps.clear()
 #endregion
 
 func _on_next_anvil_pressed() -> void:
