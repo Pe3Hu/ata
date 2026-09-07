@@ -37,6 +37,8 @@ func connect_signals() -> void:
 	data.draw_phase.connect(_on_draw_phase)
 	data.discard_phase.connect(_on_discard_phase)
 	data.punishment_phase.connect(_on_punishment_phase)
+	
+	data.advisor_card_activation.connect(_on_advisor_card_activation)
 
 func _on_draw_phase() -> void:
 	bedroom.init_cards()
@@ -100,3 +102,9 @@ func _on_discard_timer_timeout() -> void:
 	
 	if not deactivate_cards.is_empty():
 		%DiscardTimer.start()
+
+func _on_advisor_card_activation() -> void:
+	if not bedroom.cards.is_empty():
+		var card = bedroom.cards.front()
+		card.activate(true, false, true)
+	

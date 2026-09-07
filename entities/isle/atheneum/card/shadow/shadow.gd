@@ -22,10 +22,15 @@ var flip_tween: Tween
 func connect_signals() -> void:
 	data.shade_changed.connect(_on_shade_changed)
 	_on_shade_changed()
+	data.is_perished.connect(_on_perished)
+
 
 func _on_shade_changed() -> void:
 	top_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
 	bottom_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
+
+func _on_perished() -> void:
+	card.flip_on_stamp()
 
 func update_colors() -> void:
 	var color = Digest.matter_to_color[data.stamp.origin.matter]
@@ -78,7 +83,6 @@ func expand_out() -> void:
 	card.flip_on_stamp()
 #endregion
 
-
 func process_click() -> void:
 	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	var local_mouse_pos = get_local_mouse_position()
@@ -90,7 +94,7 @@ func process_click() -> void:
 	var is_inside = rect.has_point(local_mouse_pos)
 	
 	if is_inside:
-		var attack_shadow = ActionAttackShadow.new(data, card.room)
+		var attack_shadow = ActionAttackShadow.new(data)
 		Arbitrator.current_phase.try_execute_action(attack_shadow)
 
 func _on_gui_input(event: InputEvent) -> void:

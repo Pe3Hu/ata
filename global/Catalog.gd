@@ -209,3 +209,5 @@ const ELEMENT_IMPULSE_FACTOR: int = 1
 const obstacles = [Bozo.Obstacle.LOCK, Bozo.Obstacle.WALL, Bozo.Obstacle.CUSTODIAN]
 const AVG_OBSTACLE_DIFFICULTY: int = 23
 const difficulty_shifts = [-3, -1, 1]
+
+const EDDY_RADIUS: float = 48

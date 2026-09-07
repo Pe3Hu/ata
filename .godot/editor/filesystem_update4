@@ -1,14 +1,11 @@
-res://global/arbitrator/phase/phase_data.gd
-res://global/arbitrator/phase/phase_discard.gd
-res://entities/isle/atheneum/house/room/room.gd
-res://entities/isle/forge/forge_data.gd
-res://global/arbitrator/phase/phase_fusion.gd
-res://entities/isle/forge/forge.gd
-res://entities/isle/atheneum/house/house.gd
-res://global/arbitrator/phase/phase_draw.gd
-res://entities/isle/atheneum/house/room/room_data.gd
-res://entities/isle/atheneum/card/stamp/stamp_data.gd
-res://entities/isle/kernel/pie/slice/slice.tscn
+res://entities/isle/atheneum/card/card.gd
+res://global/advisor/choice/choice_decision.gd
+res://entities/isle/odeum/canto/canto.gd
+res://entities/isle/odeum/canto/canto_data.gd
+res://entities/isle/atheneum/scenario_data.gd
+res://entities/isle/atheneum/card/shadow/shadow_data.gd
+res://entities/isle/odeum/canto/pulse/pulse.gd
+res://entities/isle/isle.tscn
 res://entities/isle/biome/matter.gdshader
 res://entities/isle/atheneum/card/stamp/stake/ban.gdshader
 res://entities/isle/ladder/fake/fake_dice.gdshader
@@ -17,4 +14,23 @@ res://entities/isle/mission/bank/method/perfect method.gdshader
 res://entities/isle/kernel/pie/pie border.gdshader
 res://entities/isle/mission/gang/idea/intention/intention border.gdshader
 res://entities/isle/kernel/pie/slice/slice border.gdshader
-res://entities/isle/kernel/pie/slice/slice.gd
+res://global/arbitrator/action/action_attack_shadow.gd
+res://entities/isle/atheneum/card/shadow/shadow.gd
+res://entities/isle/atheneum/house/room/room.gd
+res://global/arbitrator/phase/phase_punishment.gd
+res://entities/isle/maelstrom/maelstrom.tscn
+res://entities/isle/maelstrom/maelstrom.gd
+res://entities/isle/maelstrom/eddy/edd_data.gd
+res://entities/isle/maelstrom/maelstrom_data.gd
+res://entities/isle/kernel/maelstrom/maelstrom.tscn
+res://entities/isle/kernel/kernel_data.gd
+res://entities/isle/kernel/maelstrom/maelstrom_data.gd
+res://entities/isle/kernel/maelstrom/eddy/eddy_data.gd
+res://entities/isle/kernel/kernel.tscn
+res://entities/isle/kernel/maelstrom/maelstrom.gdshader
+res://entities/isle/kernel/maelstrom/maelstrom.gd
+res://global/Digest.gd
+res://entities/isle/kernel/maelstrom/eddy/eddy.gd
+res://entities/isle/kernel/maelstrom/eddy/eddy.tscn
+res://global/Catalog.gd
+res://entities/isle/kernel/kernel.gd

@@ -7,6 +7,8 @@ var card_scene = preload("uid://cfe1p2qnaebxk")
 var data: RoomData:
 	set(value_):
 		data = value_
+		
+		connect_signals()
 
 @export var house: House
 
@@ -20,6 +22,13 @@ var sort_tween: Tween
 
 
 #region init
+func connect_signals() -> void:
+	data.cards_reseted.connect(_on_cards_reseted)
+
+func _on_cards_reseted() -> void:
+	pass
+
+
 func init_cards() -> void:
 	cards.clear()
 	stamp_to_card.clear()
@@ -111,14 +120,20 @@ func sort_cards(with_animation_: bool = true) -> void:
 	if scenarios.is_empty(): return
 	
 	var scenario = scenarios.front()
-	var sorted_cards = %Cards.get_children()
+	cards.clear()
+	for card in %Cards.get_children():
+		cards.append(card)
+	var sorted_cards = cards.duplicate()
 	if sorted_cards.size() == 1: return
 	
 	for card in cards:
 		card.unhover()
 	
-	if sort_tween and sort_tween.is_running(): return
-		#sort_tween.kill()
+	var all_found = sorted_cards.all(func(c): return scenario.chains.has(c.stamp.data))
+	if not all_found: return
+	
+	if sort_tween and sort_tween.is_running():
+		sort_tween.kill()
 	
 	sorted_cards.sort_custom(func (a, b): return scenario.chains.find(a.stamp.data) < scenario.chains.find(b.stamp.data))
 
@@ -126,6 +141,11 @@ func sort_cards(with_animation_: bool = true) -> void:
 		for _i in sorted_cards.size():
 			%Cards.move_child(sorted_cards[_i], _i)
 	else:
+		for card in cards:
+			card.offset_transform_position = Vector2.ZERO
+			if card.appear_tween and card.appear_tween.is_running():
+				card.appear_tween.kill()
+		
 		var duration = Gear.sorts[Gear.tempo]
 		sort_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 		
@@ -139,8 +159,12 @@ func sort_cards(with_animation_: bool = true) -> void:
 		
 		for _i in sorted_cards.size():
 			var card = sorted_cards[_i]
-			if not %Cards.get_children().has(card):
-				pass
+			if not is_instance_valid(card) or card.get_parent() != %Cards:
+				continue
+				#print("ERROR: Card not child in sort_cards. Card: ", card, " parent: ", card.get_parent())
+				#print("cards array: ", cards)
+				#print("children: ", %Cards.get_children())
+				
 			%Cards.move_child(card, _i)
 			card.offset_transform_position.x = 0
 	
@@ -160,7 +184,7 @@ func close_up_cards(card_: Card) -> void:
 	
 	if data.stamps.has(card_.stamp.data):
 		data.stamps.erase(card_.stamp.data)
-		find_best_scenario()
+		#find_best_scenario()
 
 func slide_away() -> void:
 	if shift_tween and shift_tween.is_running(): return
@@ -169,9 +193,10 @@ func slide_away() -> void:
 	var duration = Gear.jalousies[Gear.tempo]
 	
 	for card in %Cards.get_children():
-		card.offset_transform_position = Vector2.ZERO
-		var l = -get_card_shift_length(card) * 0.5
-		shift_tween.tween_property(card, "offset_transform_position:x", l, duration)
+		if card as Card:
+			card.offset_transform_position = Vector2.ZERO
+			var l = -get_card_shift_length(card) * 0.5
+			shift_tween.tween_property(card, "offset_transform_position:x", l, duration)
 
 func jalousie(card_: Card = null, is_inside_: bool = true) -> void:
 	if shift_tween and shift_tween.is_running(): return
@@ -183,7 +208,7 @@ func jalousie(card_: Card = null, is_inside_: bool = true) -> void:
 	for _i in %Cards.get_child_count():
 		var neighbour_card = %Cards.get_child(_i)
 		
-		if neighbour_card != card_:
+		if neighbour_card != card_ and neighbour_card is Card:
 			var l = get_card_shift_length(neighbour_card) * 0.5
 			
 			if _i > close_index:
@@ -224,7 +249,7 @@ func plus_card(card_: Card) -> void:
 	card_.room.cards.erase(card_)
 	card_.room.data.stamps.erase(card_.stamp.data)
 	#data.house.atheneum.faction.odeum.kitchen_scenario.chains.erase(card_.stamp.data)
-	card_.room.find_best_scenario()
+	#card_.room.find_best_scenario()
 	
 	#if not data.house.atheneum.faction.odeum.has_kitchen_not_locked_stamps():
 		#pass
@@ -238,7 +263,7 @@ func plus_card(card_: Card) -> void:
 	cards.append(card_)
 	card_.room = self
 	data.stamps.append(card_.stamp.data)
-	find_best_scenario()
+	#find_best_scenario()
 
 func find_best_scenario() -> void:
 	data.house.atheneum.faction.odeum.init_scenarios(data.type)

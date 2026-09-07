@@ -2,7 +2,8 @@ class_name CantoData
 extends RefCounted
 
 
-signal is_critical_changed
+signal pulse_changed
+signal is_perfect_changed
 signal is_selected_changed
 signal voice
 
@@ -16,19 +17,25 @@ var type_to_stake: Dictionary
 
 var joint: int
 
-var pulse_value: int = 0
-
-var is_critical: bool = false:
+var pulse_value: int = 0:
 	set(value_):
-		if is_critical != value_:
-			is_critical = value_
-			is_critical_changed.emit()
+		pulse_value = value_
+		
+		update_perfect()
+		pulse_changed.emit()
+
+var is_perfect: bool = false:
+	set(value_):
+		if is_perfect != value_:
+			is_perfect = value_
+			is_perfect_changed.emit()
 
 var is_selected: bool = false:
 	set(value_):
 		if is_selected != value_:
 			is_selected = value_
 			is_selected_changed.emit()
+
 
 
 #region init
@@ -102,7 +109,6 @@ func apply_voice() -> void:
 	var penalty_values = []
 	var penalty_matters = []
 	
-	
 	for type in type_to_stake:
 		var stake = type_to_stake[type]
 		stake.stamp.is_locked = true
@@ -142,3 +148,13 @@ func get_penalty() -> int:
 	if verse: return penalty
 	penalty = pulse_value - outro.stake.value - intro.stake.value
 	return penalty
+
+func update_perfect() -> void:
+	is_perfect = false
+	
+	for stamp in hymn.scenario.odeum.faction.atheneum.house.parlor.stamps:
+		if stamp.shadow.current_shade == pulse_value:
+			is_perfect = true
+			
+			if not stamp.shadow.perfect_cantos.has(self):
+				stamp.shadow.perfect_cantos.append(self)

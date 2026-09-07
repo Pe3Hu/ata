@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ygvrqdry5mbm"]
+
+[ext_resource type="Texture2D" uid="uid://d07iucwosb6is" path="res://entities/isle/kernel/maelstrom/eddy/eddy.png" id="1_c34se"]
+[ext_resource type="Script" uid="uid://c1oe1iapymqgy" path="res://entities/isle/kernel/maelstrom/eddy/eddy.gd" id="2_74si6"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_eiqcn"]
+
+[node name="Eddy" type="TextureRect" unique_id=797668796]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_c34se")
+script = ExtResource("2_74si6")
+
+[node name="Value" type="Label" parent="." unique_id=1309627595]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = ExtResource("3_eiqcn")
+horizontal_alignment = 1
+vertical_alignment = 1

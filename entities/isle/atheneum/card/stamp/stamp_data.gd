@@ -77,6 +77,7 @@ func get_mark() -> String:
 #endregion
 
 func reset() -> void:
+	shadow.reset()
 	is_locked = false
 	
 	for type in type_to_stakes:

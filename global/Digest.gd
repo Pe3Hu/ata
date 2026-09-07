@@ -430,6 +430,16 @@ const element_to_method = {
 	Bozo.Element.VAPOR: Bozo.Method.STEAL,
 }
 
+const element_to_index = {
+	Bozo.Element.SAND: 4,
+	Bozo.Element.ICE: 2,
+	Bozo.Element.LAVA: 1,
+	Bozo.Element.CLOUD: 5,
+	Bozo.Element.DUST: 6,
+	Bozo.Element.VAPOR: 3,
+	Bozo.Element.CHAOS: 0
+}
+
 
 #region color
 var matter_to_color = {

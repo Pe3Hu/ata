@@ -172,7 +172,7 @@ func spoil() -> void:
 	disappear()
 	await appear_tween.finished
 
-func activate(is_fol: bool = true, is_last_: bool = false) -> void:
+func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = false) -> void:
 	if is_fol and not room.house.room_to_fol.has(room): return
 	if not is_fol and not room.house.room_to_ere.has(room): return
 	if not room.house.active_tweens.is_empty(): return
@@ -201,8 +201,16 @@ func activate(is_fol: bool = true, is_last_: bool = false) -> void:
 		Arbitrator.queue_an_animation(activate_tween)
 	
 	await activate_tween.finished
+	
 	finish_activate(is_fol)
 	z_index = 0
+	
+	if is_advisor_:
+		Advisor.get_choice().next_action()
+	
+	if shadow.data.action and shadow.data.action.is_advisor:
+		Advisor.get_choice().next_action()
+		shadow.data.action.is_advisor = false
 
 func finish_activate(is_fol: bool = true) -> void:
 	room.house.on_tween_finished(activate_tween)
@@ -217,6 +225,8 @@ func finish_activate(is_fol: bool = true) -> void:
 	next_room.plus_card(self)
 	previous_room.reset_offsets()
 	next_room.reset_offsets()
+	next_room.find_best_scenario()
+	previous_room.find_best_scenario()
 #endregion
 
 #region flip

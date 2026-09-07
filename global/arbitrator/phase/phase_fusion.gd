@@ -14,7 +14,7 @@ func enter_phase():
 	if Arbitrator.faction.policy.isle.forge.anvils.is_empty():
 		exit_phase()
 	else:
-		Arbitrator.faction.policy.isle.forge.simulate_anvil_choice()
+		Advisor.apply_choice()
 
 func exit_phase() -> void:
 	super.exit_phase()

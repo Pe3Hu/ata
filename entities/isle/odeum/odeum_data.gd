@@ -119,3 +119,8 @@ func has_kitchen_not_locked_stamps() -> bool:
 	if not kitchen_scenario: return false
 	var not_locked_stamps = kitchen_scenario.chains.filter(func (a): return not a.is_locked)
 	return not not_locked_stamps.is_empty()
+
+func voice_all_cantos() -> void:
+	for hymn in kitchen_scenario.hymns:
+		for canto in hymn.cantos:
+			canto.apply_voice()

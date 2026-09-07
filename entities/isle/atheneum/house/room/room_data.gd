@@ -2,6 +2,9 @@ class_name RoomData
 extends RefCounted
 
 
+@warning_ignore("unused_signal")
+signal cards_reseted
+
 var house: HouseData
 var type: Bozo.Room
 

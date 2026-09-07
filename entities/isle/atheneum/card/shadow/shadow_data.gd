@@ -3,17 +3,32 @@ extends RefCounted
 
 
 signal shade_changed
+signal is_perished
 
 var stamp: StampData
 
 var current_shade: int:
 	set(value_):
 		current_shade = value_
+		perfect_cantos.clear()
+		
+		if stamp.origin.atheneum.faction.odeum.kitchen_scenario:
+			stamp.origin.atheneum.faction.odeum.kitchen_scenario.update_perfect_cantos()
+		if stamp.origin.atheneum.faction.odeum.bedroom_scenario:
+			stamp.origin.atheneum.faction.odeum.bedroom_scenario.update_perfect_cantos()
+		
 		shade_changed.emit()
+		
+		if current_shade == 0:# and Arbitrator and Arbitrator.current_phase and Arbitrator.current_phase.type == Bozo.Phase.DECISION:
+			is_perished.emit()
+
 var limit_shade: int:
 	set(value_):
 		limit_shade = value_
-		current_shade = limit_shade
+		current_shade = int(limit_shade)
+
+var perfect_cantos: Array[CantoData]
+var action: ActionData
 
 
 func _init(stamp_: StampData) -> void:
@@ -28,3 +43,8 @@ func calc_limit_shade() -> void:
 		value += intro
 	
 	limit_shade = int(value)
+
+func reset() -> void:
+	perfect_cantos.clear()
+	current_shade = int(limit_shade)
+	action = null

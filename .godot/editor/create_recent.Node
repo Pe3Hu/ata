@@ -1,12 +1,12 @@
+Label
+TextureRect
+Control
+VBoxContainer
 PanelContainer
 HSeparator
-VBoxContainer
 TextureButton
-TextureRect
 GridContainer
-Control
 HBoxContainer
-Label
 Node2D
 CustomButton
 Timer

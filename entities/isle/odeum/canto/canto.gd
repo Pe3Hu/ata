@@ -19,17 +19,20 @@ var hymn: Hymn
 @export var outro: Tune
 
 
-
 #region init
 func connect_signals() -> void:
-	data.is_critical_changed.connect(pulse._on_is_critical_changed)
-	pulse._on_is_critical_changed()
+	data.is_perfect_changed.connect(pulse._on_is_perfect_changed)
+	pulse._on_is_perfect_changed()
+	
+	data.pulse_changed.connect(pulse._on_value_changed)
+	pulse._on_value_changed()
+	
 	data.is_selected_changed.connect(_on_is_selected_changed)
 	_on_is_selected_changed()
-	data.voice.connect(_on_voice)
+	
+	data.voice.connect(_on_voice.bind)
 
 func connect_datas() -> void:
-	pulse.value = data.pulse_value
 	intro.data = data.intro
 	
 	if data.verse:

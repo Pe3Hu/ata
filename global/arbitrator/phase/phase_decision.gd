@@ -9,4 +9,4 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	
-	pass
+	Advisor.apply_choice()

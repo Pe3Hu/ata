@@ -9,6 +9,9 @@ signal punishment_phase
 @warning_ignore("unused_signal")
 signal discard_phase
 
+@warning_ignore("unused_signal")
+signal advisor_card_activation
+
 var atheneum: AtheneumData
 
 var attic: RoomData = RoomData.new(self, Bozo.Room.ATTIC)
@@ -89,8 +92,8 @@ func get_remaining_amount() -> int:
 	return attic.stamps.size() + cellar.stamps.size() + parlor.stamps.size()
 #endregion
 
-func _on_discard_phase_end() -> void:
-	parlor.reset_cards()
-	kitchen.reset_cards()
-	bedroom.reset_cards()
+func _on_punishment_phase_end() -> void:
+	parlor.cards_reseted.emit()
+	kitchen.cards_reseted.emit()
+	bedroom.cards_reseted.emit()
 	atheneum.faction.odeum.locked_stamps.clear()

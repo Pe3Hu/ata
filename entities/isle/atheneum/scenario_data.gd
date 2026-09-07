@@ -28,10 +28,10 @@ func init_hymns() -> void:
 		var second = chains[_i + 1]
 		var _hymn = HymnData.new(self, [first, second])
 
-func update_critical_cantos() -> void:
+func update_perfect_cantos() -> void:
 	for hymn in hymns:
 		for canto in hymn.cantos:
-			canto.update_is_critical()
+			canto.update_perfect()
 
 func calc_pulse_weight() -> void:
 	pulse_weight = 0

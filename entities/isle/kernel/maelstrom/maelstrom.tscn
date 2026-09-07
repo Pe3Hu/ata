@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c6ojtj1mxo68e"]
+
+[ext_resource type="Script" uid="uid://bkraib0qpalny" path="res://entities/isle/kernel/maelstrom/maelstrom.gd" id="1_qndu2"]
+[ext_resource type="Texture2D" uid="uid://deqsq3kw541p5" path="res://entities/isle/kernel/maelstrom/maelstorm.png" id="2_b70k6"]
+[ext_resource type="Shader" uid="uid://dtasewtkwklqt" path="res://entities/isle/kernel/maelstrom/maelstrom.gdshader" id="2_hmo12"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmo12"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jymj8"]
+shader = ExtResource("2_hmo12")
+shader_parameter/hex_radius_frac = 0.40000000596046
+
+[node name="Maelstrom" type="PanelContainer" unique_id=727603077]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hmo12")
+script = ExtResource("1_qndu2")
+
+[node name="Background" type="TextureRect" parent="." unique_id=112079395]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_jymj8")
+layout_mode = 2
+texture = ExtResource("2_b70k6")
+
+[node name="Eddies" type="Control" parent="." unique_id=245861289]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false

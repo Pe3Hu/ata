@@ -6,6 +6,7 @@ var faction: FactionData
 
 var usurer: UsurerData
 var pie: PieData
+var maelstrom: MaelstromData
 
 
 func _init(faction_: FactionData) -> void:
@@ -13,3 +14,4 @@ func _init(faction_: FactionData) -> void:
 	
 	usurer = UsurerData.new(self)
 	pie = PieData.new(self)
+	maelstrom = MaelstromData.new(self)
