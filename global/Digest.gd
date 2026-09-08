@@ -440,6 +440,12 @@ const element_to_index = {
 	Bozo.Element.CHAOS: 0
 }
 
+const crown_to_scale = {
+	4: 0.875,
+	5: 1.1,
+	6: 1
+}
+
 
 #region color
 var matter_to_color = {
@@ -463,13 +469,23 @@ var matter_to_pallete = [
 ]
 
 var element_to_color = {
-Bozo.Element.CLOUD: Color.from_hsv(0 / 360.0, 0.0, 0.75),
-Bozo.Element.DUST: Color.from_hsv(125 / 360.0, 0.75, 0.75),
-Bozo.Element.VAPOR: Color.from_hsv(0 / 360.0, 0.0, 0.25),
-Bozo.Element.SAND: Color.from_hsv(55 / 360.0, 0.75, 0.75),
-Bozo.Element.ICE: Color.from_hsv(205 / 360.0, 0.75, 0.75),
-Bozo.Element.LAVA: Color.from_hsv(0 / 360.0, 0.75, 0.75),
-Bozo.Element.CHAOS: Color.from_hsv(305 / 360.0, 0.75, 0.75),
+	Bozo.Element.CLOUD: Color.from_hsv(0 / 360.0, 0.0, 0.75),
+	Bozo.Element.DUST: Color.from_hsv(125 / 360.0, 0.75, 0.75),
+	Bozo.Element.VAPOR: Color.from_hsv(0 / 360.0, 0.0, 0.25),
+	Bozo.Element.SAND: Color.from_hsv(55 / 360.0, 0.75, 0.75),
+	Bozo.Element.ICE: Color.from_hsv(205 / 360.0, 0.75, 0.75),
+	Bozo.Element.LAVA: Color.from_hsv(0 / 360.0, 0.75, 0.75),
+	Bozo.Element.CHAOS: Color.from_hsv(305 / 360.0, 0.75, 0.75),
+}
+
+var element_to_hue = {
+	Bozo.Element.CLOUD: 0.0,
+	Bozo.Element.VAPOR: 0.0,
+	Bozo.Element.DUST: 0.35,
+	Bozo.Element.SAND: 0.15,
+	Bozo.Element.ICE: 0.55,
+	Bozo.Element.LAVA: 0.0,
+	Bozo.Element.CHAOS: 0.85
 }
 
 var aspect_to_color = {
@@ -477,7 +493,6 @@ var aspect_to_color = {
 	Bozo.Aspect.INTELLECT: Color.from_hsv(150.0 / 360.0, 0.75, 0.75),
 	Bozo.Aspect.DEXTERITY: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
 }
-
 
 var canto_to_selection = {
 	true: Color.LIGHT_GRAY,

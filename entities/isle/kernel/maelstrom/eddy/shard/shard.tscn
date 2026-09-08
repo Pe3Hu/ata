@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://coyx0730s7ygh"]
+
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/eddy.gdshader" id="1_pt6g2"]
+[ext_resource type="Texture2D" uid="uid://bphq7cv1824fa" path="res://entities/isle/kernel/maelstrom/eddy/crown/4/4.png" id="2_5r3ma"]
+[ext_resource type="Script" uid="uid://dxffvdyjn7efh" path="res://entities/isle/kernel/maelstrom/eddy/shard/shard.gd" id="2_pt6g2"]
+[ext_resource type="Texture2D" uid="uid://dpky6xhd22bj7" path="res://entities/isle/kernel/maelstrom/eddy/crown/6/6 5.png" id="4_cjr6n"]
+[ext_resource type="Texture2D" uid="uid://53nv1i7j47wl" path="res://entities/isle/kernel/maelstrom/eddy/crown/6/border.png" id="5_cjr6n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cjr6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gieb2"]
+resource_local_to_scene = true
+shader = ExtResource("1_pt6g2")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
+
+[node name="Shard" type="PanelContainer" unique_id=787197819]
+offset_right = 32.0
+offset_bottom = 32.0
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.5, 1.5)
+offset_transform_visual_only = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cjr6n")
+script = ExtResource("2_pt6g2")
+
+[node name="Background" type="TextureRect" parent="." unique_id=682863808]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_gieb2")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("2_5r3ma")
+
+[node name="Body" type="TextureRect" parent="." unique_id=643667907]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("4_cjr6n")
+
+[node name="Border" type="TextureRect" parent="." unique_id=987993686]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("5_cjr6n")
+
+[node name="Border6" type="Line2D" parent="." unique_id=1214589721]
+visible = false
+points = PackedVector2Array(5.3333335, 30.000002, 32, 30.000002, 16, 2, 10.666667, 10.666667, 21.333334, 10.666667, 16, 20.666668, 27.333334, 20.666668, 22.000002, 30.000002, 16, 20.666668, 10, 30.000002, 4.666667, 20.666668, 16, 20.666668, 10.666667, 10.666667, -0.6666665, 30.000002)
+closed = true
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+
+[node name="Body6" type="Polygon2D" parent="." unique_id=1487696360]
+visible = false
+position = Vector2(0.6666665, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(20, 10.666667, 15.333334, 2.6666667, 10.666667, 10.666667)
+
+[node name="Border5" type="Line2D" parent="." unique_id=1594528469]
+visible = false
+points = PackedVector2Array(20.666668, 23.333334, 25.333334, 30.000002, 32, 22.666668, 32, 10.666667, 24.666668, 14, 20.666668, 23.333334, 11.333334, 23.333334, 6.666667, 30.000002, 16, 33.333332, 25.333334, 30.000002, 20.666668, 23.333334, 11.333334, 23.333334, 7.3333335, 14, -0.6666665, 10, -0.6666665, 22.666668, 6.666667, 30.000002, -0.6666665, 22.666668, -0.6666665, 10, 6, 2.6666667, 16, -0.6666665, 26.666668, 2.6666667, 32, 10.666667, 24.666668, 14, 16, 7.3333335, 16, -0.6666665, 16, 7.3333335, 7.3333335, 14)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+
+[node name="Body5" type="Polygon2D" parent="." unique_id=534880408]
+visible = false
+position = Vector2(0.6666665, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(7.333334, 14.666668, 10.666667, 23.333334, 20, 23.333334, 23.333336, 14, 15.333334, 8)
+
+[node name="Border4" type="Line2D" parent="." unique_id=1054767303]
+points = PackedVector2Array(8, 8, 24.666668, 24.000002, 32.666668, 16.666668, 16, -0.6666665, -0.6666665, 16, 16, 32.666668, 24.666668, 24.000002, 16, 16, 24.000002, 8, 8, 24.000002)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+
+[node name="Body4" type="Polygon2D" parent="." unique_id=876251633]
+position = Vector2(0.6666665, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(6.666667, 8, 15.333334, 16, 23.333336, 8, 15.333334, 0)

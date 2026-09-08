@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://ygvrqdry5mbm"]
 
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/eddy.gdshader" id="1_74si6"]
 [ext_resource type="Texture2D" uid="uid://d07iucwosb6is" path="res://entities/isle/kernel/maelstrom/eddy/eddy.png" id="1_c34se"]
 [ext_resource type="Script" uid="uid://c1oe1iapymqgy" path="res://entities/isle/kernel/maelstrom/eddy/eddy.gd" id="2_74si6"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_eiqcn"]
+[ext_resource type="PackedScene" uid="uid://coyx0730s7ygh" path="res://entities/isle/kernel/maelstrom/eddy/shard/shard.tscn" id="5_eiqcn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gasv"]
+resource_local_to_scene = true
+shader = ExtResource("1_74si6")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
 
 [node name="Eddy" type="TextureRect" unique_id=797668796]
 self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_3gasv")
+offset_right = 48.0
+offset_bottom = 48.0
 texture = ExtResource("1_c34se")
 script = ExtResource("2_74si6")
 
@@ -27,3 +37,19 @@ text = "1"
 label_settings = ExtResource("3_eiqcn")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Shard" parent="." unique_id=1055790138 instance=ExtResource("5_eiqcn")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -210,4 +210,6 @@ const obstacles = [Bozo.Obstacle.LOCK, Bozo.Obstacle.WALL, Bozo.Obstacle.CUSTODI
 const AVG_OBSTACLE_DIFFICULTY: int = 23
 const difficulty_shifts = [-3, -1, 1]
 
-const EDDY_RADIUS: float = 48
+const EDDY_SIZE: Vector2 = Vector2(48, 48)
+const EDDY_RADIUS: float = 44
+const SHARD_RADIUS: float = 56#38

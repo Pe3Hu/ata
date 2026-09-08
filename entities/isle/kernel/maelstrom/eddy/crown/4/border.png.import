@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deqsq3kw541p5"
-path="res://.godot/imported/maelstorm.png-bd1f970bae57eaf7de8b4b4a5f1602af.ctex"
+uid="uid://cxwvfhs7kn4k3"
+path="res://.godot/imported/border.png-15c315529911ef7aa9a758e6f7cd80a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/isle/kernel/maelstrom/maelstorm.png"
-dest_files=["res://.godot/imported/maelstorm.png-bd1f970bae57eaf7de8b4b4a5f1602af.ctex"]
+source_file="res://entities/isle/kernel/maelstrom/eddy/crown/4/border.png"
+dest_files=["res://.godot/imported/border.png-15c315529911ef7aa9a758e6f7cd80a4.ctex"]
 
 [params]
 

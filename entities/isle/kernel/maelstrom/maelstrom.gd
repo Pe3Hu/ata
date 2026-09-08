@@ -12,7 +12,7 @@ var data: MaelstromData:
 
 
 func init_eddies() -> void:
-	%Eddies.offset_transform_position = -Vector2.ONE * Catalog.EDDY_RADIUS / 2
+	%Eddies.offset_transform_position = -Catalog.EDDY_SIZE / 2
 	
 	for eddy_data in data.eddies:
 		add_eddy(eddy_data)
