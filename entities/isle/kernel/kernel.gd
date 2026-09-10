@@ -15,12 +15,15 @@ var data: KernelData:
 @export var pie: Pie
 @export var maelstrom: Maelstrom
 
+@export var stepladder: Stepladder
+
 
 #region init
 func connect_datas() -> void:
 	usurer.data = data.usurer
 	pie.data = data.pie
 	maelstrom.data = data.maelstrom
+	stepladder.data = data.stepladder
 
 #func connect_signals() -> void:
 	#data.growth_phase.connect(_on_growth_phase)

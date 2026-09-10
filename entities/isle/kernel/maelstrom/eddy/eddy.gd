@@ -17,7 +17,10 @@ var data: EddyData:
 		if index >= 0:
 			var angle = TAU / 6 * index  
 			position = Vector2.from_angle(angle) * Catalog.EDDY_RADIUS
-			%Shard.eddy_data = data
+			%Flux.data = data.flux
+
+@export var maelstrom: Maelstrom
+
 
 func connect_signals() -> void:
 	data.value_changed.connect(_on_value_changed)

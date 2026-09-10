@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="1_k1lp7"]
 [ext_resource type="Script" uid="uid://cecc5vbq64dtv" path="res://entities/isle/odeum/canto/pulse/pulse.gd" id="1_ltwsb"]
 [ext_resource type="Texture2D" uid="uid://colnj71rusu28" path="res://entities/isle/odeum/canto/pulse/pulse.png" id="2_qcyl6"]
-[ext_resource type="Shader" uid="uid://ben7nnhfe0fe8" path="res://entities/isle/odeum/canto/pulse/critical pulse.gdshader" id="2_w52qj"]
+[ext_resource type="Shader" uid="uid://ben7nnhfe0fe8" path="res://entities/isle/odeum/canto/pulse/perfect pulse.gdshader" id="2_w52qj"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_5ps0k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
 
@@ -15,26 +16,35 @@ shader_parameter/wave_frequency = 2.0
 shader_parameter/wave_amplitude = 1.0
 shader_parameter/ring_width = 0.2
 shader_parameter/diamond_width = 0.6
-shader_parameter/is_critical = false
+shader_parameter/is_perfect = false
 shader_parameter/bg_color = Color(1, 1, 1, 1)
 
-[node name="Pulse" type="PanelContainer" unique_id=30909880 node_paths=PackedStringArray("icon")]
+[node name="Pulse" type="PanelContainer" unique_id=30909880]
+custom_minimum_size = Vector2(68, 68)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
 script = ExtResource("1_ltwsb")
-icon = NodePath("Icon")
 
-[node name="Icon" type="TextureRect" parent="." unique_id=950869927]
+[node name="Body" type="TextureButton" parent="." unique_id=1431423051]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_nflqy")
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 offset_transform_enabled = true
-texture = ExtResource("2_qcyl6")
+texture_normal = ExtResource("2_qcyl6")
+texture_pressed = ExtResource("2_qcyl6")
+texture_hover = ExtResource("2_qcyl6")
+script = ExtResource("4_5ps0k")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
 
 [node name="Number" type="TextureRect" parent="." unique_id=1292454213]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("1_k1lp7")
+
+[connection signal="pressed" from="Body" to="." method="_on_body_pressed"]

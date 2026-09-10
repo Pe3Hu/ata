@@ -7,11 +7,14 @@ var data: ShadowData:
 		data = value_
 		
 		connect_signals()
+		connect_datas()
 		update_colors()
 
 @export var card: Card
 @export var top_shade: TextureRect
 @export var bottom_shade: TextureRect
+@export var top_pressure: Pressure
+@export var bottom_pressure: Pressure
 
 var expand_tween: Tween
 var cant_tween: Tween
@@ -24,13 +27,16 @@ func connect_signals() -> void:
 	_on_shade_changed()
 	data.is_perished.connect(_on_perished)
 
-
 func _on_shade_changed() -> void:
 	top_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
 	bottom_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
 
 func _on_perished() -> void:
 	card.flip_on_stamp()
+
+func connect_datas() -> void:
+	top_pressure.data = data.pressure
+	bottom_pressure.data = data.pressure
 
 func update_colors() -> void:
 	var color = Digest.matter_to_color[data.stamp.origin.matter]
@@ -55,6 +61,8 @@ func expand_in() -> void:
 	cant_tween.tween_property(self, "offset_transform_rotation", PI / 2, duration)
 	cant_tween.tween_property(bottom_shade, "offset_transform_rotation", -PI / 2, duration)
 	cant_tween.tween_property(top_shade, "offset_transform_rotation", -PI / 2, duration)
+	cant_tween.tween_property(bottom_pressure, "offset_transform_rotation", -PI / 2, duration)
+	cant_tween.tween_property(top_pressure, "offset_transform_rotation", -PI / 2, duration)
 
 func expand_out() -> void:
 	var duration = Gear.cants[Gear.tempo]
@@ -66,6 +74,8 @@ func expand_out() -> void:
 	cant_tween.tween_property(self, "offset_transform_rotation", 0, duration)
 	cant_tween.tween_property(top_shade, "offset_transform_rotation", 0, duration)
 	cant_tween.tween_property(bottom_shade, "offset_transform_rotation", 0, duration)
+	cant_tween.tween_property(bottom_pressure, "offset_transform_rotation", 0, duration)
+	cant_tween.tween_property(top_pressure, "offset_transform_rotation", 0, duration)
 	
 	await cant_tween.finished
 	cant_tween.kill()

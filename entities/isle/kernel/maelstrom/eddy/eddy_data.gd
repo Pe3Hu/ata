@@ -5,6 +5,7 @@ extends RefCounted
 signal value_changed
 
 var maelstrom: MaelstromData
+var flux: FluxData
 var element: Bozo.Element
 
 var current_value: int = 0:
@@ -17,5 +18,6 @@ func _init(maelstrom_: MaelstromData, element_: Bozo.Element) -> void:
 	maelstrom = maelstrom_
 	element = element_
 	
+	flux = FluxData.new(self)
 	maelstrom.eddies.append(self)
 	maelstrom.element_to_eddy[element_] = self

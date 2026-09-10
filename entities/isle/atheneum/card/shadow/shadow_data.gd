@@ -6,6 +6,7 @@ signal shade_changed
 signal is_perished
 
 var stamp: StampData
+var pressure: PressureData
 
 var current_shade: int:
 	set(value_):
@@ -20,6 +21,7 @@ var current_shade: int:
 		shade_changed.emit()
 		
 		if current_shade == 0:# and Arbitrator and Arbitrator.current_phase and Arbitrator.current_phase.type == Bozo.Phase.DECISION:
+			pressure.apply()
 			is_perished.emit()
 
 var limit_shade: int:
@@ -34,6 +36,9 @@ var action: ActionData
 func _init(stamp_: StampData) -> void:
 	stamp = stamp_
 	
+	pressure = PressureData.new()
+	pressure.shadow = self
+	roll_pressure_element()
 	calc_limit_shade()
 
 func calc_limit_shade() -> void:
@@ -48,3 +53,7 @@ func reset() -> void:
 	perfect_cantos.clear()
 	current_shade = int(limit_shade)
 	action = null
+	roll_pressure_element()
+
+func roll_pressure_element() -> void:
+	pressure.element = Catalog.basic_elements.pick_random()

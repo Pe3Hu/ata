@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://eeqtbqgfomex" path="res://entities/isle/ladder/stepladder.gd" id="1_dxj4w"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxj4w"]
+
 [node name="Stepladder" type="Node2D" unique_id=1091981830]
 script = ExtResource("1_dxj4w")
 
@@ -10,3 +12,18 @@ unique_name_in_owner = true
 
 [node name="Stairs" type="Node2D" parent="." unique_id=1061868530]
 unique_name_in_owner = true
+
+[node name="DiceContainer" type="PanelContainer" parent="." unique_id=259150925]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(225, 0)
+offset_right = 225.0
+offset_bottom = 64.0
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dxj4w")
+
+[node name="Dices" type="HBoxContainer" parent="DiceContainer" unique_id=2043394326]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

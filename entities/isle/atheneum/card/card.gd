@@ -279,6 +279,8 @@ func skip_on_shadow() -> void:
 	shadow.offset_transform_rotation = PI / 2
 	shadow.top_shade.offset_transform_rotation = -PI / 2
 	shadow.bottom_shade.offset_transform_rotation = -PI / 2
+	shadow.top_pressure.offset_transform_rotation = -PI / 2
+	shadow.bottom_pressure.offset_transform_rotation = -PI / 2
 
 func skip_on_stamp() -> void:
 	is_face_stamp = true
@@ -292,6 +294,8 @@ func skip_on_stamp() -> void:
 	shadow.offset_transform_rotation = 0
 	shadow.top_shade.offset_transform_rotation = 0
 	shadow.bottom_shade.offset_transform_rotation = 0
+	shadow.top_pressure.offset_transform_rotation = 0
+	shadow.bottom_pressure.offset_transform_rotation = 0
 
 func switch_face() -> void:
 	if is_face_stamp:

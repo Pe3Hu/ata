@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://brqqeyb4io5px" path="res://entities/isle/kernel/pie/pie.tscn" id="3_8c6r2"]
 [ext_resource type="PackedScene" uid="uid://c6ojtj1mxo68e" path="res://entities/isle/kernel/maelstrom/maelstrom.tscn" id="4_jymj8"]
 [ext_resource type="PackedScene" uid="uid://b0gmh7bi4r5by" path="res://entities/isle/kernel/usurer/usurer.tscn" id="5_2vrfl"]
+[ext_resource type="PackedScene" uid="uid://cwon2bom7u1m2" path="res://entities/isle/ladder/stepladder.tscn" id="5_oy8l0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqudx"]
 
-[node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("usurer", "pie", "maelstrom")]
+[node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("usurer", "pie", "maelstrom", "stepladder")]
 custom_minimum_size = Vector2(460, 460)
 anchors_preset = 5
 anchor_left = 0.5
@@ -20,6 +21,7 @@ script = ExtResource("1_is0h4")
 usurer = NodePath("VBoxContainer/Usurer")
 pie = NodePath("VBoxContainer/Usurer/Pie")
 maelstrom = NodePath("VBoxContainer/Maelstrom")
+stepladder = NodePath("Stepladder")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=1204869068]
 layout_mode = 2
@@ -38,3 +40,6 @@ kernel = NodePath("../..")
 
 [node name="Pie" parent="VBoxContainer/Usurer" unique_id=1767828878 instance=ExtResource("3_8c6r2")]
 position = Vector2(-138, -91)
+
+[node name="Stepladder" parent="." unique_id=1091981830 instance=ExtResource("5_oy8l0")]
+position = Vector2(-23.291504, -98.17154)

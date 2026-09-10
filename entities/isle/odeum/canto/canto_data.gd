@@ -5,7 +5,7 @@ extends RefCounted
 signal pulse_changed
 signal is_perfect_changed
 signal is_selected_changed
-signal voice
+signal voice_up
 
 var hymn: HymnData
 
@@ -141,7 +141,7 @@ func apply_voice() -> void:
 	
 	hymn.scenario.odeum.update_locked_stamps()
 	hymn.cantos.erase(self)
-	voice.emit()
+	voice_up.emit()
 
 func get_penalty() -> int:
 	var penalty: int = 0

@@ -11,7 +11,6 @@ var data: IsleData:
 @export var house: House
 @export var odeum: Odeum
 
-@export var stepladder: Stepladder
 @export var forge: Forge
 
 @export var misson: Mission

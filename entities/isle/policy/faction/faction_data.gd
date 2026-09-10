@@ -10,7 +10,6 @@ var kernel: KernelData
 var atheneum: AtheneumData
 var odeum: OdeumData
 
-var settlements: Array[SettlementData]
 
 
 #region init

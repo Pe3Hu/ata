@@ -16,6 +16,9 @@ const flips: Array[float] = [0.4, 0.4]
 const debts: Array[float] = [1.4, 0.4]
 const sorts: Array[float] = [0.4, 0.4]
 const bonds: Array[float] = [1.4, 0.4]
+const dissolves: Array[float] = [1.4, 0.4]
+const pressures: Array[float] = [0.6, 0.4]
+
 
 
 

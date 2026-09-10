@@ -18,6 +18,6 @@ void fragment() {
     }
 
     float col = intensity / abs(sin(t - uv.x - uv.y));
-
-    COLOR = vec4(vec3(col), 1.0);
+ 	vec4 tex = texture(TEXTURE, UV);
+    COLOR = vec4(vec3(col), 1.0) * tex.a;
 }

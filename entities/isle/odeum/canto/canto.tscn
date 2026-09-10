@@ -54,8 +54,3 @@ canto = NodePath("../../..")
 [node name="Pulse" parent="VBox" unique_id=30909880 node_paths=PackedStringArray("canto") instance=ExtResource("2_hbuk6")]
 layout_mode = 2
 canto = NodePath("../..")
-
-[node name="Button" type="TextureButton" parent="." unique_id=1190056901]
-layout_mode = 2
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

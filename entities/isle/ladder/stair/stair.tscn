@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dhgdl75u1j75h"]
 
 [ext_resource type="Script" uid="uid://clmv2e7tl7rj2" path="res://entities/isle/ladder/stair/stair.gd" id="1_1kj0j"]
-[ext_resource type="Texture2D" uid="uid://c1dbbsc7army1" path="res://entities/isle/terrain/flow/blob/images/circle.png" id="2_e0yij"]
+[ext_resource type="Texture2D" uid="uid://c1dbbsc7army1" path="res://entities/isle/ladder/stair/images/circle body.png" id="2_e0yij"]
 [ext_resource type="Shader" uid="uid://chlh4giymkr0a" path="res://entities/isle/ladder/stair/portal.gdshader" id="2_ony7k"]
+[ext_resource type="Shader" uid="uid://c1sikno4agtpn" path="res://entities/isle/atheneum/card/stamp/stake/ban.gdshader" id="4_qscjs"]
+[ext_resource type="Texture2D" uid="uid://o11jh0lsyt5j" path="res://entities/isle/ladder/stair/images/circle border.png" id="5_2l2j1"]
 
 [sub_resource type="Gradient" id="Gradient_ony7k"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -25,6 +27,12 @@ shader_parameter/core_intensity = 2.0
 shader_parameter/hdr = false
 shader_parameter/seed = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vrfl"]
+resource_local_to_scene = true
+shader = ExtResource("4_qscjs")
+shader_parameter/inverse_speed = 15.0
+shader_parameter/intensity = 0.5
+
 [node name="Stair" type="Node2D" unique_id=1053288366]
 z_index = 11
 script = ExtResource("1_1kj0j")
@@ -36,7 +44,12 @@ material = SubResource("ShaderMaterial_lxk3t")
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_e0yij")
 
-[node name="BG" type="Sprite2D" parent="." unique_id=1536414301]
+[node name="Border" type="Sprite2D" parent="." unique_id=542367129]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_2l2j1")
+
+[node name="Backgorund" type="Sprite2D" parent="." unique_id=1536414301]
+material = SubResource("ShaderMaterial_2vrfl")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_e0yij")
 

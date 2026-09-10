@@ -68,7 +68,7 @@ func update_colors() -> void:
 	%Top.get_theme_stylebox("panel").bg_color = color
 	%Bottom.get_theme_stylebox("panel").bg_color = color
 	if card:
-		card.dice.background_cube.material.set_shader_parameter('cube_color', color)
+		card.dice.update_color(color) 
 
 func update_marks() -> void:
 	%CardMarkLetter.text = data.origin.mark_letter

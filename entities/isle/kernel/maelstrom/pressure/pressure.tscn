@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://h733jhuv14ts"]
+
+[ext_resource type="Script" uid="uid://bxh0ee8e8ymfg" path="res://entities/isle/kernel/maelstrom/pressure/pressure.gd" id="1_ss7bg"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader" id="2_bnohr"]
+[ext_resource type="Texture2D" uid="uid://li3gv1do626g" path="res://entities/isle/kernel/maelstrom/pressure/images/body.png" id="3_6keo6"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_bnohr"]
+[ext_resource type="Texture2D" uid="uid://bq1aspp08474n" path="res://entities/isle/kernel/maelstrom/pressure/images/border.png" id="4_jijko"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+resource_local_to_scene = true
+shader = ExtResource("2_bnohr")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
+
+[node name="Pressure" type="PanelContainer" unique_id=1368152663]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_ss7bg")
+
+[node name="Body" type="TextureRect" parent="." unique_id=874707549]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_60rxr")
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.95, 0.95)
+texture = ExtResource("3_6keo6")
+
+[node name="Amount" type="Label" parent="Body" unique_id=862280465]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = ExtResource("4_bnohr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border" type="TextureRect" parent="." unique_id=1284590755]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_jijko")

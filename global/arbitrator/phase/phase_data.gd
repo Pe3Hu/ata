@@ -24,6 +24,9 @@ func exit_phase() -> void:
 	phase_completed.emit()
 
 func can_execute_action(_action: ActionData) -> bool:
+	if Arbitrator.last_action:
+		return false
+	
 	return true
 
 func try_execute_action(action: ActionData) -> bool:

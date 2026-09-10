@@ -13,6 +13,9 @@ func _init(stamp_: StampData, shift_: int, room_: Room = null) -> void:
 	room = room_
 
 func execute() -> void:
+	super.execute()
+	animation_left -= 1
+	
 	if room:
 		var card = room.stamp_to_card[stamp]
 		room.shift_card(card, shift)

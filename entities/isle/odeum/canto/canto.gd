@@ -27,10 +27,10 @@ func connect_signals() -> void:
 	data.pulse_changed.connect(pulse._on_value_changed)
 	pulse._on_value_changed()
 	
-	data.is_selected_changed.connect(_on_is_selected_changed)
-	_on_is_selected_changed()
+	data.is_selected_changed.connect(pulse._on_is_selected_changed)
+	pulse._on_is_selected_changed()
 	
-	data.voice.connect(_on_voice.bind)
+	data.voice_up.connect(_on_voice_up)
 
 func connect_datas() -> void:
 	intro.data = data.intro
@@ -40,13 +40,9 @@ func connect_datas() -> void:
 	
 	if data.outro:
 		outro.data = data.outro
-		pulse.icon.offset_transform_rotation = PI / 2
+		pulse.get_node('%Body').offset_transform_rotation = PI / 2
 
-func _on_is_selected_changed() -> void:
-	var bg_color: Color = Digest.canto_to_selection[data.is_selected]
-	pulse.icon.material.set_shader_parameter("bg_color", bg_color)
-
-func _on_voice() -> void:
+func _on_voice_up() -> void:
 	var is_last = get_parent().get_child_count() == 1
 	get_parent().remove_child(self)
 	queue_free()
@@ -61,14 +57,9 @@ func _on_voice() -> void:
 		hymn.active_canto_index = 0
 #endregion
 
-#region selection
-func _on_button_pressed() -> void:
-	update_selection()
-
 func update_selection() -> void:
 	if hymn.odeum.data.current_canto == data: return
 	
 	if data.hymn.scenario.room == Bozo.Room.KITCHEN:
 		hymn.odeum.data.current_canto = data
 		data.is_selected = true
-#endregion

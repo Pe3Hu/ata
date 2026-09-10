@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://coyx0730s7ygh"]
+
+[ext_resource type="Script" uid="uid://dxffvdyjn7efh" path="res://entities/isle/kernel/maelstrom/eddy/flux/flux.gd" id="1_dl3rv"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader" id="2_sqvjn"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="3_dl3rv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cjr6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gieb2"]
+resource_local_to_scene = true
+shader = ExtResource("2_sqvjn")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
+
+[node name="Flux" type="PanelContainer" unique_id=787197819]
+offset_right = 32.0
+offset_bottom = 32.0
+offset_transform_enabled = true
+offset_transform_visual_only = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cjr6n")
+script = ExtResource("1_dl3rv")
+
+[node name="Background" type="TextureButton" parent="." unique_id=1277455387]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_gieb2")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+script = ExtResource("3_dl3rv")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Body" type="Polygon2D" parent="Background" unique_id=1542378962]
+unique_name_in_owner = true
+color = Color(0.12941177, 0.12941177, 0.12941177, 1)
+polygon = PackedVector2Array(23, 30, 15, 17, 8, 30)
+
+[node name="Border" type="Line2D" parent="Background" unique_id=2139521149]
+unique_name_in_owner = true
+points = PackedVector2Array(41, 36, 16, -7, 8, 6, 24, 6, 16, 21, 33, 21, 25, 36, 16, 21, 7, 36, -1, 21, 16, 21, 8, 6, -9, 36)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+
+[connection signal="mouse_entered" from="Background" to="." method="_on_background_mouse_entered"]
+[connection signal="mouse_exited" from="Background" to="." method="_on_background_mouse_exited"]

@@ -125,11 +125,11 @@ const fusion_mark_lengths = [2, 3, 6]
 #endregion
 
 #region ladder
-const LADDER_SIZE = Vector2i(5, 9) 
-const STAIR_SIZE = Vector2(64, 64)
+const LADDER_GRID = Vector2i(5, 9) 
+const STAIR_SIZE = Vector2(48, 48) #64
+const STEPLADDER_SIZE: Vector2 = Vector2(225, 415) #Vector2(290, 550)
+const STEPLADDER_OFFSET: Vector2 = Vector2(-300, 24)
 #endregion
-
-const DEBT_MAX_AMOUNT: int = 100
 
 const biomes = [Bozo.Biome.PLAIN, Bozo.Biome.SWAMP, Bozo.Biome.MOUNTAIN]
 
@@ -140,24 +140,11 @@ const SLICE_INDEX_SHIFT = 8#10
 
 const STARTER_HARVEST_AMOUNT: int = 40
 const STARTER_PRIME_AMOUNT: int = 18
+
+const DEBT_MAX_AMOUNT: int = 100
 #endregion
 
-const elements = [
-	Bozo.Element.CLOUD,
-	Bozo.Element.VAPOR,
-	Bozo.Element.DUST,
-	Bozo.Element.SAND,
-	Bozo.Element.ICE,
-	Bozo.Element.LAVA,
-	Bozo.Element.CHAOS
-]
-
-const aspects = [
-	Bozo.Aspect.STRENGTH,
-	Bozo.Aspect.DEXTERITY,
-	Bozo.Aspect.INTELLECT
-]
-
+#region gang 
 const OPPORTUNINITY_AMOUNT: int = 21
 
 const IDEA_INTENTION_AMOUNT: int = 5
@@ -172,6 +159,33 @@ const AMBITION_RADIUS: float = 80 + IDEA_SIZE.x
 const POTENTIAL_SIZE: Vector2 = Vector2(35, 35)
 const AMBITION_CENTER: Vector2 = Vector2(1, 4)
 const POTENTIAL_OFFSET: float = 4
+#endregion
+
+#region bank
+const elements = [
+	Bozo.Element.CLOUD,
+	Bozo.Element.VAPOR,
+	Bozo.Element.DUST,
+	Bozo.Element.SAND,
+	Bozo.Element.ICE,
+	Bozo.Element.LAVA,
+	Bozo.Element.CHAOS
+]
+
+const basic_elements = [
+	Bozo.Element.CLOUD,
+	Bozo.Element.VAPOR,
+	Bozo.Element.DUST,
+	Bozo.Element.SAND,
+	Bozo.Element.ICE,
+	Bozo.Element.LAVA,
+]
+
+const aspects = [
+	Bozo.Aspect.STRENGTH,
+	Bozo.Aspect.DEXTERITY,
+	Bozo.Aspect.INTELLECT
+]
 
 const aspect_anchors = [
 	Vector2i(0, 0),
@@ -209,7 +223,11 @@ const ELEMENT_IMPULSE_FACTOR: int = 1
 const obstacles = [Bozo.Obstacle.LOCK, Bozo.Obstacle.WALL, Bozo.Obstacle.CUSTODIAN]
 const AVG_OBSTACLE_DIFFICULTY: int = 23
 const difficulty_shifts = [-3, -1, 1]
+#endregion
 
+#region maelstrom
 const EDDY_SIZE: Vector2 = Vector2(48, 48)
 const EDDY_RADIUS: float = 44
 const SHARD_RADIUS: float = 56#38
+const PRESSURE_SCALE: Vector2 = Vector2(1.25, 1.25)
+#endregion

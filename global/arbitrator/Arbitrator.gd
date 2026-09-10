@@ -9,6 +9,7 @@ var current_phase_index: int = 0
 var current_phase: Phase
 
 var faction: FactionData
+var last_action: ActionData
 
 
 func _ready() -> void:

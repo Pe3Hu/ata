@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/house/house.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
-[ext_resource type="PackedScene" uid="uid://cwon2bom7u1m2" path="res://entities/isle/ladder/stepladder.tscn" id="8_6kinf"]
 [ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/forge/forge.tscn" id="9_egsfe"]
 [ext_resource type="PackedScene" uid="uid://bfxpchr7aa5bp" path="res://entities/isle/mission/mission.tscn" id="10_6kinf"]
 
@@ -29,7 +28,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "stepladder", "forge", "misson")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "forge", "misson")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +40,6 @@ script = ExtResource("1_kwh8c")
 kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
 house = NodePath("HBox/LeftPanel/MarginContainer/House")
 odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
-stepladder = NodePath("HBox/LeftPanel/MarginContainer/StepladderPanel/Stepladder")
 forge = NodePath("HBox/LeftPanel/MarginContainer/Forge")
 misson = NodePath("Mission")
 
@@ -118,7 +116,6 @@ alignment = 1
 [node name="LeftPanel" type="PanelContainer" parent="HBox" unique_id=61712746]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_n3vug")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBox/LeftPanel" unique_id=668998591]
@@ -136,22 +133,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 isle = NodePath("../../../..")
 
-[node name="StepladderPanel" type="PanelContainer" parent="HBox/LeftPanel/MarginContainer" unique_id=1593362332]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Stepladder" parent="HBox/LeftPanel/MarginContainer/StepladderPanel" unique_id=1091981830 instance=ExtResource("8_6kinf")]
-position = Vector2(-1442, 0)
-
 [node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
 layout_mode = 2
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
 

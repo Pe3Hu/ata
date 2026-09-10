@@ -21,6 +21,8 @@ var data: DiceData:
 
 var digit_tween: Tween
 var background_tween: Tween
+var dissolve_tween: Tween
+var pressure_tween: Tween
 
 var current_rotation: Vector3 = Vector3.ZERO
 var target_rotation: Vector3 = Vector3.ZERO
@@ -268,6 +270,47 @@ func _input(event: InputEvent) -> void:
 			#next_index()
 		#if event.keycode == KEY_S:
 			#apply_mirror()
+
+func update_color(color_: Color) -> void:
+	background_cube.material.set_shader_parameter('cube_color', color_)
+	%Dissolve.modulate = color_
+
+func start_dissolve_animation() -> void:
+	if dissolve_tween and dissolve_tween.is_running():
+		dissolve_tween.kill()
+	
+	background_cube.visible = false
+	digit_cube.visible = false
+	%Dissolve.visible = true
+	%Dissolve.material.set_shader_parameter('dissolve_value', 1.0)
+	var duration = Gear.dissolves[Gear.tempo]
+	dissolve_tween = create_tween()
+	dissolve_tween.tween_property(%Dissolve.material, 'shader_parameter/dissolve_value', 0, duration)
+	Arbitrator.queue_an_animation(dissolve_tween)
+	
+	await dissolve_tween.finished
+	
+	get_parent().remove_child(self)
+	queue_free()
+
+func start_pressure_animation(stepladder_: Stepladder) -> void:
+	if pressure_tween and pressure_tween.is_running():
+		pressure_tween.kill()
+	
+	var duration = Gear.pressures[Gear.tempo]
+	pressure_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SPRING)
+	pressure_tween.tween_property(background_cube, 'offset_transform_scale', Catalog.PRESSURE_SCALE, duration)
+	
+	await pressure_tween.finished
+	
+	pressure_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SPRING)
+	pressure_tween.tween_property(background_cube, 'offset_transform_scale', Vector2.ONE, duration)
+	
+	await pressure_tween.finished
+	
+	stepladder_.data.flux.volume += get_current_value()
+	stepladder_.dissolve_dices()
+
 
 #region test
 var test_index = 7

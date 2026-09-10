@@ -76,6 +76,84 @@ const expiration_to_factor = {
 	Bozo.Matter.LIQUID: 3,
 	Bozo.Matter.SOLID: 4,
 }
+
+const volume_to_matter_to_volume = {
+	2: {
+		Bozo.Matter.GAS: 4,
+		Bozo.Matter.LIQUID: 5,
+	},
+	3: {
+		Bozo.Matter.GAS: 5,
+		Bozo.Matter.LIQUID: 6,
+		Bozo.Matter.SOLID: 8,
+	},
+	4: {
+		Bozo.Matter.GAS: 6,
+		Bozo.Matter.SOLID: 9,
+	},
+	5: {
+		Bozo.Matter.LIQUID: 8,
+		Bozo.Matter.SOLID: 10,
+	},
+	6: {
+		Bozo.Matter.GAS: 8,
+		Bozo.Matter.LIQUID: 9,
+	},
+	8: {
+		Bozo.Matter.GAS: 10,
+	},
+	9: {
+		Bozo.Matter.LIQUID: 12,
+	},
+	10: {
+		Bozo.Matter.GAS: 12,
+		Bozo.Matter.SOLID: 15,
+	},
+	12: {
+		Bozo.Matter.LIQUID: 15,
+	},
+	15: {
+		Bozo.Matter.LIQUID: 18,
+		Bozo.Matter.SOLID: 20,
+	},
+	18: {
+		Bozo.Matter.GAS: 20,
+	},
+	20: {
+		Bozo.Matter.SOLID: 25,
+	},
+	25: {
+		Bozo.Matter.GAS: 27,
+		Bozo.Matter.SOLID: 30,
+	},
+	27: {
+		Bozo.Matter.LIQUID: 30,
+		Bozo.Matter.SOLID: 32,
+	},
+	30: {
+		Bozo.Matter.GAS: 32,
+	},
+	32: {},
+}
+
+const volume_to_coord = {
+	2: Vector2i(2, 8),
+	3: Vector2i(2, 7),
+	4: Vector2i(4, 7),
+	5: Vector2i(0, 7),
+	6: Vector2i(3, 6),
+	8: Vector2i(1, 6),
+	9: Vector2i(4, 5),
+	10: Vector2i(0, 5),
+	12: Vector2i(2, 5),
+	15: Vector2i(1, 4),
+	18: Vector2i(3, 4),
+	20: Vector2i(2, 3),
+	25: Vector2i(2, 2),
+	27: Vector2i(3, 1),
+	30: Vector2i(1, 1),
+	32: Vector2i(2, 0)
+}
 #endregion
 
 #region grade
@@ -139,8 +217,6 @@ var verse_to_spoil = {
 	89: 3
 }
 #endregion
-
-
 
 #region fake dice
 var side_to_axis_to_side = {
@@ -321,7 +397,7 @@ var normal_to_mirror = {
 }
 #endregion
 
-
+#region method
 const obstacle_to_methods = {
 	Bozo.Obstacle.LOCK: [
 		Bozo.Method.RAKE,
@@ -440,12 +516,148 @@ const element_to_index = {
 	Bozo.Element.CHAOS: 0
 }
 
-const crown_to_scale = {
-	4: 0.875,
-	5: 1.1,
-	6: 1
+const elememt_to_in = {
+	Bozo.Element.CLOUD: Bozo.Matter.GAS,
+	Bozo.Element.VAPOR: Bozo.Matter.LIQUID,
+	Bozo.Element.DUST: Bozo.Matter.GAS,
+	Bozo.Element.SAND: Bozo.Matter.SOLID,
+	Bozo.Element.ICE: Bozo.Matter.LIQUID,
+	Bozo.Element.LAVA: Bozo.Matter.SOLID,
 }
 
+const elememt_to_out = {
+	Bozo.Element.CLOUD: Bozo.Matter.LIQUID,
+	Bozo.Element.VAPOR: Bozo.Matter.GAS,
+	Bozo.Element.DUST: Bozo.Matter.SOLID,
+	Bozo.Element.SAND: Bozo.Matter.GAS,
+	Bozo.Element.ICE: Bozo.Matter.SOLID,
+	Bozo.Element.LAVA: Bozo.Matter.LIQUID,
+}
+#endregion
+
+#region flux
+const flux_to_crown = {
+	2: 5,
+	3: 5,
+	4: 5,
+	5: 5,
+	6: 5,
+	8: 5,
+	9: 6,
+	10: 6,
+	12: 6,
+	15: 6,
+	18: 6,
+	20: 6,
+	25: 4,
+	27: 4,
+	30: 4,
+	32: 4,
+}
+
+const flux_to_index = {
+	2: 0,
+	3: 2,
+	4: 3,
+	5: 1,
+	6: 5,
+	8: 4,
+	9: 2,
+	10: 0,
+	12: 1,
+	15: 3,
+	18: 4,
+	20: 5,
+	25: 0,
+	27: 2,
+	30: 1,
+	32: 3,
+}
+
+var crown_to_face_to_bordes = {
+	4: [    
+		Vector2(13.0, 12.0),
+		Vector2(33.0, 32.0),
+		Vector2(43.0, 22.0),
+		Vector2(23.0, 2.0),
+		Vector2(3.0, 22.0),
+		Vector2(23.0, 42.0),
+		Vector2(43.0, 22.0),
+		Vector2(33.0, 12.0),
+		Vector2(13.0, 32.0),
+	],
+	5: [
+		Vector2(31.0, 35.0),
+		Vector2(37.0, 44.0),
+		Vector2(48.0, 34.0),
+		Vector2(48.0, 16.0),
+		Vector2(36.0, 21.0),
+		Vector2(31.0, 35.0),
+		Vector2(17.0, 35.0),
+		Vector2(11.0, 44.0),
+		Vector2(24.0, 49.0),
+		Vector2(37.0, 44.0),
+		Vector2(31.0, 35.0),
+		Vector2(17.0, 35.0),
+		Vector2(12.0, 21.0),
+		Vector2(0.0, 16.0),
+		Vector2(0.0, 34.0),
+		Vector2(11.0, 44.0),
+		Vector2(0.0, 34.0),
+		Vector2(0.0, 16.0),
+		Vector2(9.0, 4.0),
+		Vector2(24.0, -1.0),
+		Vector2(39.0, 4.0),
+		Vector2(48.0, 16.0),
+		Vector2(36.0, 21.0),
+		Vector2(24.0, 11.0),
+		Vector2(24.0, -1.0),
+		Vector2(24.0, 11.0),
+		Vector2(12.0, 21.0)
+	],
+	6: [
+		Vector2(49.0, 46.0),
+		Vector2(24.0, 3.0),
+		Vector2(16.0, 16.0),
+		Vector2(32.0, 16.0),
+		Vector2(24.0, 31.0),
+		Vector2(41.0, 31.0),
+		Vector2(33.0, 46.0),
+		Vector2(24.0, 31.0),
+		Vector2(15.0, 46.0),
+		Vector2(7.0, 31.0),
+		Vector2(24.0, 31.0),
+		Vector2(16.0, 16.0),
+		Vector2(-1.0, 46.0),
+		Vector2(49.0, 46.0),
+	]
+}
+
+var crown_to_face_to_points = {
+	4: [
+		[Vector2(13.0, 32.0), Vector2(23.0, 42.0), Vector2(33.0, 32.0), Vector2(23.0, 22.0)],
+		[Vector2(13.0, 32.0), Vector2(3.0, 22.0), Vector2(13.0, 12.0), Vector2(23.0, 22.0)],
+		[Vector2(33.0, 12.0), Vector2(43.0, 22.0), Vector2(33.0, 32.0), Vector2(23.0, 22.0)],
+		[Vector2(33.0, 12.0), Vector2(23.0, 2.0), Vector2(13.0, 12.0), Vector2(23.0, 22.0)],
+	],
+	5: [
+		[Vector2(31, 35), Vector2(37, 44), Vector2(24, 49), Vector2(11, 44), Vector2(17, 35)],
+		[Vector2(17, 35), Vector2(11, 44), Vector2(0, 34), Vector2(0, 16), Vector2(12, 21)],
+		[Vector2(31, 35), Vector2(36, 21), Vector2(24, 11), Vector2(12, 21), Vector2(17, 35)],
+		[Vector2(31, 35), Vector2(37, 44), Vector2(48, 34), Vector2(48, 16), Vector2(36, 21)],
+		[Vector2(12, 21), Vector2(0, 16), Vector2(9, 4), Vector2(24, -1), Vector2(24, 11)],
+		[Vector2(24, -1), Vector2(39, 4), Vector2(48, 16), Vector2(36, 21), Vector2(24, 11)],
+	],
+	6: [
+		[Vector2(13.0, 45.0), Vector2(6.0, 33.0), Vector2(0.0, 45.0)],
+		[Vector2(31.0, 45.0), Vector2(24.0, 33.0), Vector2(17.0, 45.0)],
+		[Vector2(49.0, 45.0), Vector2(42.0, 33.0), Vector2(34.0, 45.0)],
+		[Vector2(23.0, 30.0), Vector2(15.0, 18.0), Vector2(8.0, 30.0)],
+		[Vector2(41.0, 30.0), Vector2(33.0, 18.0), Vector2(26.0, 30.0)],
+		[Vector2(33.0, 15.0), Vector2(24.0, 3.0), Vector2(16.0, 15.0)]
+	]
+}
+#endregion
 
 #region color
 var matter_to_color = {

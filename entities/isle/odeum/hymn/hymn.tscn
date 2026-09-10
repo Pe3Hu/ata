@@ -6,8 +6,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baho7"]
 
 [node name="Hymn" type="PanelContainer" unique_id=1644121454]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 128)
+custom_minimum_size = Vector2(68, 68)
+custom_maximum_size = Vector2(68, 136)
 clip_contents = true
 offset_right = 128.0
 offset_bottom = 64.0

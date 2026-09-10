@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PressureDiceData" format=3 uid="uid://cvtl6xowwc4rw"]
+
+[ext_resource type="Script" uid="uid://dmc2y4yfvva2w" path="res://entities/dice/datas/pressure/pressure_dice_data.gd" id="1_x043m"]
+
+[resource]
+script = ExtResource("1_x043m")
+matter = 3
+values = Array[int]([2, 2, 2, 3, 5, 5])
+metadata/_custom_type_script = "uid://dmc2y4yfvva2w"

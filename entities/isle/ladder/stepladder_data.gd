@@ -3,17 +3,27 @@ extends RefCounted
 
 
 signal volume_changed
+signal pressure_changed
 
-var settlement: SettlementData
-
-var current_volume: int = 2:
+var kernel: KernelData
+var flux: FluxData:
 	set(value_):
-		current_volume = value_
+		flux = value_
+		
+		if flux:
+			flux.stepladder = self
+		
 		volume_changed.emit()
+var pressure: PressureData:
+	set(value_):
+		pressure = value_
+		
+		if pressure:
+			pressure_changed.emit()
 
+func _init(kernel_: KernelData) -> void:
+	kernel = kernel_
 
-func _init(settlement_: SettlementData) -> void:
-	settlement = settlement_
-
-func promote_volume(matter_: Bozo.Matter) -> void:
-	current_volume = Digest.volume_to_matter_to_volume[current_volume][matter_]
+func finish_pressure() -> void:
+	flux = null
+	pressure = null
