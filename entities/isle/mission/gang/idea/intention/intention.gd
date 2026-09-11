@@ -25,7 +25,8 @@ func _on_bond_changed() -> void:
 	%Body.visible = not data.is_bond
 
 func update_textures() -> void:
-	modulate = Digest.element_to_color[data.element]
+	%Circle.modulate = Digest.element_to_color[data.element]
+	%Body.material.set_shader_parameter('base_color', Digest.element_to_color[data.element])
 	var path = Bozo.enum_to_string(Bozo.Type.ASPECT, data.aspect)
 	%Body.texture = load('res://entities/isle/mission/gang/idea/intention/images/body/%s.png' % path)
 	%Border.texture = load('res://entities/isle/mission/gang/idea/intention/images/border/%s.png' % path)

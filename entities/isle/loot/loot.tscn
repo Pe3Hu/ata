@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cr01ac3swtew"]
+
+[ext_resource type="Script" uid="uid://bo5pyxlaf8x4q" path="res://entities/isle/loot/loot.gd" id="1_ufjhw"]
+
+[node name="Loot" type="PanelContainer" unique_id=503262578]
+script = ExtResource("1_ufjhw")
+
+[node name="Shards" type="VBoxContainer" parent="." unique_id=1302425607]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8

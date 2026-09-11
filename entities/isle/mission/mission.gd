@@ -10,8 +10,10 @@ var data: MissionData:
 
 @export var bank: Bank
 @export var gang: Gang
+@export var loot: Loot
 
 
 func connect_data() -> void:
 	bank.data = data.bank
 	gang.data = data.gang
+	loot.data = data.loot

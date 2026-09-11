@@ -6,6 +6,7 @@ var isle: IsleData
 
 var bank: BankData
 var gang: GangData
+var loot: LootData
 
 var counter = 1000
 var method_to_sum: Dictionary
@@ -16,6 +17,7 @@ func _init(isle_: IsleData) -> void:
 	
 	bank = BankData.new(self)
 	gang = GangData.new(self)
+	loot = LootData.new(self)
 
 func test_avg_difficulty() -> void:
 	for method in Catalog.methods:

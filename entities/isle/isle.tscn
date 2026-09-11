@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0fkxw18lt6u3" path="res://entities/isle/isle.gd" id="1_kwh8c"]
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="2_5o34a"]
+[ext_resource type="PackedScene" uid="uid://2nb4d141dq5e" path="res://entities/isle/kernel/lantern/lantern.tscn" id="3_6kinf"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_dc2yg"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_yl3e5"]
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/house/house.tscn" id="5_dd0e4"]
@@ -41,7 +42,7 @@ kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
 house = NodePath("HBox/LeftPanel/MarginContainer/House")
 odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
 forge = NodePath("HBox/LeftPanel/MarginContainer/Forge")
-misson = NodePath("Mission")
+misson = NodePath("HBox/LeftPanel/MarginContainer/Mission")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -52,6 +53,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="Lantern" parent="." unique_id=971922715 instance=ExtResource("3_6kinf")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -32.0
+offset_right = 256.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HomeBtn" parent="." unique_id=1483590883 instance=ExtResource("3_dc2yg")]
 layout_mode = 0
@@ -86,23 +101,6 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Mission" parent="." unique_id=475274081 instance=ExtResource("10_6kinf")]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -438.0
-offset_top = -280.0
-offset_right = 438.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1735999487]
 layout_mode = 1
 anchors_preset = 15
@@ -126,6 +124,11 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
+[node name="Mission" parent="HBox/LeftPanel/MarginContainer" unique_id=475274081 instance=ExtResource("10_6kinf")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="Forge" parent="HBox/LeftPanel/MarginContainer" unique_id=1978344045 node_paths=PackedStringArray("isle") instance=ExtResource("9_egsfe")]
 visible = false
 layout_mode = 2
@@ -134,6 +137,7 @@ size_flags_vertical = 4
 isle = NodePath("../../../..")
 
 [node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
+visible = false
 layout_mode = 2
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]

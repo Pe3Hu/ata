@@ -706,6 +706,12 @@ var aspect_to_color = {
 	Bozo.Aspect.DEXTERITY: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
 }
 
+var aspect_to_matter = {
+	Bozo.Aspect.STRENGTH: Bozo.Matter.SOLID,
+	Bozo.Aspect.INTELLECT: Bozo.Matter.LIQUID,
+	Bozo.Aspect.DEXTERITY: Bozo.Matter.GAS,
+}
+
 var canto_to_selection = {
 	true: Color.LIGHT_GRAY,
 	false: Color.WEB_GRAY,

@@ -2,8 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://c7kl4o4b4fta6" path="res://entities/isle/mission/gang/ambition/potential/potential background.png" id="1_ytcs6"]
 [ext_resource type="Script" uid="uid://dq74jsgbc70e" path="res://entities/isle/mission/gang/ambition/potential/potential.gd" id="2_81wd2"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="3_8upm4"]
 [ext_resource type="Texture2D" uid="uid://dw4jkefccwnce" path="res://entities/isle/mission/gang/idea/intention/images/body/element.png" id="3_lagfh"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_81wd2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryh4y"]
+resource_local_to_scene = true
+shader = ExtResource("3_8upm4")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
 
 [node name="Potential" type="TextureRect" unique_id=25309524]
 texture = ExtResource("1_ytcs6")
@@ -11,6 +22,7 @@ script = ExtResource("2_81wd2")
 
 [node name="Body" type="TextureRect" parent="." unique_id=51418187]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ryh4y")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

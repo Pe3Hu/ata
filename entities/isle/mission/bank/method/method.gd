@@ -8,7 +8,7 @@ var data: MethodData:
 		
 		connect_signals()
 		update_intentions()
-		%Title.text = Bozo.enum_to_string(Bozo.Type.METHOD, data.type)
+		%Title.text = Bozo.enum_to_string(Bozo.Type.METHOD, data.type).capitalize()
 
 
 #region init

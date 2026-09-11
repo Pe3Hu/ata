@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://ksgxcdi6f6kj"]
+
+[ext_resource type="Script" uid="uid://bu3rlc0i6w8p2" path="res://entities/isle/loot/shard/shard.gd" id="1_uba6b"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_wkw8a"]
+[ext_resource type="Texture2D" uid="uid://2ktcapdrq1dq" path="res://entities/isle/loot/shard/images/border/solid.png" id="3_wkw8a"]
+[ext_resource type="Texture2D" uid="uid://rm837tfpch21" path="res://entities/isle/loot/shard/images/border/gas.png" id="4_v86tu"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="6_wkw8a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
+shader = ExtResource("2_wkw8a")
+shader_parameter/mask_texture = ExtResource("3_wkw8a")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Shard" type="PanelContainer" unique_id=356238751]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+script = ExtResource("1_uba6b")
+
+[node name="Body" type="TextureRect" parent="." unique_id=1781022979]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 2
+texture = ExtResource("3_wkw8a")
+
+[node name="Border" type="TextureRect" parent="." unique_id=831643573]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("4_v86tu")
+
+[node name="Control" type="Control" parent="." unique_id=857529182]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="Control" unique_id=1907893009]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = ExtResource("6_wkw8a")
+horizontal_alignment = 1
+vertical_alignment = 1

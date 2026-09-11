@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://2nb4d141dq5e"]
+
+[ext_resource type="Shader" uid="uid://jjffygo66baw" path="res://entities/isle/kernel/lantern/lantern.gdshader" id="1_drof4"]
+[ext_resource type="Texture2D" uid="uid://044873gtovlv" path="res://entities/isle/kernel/lantern/images/body.png" id="1_scicp"]
+[ext_resource type="Texture2D" uid="uid://blewaqokhc75k" path="res://entities/isle/kernel/lantern/images/border.png" id="2_drof4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrt67"]
+shader = ExtResource("1_drof4")
+shader_parameter/virtual_side = 320.0
+shader_parameter/split = 0.5
+
+[node name="Lantern" type="PanelContainer" unique_id=971922715]
+custom_minimum_size = Vector2(1280, 64)
+offset_right = 1280.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="Body" type="NinePatchRect" parent="." unique_id=163545948]
+material = SubResource("ShaderMaterial_jrt67")
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("1_scicp")
+patch_margin_left = 52
+patch_margin_right = 52
+
+[node name="Border" type="NinePatchRect" parent="." unique_id=173274789]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("2_drof4")
+patch_margin_left = 52
+patch_margin_right = 52

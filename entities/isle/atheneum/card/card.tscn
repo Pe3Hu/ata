@@ -32,6 +32,4 @@ visible = false
 layout_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_position = Vector2(40, 166)
-offset_transform_visual_only = false
+offset_transform_position = Vector2(40, 78)

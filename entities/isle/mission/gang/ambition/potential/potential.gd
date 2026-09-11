@@ -2,6 +2,11 @@ class_name Potenital
 extends TextureRect
 
 
+
+var matter_shader = preload('uid://bq3tymajw0eqn')
+var element_shader = preload('uid://bdmksfc6m002l')
+
+
 var data: PotentialData:
 	set(value_):
 		data = value_
@@ -33,12 +38,17 @@ func _on_value_changed() -> void:
 
 func update_textures() -> void:
 	var path: String = 'element'
+	%Body.material = ShaderMaterial.new()
 	
 	if data.aspect != Bozo.Aspect.NONE:
+		%Body.material.shader = matter_shader
 		path = Bozo.enum_to_string(Bozo.Type.ASPECT, data.aspect)
-		%Body.modulate = Digest.aspect_to_color[data.aspect]
+		var matter = Digest.aspect_to_matter[data.aspect]
+		Helper.update_colors(%Body, matter)
+		%Body.material.set_shader_parameter('mask_texture', load('res://entities/isle/mission/gang/idea/intention/images/body/%s.png' % path))
 	else:
-		%Body.modulate = Digest.element_to_color[data.element]
+		%Body.material.shader = element_shader
+		%Body.material.set_shader_parameter('base_color', Digest.element_to_color[data.element])
 	
 	%Body.texture = load('res://entities/isle/mission/gang/idea/intention/images/body/%s.png' % path)
 	%Border.texture = load('res://entities/isle/mission/gang/idea/intention/images/border/%s.png' % path)

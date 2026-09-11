@@ -116,8 +116,8 @@ func add_line(a_: Intention, b_: Intention) -> void:
 	line.add_point(b_.offset_transform_position)
 	
 	var grad = Gradient.new()
-	grad.set_color(0, a_.modulate)
-	grad.set_color(1, b_.modulate)   
+	grad.set_color(0, Digest.element_to_color[a_.data.element])
+	grad.set_color(1, Digest.element_to_color[b_.data.element])   
 	line.gradient = grad
 #endregion
 

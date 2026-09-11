@@ -3,9 +3,15 @@
 [ext_resource type="Script" uid="uid://h4bbf1j2mkfa" path="res://entities/isle/mission/gang/idea/intention/intention.gd" id="2_h5lrr"]
 [ext_resource type="Texture2D" uid="uid://ywv006cqxoc" path="res://entities/isle/mission/gang/idea/intention/images/body/dexterity.png" id="2_qssmu"]
 [ext_resource type="Texture2D" uid="uid://do3brfq5osdpk" path="res://entities/isle/mission/gang/idea/intention/images/border/dexterity.png" id="3_i8aen"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader" id="3_qd0tr"]
 [ext_resource type="Texture2D" uid="uid://cylrd3wax6miw" path="res://entities/isle/mission/gang/idea/intention/images/circle.png" id="5_i8aen"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqudx"]
+resource_local_to_scene = true
+shader = ExtResource("3_qd0tr")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
 
 [node name="Intention" type="PanelContainer" unique_id=18713569]
 custom_minimum_size = Vector2(48, 48)
@@ -29,6 +35,7 @@ texture = ExtResource("5_i8aen")
 [node name="Body" type="TextureRect" parent="." unique_id=1579639152]
 unique_name_in_owner = true
 texture_filter = 2
+material = SubResource("ShaderMaterial_gqudx")
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(0.9, 0.9)

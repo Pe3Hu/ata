@@ -1,33 +1,12 @@
-res://entities/world/world.gd
-res://entities/isle/ladder/stepladder.tscn
+res://entities/isle/isle.tscn
 res://entities/isle/biome/matter.gdshader
 res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader
 res://entities/isle/atheneum/card/stamp/stake/ban.gdshader
-res://entities/isle/odeum/canto/pulse/perfect pulse.gdshader
-res://entities/isle/kernel/maelstrom/maelstrom.gdshader
-res://entities/isle/kernel/maelstrom/eddy/shaders/pink paint.gdshader
-res://entities/isle/ladder/stepladder.gd
-res://entities/isle/ladder/stepladder_data.gd
-res://entities/dice/datas/matter/solid.tres
-res://entities/dice/datas/pressure/pressure_dice_data.gd
-res://entities/dice/datas/pressure/gas.tres
-res://entities/isle/atheneum/card/card.tscn
-res://entities/dice/datas/pressure/liquid.tres
-res://entities/dice/datas/pressure/solid.tres
-res://global/Digest.gd
-res://entities/isle/kernel/maelstrom/pressure/pressure_data.gd
-res://entities/isle/atheneum/card/shadow/shadow_data.gd
-res://global/arbitrator/action/action_attack_shadow.gd
-res://global/arbitrator/action/action_data.gd
-res://global/arbitrator/Arbitrator.gd
-res://global/arbitrator/action/action_move_card.gd
 res://entities/isle/ladder/fake/shaders/fake_dice.gdshader
 res://entities/isle/ladder/fake/shaders/dissolve.gdshader
-res://entities/isle/ladder/fake/fake_dice.tscn
-res://entities/isle/ladder/fake/fake_dice.gd
-res://entities/isle/atheneum/card/stamp/stamp.gd
-res://global/Gear.gd
-res://global/Catalog.gd
-res://entities/isle/kernel/maelstrom/eddy/flux/flux_data.gd
-res://global/arbitrator/phase/phase_decision.gd
-res://global/arbitrator/phase/phase_data.gd
+res://entities/isle/odeum/canto/pulse/perfect pulse.gdshader
+res://entities/isle/mission/bank/method/perfect method.gdshader
+res://entities/isle/kernel/maelstrom/maelstrom.gdshader
+res://entities/isle/kernel/maelstrom/eddy/shaders/pink paint.gdshader
+res://entities/isle/kernel/lantern/lantern.gdshader
+res://entities/isle/kernel/lantern/lantern.tscn
