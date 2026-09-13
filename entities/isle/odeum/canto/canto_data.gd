@@ -120,6 +120,7 @@ func apply_voice() -> void:
 			var matter = options.pick_random()
 			penalty_matters.append(matter)
 			penalty_values.append(volume)
+			pie.shopping_on(matter, volume)
 		else:
 			var matter = pie.get_payment_matter(volume)
 			pie.bite_off(matter, volume)
@@ -141,6 +142,10 @@ func apply_voice() -> void:
 	
 	hymn.scenario.odeum.update_locked_stamps()
 	hymn.cantos.erase(self)
+	
+	if hymn.cantos.is_empty():
+		hymn.scenario.hymns.erase(hymn)
+	
 	voice_up.emit()
 
 func get_penalty() -> int:

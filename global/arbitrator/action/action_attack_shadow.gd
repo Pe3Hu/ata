@@ -8,7 +8,6 @@ var is_advisor: bool
 var is_perfect: bool = false
 
 
-
 func _init(shadow_: ShadowData, is_advisor_: bool = false) -> void:
 	shadow = shadow_
 	is_advisor = is_advisor_

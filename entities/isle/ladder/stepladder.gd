@@ -54,6 +54,7 @@ func _on_pressure_changed() -> void:
 	if Arbitrator.last_action and Arbitrator.last_action.type == Bozo.Action.ATTACK_SHADOW and Arbitrator.last_action.is_perfect:
 		n += 1
 	
+	Helper.clear_children(%Dices)
 	for _i in n:
 		add_dice()
 	
@@ -85,10 +86,11 @@ func add_girder(girder_data_: GirderData) -> void:
 	var girder = girder_scene.instantiate()
 	%Girders.add_child(girder)
 	girder.data = girder_data_
-
 #endregion
 
 func apply_pressure() -> void:
+	Arbitrator.current_phase.animation_tweens.clear()
+	
 	for dice in %Dices.get_children():
 		dice.visible = true
 		dice.start_roll()

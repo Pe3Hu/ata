@@ -18,6 +18,8 @@ var next_amount: int = 0
 var expiration_to_amount: Dictionary
 var raid_amounts: Array[int]
 
+var shopping_amount: int = 0
+
 
 func _init(pie_: PieData) -> void:
 	pie = pie_

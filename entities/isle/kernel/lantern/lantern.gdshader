@@ -1,55 +1,44 @@
 shader_type canvas_item;
 
-#define pi 3.14159
+// Assign your textures to these in the inspector
+uniform sampler2D iChannel0 : hint_default_black, filter_linear, repeat_enable;
+uniform sampler2D iChannel1 : hint_default_black, filter_linear, repeat_enable;
 
-uniform float virtual_side = 320.0;
+// Drive iTime from GDScript: material.set_shader_parameter("iTime", t)
+uniform float iTime = 0.0;
 
-// Точка перехода градиента по X: 0 = левый край, 1 = правый
-uniform float split : hint_range(0.0, 1.0) = 0.5;
+// Set from GDScript to the viewport size (or leave default and use screen size)
+uniform vec2 iResolution = vec2(1920.0, 1080.0);
 
-float glow(float x, float str, float dist) {
-    return dist / pow(x, str);
-}
-
-float sinSDF(vec2 st, float A, float offset, float f, float phi) {
-    return abs((st.y - offset) + sin(st.x * f + phi) * A);
-}
 
 void fragment() {
-    vec2 displaySize = 1.0 / vec2(fwidth(UV.x), fwidth(UV.y));
-    vec2 fragCoord = UV * displaySize;
+    // FRAGCOORD.xy is equivalent to Shadertoy's fragCoord
+    vec2 fragCoord = FRAGCOORD.xy;
+    vec2 uv = fragCoord / iResolution;
 
-    vec2 virtualRes = vec2(virtual_side);
-    vec2 coord = fragCoord + (virtualRes - displaySize) * 0.5;
-    vec2 st = coord / virtualRes.y;
+    float o = texture(iChannel1, uv * 0.25 + vec2(0.0, iTime * 0.025)).r;
+    float d = texture(iChannel0, uv * 0.25 - vec2(0.0, iTime * 0.02 + o * 0.02)).r * 2.0 - 1.0;
 
-    float iTime = TIME;
+    float v = uv.y + d * 0.1;
+    v = 1.0 - abs(v * 2.0 - 1.0);
+    v = pow(v, 2.0 + sin((iTime * 0.2 + d * 0.25) * TAU) * 0.5);
 
-    float col = 0.0;
-    float time = iTime / 2.0;
-    float str = 0.6;
-    float dist = 0.02;
-    float nSin = 4.0;
+    vec3 color = vec3(0.0);
 
-    // Точка разворота волн — как в оригинале, в центре
-    float timeHalfInv = -time * sign(st.x - 0.5);
-    float am = cos(st.x * 3.0);
-    float offset = 0.5 + sin(st.x * 12.0 + time) * am * 0.05;
+    float x = (1.0 - uv.x * 0.75);
+    float y = 1.0 - abs(uv.y * 2.0 - 1.0);
+    color += vec3(x * 0.5, y, x) * v;
 
-    for (float i = 0.0; i < nSin; i++) {
-        col += glow(
-            sinSDF(st, am * 0.2, offset, 6.0, timeHalfInv + i * 2.0 * pi / nSin),
-            str,
-            dist
-        );
-    }
+    vec2 seed = fragCoord.xy;
+    vec2 r;
+    r.x = fract(sin((seed.x * 12.9898) + (seed.y * 78.2330)) * 43758.5453);
+    r.y = fract(sin((seed.x * 53.7842) + (seed.y * 47.5134)) * 43758.5453);
 
-    vec3 s = cos(6.0 * st.y * vec3(1.0, 2.0, 3.0) - time * vec3(1.0, -1.0, 1.0)) * 0.5;
-    float cut = st.x + (s.x + s.y + s.z) / 33.0;
+    float s = mix(r.x,
+                  (sin((iTime * 2.5 + 60.0) * r.y) * 0.5 + 0.5) * ((r.y * r.y) * (r.y * r.y)),
+                  0.04);
+    color += pow(s, 70.0) * (1.0 - v);
 
-    // Оригинальная формула, только 0.5 → split
-    col = abs(smoothstep(-0.01, -0.03, split - cut) - clamp(col, 0.0, 1.0));
-
-    vec4 tex = texture(TEXTURE, UV);
-    COLOR = vec4(vec3(col), 1.0) * tex.a;
+    COLOR.rgb = color;
+    COLOR.a = 1.0;
 }

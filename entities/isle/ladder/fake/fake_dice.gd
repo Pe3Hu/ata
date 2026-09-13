@@ -17,7 +17,6 @@ var data: DiceData:
 
 @export var roll_min_steps: int = 4
 @export var roll_max_steps: int = 6
-@export var step_duration: float = 0.25
 
 var digit_tween: Tween
 var background_tween: Tween
@@ -129,7 +128,7 @@ func animate_steps() -> void:
 		var end_rotation = current_rot + axis * turns
 		var t: float = float(_i) / float(max(steps.size() - 1, 1))
 		var speed_factor: float = pow(1.8, t)
-		var duration: float = step_duration * speed_factor
+		var duration: float = Gear.rolls[Gear.tempo] * speed_factor
 		
 		if turns == 2:
 			duration *= 2.0
@@ -191,7 +190,7 @@ func apply_normal() -> void:
 	if Digest.normal_to_mirror.has(current_rotation):
 		current_rotation = Digest.normal_to_mirror[current_rotation]
 	
-	var duration: float = step_duration
+	var duration: float = Gear.rolls[Gear.tempo]
 	var start = Vector3(current_rotation)
 	var end = find_closest_rotation()
 	
@@ -290,8 +289,9 @@ func start_dissolve_animation() -> void:
 	
 	await dissolve_tween.finished
 	
-	get_parent().remove_child(self)
-	queue_free()
+	if get_parent():
+		get_parent().remove_child(self)
+		queue_free()
 
 func start_pressure_animation(stepladder_: Stepladder) -> void:
 	if pressure_tween and pressure_tween.is_running():

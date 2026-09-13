@@ -13,6 +13,9 @@ var current_value: int:
 			current_value = value_
 			fine.update_value()
 			current_value_changed.emit()
+			
+			if current_value >= limit_value:
+				usurer.delcare_bankruptcy.emit()
 var next_value: int
 var limit_value: int
  

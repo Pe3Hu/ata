@@ -17,5 +17,8 @@ func _on_all_animations_finished() -> void:
 	if Arbitrator.last_action and Arbitrator.last_action.type == Bozo.Action.ATTACK_SHADOW:
 		Arbitrator.last_action.animation_left -= 1
 		
-		if not Arbitrator.last_action:
+		if not Arbitrator.last_action and Advisor.get_choice():
 			Arbitrator.faction.kernel.stepladder.finish_pressure()
+			Advisor.get_choice().next_action()
+		else:
+			pass

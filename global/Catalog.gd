@@ -231,3 +231,5 @@ const EDDY_RADIUS: float = 44
 const SHARD_RADIUS: float = 56#38
 const PRESSURE_SCALE: Vector2 = Vector2(1.25, 1.25)
 #endregion
+
+const DEFAULT_KITCHEN_LIMIT: int = 4

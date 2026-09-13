@@ -9,6 +9,7 @@ var stamp: StampData
 var animation_left: int = 1:
 	set(value_):
 		animation_left = value_
+		
 		if animation_left == 0:
 			Arbitrator.last_action = null
 

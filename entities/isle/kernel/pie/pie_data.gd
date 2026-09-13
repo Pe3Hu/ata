@@ -9,11 +9,12 @@ var volume_to_matter_to_slice: Dictionary
 var matter_to_volume_to_slice: Dictionary
 
 
+#region init
 func _init(kernel_: KernelData) -> void:
 	kernel = kernel_
 	
 	init_slices()
-	init_start_amounts()
+	#init_start_amounts()
 
 func init_slices() -> void:
 	for _i in Catalog.slice_volumes.size():
@@ -58,6 +59,7 @@ func fill_prime_matters() -> void:
 		var slice = volume_to_matter_to_slice[volume][matter]
 		slice.amount += prime_amount
 		slice.next_amount += prime_amount
+#endregion
 
 func get_total_volume_amount(volume_: int) -> int:
 	var amount: int = 0
@@ -102,3 +104,13 @@ func get_payment_matter(volume_: int, amount_: int = 1) -> Variant:
 func bite_off(matter_: Bozo.Matter, volume_: int, amount_: int = 1) -> void:
 	var slice = matter_to_volume_to_slice[matter_][volume_]
 	slice.amount -= amount_
+
+func shopping_on(matter_: Bozo.Matter, volume_: int, amount_: int = 1) -> void:
+	if volume_ == 0: return
+	var slice = matter_to_volume_to_slice[matter_][volume_]
+	slice.shopping_amount += amount_
+
+func show_shopping() -> void:
+	for slice in slices:
+		if slice.shopping_amount > 0:
+			print([Bozo.enum_to_string(Bozo.Type.MATTER, slice.matter), slice.volume, slice.shopping_amount])

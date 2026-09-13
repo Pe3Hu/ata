@@ -3,7 +3,6 @@ extends Resource
 
 
 signal phase_completed
-signal all_animations_finished
 
 var type: Bozo.Phase
 var status: Bozo.Status = Bozo.Status.IDLE
@@ -14,7 +13,7 @@ var is_waiting_animations: bool = true
 
 
 func _init() -> void:
-	all_animations_finished.connect(_on_all_animations_finished)
+	pass
 
 func enter_phase() -> void:
 	print(Bozo.enum_to_string(Bozo.Type.PHASE, type))
@@ -42,7 +41,8 @@ func _on_tween_finished(tween_: Tween) -> void:
 	if animation_tweens.is_empty():
 		if not is_waiting_animations: 
 			return
-		all_animations_finished.emit()
+		
+		_on_all_animations_finished()
 
 func _on_all_animations_finished() -> void:
 	pass

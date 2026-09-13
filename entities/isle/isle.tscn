@@ -4,18 +4,42 @@
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="2_5o34a"]
 [ext_resource type="PackedScene" uid="uid://2nb4d141dq5e" path="res://entities/isle/kernel/lantern/lantern.tscn" id="3_6kinf"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_dc2yg"]
+[ext_resource type="Shader" uid="uid://c7ddiq806filg" path="res://entities/isle/welkin/shaders/sun.gdshader" id="3_tor64"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_yl3e5"]
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/house/house.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
 [ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/forge/forge.tscn" id="9_egsfe"]
 [ext_resource type="PackedScene" uid="uid://bfxpchr7aa5bp" path="res://entities/isle/mission/mission.tscn" id="10_6kinf"]
+[ext_resource type="Shader" uid="uid://dws1h5tr1lmg4" path="res://entities/isle/welkin/shaders/abstract lines.gdshader" id="11_egsfe"]
+[ext_resource type="Shader" uid="uid://coecb03gqhstb" path="res://entities/isle/mission/gene.gdshader" id="12_nhhp3"]
+[ext_resource type="PackedScene" uid="uid://7422stye5c3g" path="res://entities/isle/welkin/asterism/asterism.tscn" id="14_5qj5p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
 shader = ExtResource("2_5o34a")
 shader_parameter/size = 45.00000209
 shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
 shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pd4q"]
+shader = ExtResource("3_tor64")
+shader_parameter/tint = Color(2.4065375e-08, 0.30637825, 0.2256991, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+shader = ExtResource("11_egsfe")
+shader_parameter/BackgroundColor = Color(0.91765, 0.88627, 0.82745, 1)
+shader_parameter/Layer1Color = Color(0.45490196, 0.20784314, 0.69411767, 1)
+shader_parameter/Layer2Color = Color(0.19215687, 0.74509805, 0.48235294, 1)
+shader_parameter/Layer3Color = Color(0.7372549, 0.4745098, 0.1882353, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+shader = ExtResource("12_nhhp3")
+shader_parameter/iResolution = Vector2(1280, 720)
+shader_parameter/line_color = Color(0.1, 0.1, 0.5, 1)
+shader_parameter/bg_color = Color(0.91764706, 0.8862745, 0.827451, 1)
+shader_parameter/intensity = 0.5
+shader_parameter/thickness = 0.02000000095
+shader_parameter/edge_fade = 0.4810000228475
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7mxt"]
 bg_color = Color(0, 0.39215687, 0.92156863, 1)
@@ -54,7 +78,40 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="Sun" type="ColorRect" parent="." unique_id=1061782672]
+visible = false
+material = SubResource("ShaderMaterial_8pd4q")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Triplet" type="ColorRect" parent="." unique_id=1749542747]
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gene" type="ColorRect" parent="." unique_id=1881119808]
+visible = false
+material = SubResource("ShaderMaterial_60rxr")
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -512.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
 [node name="Lantern" parent="." unique_id=971922715 instance=ExtResource("3_6kinf")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -125,6 +182,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
 [node name="Mission" parent="HBox/LeftPanel/MarginContainer" unique_id=475274081 instance=ExtResource("10_6kinf")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -137,7 +195,6 @@ size_flags_vertical = 4
 isle = NodePath("../../../..")
 
 [node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
-visible = false
 layout_mode = 2
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]
@@ -168,3 +225,16 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=522740549]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" parent="." unique_id=372333695 instance=ExtResource("14_5qj5p")]
+layout_mode = 0
+anchors_preset = 0

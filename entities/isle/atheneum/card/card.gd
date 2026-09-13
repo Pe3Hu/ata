@@ -207,19 +207,26 @@ func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = f
 	
 	if is_advisor_:
 		Advisor.get_choice().next_action()
+		return
 	
-	if shadow.data.action and shadow.data.action.is_advisor:
-		Advisor.get_choice().next_action()
-		shadow.data.action.is_advisor = false
+	#if shadow.data.action and shadow.data.action.is_advisor:
+		#Advisor.get_choice().next_action()
+		#shadow.data.action.is_advisor = false
+		#return
 
 func finish_activate(is_fol: bool = true) -> void:
 	room.house.on_tween_finished(activate_tween)
 	var next_room: Room
 	
-	if is_fol:
+	if is_fol and room.house.room_to_fol.has(room):
 		next_room = room.house.room_to_fol[room]
 	else:
+		return
+	
+	if not is_fol and room.house.room_to_ere.has(room):
 		next_room = room.house.room_to_ere[room]
+	else:
+		pass
 	
 	var previous_room = room
 	next_room.plus_card(self)

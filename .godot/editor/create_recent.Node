@@ -1,10 +1,10 @@
+ColorRect
 PanelContainer
 NinePatchRect
 VBoxContainer
 Control
 Label
 TextureRect
-ColorRect
 HBoxContainer
 TextureButton
 CustomButton

@@ -16,7 +16,6 @@ gang = NodePath("HBox/Gang")
 loot = NodePath("Loot")
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1375652975]
-visible = false
 layout_mode = 2
 
 [node name="Gang" parent="HBox" unique_id=421912675 instance=ExtResource("2_jce5p")]
@@ -30,6 +29,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 
 [node name="Loot" parent="." unique_id=503262578 instance=ExtResource("4_22t61")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

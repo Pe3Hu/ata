@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://7422stye5c3g"]
+
+[ext_resource type="Shader" uid="uid://dbiajvi1cd45m" path="res://entities/isle/welkin/shaders/asterism.gdshader" id="1_vngxx"]
+[ext_resource type="Script" uid="uid://l5m66f1j7rsx" path="res://entities/isle/welkin/asterism/asterism.gd" id="2_2048v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xo13o"]
+shader = ExtResource("1_vngxx")
+shader_parameter/dash_count = 10
+shader_parameter/dash_inner = 0.4
+shader_parameter/dash_length = 0.1
+shader_parameter/dash_glow = 0.003
+shader_parameter/vertex_circle_count = 16
+shader_parameter/star_step = 5
+shader_parameter/star_glow = 0.0015
+shader_parameter/rotation_speed = 2.375000001109129e-07
+shader_parameter/pulse_speed = 0.0
+shader_parameter/pulse_amount = 0.02
+shader_parameter/outer_circle_radius = 0.85
+shader_parameter/outer_circle_thickness = 0.05
+shader_parameter/outer_circle_glow = 0.003
+shader_parameter/outer_hatch_glow = 0.0008
+shader_parameter/vertex_dot_glow = 0.004
+shader_parameter/vertex_ring_glow = 0.008
+shader_parameter/edge_fade = 0.15
+
+[node name="Asterism" type="ColorRect" unique_id=372333695]
+material = SubResource("ShaderMaterial_xo13o")
+custom_minimum_size = Vector2(512, 512)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.0
+offset_top = -296.0
+offset_right = 230.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2048v")

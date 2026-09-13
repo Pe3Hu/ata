@@ -2,6 +2,8 @@ class_name FactionData
 extends RefCounted
 
 
+signal declare_gameover
+
 var policy: PolicyData
 var is_active: bool
 var index: int
@@ -18,6 +20,8 @@ func _init(policy_: PolicyData, is_active_: bool = false) -> void:
 	is_active = is_active_
 	
 	index = policy_.factions.size()
+	
+	declare_gameover.connect(_on_declare_gameover)
 	policy_.factions.append(self)
 	
 	if is_active:
@@ -26,3 +30,6 @@ func _init(policy_: PolicyData, is_active_: bool = false) -> void:
 		
 		atheneum = AtheneumData.new(self)
 #endregion
+
+func _on_declare_gameover() -> void:
+	Arbitrator.s_gameover = true

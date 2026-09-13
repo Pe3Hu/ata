@@ -18,4 +18,5 @@ func apply_choice() -> void:
 	choice.enter_choice()
 
 func get_choice() -> Choice:
+	if not phase_to_choice.has(Arbitrator.current_phase.type): return null
 	return phase_to_choice[Arbitrator.current_phase.type]
