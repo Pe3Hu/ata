@@ -15,7 +15,7 @@ func _init() -> void:
 
 func enter_choice():
 	super.enter_choice()
-	active_card()
+	#active_card()
 
 func next_action() -> void:
 	if not Arbitrator.faction.atheneum.house.bedroom.stamps.is_empty():

@@ -1,8 +1,8 @@
 ColorRect
+Control
 PanelContainer
 NinePatchRect
 VBoxContainer
-Control
 Label
 TextureRect
 HBoxContainer

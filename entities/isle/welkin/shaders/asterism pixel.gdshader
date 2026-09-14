@@ -202,15 +202,10 @@ void fragment() {
 	vec2 res = (TEXTURE_PIXEL_SIZE.x > 0.0) ? 1.0 / TEXTURE_PIXEL_SIZE : 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 frag = UV * res;
 	vec2 uv = (res - frag * 2.0) / min(res.x, res.y);
+	vec3 col = calc(uv);
 
-	// Круглая маска: всё, что дальше радиуса 1 от центра, — прозрачно.
 	float r = length(uv);
 	float fade = 1.0 - smoothstep(1.0 - edge_fade, 1.0, r);
 
-	if (fade <= 0.0) {
-		COLOR = vec4(0.0);        // за пределами круга — полностью прозрачно
-	} else {
-		vec3 col = calc(uv);
-		COLOR = vec4(col, fade);  // цвет НЕ умножаем — иначе свечение гаснет дважды
-	}
+	COLOR = vec4(col * fade, 1.0);
 }

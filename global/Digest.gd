@@ -659,6 +659,27 @@ var crown_to_face_to_points = {
 }
 #endregion
 
+var asterism_to_amount = {
+	0: 0,
+	2: 10,
+	3: 12,
+	4: 16,
+	5: 10,
+	6: 6,
+	7: 7,
+	8: 8,
+	9: 9,
+	10: 10
+}
+
+var main_to_secondary = {
+	6: 4,
+	7: 5,
+	8: 3,
+	9: 2,
+	10: 0
+}
+
 #region color
 var matter_to_color = {
 	Bozo.Matter.NONE: Color.WHITE,

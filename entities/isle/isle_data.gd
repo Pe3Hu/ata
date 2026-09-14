@@ -9,6 +9,7 @@ var odeum: OdeumData
 var policy: PolicyData
 var forge: ForgeData
 var mission: MissionData
+var welkin: WelkinData
 
 
 func _init() -> void:
@@ -20,3 +21,4 @@ func _init() -> void:
 	odeum = policy.player_faction.odeum
 	
 	mission = MissionData.new(self)
+	welkin = WelkinData.new(self)

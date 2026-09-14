@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/house/house.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
+[ext_resource type="PackedScene" uid="uid://bv2lnr34ta3bu" path="res://entities/isle/welkin/welkin.tscn" id="9_5qj5p"]
 [ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/forge/forge.tscn" id="9_egsfe"]
 [ext_resource type="PackedScene" uid="uid://bfxpchr7aa5bp" path="res://entities/isle/mission/mission.tscn" id="10_6kinf"]
 [ext_resource type="Shader" uid="uid://dws1h5tr1lmg4" path="res://entities/isle/welkin/shaders/abstract lines.gdshader" id="11_egsfe"]
 [ext_resource type="Shader" uid="uid://coecb03gqhstb" path="res://entities/isle/mission/gene.gdshader" id="12_nhhp3"]
-[ext_resource type="PackedScene" uid="uid://7422stye5c3g" path="res://entities/isle/welkin/asterism/asterism.tscn" id="14_5qj5p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
 shader = ExtResource("2_5o34a")
@@ -53,7 +53,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "forge", "misson")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "forge", "misson", "welkin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,6 +67,7 @@ house = NodePath("HBox/LeftPanel/MarginContainer/House")
 odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
 forge = NodePath("HBox/LeftPanel/MarginContainer/Forge")
 misson = NodePath("HBox/LeftPanel/MarginContainer/Mission")
+welkin = NodePath("Welkin")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -158,7 +159,11 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Welkin" parent="." unique_id=2087157546 instance=ExtResource("9_5qj5p")]
+layout_mode = 1
+
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1735999487]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -225,16 +230,3 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=522740549]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect" parent="." unique_id=372333695 instance=ExtResource("14_5qj5p")]
-layout_mode = 0
-anchors_preset = 0

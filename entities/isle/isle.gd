@@ -14,6 +14,7 @@ var data: IsleData:
 @export var forge: Forge
 
 @export var misson: Mission
+@export var welkin: Welkin
 
 
 func _ready() -> void:
@@ -24,8 +25,10 @@ func connect_datas() -> void:
 	kernel.data = data.kernel
 	house.data = data.atheneum.house
 	odeum.data = data.odeum
-	misson.data = data.mission
 	forge.data = data.forge
+	
+	misson.data = data.mission
+	welkin.data = data.welkin
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

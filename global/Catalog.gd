@@ -233,3 +233,5 @@ const PRESSURE_SCALE: Vector2 = Vector2(1.25, 1.25)
 #endregion
 
 const DEFAULT_KITCHEN_LIMIT: int = 4
+const ASTERISM_RAIDUS: float = 260
+const ASTERISM_SIZE: Vector2 = Vector2(320, 320)
