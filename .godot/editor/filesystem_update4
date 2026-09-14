@@ -1,0 +1,14 @@
+res://scenes/player.tscn
+res://entities/isle/welkin/shaders/asterism.gdshader
+res://entities/isle/welkin/shaders/sun.gdshader
+res://entities/isle/welkin/shaders/abstract lines.gdshader
+res://entities/isle/mission/gene.gdshader
+res://entities/isle/welkin/shaders/asterism pixel.gdshader
+res://entities/refuge/fog_of_war.tscn
+res://scenes/marker.tscn
+res://marker/marker.tscn
+res://entities/refuge/player/player.tscn
+res://entities/refuge/refuge.tscn
+res://entities/refuge/refuge.gd
+res://entities/refuge/scout/player.tscn
+res://entities/refuge/scout/scout.tscn
