@@ -18,8 +18,11 @@ var data: IsleData:
 
 
 func _ready() -> void:
-	data = IsleData.new()
-	Arbitrator.start_new_round()
+	data = Mother.isle
+	
+	if Arbitrator.is_gameover:
+		Arbitrator.is_gameover = false
+		Arbitrator.start_new_round()
 
 func connect_datas() -> void:
 	kernel.data = data.kernel

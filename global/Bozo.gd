@@ -138,6 +138,14 @@ enum Method {
 	STEAL = 73,
 }
 
+enum Terrain {
+	NONE = 0,
+	DESERT = 74,
+	FOREST = 75,
+	SWAMP = 76
+}
+
+
 enum Status {
 	IDLE = 0,
 	PLAYING_ANIMATION = 100,

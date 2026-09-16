@@ -2,13 +2,16 @@ extends Node
 
 
 #region dice
-var axes: Array[Vector3] = [
+const orthogonal_directions = [Vector2i(1,0), Vector2i(0,1), Vector2i(-1,0), Vector2i(0,-1)]
+const diagonal_directions = [Vector2i(1,-1), Vector2i(1,1), Vector2i(-1,1), Vector2i(-1,-1)]
+
+const axes: Array[Vector3] = [
 	Vector3(90, 0, 0),
 	Vector3(0, 90, 0),
 	Vector3(0, 0, 90)
 ]
 
-var faces = [
+const faces = [
 	"front",
 	"bottom",
 	"left",
@@ -24,41 +27,6 @@ const matters: Array[Bozo.Matter] = [
 	Bozo.Matter.LIQUID,
 	Bozo.Matter.SOLID,
 ]
-
-var outro_to_matter_to_values: Dictionary = {
-	0: {
-		Bozo.Matter.GAS: [2, 3, 4, 5],
-		Bozo.Matter.LIQUID: [2, 3],
-		Bozo.Matter.SOLID: [2]
-	},
-	1: {
-		Bozo.Matter.GAS: [6, 8, 9, 10],
-		Bozo.Matter.LIQUID: [4, 5, 6],
-		Bozo.Matter.SOLID: [3, 4]
-	},
-	2: {
-		Bozo.Matter.GAS: [12, 15, 18, 20],
-		Bozo.Matter.LIQUID: [8, 9, 10, 12],
-		Bozo.Matter.SOLID: [5, 6, 8]
-	},
-	3: {
-		Bozo.Matter.GAS: [25, 27, 30],
-		Bozo.Matter.LIQUID: [15, 18, 20],
-		Bozo.Matter.SOLID: [9, 10, 12]
-	},
-	4: {
-		Bozo.Matter.GAS: [32],
-		Bozo.Matter.LIQUID: [25, 27, 30, 32],
-		Bozo.Matter.SOLID: [15, 18, 20]
-	}
-}
-
-var matter_to_factor = {
-	Bozo.Matter.SOLID: 5,
-	Bozo.Matter.LIQUID: 3,
-	Bozo.Matter.GAS: 2,
-}
-
 #endregion
 
 #region canto
@@ -68,7 +36,7 @@ const tunes = [
 	Bozo.Tune.OUTRO
 ]
 
-var grids = [
+const grids = [
 	Vector2i(0, 0),
 	Vector2i(0, 1),
 	Vector2i(0, 2),
@@ -77,7 +45,7 @@ var grids = [
 	Vector2i(1, 2),
 ]
 
-var net_neighbors = {
+const net_neighbors = {
 	0: [3, 1, 2],
 	1: [4, 2, 0],
 	2: [5, 0, 1],
@@ -86,13 +54,13 @@ var net_neighbors = {
 	5: [2, 3, 4]
 }
 
-var volumes = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 25, 27, 30, 32]
-var prime_volumes = [2, 3, 5]
+const volumes = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 25, 27, 30, 32]
+const prime_volumes = [2, 3, 5]
 
-var pulses = [0, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 25, 27, 30, 
+const pulses = [0, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 25, 27, 30, 
 		32, 36, 40, 45, 50, 54, 60, 64, 75, 81, 90, 96, 100]
 
-var chorus_values = {
+const chorus_values = {
 	"I": [7, 11, 13, 17, 19, 23],
 	"II": [19, 23, 29, 31, 37, 41],
 	"III": [37, 41, 43, 47, 53, 59],
@@ -235,3 +203,28 @@ const PRESSURE_SCALE: Vector2 = Vector2(1.25, 1.25)
 const DEFAULT_KITCHEN_LIMIT: int = 4
 const ASTERISM_RAIDUS: float = 260
 const ASTERISM_SIZE: Vector2 = Vector2(320, 320)
+
+const REFUGE_GRID: Vector2i = Vector2i(118, 66)
+
+
+#region mainland
+const MAINLAND_MATRIX: Vector2i = Vector2i(7, 7)
+const MAINLAND_CELL_SIZE: Vector2 = Vector2i(48, 48)
+const MAINLAND_GRID_SIZE: Vector2i = Vector2i(28, 17)
+const MAINLAND_MAX_CELL: Vector2i = Vector2i(28, 16)
+const OCEAN_MIN_CELL: Vector2i = Vector2i(-2, -2)
+const OCEAN_MAX_CELL: Vector2i = Vector2i(29, 17)
+
+var wasteland_anchors: Array[Vector2i] = [
+	Vector2i(8, 1),
+	Vector2i(10, 1),
+	Vector2i(10, 3),
+]
+
+var wasteland_pattern_coords: Array[Vector2i] = [
+	Vector2i(0, 0),
+	Vector2i(0, 1),
+	Vector2i(1, 1),
+	Vector2i(1, 0)
+]
+#endregion

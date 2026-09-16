@@ -1,0 +1,51 @@
+class_name Mainland
+extends Node2D
+
+
+var data: MainlandData:
+	set(value_):
+		data = value_
+		
+		connect_datas()
+		update_ground_cells()
+
+
+func _ready() -> void:
+	data = Mother.mainland
+	position = Catalog.MAINLAND_CELL_SIZE * 1.5
+	#position.y -= Catalog.MAINLAND_CELL_SIZE.y / 3
+	#global_position = get_viewport().get_visible_rect().size / 2.0
+	#global_position -= Vector2(Catalog.MAINLAND_GRID_SIZE) * Catalog.MAINLAND_CELL_SIZE / 2.0
+
+func connect_datas() -> void:
+	%Haze.data = data.haze
+
+func update_ground_cells() -> void:
+	var coast_cells: Array[Vector2i]
+	
+	for terrain in data.terrain_to_clusters:
+		var terrain_index = Digest.terraint_to_index[terrain]
+		var cells: Array[Vector2i]
+
+		for cluster_data in data.terrain_to_clusters[terrain]:
+			cells.append_array(cluster_data.internals)
+
+		%Ground.set_cells_terrain_connect(cells, 0, terrain_index)
+		coast_cells.append_array(cells)
+		
+	for wasteland_data in data.wastelands:
+		var terrain_index = Digest.terraint_to_index[wasteland_data.terrain]
+		var anchor = Catalog.wasteland_anchors.pick_random()
+		
+		for _i in Catalog.wasteland_pattern_coords.size():
+			var coord = wasteland_data.internals.front() + Vector2i.ONE + wasteland_data.pattern_coords[_i]
+			var vec = anchor + Catalog.wasteland_pattern_coords[_i]
+			%Ground.set_cell(coord, terrain_index, vec)
+	
+	update_coast_cells(coast_cells)
+	#%Coast.set_cells_terrain_connect(coast_cells, 0, 0)
+
+func update_coast_cells(cells_: Array[Vector2i]) -> void:
+	var borderlands = Helper.get_borderland_cells(cells_, false)
+	cells_.append_array(borderlands)
+	%Coast.set_cells_terrain_connect(cells_, 0, 0)

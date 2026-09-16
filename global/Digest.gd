@@ -5,7 +5,38 @@ var faction_to_color: Dictionary
 var sum_to_matter_to_intro: Dictionary
 
 
+
 #region matter
+
+
+const outro_to_matter_to_values: Dictionary = {
+	0: {
+		Bozo.Matter.GAS: [2, 3, 4, 5],
+		Bozo.Matter.LIQUID: [2, 3],
+		Bozo.Matter.SOLID: [2]
+	},
+	1: {
+		Bozo.Matter.GAS: [6, 8, 9, 10],
+		Bozo.Matter.LIQUID: [4, 5, 6],
+		Bozo.Matter.SOLID: [3, 4]
+	},
+	2: {
+		Bozo.Matter.GAS: [12, 15, 18, 20],
+		Bozo.Matter.LIQUID: [8, 9, 10, 12],
+		Bozo.Matter.SOLID: [5, 6, 8]
+	},
+	3: {
+		Bozo.Matter.GAS: [25, 27, 30],
+		Bozo.Matter.LIQUID: [15, 18, 20],
+		Bozo.Matter.SOLID: [9, 10, 12]
+	},
+	4: {
+		Bozo.Matter.GAS: [32],
+		Bozo.Matter.LIQUID: [25, 27, 30, 32],
+		Bozo.Matter.SOLID: [15, 18, 20]
+	}
+}
+
 const verse_to_matter = {
 	35: [
 		Bozo.Matter.GAS,
@@ -679,6 +710,41 @@ var main_to_secondary = {
 	9: 2,
 	10: 0
 }
+
+
+#region terrain
+var terraint_to_index = {
+	Bozo.Terrain.FOREST: 0,
+	Bozo.Terrain.DESERT: 1,
+	Bozo.Terrain.SWAMP: 2,
+}
+
+var terrain_to_cluster_size = {
+	Bozo.Terrain.DESERT: 2,
+	Bozo.Terrain.SWAMP: 4,
+	Bozo.Terrain.FOREST: 4,
+}
+
+var terrain_to_start_cell = {
+	Bozo.Terrain.DESERT: Vector2i(-6, 0),
+	Bozo.Terrain.SWAMP: Vector2i(0, 8),
+	Bozo.Terrain.FOREST: Vector2i(2, 12),
+}
+
+var terrain_to_col_shift = {
+	Bozo.Terrain.DESERT: Vector2i(4, -2),
+	Bozo.Terrain.SWAMP: Vector2i(2, -6),
+	Bozo.Terrain.FOREST: Vector2i(2, -6),
+}
+
+var terrain_to_row_shift = {
+	Bozo.Terrain.DESERT: Vector2i(2, 4),
+	Bozo.Terrain.SWAMP: Vector2i(6, 2),
+	Bozo.Terrain.FOREST: Vector2i(6, 2),
+}
+#endregion
+
+
 
 #region color
 var matter_to_color = {

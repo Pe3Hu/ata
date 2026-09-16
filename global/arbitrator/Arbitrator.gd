@@ -3,7 +3,7 @@ extends Node
 
 signal phase_changed(phase: Bozo.Phase)
 
-var is_gameover: bool = false
+var is_gameover: bool = true
 var current_round: int = 0
 
 var phases: Array[Phase]

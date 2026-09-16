@@ -144,3 +144,30 @@ func find_intersection(a_: IdeaData, b_: IdeaData) -> Array:
 				result.append(_a)
 	
 	return result
+
+func is_cell_inside_mainland(cell_: Vector2i) -> bool:
+	return cell_.x >= 0 and cell_.y >= 0 and cell_.x < Catalog.MAINLAND_MAX_CELL.x and cell_.y < Catalog.MAINLAND_MAX_CELL.y 
+
+func get_borderland_cells(cells_: Array[Vector2i], is_orthogonal: bool = true) -> Array[Vector2i]:
+	var boundary: Array[Vector2i]
+	var directions = Catalog.orthogonal_directions.duplicate()
+	
+	if not is_orthogonal:
+		directions.append_array(Catalog.diagonal_directions)
+
+	for cell in cells_:
+		for direction in Catalog.orthogonal_directions:
+			if not cells_.has(cell + direction):
+				boundary.append(cell)
+				break
+
+	var borderlands: Array[Vector2i]
+	
+	for cell in boundary:
+		for direction in directions:
+			var borderland_cell = cell + direction
+			
+			if not borderlands.has(borderland_cell):
+				borderlands.append(borderland_cell)
+	
+	return borderlands

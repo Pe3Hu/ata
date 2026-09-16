@@ -72,9 +72,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="CardsBtn" parent="VBoxContainer" unique_id=268485788 instance=ExtResource("2_1ey7h")]
+[node name="IsleButton" parent="VBoxContainer" unique_id=268485788 instance=ExtResource("2_1ey7h")]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Cards"
+text = "Isle"
 
-[connection signal="pressed" from="VBoxContainer/CardsBtn" to="." method="_on_cards_btn_pressed"]
+[node name="ContinentButton" parent="VBoxContainer" unique_id=2083984559 instance=ExtResource("2_1ey7h")]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Сontinent"
+
+[connection signal="pressed" from="VBoxContainer/IsleButton" to="." method="_on_isle_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ContinentButton" to="." method="_on_continent_button_pressed"]

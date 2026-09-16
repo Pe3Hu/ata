@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://co3w8het156f"]
+
+[ext_resource type="Shader" uid="uid://vgpkyj1h0cm5" path="res://entities/continent/haze/haze.gdshader" id="1_snry7"]
+[ext_resource type="Script" uid="uid://datk5u3ag54cp" path="res://entities/continent/haze/haze.gd" id="2_dsier"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eku8p"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eku8p"]
+noise = SubResource("FastNoiseLite_eku8p")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snry7"]
+shader = ExtResource("1_snry7")
+shader_parameter/iChannel1 = SubResource("NoiseTexture2D_eku8p")
+shader_parameter/reveal_softness = 0.0
+shader_parameter/fog_opacity = 1.0
+shader_parameter/animation_speed = 0.30000001425
+shader_parameter/hue = 0.7410000351975
+
+[node name="Haze" type="Sprite2D" unique_id=1740775702]
+material = SubResource("ShaderMaterial_snry7")
+script = ExtResource("2_dsier")

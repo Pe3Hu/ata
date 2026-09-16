@@ -1,3 +1,0 @@
-PressureDiceData
-PunishmentDiceData
-OpportunityData
