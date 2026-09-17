@@ -5,10 +5,13 @@ extends RefCounted
 var shelters: Array[ShelterData]
 var wastelands: Array[WastelandData]
 
+var selected_ruin: WastelandData
+
 var terrain_to_clusters: Dictionary
 var cell_to_cluster: Dictionary
 
 var haze: HazeData = HazeData.new(self)
+var beam: BeamData = BeamData.new(self)
 
 
 func _init() -> void:
@@ -39,8 +42,9 @@ func update_cell_to_cluster() -> void:
 				cell_to_cluster[cell] = cluster
 
 func init_neighbors() -> void:
-	for shelter in shelters:
-		shelter.link_neighbors()
-	
 	for wasteland in wastelands:
 		wasteland.link_neighbors()
+	
+	for shelter in shelters:
+		shelter.link_neighbors()
+		shelter.link_shelter_neighbors()

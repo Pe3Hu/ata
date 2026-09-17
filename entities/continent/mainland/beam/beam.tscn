@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://jwupei73adu3"]
+
+[ext_resource type="Script" uid="uid://b43uxq17q0odx" path="res://entities/continent/mainland/beam/beam.gd" id="1_h8gbe"]
+[ext_resource type="Shader" uid="uid://d00hmplpm54o6" path="res://entities/continent/mainland/beam/beam.gdshader" id="2_udrm8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+shader = ExtResource("2_udrm8")
+shader_parameter/speed = 1.0
+shader_parameter/pixel_resolution = 32.0
+shader_parameter/alpha = 0.95
+shader_parameter/flicker_strength = 0.15
+shader_parameter/to_color = Color(0.4, 0.35, 0.2, 1)
+shader_parameter/from_color = Color(0.9, 0.2, 0.1, 1)
+shader_parameter/particle_count = 128.0
+shader_parameter/brightness = 0.001
+shader_parameter/fire_shift = 0.15
+shader_parameter/fire_shift_frequency = 5.0
+shader_parameter/size = Vector2(0.05, 1.8)
+shader_parameter/glow = Vector2(0.001, 0.04)
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/pos_offset = Vector2(0, -0.75)
+shader_parameter/gravity_angle = 0.0
+
+[node name="Beam" type="ColorRect" unique_id=703641497]
+material = SubResource("ShaderMaterial_60rxr")
+custom_minimum_size = Vector2(128, 128)
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+offset_transform_enabled = true
+offset_transform_visual_only = false
+mouse_filter = 1
+script = ExtResource("1_h8gbe")

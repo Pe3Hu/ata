@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c8v5agxup8bm2" path="res://entities/continent/mainland/images/forest.png" id="4_hrun0"]
 [ext_resource type="Texture2D" uid="uid://2mt8f3fm4nw4" path="res://entities/continent/mainland/images/swamp.png" id="5_cugl8"]
 [ext_resource type="PackedScene" uid="uid://co3w8het156f" path="res://entities/continent/haze/haze.tscn" id="6_x1b5c"]
+[ext_resource type="PackedScene" uid="uid://jwupei73adu3" path="res://entities/continent/mainland/beam/beam.tscn" id="7_1n7ec"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2hdj"]
 texture = ExtResource("2_x1b5c")
@@ -1016,6 +1017,16 @@ unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_lxk3t")
+
+[node name="Shelters" type="Node2D" parent="." unique_id=1747237073]
+unique_name_in_owner = true
+
+[node name="Wastelands" type="Node2D" parent="." unique_id=364240107]
+unique_name_in_owner = true
+
+[node name="Beam" parent="." unique_id=703641497 instance=ExtResource("7_1n7ec")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Haze" parent="." unique_id=1740775702 instance=ExtResource("6_x1b5c")]
 unique_name_in_owner = true

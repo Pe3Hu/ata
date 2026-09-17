@@ -227,4 +227,11 @@ var wasteland_pattern_coords: Array[Vector2i] = [
 	Vector2i(1, 1),
 	Vector2i(1, 0)
 ]
+
+var ruin_coords: Array[Vector2] = [
+	Vector2(1, -1),
+	Vector2(1, 1),
+	Vector2(-1, 1),
+	Vector2(-1, -1),
+]
 #endregion

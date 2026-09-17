@@ -11,12 +11,16 @@ var externals: Array[Vector2i]
 var neighbor_shelters: Array[ShelterData]
 var neighbor_wastlends: Array[WastelandData]
 
+var center: Vector2
+var index: int
+
 
 func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) -> void:
 	mainland = maindland_
 	terrain = terrain_
 	
 	init_internals(anchor_)
+	calc_center()
 
 func init_internals(anchor_: Vector2i) -> void:
 	for x in Digest.terrain_to_cluster_size[terrain]:
@@ -27,6 +31,12 @@ func init_internals(anchor_: Vector2i) -> void:
 				internals.append(cell)
 			else:
 				return
+
+func calc_center() -> void:
+	center = Vector2.ONE / 2
+	
+	for internal in internals:
+		center += Vector2(internal) / internals.size()
 
 func init_externals() -> void:
 	externals = Helper.get_borderland_cells(internals, false) 

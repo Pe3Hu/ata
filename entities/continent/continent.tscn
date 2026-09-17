@@ -20,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="BG" type="ColorRect" parent="." unique_id=1626458807]
 material = SubResource("ShaderMaterial_hxdvn")
@@ -50,6 +51,7 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(1488, 928)
 clip_contents = true
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
 
 [node name="Mainland" parent="HBox/MainlandPanel" unique_id=38056738 instance=ExtResource("1_3xmvj")]
@@ -69,3 +71,5 @@ text = "HOME"
 [node name="GoHome" type="Node" parent="HomeBtn" unique_id=100884945]
 script = ExtResource("3_3pv22")
 metadata/_custom_type_script = "uid://gmp1wxiwy1n8"
+
+[connection signal="gui_input" from="." to="HBox/MainlandPanel/Mainland" method="_on_continent_gui_input"]

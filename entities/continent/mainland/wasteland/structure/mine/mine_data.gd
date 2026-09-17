@@ -1,0 +1,2 @@
+class_name MineData
+extends StructureData

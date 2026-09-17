@@ -711,7 +711,6 @@ var main_to_secondary = {
 	10: 0
 }
 
-
 #region terrain
 var terraint_to_index = {
 	Bozo.Terrain.FOREST: 0,

@@ -2,14 +2,20 @@ class_name Mainland
 extends Node2D
 
 
+var shelter_scene = preload('uid://vmotvqlsfixc')
+var wasteland_scene = preload('uid://bu058yt157muq')
+
 var data: MainlandData:
 	set(value_):
 		data = value_
 		
 		connect_datas()
 		update_ground_cells()
+		init_shelters()
+		init_wastelands()
 
 
+#region init
 func _ready() -> void:
 	data = Mother.mainland
 	position = Catalog.MAINLAND_CELL_SIZE * 1.5
@@ -19,6 +25,7 @@ func _ready() -> void:
 
 func connect_datas() -> void:
 	%Haze.data = data.haze
+	%Beam.data = data.beam
 
 func update_ground_cells() -> void:
 	var coast_cells: Array[Vector2i]
@@ -49,3 +56,28 @@ func update_coast_cells(cells_: Array[Vector2i]) -> void:
 	var borderlands = Helper.get_borderland_cells(cells_, false)
 	cells_.append_array(borderlands)
 	%Coast.set_cells_terrain_connect(cells_, 0, 0)
+
+func init_shelters() -> void:
+	for shelter_data in data.shelters:
+		add_shelter(shelter_data)
+
+func add_shelter(shelter_data_: ShelterData) -> void:
+	var shelter = shelter_scene.instantiate()
+	%Shelters.add_child(shelter)
+	shelter.data = shelter_data_
+
+func init_wastelands() -> void:
+	for wasteland_data in data.wastelands:
+		add_wasteland(wasteland_data)
+
+func add_wasteland(wasteland_data_: WastelandData) -> void:
+	var wasteland = wasteland_scene.instantiate()
+	%Wastelands.add_child(wasteland)
+	wasteland.data = wasteland_data_
+#endregion
+
+
+
+func _on_continent_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		data.beam.activate()
