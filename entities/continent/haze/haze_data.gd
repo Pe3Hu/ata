@@ -299,8 +299,9 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 		initial_radius_: float = 0.0) -> void:
 	if cluster_ == null: return
 	if cluster_ is ShelterData:
-		mainland.beam.first_shelter = cluster_
-		cluster_.is_hazed = false
+		mainland.beam.current_shelter = cluster_
+		cluster_.shrine.is_hazed = false
+		mainland.footprint.next_structure = cluster_.shrine
 
 	var info := _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
 	var pixels: Dictionary = info["pixels"]
@@ -623,7 +624,7 @@ func _apply_pulse() -> bool:
 #region debug-triggers
 
 # Q — первый shelter (internals + externals).
-func reveal_first_shelter_wave(duration_: float = 0.5,
+func reveal_current_shelter_wave(duration_: float = 0.5,
 		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5) -> void:
 	if mainland == null: return
 	if mainland.shelters.is_empty(): return
@@ -631,7 +632,7 @@ func reveal_first_shelter_wave(duration_: float = 0.5,
 
 
 # W — первый wasteland (только internals).
-func reveal_first_wasteland_wave(duration_: float = 0.5,
+func reveal_current_wasteland_wave(duration_: float = 0.5,
 		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5) -> void:
 	if mainland == null: return
 	if mainland.wastelands.is_empty(): return
@@ -668,7 +669,7 @@ func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 	#    центра, с радиусом, на котором остановился shelter. Фронт
 	#    получается непрерывным: где shelter закончил — там сосед начал.
 	var t: float = duration_
-	for w in shelter.neighbor_wastlends:
+	for w in shelter.neighbor_wastelands:
 		_delayed.append({
 			"cluster": w,
 			"delay": t,

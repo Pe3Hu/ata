@@ -14,6 +14,6 @@ func connect_signals() -> void:
 	_on_shelters_changed()
 
 func _on_shelters_changed() -> void:
-	visible = data.second_shelter != null
+	visible = data.next_shelter != null
 	offset_transform_position = data.get_anchor() * Catalog.MAINLAND_CELL_SIZE
 	material.set_shader_parameter('gravity_angle', data.get_angle())

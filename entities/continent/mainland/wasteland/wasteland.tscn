@@ -5,8 +5,5 @@
 [node name="Wasteland" type="Node2D" unique_id=288981593]
 script = ExtResource("1_t3i8t")
 
-[node name="Ruins" type="Node2D" parent="." unique_id=1006149876]
-unique_name_in_owner = true
-
-[node name="Mines" type="Node2D" parent="." unique_id=1647522031]
+[node name="Structures" type="Node2D" parent="." unique_id=1006149876]
 unique_name_in_owner = true

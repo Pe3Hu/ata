@@ -1,18 +1,9 @@
 class_name ShelterData
-extends CluserData
+extends ClusterData
 
 
-signal haze_changed
-signal illuminate_changed
 
-var is_hazed: bool = true:
-	set(value_):
-		is_hazed = value_
-		haze_changed.emit()
-var is_illuminated: bool = false:
-	set(value_):
-		is_illuminated = value_
-		illuminate_changed.emit()
+var shrine: ShrineData = ShrineData.new(self, Bozo.Structure.SHRINE)
 
 
 func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) -> void:

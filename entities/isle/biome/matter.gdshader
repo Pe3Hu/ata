@@ -18,9 +18,9 @@ float smoothnoise(vec4 p) {
     const vec2 e = vec2(0.0, 1.0);
     vec4 i = floor(p);
     vec4 f = fract(p);
-    
+
     f = f*f*(3. - 2.*f);
-    
+
     return mix(mix(mix(mix(rand(i + e.xxxx),
                            rand(i + e.yxxx), f.x),
                        mix(rand(i + e.xyxx),
@@ -68,39 +68,47 @@ void fragment() {
     vec3 col_a = colorA;
     vec3 col_b = colorB;
     vec3 col_c = colorC;
-    
-    if(discomode){
+
+    if (discomode) {
         col_a = vec3(sin(iTime), sin(iTime + 7.0), cos(iTime));
         col_b = vec3(cos(iTime), cos(iTime + 7.0), sin(iTime));
         col_c = vec3(sin(iTime), cos(iTime), sin(iTime + 0.5));
     }
-    
-    // Привязка к экрану вместо локальных размеров
+
     vec2 screen_uv = SCREEN_UV;
     vec3 pos = uvTo3D(screen_uv * scale);
-    
+
     pos.y += sin(iTime / 5.0);
     pos.x += cos(iTime / 5.0);
     pos.z += sin(iTime / 5.0);
-    
+
     float fbmm = fbm(pos);
     vec3 q = vec3(fbmm, sin(fbmm), cos(fbmm));
     vec3 r = vec3(fbmm, sin(fbmm), cos(fbmm));
     float v = fbm(pos + 5.0 * r + iTime * 0.005);
-    
+
     vec3 col_top = vec3(1.0);
     vec3 col_bot = vec3(0.0);
-    
+
     vec3 res_color = mix(col_a, col_b, clamp(r, 0.0, 1.0));
     res_color = mix(res_color, col_c, clamp(q, 0.0, 1.0));
-    
+
     float poss = v * 2.0 - 1.0;
     res_color = mix(res_color, col_top, clamp(poss, 0.0, 1.0));
     res_color = mix(res_color, col_bot, clamp(-poss, 0.0, 1.0));
-    
+
     res_color = res_color / max(max3(res_color), 0.001);
     res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
-	
-	float mask_alpha = texture(mask_texture, UV).a;
-	COLOR = vec4(res_color, mask_alpha);
+
+    // --- Автовыбор маски ---
+    // Sprite2D / TextureRect -> TEXTURE имеет размер больше 1x1, берём альфу оттуда.
+    // ColorRect -> TEXTURE = 1x1 (или вовсе не задана), используем uniform mask_texture.
+    ivec2 tex_size = textureSize(TEXTURE, 0);
+    bool has_own_texture = (tex_size.x > 1 || tex_size.y > 1);
+
+    float mask_alpha = has_own_texture
+        ? texture(TEXTURE, UV).a
+        : texture(mask_texture, UV).a;
+
+    COLOR = vec4(res_color, mask_alpha);
 }

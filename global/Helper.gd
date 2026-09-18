@@ -171,3 +171,19 @@ func get_borderland_cells(cells_: Array[Vector2i], is_orthogonal: bool = true) -
 				borderlands.append(borderland_cell)
 	
 	return borderlands
+
+
+func get_cluster_position(data_: ClusterData) -> Vector2:
+	return data_.center * Catalog.MAINLAND_CELL_SIZE
+
+func get_structure_position(data_: StructureData, with_cluster_: bool = false) -> Vector2:
+	var position: Vector2
+	
+	if with_cluster_:
+		position = get_cluster_position(data_.cluster)
+		pass
+	
+	if data_.cluster as WastelandData:
+		position += Vector2(data_.cell) * Catalog.MAINLAND_CELL_SIZE * 0.8
+	
+	return position

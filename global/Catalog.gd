@@ -216,9 +216,9 @@ const OCEAN_MIN_CELL: Vector2i = Vector2i(-2, -2)
 const OCEAN_MAX_CELL: Vector2i = Vector2i(29, 17)
 
 var wasteland_anchors: Array[Vector2i] = [
-	Vector2i(8, 1),
+	Vector2i(12, 1),
 	Vector2i(10, 1),
-	Vector2i(10, 3),
+	Vector2i(8, 1),
 ]
 
 var wasteland_pattern_coords: Array[Vector2i] = [
@@ -228,10 +228,14 @@ var wasteland_pattern_coords: Array[Vector2i] = [
 	Vector2i(1, 0)
 ]
 
-var ruin_coords: Array[Vector2] = [
+var structure_coords: Array[Vector2] = [
 	Vector2(1, -1),
 	Vector2(1, 1),
 	Vector2(-1, 1),
 	Vector2(-1, -1),
 ]
 #endregion
+
+var structures: Array[Bozo.Structure] = [
+	
+]

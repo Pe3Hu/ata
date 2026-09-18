@@ -145,6 +145,25 @@ enum Terrain {
 	SWAMP = 76
 }
 
+enum Footprint {
+	NONE = 0,
+	CIRCLING = 77,
+	MOVING = 78,
+}
+
+enum Structure {
+	NONE = 0,
+	SHRINE = 79,
+	RIFT = 80,
+	RUIN = 81,
+	FORGE = 82,
+	THEATER = 83,
+	WORKSHOP = 84,
+	LIGHTHOUSE = 85,
+	MINE = 86,
+	ATELIER = 87,
+}
+
 
 enum Status {
 	IDLE = 0,
@@ -188,6 +207,7 @@ enum Type {
 	OBSTACLE = -15,
 	MANDATE = -16,
 	METHOD = -17,
+	STRUCTURE = -20,
 	
 	
 	ACTION = -100,
@@ -212,6 +232,7 @@ const type_to_index = {
 	Type.OBSTACLE: 62,
 	Type.MANDATE: 65,
 	Type.METHOD: 68,
+	Type.STRUCTURE: 79,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -231,6 +252,7 @@ const type_to_enum = {
 	Type.OBSTACLE: Bozo.Obstacle,
 	Type.MANDATE: Bozo.Mandate,
 	Type.METHOD: Bozo.Method,
+	Type.STRUCTURE: Bozo.Structure,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

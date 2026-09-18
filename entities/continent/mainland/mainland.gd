@@ -2,7 +2,7 @@ class_name Mainland
 extends Node2D
 
 
-var shelter_scene = preload('uid://vmotvqlsfixc')
+var shelter_scene = preload('uid://e02t6jxdkjoe')
 var wasteland_scene = preload('uid://bu058yt157muq')
 
 var data: MainlandData:
@@ -26,6 +26,7 @@ func _ready() -> void:
 func connect_datas() -> void:
 	%Haze.data = data.haze
 	%Beam.data = data.beam
+	%Footprint.data = data.footprint
 
 func update_ground_cells() -> void:
 	var coast_cells: Array[Vector2i]
@@ -42,11 +43,12 @@ func update_ground_cells() -> void:
 		
 	for wasteland_data in data.wastelands:
 		var terrain_index = Digest.terraint_to_index[wasteland_data.terrain]
-		var anchor = Catalog.wasteland_anchors.pick_random()
+		var biome_index = Catalog.biomes.find(wasteland_data.biome.type)
+		var biome_anchor = Catalog.wasteland_anchors[biome_index]
 		
 		for _i in Catalog.wasteland_pattern_coords.size():
 			var coord = wasteland_data.internals.front() + Vector2i.ONE + wasteland_data.pattern_coords[_i]
-			var vec = anchor + Catalog.wasteland_pattern_coords[_i]
+			var vec = biome_anchor + Catalog.wasteland_pattern_coords[_i]
 			%Ground.set_cell(coord, terrain_index, vec)
 	
 	update_coast_cells(coast_cells)
@@ -76,8 +78,7 @@ func add_wasteland(wasteland_data_: WastelandData) -> void:
 	wasteland.data = wasteland_data_
 #endregion
 
-
-
 func _on_continent_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		data.beam.activate()
+		data.footprint.activate()

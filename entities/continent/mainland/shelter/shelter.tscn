@@ -1,33 +1,10 @@
-[gd_scene format=3 uid="uid://vmotvqlsfixc"]
+[gd_scene format=3 uid="uid://e02t6jxdkjoe"]
 
-[ext_resource type="Script" uid="uid://28xhj6irwm0" path="res://entities/continent/mainland/shelter/shelter.gd" id="1_8yse7"]
-[ext_resource type="Texture2D" uid="uid://dl2prkxpq5cqg" path="res://entities/continent/mainland/shelter/images/flame.png" id="2_28mf6"]
-[ext_resource type="Texture2D" uid="uid://qufcvn3jh27s" path="res://entities/continent/mainland/shelter/images/torch.png" id="3_d8fnq"]
+[ext_resource type="Script" uid="uid://csk5cu24qrxee" path="res://entities/continent/mainland/shelter/shelter.gd" id="1_8yse7"]
+[ext_resource type="PackedScene" uid="uid://t6xtvcopq576" path="res://entities/continent/mainland/structure/shrine/shrine.tscn" id="2_o8kyd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxk3t"]
-size = Vector2(48, 48)
-
-[node name="Shelter" type="Node2D" unique_id=1227119819]
+[node name="Shelter" type="Node2D" unique_id=288981593]
 script = ExtResource("1_8yse7")
 
-[node name="Flame" type="Sprite2D" parent="." unique_id=1576963287]
+[node name="Shrine" parent="." unique_id=594682729 instance=ExtResource("2_o8kyd")]
 unique_name_in_owner = true
-visible = false
-modulate = Color(1, 0.16000003, 0.16000003, 1)
-texture_filter = 1
-texture = ExtResource("2_28mf6")
-
-[node name="Torch" type="Sprite2D" parent="." unique_id=1960946484]
-unique_name_in_owner = true
-visible = false
-modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-texture = ExtResource("3_d8fnq")
-
-[node name="BodyArea" type="Area2D" parent="." unique_id=564036088]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea" unique_id=1871147425]
-shape = SubResource("RectangleShape2D_lxk3t")
-
-[connection signal="mouse_entered" from="BodyArea" to="." method="_on_body_area_mouse_entered"]
-[connection signal="mouse_exited" from="BodyArea" to="." method="_on_body_area_mouse_exited"]

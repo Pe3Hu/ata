@@ -1,13 +1,14 @@
 class_name WastelandData
-extends CluserData
+extends ClusterData
 
  
+var biome: BiomeData
+var structures: Array[StructureData]
+
 var pattern_coords: Array[Vector2i]
-
-var ruins: Array[RuinData]
-var mines: Array[MineData]
-
 var cells_options: Array[Vector2i]
+
+
 
 #region init
 func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) -> void:
@@ -25,28 +26,27 @@ func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) 
 		
 		pattern_coords = Catalog.wasteland_pattern_coords.duplicate()
 		pattern_coords.shuffle()
-		init_objects()
+		init_structures()
 
-func init_objects() -> void:
-	cells_options.append_array(Catalog.ruin_coords)
+func init_structures() -> void:
+	cells_options.append_array(Catalog.structure_coords)
 	cells_options.shuffle()
 	var cell = cells_options.pop_back()
-	add_ruin(cell)
+	#add_structure(cell, Bozo.Structure.RUIN)
 	cell = cells_options.pop_back()
-	add_mine(cell)
+	#add_structure(cell, Bozo.Structure.FORGE)
+	cell = cells_options.pop_back()
+	#add_structure(cell, Bozo.Structure.RIFT)
 	
-#func init_ruins() -> void:
+#func init_structures() -> void:
 	#
 	#for cell in cells_options:
-		#add_ruin(cell)
+		#add_structure(cell)
 
-func add_ruin(cell_: Vector2i) -> void:
-	var matter = Catalog.matters.pick_random()
-	var ruin = RuinData.new(self, cell_, matter)
-	ruins.append(ruin)
-
-func add_mine(cell_: Vector2i) -> void:
-	var matter = Catalog.matters.pick_random()
-	var mine = MineData.new(self, cell_, matter)
-	mines.append(mine)
+func add_structure(cell_: Vector2i, type_: Bozo.Structure) -> void:
+	var structure = StructureData.new(self, type_, cell_)
+	structures.append(structure)
+	
+	if type_ == Bozo.Structure.RUIN:
+		structure.matter = Catalog.matters.pick_random()
 #endregion

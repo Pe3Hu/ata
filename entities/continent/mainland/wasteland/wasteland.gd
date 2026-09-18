@@ -2,34 +2,23 @@ class_name Wasteland
 extends Node2D
 
 
-var ruin_scene = preload('uid://be7e3woi3dihb')
-var mine_scene = preload('uid://c6muhtgmpfhws')
+var structure_scene = preload('uid://ctxs2sl7jnlkw')
 
 var data: WastelandData:
 	set(value_):
 		data = value_
 		
-		init_ruins()
-		init_mines()
-		position = data.center * Catalog.MAINLAND_CELL_SIZE
+		init_structures()
+		position = Helper.get_cluster_position(data)
 
 
 #region init
-func init_ruins() -> void:
-	for ruin_data in data.ruins:
-		add_ruin(ruin_data)
+func init_structures() -> void:
+	for structure_data in data.structures:
+		add_structure(structure_data)
 
-func add_ruin(ruin_data_: RuinData) -> void:
-	var ruin = ruin_scene.instantiate()
-	%Ruins.add_child(ruin)
-	ruin.data = ruin_data_
-
-func init_mines() -> void:
-	for mine_data in data.mines:
-		add_mine(mine_data)
-
-func add_mine(mine_data_: MineData) -> void:
-	var mine = mine_scene.instantiate()
-	%Mines.add_child(mine)
-	mine.data = mine_data_
+func add_structure(structure_data_: StructureData) -> void:
+	var structure = structure_scene.instantiate()
+	%Structures.add_child(structure)
+	structure.data = structure_data_
 #endregion

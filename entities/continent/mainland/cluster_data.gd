@@ -1,4 +1,4 @@
-class_name CluserData
+class_name ClusterData
 extends RefCounted
 
 
@@ -9,7 +9,7 @@ var internals: Array[Vector2i]
 var externals: Array[Vector2i]
 
 var neighbor_shelters: Array[ShelterData]
-var neighbor_wastlends: Array[WastelandData]
+var neighbor_wastelands: Array[WastelandData]
 
 var center: Vector2
 var index: int
@@ -50,8 +50,8 @@ func link_neighbors() -> void:
 			if neighbor_cluster == self: continue
 
 			if neighbor_cluster is WastelandData:
-				if not neighbor_wastlends.has(neighbor_cluster):
-					neighbor_wastlends.append(neighbor_cluster)
+				if not neighbor_wastelands.has(neighbor_cluster):
+					neighbor_wastelands.append(neighbor_cluster)
 			elif neighbor_cluster is ShelterData:
 				if not neighbor_shelters.has(neighbor_cluster):
 					neighbor_shelters.append(neighbor_cluster)

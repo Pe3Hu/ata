@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://t6xtvcopq576"]
+
+[ext_resource type="Script" uid="uid://28xhj6irwm0" path="res://entities/continent/mainland/structure/shrine/shrine.gd" id="1_n8b4l"]
+[ext_resource type="PackedScene" uid="uid://ctxs2sl7jnlkw" path="res://entities/continent/mainland/structure/structure.tscn" id="1_wwwk4"]
+[ext_resource type="Texture2D" uid="uid://dl2prkxpq5cqg" path="res://entities/continent/mainland/structure/shrine/images/flame.png" id="2_jky0t"]
+[ext_resource type="Texture2D" uid="uid://bix55d634a1sf" path="res://entities/continent/mainland/structure/images/ruin/body.png" id="3_h0u87"]
+[ext_resource type="Texture2D" uid="uid://qufcvn3jh27s" path="res://entities/continent/mainland/structure/shrine/images/torch.png" id="3_utbui"]
+[ext_resource type="Texture2D" uid="uid://byndxxby8l4y7" path="res://entities/continent/mainland/structure/images/ruin/border.png" id="4_q30lq"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader" id="5_ri0ac"]
+
+[sub_resource type="Shader" id="Shader_wwwk4"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture : hint_default_white;
+uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
+uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
+uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
+uniform bool discomode = false;
+uniform float speed : hint_range(0.1, 2.0) = 0.2;
+uniform float scale : hint_range(0.1, 5.0) = 1.0;
+
+#define iTime (TIME * speed)
+
+float rand(vec4 p) {
+    return fract(sin(p.x*1234. + p.y*2345. + p.z*3456. + p.w*4567.) * 5678.);
+}
+
+float smoothnoise(vec4 p) {
+    const vec2 e = vec2(0.0, 1.0);
+    vec4 i = floor(p);
+    vec4 f = fract(p);
+    
+    f = f*f*(3. - 2.*f);
+    
+    return mix(mix(mix(mix(rand(i + e.xxxx),
+                           rand(i + e.yxxx), f.x),
+                       mix(rand(i + e.xyxx),
+                           rand(i + e.yyxx), f.x), f.y),
+                   mix(mix(rand(i + e.xxyx),
+                           rand(i + e.yxyx), f.x),
+                       mix(rand(i + e.xyyx),
+                           rand(i + e.yyyx), f.x), f.y), f.z),
+               mix(mix(mix(rand(i + e.xxxy),
+                           rand(i + e.yxxy), f.x),
+                       mix(rand(i + e.xyxy),
+                           rand(i + e.yyxy), f.x), f.y),
+                   mix(mix(rand(i + e.xxyy),
+                           rand(i + e.yxyy), f.x),
+                       mix(rand(i + e.xyyy),
+                           rand(i + e.yyyy), f.x), f.y), f.z), f.w);
+}
+
+float fbm(vec3 x) {
+    float v = 0.0;
+    float a = 0.5;
+    vec3 shift = vec3(1.0);
+    for (int i = 0; i < 10; ++i) {
+        v += a * smoothnoise(vec4(x, cos(iTime * 0.002) * 200.0));
+        x = x * 2.0 + shift;
+        a *= 0.5;
+    }
+    return v;
+}
+
+vec3 uvTo3D(vec2 uv) {
+    float theta = uv.x * 2.0 * 3.14159265359;
+    float phi = uv.y * 3.14159265359;
+    float x = sin(phi) * cos(theta);
+    float y = sin(phi) * sin(theta);
+    float z = cos(phi);
+    return vec3(x, y, z);
+}
+
+float max3(vec3 v) {
+    return max(max(v.x, v.y), v.z);
+}
+
+void fragment() {
+    vec3 col_a = colorA;
+    vec3 col_b = colorB;
+    vec3 col_c = colorC;
+    
+    if(discomode){
+        col_a = vec3(sin(iTime), sin(iTime + 7.0), cos(iTime));
+        col_b = vec3(cos(iTime), cos(iTime + 7.0), sin(iTime));
+        col_c = vec3(sin(iTime), cos(iTime), sin(iTime + 0.5));
+    }
+    
+    // Привязка к экрану вместо локальных размеров
+    vec2 screen_uv = SCREEN_UV;
+    vec3 pos = uvTo3D(screen_uv * scale);
+    
+    pos.y += sin(iTime / 5.0);
+    pos.x += cos(iTime / 5.0);
+    pos.z += sin(iTime / 5.0);
+    
+    float fbmm = fbm(pos);
+    vec3 q = vec3(fbmm, sin(fbmm), cos(fbmm));
+    vec3 r = vec3(fbmm, sin(fbmm), cos(fbmm));
+    float v = fbm(pos + 5.0 * r + iTime * 0.005);
+    
+    vec3 col_top = vec3(1.0);
+    vec3 col_bot = vec3(0.0);
+    
+    vec3 res_color = mix(col_a, col_b, clamp(r, 0.0, 1.0));
+    res_color = mix(res_color, col_c, clamp(q, 0.0, 1.0));
+    
+    float poss = v * 2.0 - 1.0;
+    res_color = mix(res_color, col_top, clamp(poss, 0.0, 1.0));
+    res_color = mix(res_color, col_bot, clamp(-poss, 0.0, 1.0));
+    
+    res_color = res_color / max(max3(res_color), 0.001);
+    res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
+	
+	float mask_alpha = texture(mask_texture, UV).a;
+	COLOR = vec4(res_color, mask_alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06sbu"]
+resource_local_to_scene = true
+shader = SubResource("Shader_wwwk4")
+shader_parameter/mask_texture = ExtResource("3_h0u87")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+shader = ExtResource("5_ri0ac")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
+
+[node name="Shrine" unique_id=594682729 instance=ExtResource("1_wwwk4")]
+script = ExtResource("1_n8b4l")
+
+[node name="Body" parent="." index="0" unique_id=1290085801]
+visible = false
+material = SubResource("ShaderMaterial_06sbu")
+texture = ExtResource("3_h0u87")
+
+[node name="Border" parent="." index="1" unique_id=524314889]
+visible = false
+texture = ExtResource("4_q30lq")
+
+[node name="Flame" type="Sprite2D" parent="." index="3" unique_id=373801606]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+texture = ExtResource("2_jky0t")
+
+[node name="Torch" type="Sprite2D" parent="." index="4" unique_id=1427349254]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("3_utbui")
