@@ -1,27 +1,11 @@
-res://entities/continent/mainland/footprint/footprint.tscn
-res://entities/isle/biome/matter.gdshader
-res://entities/continent/mainland/beam/beam.gdshader
-res://entities/continent/mainland/beam/candle.gdshader
-res://global/Bozo.gd
-res://entities/continent/mainland/structure/structure.tscn
-res://entities/continent/mainland/structure/ruin/ruin.tscn
-res://entities/continent/mainland/structure/structure.gd
-res://entities/continent/mainland/structure/structure_data.gd
-res://entities/continent/mainland/shelter/shelter_data.gd
-res://entities/continent/mainland/wasteland/wasteland_data.gd
-res://entities/continent/mainland/wasteland/wasteland.tscn
-res://entities/continent/mainland/wasteland/wasteland.gd
-res://global/Catalog.gd
-res://entities/continent/ruin.gdshader
-res://entities/continent/continent.tscn
-res://entities/continent/black hole.gdshader
-res://entities/continent/rift.gdshader
-res://entities/continent/mainland/structure/rift.gdshader
-res://entities/continent/mainland/structure/shine.gdshader
-res://entities/continent/mainland/structure/shaders/rift.gdshader
-res://entities/continent/mainland/mainland.tscn
-res://entities/isle/biome/biome_data.gd
-res://entities/continent/mainland/mainland.gd
 res://entities/continent/mainland/mainland_data.gd
-res://entities/continent/mainland/cluster_data.gd
-res://entities/continent/haze/haze_data.gd
+res://entities/continent/continent.tscn
+res://entities/isle/biome/neutral.gdshader
+res://entities/isle/biome/rainbow.gdshader
+res://entities/isle/biome/2 color neutral.gdshader
+res://global/Bozo.gd
+res://entities/continent/mainland/structure/structure.gd
+res://global/Catalog.gd
+res://entities/isle/biome/biome_data.gd
+res://entities/continent/mainland/wasteland/wasteland_data.gd
+res://global/Digest.gd

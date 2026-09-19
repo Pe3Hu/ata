@@ -743,6 +743,19 @@ var terrain_to_row_shift = {
 }
 #endregion
 
+var matter_to_sctructure = {
+	Bozo.Matter.GAS: Bozo.Structure.LIGHTHOUSE, 
+	Bozo.Matter.LIQUID: Bozo.Structure.THEATER, 
+	Bozo.Matter.SOLID: Bozo.Structure.WORKSHOP
+}
+
+var sctructure_to_matter = {
+	Bozo.Structure.OBSERVATORY: Bozo.Matter.GAS, 
+	Bozo.Structure.THEATER: Bozo.Matter.LIQUID, 
+	Bozo.Structure.WORKSHOP: Bozo.Matter.SOLID,
+	Bozo.Structure.LIGHTHOUSE: Bozo.Matter.GAS, 
+	Bozo.Structure.TAVERN: Bozo.Matter.LIQUID, 
+}
 
 
 #region color
@@ -757,6 +770,12 @@ var matter_to_color = {
 var matter_to_hue = {
 	Bozo.Matter.SOLID: 0.05,
 	Bozo.Matter.LIQUID: 0.35,
+	Bozo.Matter.GAS: 0.75,
+}
+
+var matter_to_pure_hue = {
+	Bozo.Matter.SOLID: 0.07,
+	Bozo.Matter.LIQUID: 0.42,
 	Bozo.Matter.GAS: 0.75,
 }
 

@@ -162,6 +162,8 @@ enum Structure {
 	LIGHTHOUSE = 85,
 	MINE = 86,
 	ATELIER = 87,
+	TAVERN = 88,
+	OBSERVATORY = 89,
 }
 
 

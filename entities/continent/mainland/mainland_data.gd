@@ -16,10 +16,12 @@ var beam: BeamData = BeamData.new(self)
 var footprint: FootprintData = FootprintData.new(self)
 
 
+#region init
 func _init() -> void:
 	init_shelters_and_wastelands()
 	init_neighbors()
 	init_biomes()
+	init_structures()
 
 func init_shelters_and_wastelands() -> void:
 	var terrains = [Bozo.Terrain.DESERT, Bozo.Terrain.SWAMP, Bozo.Terrain.FOREST]
@@ -51,10 +53,11 @@ func init_neighbors() -> void:
 	for shelter in shelters:
 		shelter.link_neighbors()
 		shelter.link_shelter_neighbors()
+#endregion
 
-
+#region biome
 func init_biomes() -> void:
-	var attempt_limit = 100
+	var attempt_limit = 300
 	
 	for attempt in attempt_limit:
 		var pairs = pair_wastelands()
@@ -67,10 +70,11 @@ func init_biomes() -> void:
 		var groups = form_biome_groups(pairs, large_pairs)
 		var adjacency = build_biome_adjacency(groups)
 		if not _color_biomes(groups, adjacency): continue
-
 		biomes.clear()
+		
 		for group in groups:
 			biomes.append(BiomeData.new(group.type, group.wastelands))
+		
 		return
 
 func pair_wastelands() -> Array:
@@ -116,7 +120,7 @@ func _pairs_adjacent(a_: Array, b_: Array) -> bool:
 	return false
 
 func match_large_pairs(pair_neighbors_: Dictionary) -> Array:
-	var indexs: = range(pair_neighbors_.size())
+	var indexs = range(pair_neighbors_.size())
 	indexs.shuffle()
 	
 	var used: Dictionary
@@ -140,79 +144,158 @@ func form_biome_groups(pairs_: Array, large_pairs_: Array) -> Array:
 	var groups: Array
 	var used: Dictionary
 
-	for lp in large_pairs_:
-		used[lp[0]] = true
-		used[lp[1]] = true
-		var w: Array = []
-		w.append_array(pairs_[lp[0]])
-		w.append_array(pairs_[lp[1]])
-		groups.append({"wastelands": w, "is_large": true})
+	for large_pair in large_pairs_:
+		used[large_pair[0]] = true
+		used[large_pair[1]] = true
+		var _wastelands: Array = []
+		_wastelands.append_array(pairs_[large_pair[0]])
+		_wastelands.append_array(pairs_[large_pair[1]])
+		groups.append({"wastelands": _wastelands, "is_large": true})
 
-	for i in pairs_.size():
-		if not used.has(i):
-			groups.append({"wastelands": pairs_[i].duplicate(), "is_large": false})
+	for _i in pairs_.size():
+		if not used.has(_i):
+			groups.append({"wastelands": pairs_[_i].duplicate(), "is_large": false})
 
 	return groups
 
-func build_biome_adjacency(groups: Array) -> Dictionary:
-	var adj = {}
-	for i in groups.size():
-		adj[i] = []
-	for i in groups.size():
-		for j in range(i + 1, groups.size()):
-			if _biomes_adjacent(groups[i].wastelands, groups[j].wastelands):
-				adj[i].append(j)
-				adj[j].append(i)
-	return adj
+func build_biome_adjacency(groups_: Array) -> Dictionary:
+	var adjacents: Dictionary
+	
+	for _i in groups_.size():
+		adjacents[_i] = []
+	
+	for _i in groups_.size():
+		for _j in range(_i + 1, groups_.size()):
+			if _biomes_adjacent(groups_[_i].wastelands, groups_[_j].wastelands):
+				adjacents[_i].append(_j)
+				adjacents[_j].append(_i)
+	
+	return adjacents
 
-func _biomes_adjacent(w1: Array, w2: Array) -> bool:
-	for a in w1:
-		for n in a.neighbor_wastelands:
-			if w2.has(n):
+func _biomes_adjacent(a_: Array, b_: Array) -> bool:
+	for wasteland in a_:
+		for neighbor_wasteland in wasteland.neighbor_wastelands:
+			if b_.has(neighbor_wasteland):
 				return true
 	return false
 
-
-# --- 6. раскраска типами ------------------------------------------------
-const BIOME_TYPES: Array[Bozo.Biome] = [
-	Bozo.Biome.PLAIN, Bozo.Biome.SWAMP, Bozo.Biome.MOUNTAIN
-]
-const BIOME_PERMS = [
-	[0, 1, 2], [0, 2, 1], [1, 0, 2],
-	[1, 2, 0], [2, 0, 1], [2, 1, 0]
-]
-
-func _color_biomes(groups: Array, biome_adj: Dictionary) -> bool:
-	var large_indexs: Array = []
-	var small_indexs: Array = []
-	for i in groups.size():
-		if groups[i].is_large:
-			large_indexs.append(i)
+func _color_biomes(groups_: Array, biome_adj_: Dictionary) -> bool:
+	const permutations = [
+		[0, 1, 2], [0, 2, 1], [1, 0, 2],
+		[1, 2, 0], [2, 0, 1], [2, 1, 0]
+	]
+	var large_indexs: Array
+	var small_indexs: Array
+	
+	for _i in groups_.size():
+		if groups_[_i].is_large:
+			large_indexs.append(_i)
 		else:
-			small_indexs.append(i)
+			small_indexs.append(_i)
 
-	if large_indexs.size() != 3 or small_indexs.size() != 3:
-		return false
+	if large_indexs.size() != 3 or small_indexs.size() != 3:return false
 
-	for lp in BIOME_PERMS:
-		for sp in BIOME_PERMS:
+	for large in permutations:
+		for small in permutations:
 			var assignment = {}
-			for k in 3:
-				assignment[large_indexs[k]] = BIOME_TYPES[lp[k]]
-				assignment[small_indexs[k]] = BIOME_TYPES[sp[k]]
+			for _i in 3:
+				assignment[large_indexs[_i]] = Catalog.biomes[large[_i]]
+				assignment[small_indexs[_i]] = Catalog.biomes[small[_i]]
 
 			var ok = true
-			for i in groups.size():
-				for j in biome_adj[i]:
-					if assignment[i] == assignment[j]:
+			for _i in groups_.size():
+				for _j in biome_adj_[_i]:
+					if assignment[_i] == assignment[_j]:
 						ok = false
 						break
 				if not ok:
 					break
 
 			if ok:
-				for i in groups.size():
-					groups[i]["type"] = assignment[i]
+				for _i in groups_.size():
+					groups_[_i]["type"] = assignment[_i]
 				return true
 
 	return false
+#endregion
+
+func init_structures() -> void:
+	init_single_structures()
+	init_structures_in_large_biomes()
+	init_matter_structures()
+	update_mixed_matters()
+	init_ruin_structures()
+
+func init_single_structures() -> void:
+	var indexs = Catalog.center_wasteland_indexs.duplicate()
+	indexs.shuffle()
+	
+	for structure_type in Catalog.single_sctructures:
+		var wasteland = wastelands[indexs.pop_back()]
+		wasteland.add_structure(structure_type)
+
+func init_structures_in_large_biomes() -> void:
+	var large_biomes = biomes.filter(func (a): return a.wastelands.size() == 4)
+	
+	for structure_type in Catalog.large_sctructures:
+		for biome in large_biomes:
+			biome.add_structure(structure_type)
+
+func init_matter_structures() -> void:
+	var missed_structures: Array
+	
+	for biome in biomes:
+		var structure_type = Digest.matter_to_sctructure[biome.source.matter]
+		
+		if biome.is_empty():
+			biome.add_structure(structure_type)
+		else:
+			missed_structures.append(structure_type)
+	
+	if missed_structures.is_empty(): return
+	var empty_wastelands = wastelands.filter(func (a): return a.structures.is_empty())
+	
+	for structure_type in missed_structures:
+		var options: Array
+		
+		for wasteland in empty_wastelands:
+			if not Helper.wasteland_already_has_neighbor_structure(wasteland, structure_type):
+				options.append(wasteland)
+		
+		if options.is_empty():
+			return
+		
+		var wasteland = options.pick_random()
+		wasteland.add_structure(structure_type)
+		empty_wastelands.erase(wasteland)
+
+func update_mixed_matters() -> void:
+	for structure_type in Catalog.mixed_sctructures:
+		var mixed_matters = []
+		
+		for wasteland in wastelands:
+			if wasteland.type_to_structure.has(structure_type):
+				var sctructure = wasteland.type_to_structure[structure_type]
+				sctructure.roll_matters(mixed_matters)
+
+func init_ruin_structures() -> void:
+	var empty_wastelands = wastelands.filter(func (a): return a.structures.is_empty())
+	var complexity = Catalog.complexity_ranks.size() - 1
+	empty_wastelands.front().fill_ruins(complexity)
+	
+	empty_wastelands = wastelands.filter(func (a): return Catalog.center_wasteland_indexs.has(a.index))
+	complexity = 0
+	
+	for wasteland in empty_wastelands:
+		wasteland.fill_ruins(complexity)
+	
+	#for complexity in range(Catalog.complexity_ranks.size()-1, -1, -1):
+		#var complexity_ranks = Catalog.complexity_ranks[complexity]
+		#var empty_wastelands = wastelands.filter(func (a): return 4 - a.structures.size() == complexity_ranks.size())
+		#empty_wastelands.shuffle()
+		#
+		#for _i in Catalog.complexity_amounts[complexity]:
+			#var wasteland = empty_wastelands.pop_back()
+			#wasteland.fill_ruins(complexity)
+	#for wasteland in wastelands:
+		#wasteland.fill_ruins()

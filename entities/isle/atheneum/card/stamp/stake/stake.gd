@@ -8,7 +8,7 @@ var data: StakeData:
 		
 		connect_signals()
 		update_texture()
-		update_colors()
+		update_matter_colors()
 		custom_minimum_size.y = data.joints.size() * Catalog.JOINT_SIZE.y + (data.joints.size() - 1) * Catalog.JOINT_OFFEST
 
 @export var card: Card
@@ -46,10 +46,10 @@ func update_texture() -> void:
 			var tune_str = Bozo.enum_to_string(Bozo.Type.MATH, Digest.tune_to_math[data.tune])
 			%Sign.texture = load("res://entities/isle/atheneum/card/stamp/stake/images/%s.png" % tune_str)
 
-func update_colors() -> void:
+func update_matter_colors() -> void:
 	var color = Digest.matter_to_color[data.stamp.origin.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
-	Helper.update_colors(%CantoBG, data.stamp.origin.matter)
+	Helper.update_matter_colors(%CantoBG, [data.stamp.origin.matter])
 	
 	#match tune:
 		#Bozo.Tune.INTRO:

@@ -16,7 +16,7 @@ func update_textures() -> void:
 	var text = load("res://entities/isle/kernel/usurer/dept/fine/images/%s volume.png" % matter)
 	texture = text
 	material.set_shader_parameter("mask_texture", text)
-	Helper.update_colors(self, data.debt.matter)
+	Helper.update_matter_colors(self, [data.debt.matter])
 	%Outline.texture = load("res://entities/isle/kernel/usurer/dept/fine/images/%s outline.png" % matter)
 
 func connect_signals() -> void:

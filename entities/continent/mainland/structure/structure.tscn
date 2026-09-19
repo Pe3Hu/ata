@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ctxs2sl7jnlkw"]
 
 [ext_resource type="Script" uid="uid://dhvxljx83vm5w" path="res://entities/continent/mainland/structure/structure.gd" id="1_5bffl"]
-[ext_resource type="Texture2D" uid="uid://bix55d634a1sf" path="res://entities/continent/mainland/structure/images/ruin/body.png" id="4_na6qg"]
-[ext_resource type="Texture2D" uid="uid://byndxxby8l4y7" path="res://entities/continent/mainland/structure/images/ruin/border.png" id="5_oyxwp"]
+[ext_resource type="Texture2D" uid="uid://bix55d634a1sf" path="res://entities/continent/mainland/structure/images/ruin/1/body.png" id="4_na6qg"]
+[ext_resource type="Texture2D" uid="uid://byndxxby8l4y7" path="res://entities/continent/mainland/structure/images/ruin/1/border.png" id="5_oyxwp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e51sp"]
 resource_local_to_scene = true

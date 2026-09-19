@@ -19,6 +19,15 @@ func connect_signals() -> void:
 func update_spirtes() -> void:
 	if data.type != Bozo.Structure.SHRINE:
 		var str_type = Bozo.enum_to_string(Bozo.Type.STRUCTURE, data.type)
+		
+		if data.type == Bozo.Structure.RUIN:
+			str_type += '/%d' % data.rank
+			var is_flipped = Helper.rng.randf() > 0.5
+			%Body.flip_h = is_flipped
+			%Border.flip_h = is_flipped
+			%Body.material.shader = load('uid://bq3tymajw0eqn')
+			Helper.update_matter_colors(%Body, data.matters)
+		
 		%Body.texture = load('res://entities/continent/mainland/structure/images/%s/body.png' % str_type)
 		%Border.texture = load('res://entities/continent/mainland/structure/images/%s/border.png' % str_type)
 	
@@ -30,17 +39,28 @@ func update_spirtes() -> void:
 			%Body.material.set_shader_parameter('animation_speed', speed_factor)
 			var time_offset = Helper.rng.randf_range(0, 100)
 			%Body.material.set_shader_parameter('time_offset', time_offset)
-		Bozo.Structure.RUIN:
-			%Body.material.shader = load('uid://bq3tymajw0eqn')
-			Helper.update_colors(%Body, data.matter)
+	
+	if Catalog.matter_sctructures.has(data.type) or Catalog.single_sctructures.has(data.type):
+		var matter = data.cluster.biome.source.matter
+		
+		if Digest.sctructure_to_matter.has(data.type):
+			matter = Digest.sctructure_to_matter[data.type]
+	
+		%Body.material.shader = load('uid://bq3tymajw0eqn')
+		Helper.update_matter_colors(%Body, [matter])
+	
+	if Catalog.mixed_sctructures.has(data.type):
+		%Body.material.shader = load('uid://di23e8ar8ox0t')
+		Helper.update_matter_colors(%Body, data.matters)
 
 func _on_area_mouse_entered() -> void:
 	if hover_tween and hover_tween.is_running():
 		hover_tween.kill()
 	
 	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	hover_tween.tween_property(self, "scale", Vector2.ONE * 1.1, 0.15)
+	hover_tween.tween_property(self, "scale", Vector2.ONE * 1.25, 0.15)
 	data.cluster.mainland.footprint.target_structure = data
+	#print(data.cluster.index)
 
 func _on_area_mouse_exited() -> void:
 	if hover_tween and hover_tween.is_running():

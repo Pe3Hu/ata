@@ -68,5 +68,5 @@ func create_polygon() -> void:
 	l = center.length() + pie.inner_radius * 0.115
 	%Amount.position = norm * l
 	
-	Helper.update_colors(self, data.matter)
+	Helper.update_matter_colors(self, [data.matter])
 #endregion

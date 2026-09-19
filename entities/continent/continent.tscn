@@ -3,7 +3,9 @@
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="1_3pv22"]
 [ext_resource type="PackedScene" uid="uid://bw7gsj4tnwwo5" path="res://entities/continent/mainland/mainland.tscn" id="1_3xmvj"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="2_ymacv"]
+[ext_resource type="Shader" uid="uid://di23e8ar8ox0t" path="res://entities/isle/biome/neutral.gdshader" id="3_1vcfo"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="3_3pv22"]
+[ext_resource type="Texture2D" uid="uid://bl3l6gt1wmwdl" path="res://entities/continent/mainland/structure/images/atelier/body.png" id="4_bl7b2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hxdvn"]
 shader = ExtResource("1_3pv22")
@@ -12,6 +14,29 @@ shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
 shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
+shader = ExtResource("3_1vcfo")
+shader_parameter/pattern_speed = 0.1
+shader_parameter/palette_speed = 0.15
+shader_parameter/hueA = 0.05
+shader_parameter/hueB = 0.75
+shader_parameter/palette_t0 = 0.0
+shader_parameter/palette_t1 = 0.5
+shader_parameter/invert_mask = 1.0
+shader_parameter/brightness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+shader = ExtResource("3_1vcfo")
+shader_parameter/pattern_speed = 0.1
+shader_parameter/palette_speed = 0.05
+shader_parameter/hueA = 0.05
+shader_parameter/hueB = 0.75
+shader_parameter/palette_t0 = 0.0
+shader_parameter/palette_t1 = 0.5
+shader_parameter/invert_mask = 1.0
+shader_parameter/brightness = 0.0
 
 [node name="Continent" type="Control" unique_id=1878424957]
 layout_mode = 3
@@ -58,6 +83,19 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
 
 [node name="PanelContainer" type="PanelContainer" parent="HBox" unique_id=481269248]
 custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBox/PanelContainer" unique_id=1404395287]
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_bl7b2")
+
+[node name="ColorRect" type="ColorRect" parent="HBox/PanelContainer" unique_id=346218685]
+visible = false
+material = SubResource("ShaderMaterial_60rxr")
 layout_mode = 2
 
 [node name="HomeBtn" parent="." unique_id=2083984559 instance=ExtResource("2_ymacv")]

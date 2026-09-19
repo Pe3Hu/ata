@@ -113,23 +113,30 @@ func get_coord_based_on_value(value_: int, base_: int = 10) -> Vector2i:
 	var y = floor(value_ / base_)
 	return Vector2i(x, y)
 
-func update_colors(node_, matter_: Bozo.Matter) -> void:
-	var hue = Digest.matter_to_hue[matter_]
-	var color_a: Color = Color(Digest.matter_to_pallete[0])
-	var color_b: Color = Color(Digest.matter_to_pallete[1])
-	var color_c: Color = Color(Digest.matter_to_pallete[2])
-	color_a.h += hue
-	color_b.h += hue
-	color_c.h += hue
-	
-	if matter_ == Bozo.Matter.NONE:
-		color_a.s = 0
-		color_b.s = 0
-		color_c.s = 0
-	
-	node_.material.set_shader_parameter("colorA", color_a)
-	node_.material.set_shader_parameter("colorB", color_b)
-	node_.material.set_shader_parameter("colorC", color_c)
+func update_matter_colors(node_, matters_: Array[Bozo.Matter]) -> void:
+	match matters_.size():
+		1:
+			var hue = Digest.matter_to_hue[matters_.front()]
+			var color_a: Color = Color(Digest.matter_to_pallete[0])
+			var color_b: Color = Color(Digest.matter_to_pallete[1])
+			var color_c: Color = Color(Digest.matter_to_pallete[2])
+			color_a.h += hue
+			color_b.h += hue
+			color_c.h += hue
+			
+			if matters_.front() == Bozo.Matter.NONE:
+				color_a.s = 0
+				color_b.s = 0
+				color_c.s = 0
+			
+			node_.material.set_shader_parameter("colorA", color_a)
+			node_.material.set_shader_parameter("colorB", color_b)
+			node_.material.set_shader_parameter("colorC", color_c)
+		2:
+			var hue = Digest.matter_to_pure_hue[matters_.front()]
+			node_.material.set_shader_parameter("hueA", hue)
+			hue = Digest.matter_to_pure_hue[matters_.back()]
+			node_.material.set_shader_parameter("hueB", hue)
 
 func get_idea_radius(n_: int) -> float:
 	#return Catalog.IDEA_SIZE.x / 2 * (1 + 1 / sin(PI / n_))
@@ -172,7 +179,6 @@ func get_borderland_cells(cells_: Array[Vector2i], is_orthogonal: bool = true) -
 	
 	return borderlands
 
-
 func get_cluster_position(data_: ClusterData) -> Vector2:
 	return data_.center * Catalog.MAINLAND_CELL_SIZE
 
@@ -187,3 +193,10 @@ func get_structure_position(data_: StructureData, with_cluster_: bool = false) -
 		position += Vector2(data_.cell) * Catalog.MAINLAND_CELL_SIZE * 0.8
 	
 	return position
+
+func wasteland_already_has_neighbor_structure(wasteland_: WastelandData, structure_type_: Bozo.Structure) -> bool:
+	for neighbor_wasteland in wasteland_.neighbor_wastelands:
+		for structure in neighbor_wasteland.structures:
+			if structure.type == structure_type_: return true
+	
+	return false

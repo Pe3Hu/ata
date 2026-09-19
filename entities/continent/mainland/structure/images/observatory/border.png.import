@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byndxxby8l4y7"
-path="res://.godot/imported/border.png-05ea076277550495b7ae032005f5adcd.ctex"
+uid="uid://0ccvo43p0srg"
+path="res://.godot/imported/border.png-68e2486aeb73b2af87e267227dddf064.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/continent/mainland/structure/images/ruin/border.png"
-dest_files=["res://.godot/imported/border.png-05ea076277550495b7ae032005f5adcd.ctex"]
+source_file="res://entities/continent/mainland/structure/images/observatory/border.png"
+dest_files=["res://.godot/imported/border.png-68e2486aeb73b2af87e267227dddf064.ctex"]
 
 [params]
 

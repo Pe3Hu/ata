@@ -3,11 +3,12 @@ extends ClusterData
 
  
 var biome: BiomeData
+
 var structures: Array[StructureData]
+var type_to_structure: Dictionary
 
 var pattern_coords: Array[Vector2i]
 var cells_options: Array[Vector2i]
-
 
 
 #region init
@@ -24,29 +25,31 @@ func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) 
 		
 		mainland.terrain_to_clusters[terrain].append(self)
 		
-		pattern_coords = Catalog.wasteland_pattern_coords.duplicate()
+		cells_options.append_array(Catalog.structure_coords)
+		pattern_coords.append_array(Catalog.wasteland_pattern_coords)
 		pattern_coords.shuffle()
-		init_structures()
 
-func init_structures() -> void:
-	cells_options.append_array(Catalog.structure_coords)
-	cells_options.shuffle()
-	var cell = cells_options.pop_back()
-	#add_structure(cell, Bozo.Structure.RUIN)
-	cell = cells_options.pop_back()
-	#add_structure(cell, Bozo.Structure.FORGE)
-	cell = cells_options.pop_back()
-	#add_structure(cell, Bozo.Structure.RIFT)
+func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_: int = -1) -> void:
+	if cell_ == -Vector2i.ONE:
+		cell_ = cells_options.pick_random()
 	
-#func init_structures() -> void:
-	#
-	#for cell in cells_options:
-		#add_structure(cell)
-
-func add_structure(cell_: Vector2i, type_: Bozo.Structure) -> void:
 	var structure = StructureData.new(self, type_, cell_)
 	structures.append(structure)
+	cells_options.erase(cell_)
+	type_to_structure[type_] = structure
 	
 	if type_ == Bozo.Structure.RUIN:
-		structure.matter = Catalog.matters.pick_random()
+		var matter = Catalog.matters.pick_random()
+		structure.matters.append(matter)
+	
+		if rank_ > 0:
+			structure.rank = rank_
+
+func fill_ruins(complexity_: int) -> void:
+	var ranks = Catalog.complexity_ranks[complexity_]
+	cells_options.shuffle()
+	
+	for rank in ranks:
+		var cell = cells_options.back()
+		add_structure(Bozo.Structure.RUIN, cell, rank)
 #endregion

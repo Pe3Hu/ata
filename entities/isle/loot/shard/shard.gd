@@ -15,4 +15,4 @@ func update_textures() -> void:
 	%Border.texture = load('res://entities/isle/loot/shard/images/border/%s.png' % matter)
 	%Body.texture = load('res://entities/isle/loot/shard/images/body/%s.png' % matter)
 	%Body.material.set_shader_parameter('mask_texture', load('res://entities/isle/loot/shard/images/body/%s.png' % matter))
-	Helper.update_colors(%Body, data.matter)
+	Helper.update_matter_colors(%Body, [data.matter])
