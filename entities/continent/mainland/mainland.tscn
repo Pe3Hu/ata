@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bkkjrpk4vwapf" path="res://entities/continent/mainland/images/all in.png" id="3_1n7ec"]
 [ext_resource type="Texture2D" uid="uid://c8v5agxup8bm2" path="res://entities/continent/mainland/images/forest.png" id="4_hrun0"]
 [ext_resource type="Texture2D" uid="uid://2mt8f3fm4nw4" path="res://entities/continent/mainland/images/swamp.png" id="5_cugl8"]
-[ext_resource type="PackedScene" uid="uid://buory3vjnq2bm" path="res://entities/continent/mainland/footprint/footprint.tscn" id="6_hrun0"]
+[ext_resource type="PackedScene" uid="uid://buory3vjnq2bm" path="res://entities/continent/mainland/trod/footprint/footprint.tscn" id="6_hrun0"]
 [ext_resource type="PackedScene" uid="uid://co3w8het156f" path="res://entities/continent/haze/haze.tscn" id="6_x1b5c"]
 [ext_resource type="PackedScene" uid="uid://jwupei73adu3" path="res://entities/continent/mainland/beam/beam.tscn" id="7_1n7ec"]
 
@@ -1028,6 +1028,9 @@ scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_lxk3t")
 
 [node name="Footprint" parent="." unique_id=1497744705 instance=ExtResource("6_hrun0")]
+unique_name_in_owner = true
+
+[node name="Trods" type="Node2D" parent="." unique_id=2143786788]
 unique_name_in_owner = true
 
 [node name="Shelters" type="Node2D" parent="." unique_id=1747237073]

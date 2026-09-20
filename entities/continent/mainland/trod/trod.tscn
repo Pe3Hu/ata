@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cwsumdih65nu7"]
+
+[ext_resource type="Script" uid="uid://qqk15woos6t8" path="res://entities/continent/mainland/trod/trod.gd" id="1_bhtme"]
+
+[node name="Trod" type="Line2D" unique_id=217642949]
+default_color = Color(0.49354547, 0.49354553, 0.49354553, 1)
+script = ExtResource("1_bhtme")

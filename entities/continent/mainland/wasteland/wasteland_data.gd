@@ -50,6 +50,17 @@ func fill_ruins(complexity_: int) -> void:
 	cells_options.shuffle()
 	
 	for rank in ranks:
+		if cells_options.is_empty():
+			print_debug('fill_ruins bug')
+			return
 		var cell = cells_options.back()
 		add_structure(Bozo.Structure.RUIN, cell, rank)
+
+func init_trods() -> void:
+	for _i in structures.size():
+		var a = structures[_i]
+		
+		for _j in range(_i + 1, structures.size(), 1):
+			var b = structures[_j]
+			var _trod = TrodData.new(mainland, [a, b])
 #endregion

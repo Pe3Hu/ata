@@ -27,7 +27,7 @@ func init_internals(anchor_: Vector2i) -> void:
 		for y in Digest.terrain_to_cluster_size[terrain]:
 			var cell = anchor_ + Vector2i(x, y)
 			
-			if Helper.is_cell_inside_mainland(cell):
+			if Helper.is_coord_inside_mainland(cell):
 				internals.append(cell)
 			else:
 				return
@@ -39,14 +39,14 @@ func calc_center() -> void:
 		center += Vector2(internal) / internals.size()
 
 func init_externals() -> void:
-	externals = Helper.get_borderland_cells(internals, false) 
+	externals = Helper.get_borderland_coords(internals, false) 
 
 func link_neighbors() -> void:
 	for cell in internals:
 		for direction in Catalog.orthogonal_directions:
-			var neighbor_cell: Vector2i = cell + direction
-			if not mainland.cell_to_cluster.has(neighbor_cell): continue
-			var neighbor_cluster = mainland.cell_to_cluster[neighbor_cell]
+			var neighbor_coord: Vector2i = cell + direction
+			if not mainland.coord_to_cluster.has(neighbor_coord): continue
+			var neighbor_cluster = mainland.coord_to_cluster[neighbor_coord]
 			if neighbor_cluster == self: continue
 
 			if neighbor_cluster is WastelandData:

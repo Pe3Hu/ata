@@ -29,8 +29,8 @@ func link_shelter_neighbors() -> void:
 	]
 	
 	for _shift in shifts:
-		var neighbor_cell = internals.front() + _shift
+		var neighbor_coord = internals.front() + _shift
 		
-		if mainland.cell_to_cluster.has(neighbor_cell):
-			var neighbor_shelter = mainland.cell_to_cluster[neighbor_cell]
+		if mainland.coord_to_cluster.has(neighbor_coord):
+			var neighbor_shelter = mainland.coord_to_cluster[neighbor_coord]
 			neighbor_shelters.append(neighbor_shelter)

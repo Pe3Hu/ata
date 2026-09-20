@@ -209,11 +209,11 @@ const REFUGE_GRID: Vector2i = Vector2i(118, 66)
 
 #region mainland
 const MAINLAND_MATRIX: Vector2i = Vector2i(7, 7)
-const MAINLAND_CELL_SIZE: Vector2 = Vector2i(48, 48)
+const MAINLAND_COORD_SIZE: Vector2 = Vector2i(48, 48)
 const MAINLAND_GRID_SIZE: Vector2i = Vector2i(28, 17)
-const MAINLAND_MAX_CELL: Vector2i = Vector2i(28, 16)
-const OCEAN_MIN_CELL: Vector2i = Vector2i(-2, -2)
-const OCEAN_MAX_CELL: Vector2i = Vector2i(29, 17)
+const MAINLAND_MAX_COORD: Vector2i = Vector2i(28, 16)
+const OCEAN_MIN_COORD: Vector2i = Vector2i(-2, -2)
+const OCEAN_MAX_COORD: Vector2i = Vector2i(29, 17)
 
 const wasteland_anchors: Array[Vector2i] = [
 	Vector2i(12, 1),
@@ -257,3 +257,9 @@ const complexity_ranks = [
 ]
 
 const complexity_amounts = [2, 4, 4, 3, 2, 2, 1]
+
+var magistral_steps = [
+	Vector2i(4, -2),
+	Vector2i(2, 4),
+]
+const MAGISTRAL_EXCEPTION_INDEX: int = 13

@@ -9,11 +9,16 @@ var biomes: Array[BiomeData]
 var selected_ruin: WastelandData
 
 var terrain_to_clusters: Dictionary
-var cell_to_cluster: Dictionary
+var coord_to_cluster: Dictionary
 
 var haze: HazeData = HazeData.new(self)
 var beam: BeamData = BeamData.new(self)
 var footprint: FootprintData = FootprintData.new(self)
+
+var magistrals: Array[MagistralData]
+var trods: Array[TrodData]
+
+var route: RouteData = RouteData.new(self)
 
 
 #region init
@@ -22,6 +27,9 @@ func _init() -> void:
 	init_neighbors()
 	init_biomes()
 	init_structures()
+	init_magistrals()
+	init_trods()
+	test_route()
 
 func init_shelters_and_wastelands() -> void:
 	var terrains = [Bozo.Terrain.DESERT, Bozo.Terrain.SWAMP, Bozo.Terrain.FOREST]
@@ -29,22 +37,22 @@ func init_shelters_and_wastelands() -> void:
 	for terrain in terrains:
 		for _y in Catalog.MAINLAND_MATRIX.y:
 			for _x in Catalog.MAINLAND_MATRIX.x:
-				var anchor =  Digest.terrain_to_start_cell[terrain] + _x * Digest.terrain_to_col_shift[terrain] + _y * Digest.terrain_to_row_shift[terrain]
+				var anchor =  Digest.terrain_to_start_coord[terrain] + _x * Digest.terrain_to_col_shift[terrain] + _y * Digest.terrain_to_row_shift[terrain]
 				
 				if terrain == Bozo.Terrain.DESERT:
 					var _shelter = ShelterData.new(self, anchor, terrain)
 				else:
 					var _wastelnad = WastelandData.new(self, anchor, terrain)
 	
-	update_cell_to_cluster()
+	update_coord_to_cluster()
 
-func update_cell_to_cluster() -> void:
-	cell_to_cluster.clear()
+func update_coord_to_cluster() -> void:
+	coord_to_cluster.clear()
 
 	for terrain in terrain_to_clusters:
 		for cluster in terrain_to_clusters[terrain]:
-			for cell in cluster.internals:
-				cell_to_cluster[cell] = cluster
+			for coord in cluster.internals:
+				coord_to_cluster[coord] = cluster
 
 func init_neighbors() -> void:
 	for wasteland in wastelands:
@@ -219,6 +227,7 @@ func _color_biomes(groups_: Array, biome_adj_: Dictionary) -> bool:
 	return false
 #endregion
 
+#region structure
 func init_structures() -> void:
 	init_single_structures()
 	init_structures_in_large_biomes()
@@ -282,20 +291,71 @@ func init_ruin_structures() -> void:
 	var empty_wastelands = wastelands.filter(func (a): return a.structures.is_empty())
 	var complexity = Catalog.complexity_ranks.size() - 1
 	empty_wastelands.front().fill_ruins(complexity)
+	var not_visited_wastelands: Array
+	var visited_wastelands: Array = [empty_wastelands.front()]
 	
 	empty_wastelands = wastelands.filter(func (a): return Catalog.center_wasteland_indexs.has(a.index))
 	complexity = 0
 	
 	for wasteland in empty_wastelands:
 		wasteland.fill_ruins(complexity)
+		not_visited_wastelands.append_array(wasteland.neighbor_wastelands)
 	
-	#for complexity in range(Catalog.complexity_ranks.size()-1, -1, -1):
-		#var complexity_ranks = Catalog.complexity_ranks[complexity]
-		#var empty_wastelands = wastelands.filter(func (a): return 4 - a.structures.size() == complexity_ranks.size())
-		#empty_wastelands.shuffle()
-		#
-		#for _i in Catalog.complexity_amounts[complexity]:
-			#var wasteland = empty_wastelands.pop_back()
-			#wasteland.fill_ruins(complexity)
-	#for wasteland in wastelands:
-		#wasteland.fill_ruins()
+	visited_wastelands.append_array(empty_wastelands)
+	not_visited_wastelands = not_visited_wastelands.filter(func (a): return not visited_wastelands.has(a))
+	
+	while complexity < Catalog.complexity_ranks.size() - 2:
+		complexity += 1
+		
+		for _i in Catalog.complexity_amounts[complexity]:
+			if not_visited_wastelands.is_empty():
+				print_debug('not_visited_wastelands error')
+				break
+			var wasteland = not_visited_wastelands.pick_random()
+			not_visited_wastelands.erase(wasteland)
+			visited_wastelands.append(wasteland)
+			wasteland.fill_ruins(complexity)
+			var neighbor_wastelands = wasteland.neighbor_wastelands.filter(func (a): return not not_visited_wastelands.has(a) and not visited_wastelands.has(a))
+			not_visited_wastelands.append_array(neighbor_wastelands)
+#endregion
+
+#region magistral
+func init_magistrals() -> void:
+	for wasteland in wastelands:
+		add_magistral(wasteland)
+func add_magistral(wasteland_: WastelandData) -> void:
+	if wasteland_.neighbor_wastelands.size() != 2 and wasteland_.index != Catalog.MAGISTRAL_EXCEPTION_INDEX: return
+	
+	for magistral_step in Catalog.magistral_steps:
+		if wasteland_.index == Catalog.MAGISTRAL_EXCEPTION_INDEX and magistral_step == Catalog.magistral_steps[0]: continue
+		var anchor_coord = wasteland_.internals.front()
+		var magistral_wastelands: Array
+		
+		while coord_to_cluster.has(anchor_coord):
+			var wasteland = coord_to_cluster[anchor_coord]
+			magistral_wastelands.append(wasteland)
+			anchor_coord += magistral_step
+		
+		if magistral_wastelands.size() > 1:
+			var _magistral = MagistralData.new(self, magistral_wastelands)
+#endregion
+
+#region trod
+func init_trods() -> void:
+	init_wasteland_trods()
+	init_magistral_trods()
+
+func init_wasteland_trods() -> void:
+	for wasteland in wastelands:
+		wasteland.init_trods()
+
+func init_magistral_trods() -> void:
+	for magistral in magistrals:
+		magistral.init_trods()
+#endregion
+
+func test_route() -> void:
+	var structure = wastelands[0].structures[0]
+	route.set_structure(structure)
+	structure = wastelands[0].structures[1]
+	route.set_structure(structure)

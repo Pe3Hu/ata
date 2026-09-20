@@ -152,35 +152,35 @@ func find_intersection(a_: IdeaData, b_: IdeaData) -> Array:
 	
 	return result
 
-func is_cell_inside_mainland(cell_: Vector2i) -> bool:
-	return cell_.x >= 0 and cell_.y >= 0 and cell_.x < Catalog.MAINLAND_MAX_CELL.x and cell_.y < Catalog.MAINLAND_MAX_CELL.y 
+func is_coord_inside_mainland(coord_: Vector2i) -> bool:
+	return coord_.x >= 0 and coord_.y >= 0 and coord_.x < Catalog.MAINLAND_MAX_COORD.x and coord_.y < Catalog.MAINLAND_MAX_COORD.y 
 
-func get_borderland_cells(cells_: Array[Vector2i], is_orthogonal: bool = true) -> Array[Vector2i]:
+func get_borderland_coords(coords_: Array[Vector2i], is_orthogonal: bool = true) -> Array[Vector2i]:
 	var boundary: Array[Vector2i]
 	var directions = Catalog.orthogonal_directions.duplicate()
 	
 	if not is_orthogonal:
 		directions.append_array(Catalog.diagonal_directions)
 
-	for cell in cells_:
+	for coord in coords_:
 		for direction in Catalog.orthogonal_directions:
-			if not cells_.has(cell + direction):
-				boundary.append(cell)
+			if not coords_.has(coord + direction):
+				boundary.append(coord)
 				break
 
 	var borderlands: Array[Vector2i]
 	
-	for cell in boundary:
+	for coord in boundary:
 		for direction in directions:
-			var borderland_cell = cell + direction
+			var borderland_coord = coord + direction
 			
-			if not borderlands.has(borderland_cell):
-				borderlands.append(borderland_cell)
+			if not borderlands.has(borderland_coord):
+				borderlands.append(borderland_coord)
 	
 	return borderlands
 
 func get_cluster_position(data_: ClusterData) -> Vector2:
-	return data_.center * Catalog.MAINLAND_CELL_SIZE
+	return data_.center * Catalog.MAINLAND_COORD_SIZE
 
 func get_structure_position(data_: StructureData, with_cluster_: bool = false) -> Vector2:
 	var position: Vector2
@@ -190,7 +190,7 @@ func get_structure_position(data_: StructureData, with_cluster_: bool = false) -
 		pass
 	
 	if data_.cluster as WastelandData:
-		position += Vector2(data_.cell) * Catalog.MAINLAND_CELL_SIZE * 0.8
+		position += Vector2(data_.coord) * Catalog.MAINLAND_COORD_SIZE * 0.8
 	
 	return position
 

@@ -167,6 +167,12 @@ enum Structure {
 }
 
 
+enum Trod {
+	NONE = 0,
+	MAIN = 98,
+	COLLATERAL = 99,
+}
+
 enum Status {
 	IDLE = 0,
 	PLAYING_ANIMATION = 100,

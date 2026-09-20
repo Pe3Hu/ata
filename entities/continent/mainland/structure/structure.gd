@@ -60,6 +60,7 @@ func _on_area_mouse_entered() -> void:
 	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	hover_tween.tween_property(self, "scale", Vector2.ONE * 1.25, 0.15)
 	data.cluster.mainland.footprint.target_structure = data
+	#print(data.cluster.internals.front())
 	#print(data.cluster.index)
 
 func _on_area_mouse_exited() -> void:

@@ -15,13 +15,13 @@ var data: FootprintData:
 var right_texture = preload('uid://ced1aqrcnk41l')
 var radius: float = 44#48.0
 var total_footprints: int = 12    # должно быть чётным
-var step_interval: float = 0.6
+var step_interval: float = 0.15#0.6
 var fade_in: float = 0.08
 var fade_hold: float = 0.4
 var fade_out: float = 1.0
 var side_offset: float = 6.0
 
-@export var move_speed: float = 48.0
+@export var move_speed: float = 248.0#48.0
 @export var curve_samples: int = 48
 @export_range(0.2, 1.0) var curve_tension: float = 0.45
 

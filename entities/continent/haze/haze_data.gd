@@ -72,10 +72,10 @@ func _init(mainland_: MainlandData) -> void:
 #region lifecycle
 
 func generate() -> void:
-	var cell_size: Vector2i = Catalog.MAINLAND_CELL_SIZE
+	var cell_size: Vector2i = Catalog.MAINLAND_COORD_SIZE
 
-	var world_dimensions: Vector2i = (Catalog.OCEAN_MAX_CELL - Catalog.OCEAN_MIN_CELL + Vector2i.ONE) * cell_size
-	world_position = Vector2(Catalog.OCEAN_MIN_CELL * cell_size)
+	var world_dimensions: Vector2i = (Catalog.OCEAN_MAX_COORD - Catalog.OCEAN_MIN_COORD + Vector2i.ONE) * cell_size
+	world_position = Vector2(Catalog.OCEAN_MIN_COORD * cell_size)
 
 	width = int(ceil(world_dimensions.x / float(fog_pixelation)))
 	height = int(ceil(world_dimensions.y / float(fog_pixelation)))
@@ -235,7 +235,7 @@ func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
 		cells.append_array(cluster_.externals)
 	if cells.is_empty(): return result
 
-	var cell_size: Vector2i = Catalog.MAINLAND_CELL_SIZE
+	var cell_size: Vector2i = Catalog.MAINLAND_COORD_SIZE
 
 	var min_c := Vector2i(1 << 30, 1 << 30)
 	var max_c := Vector2i(-(1 << 30), -(1 << 30))
@@ -570,8 +570,8 @@ func _apply_pulse() -> bool:
 	var ramp := minf(1.0, t / PULSE_RAMP_DURATION)
 	var time_amp := sin(omega * t) * ramp
 
-	var flip_reveal: Array = []   # [excess, fog_cell]
-	var flip_fog: Array = []      # [excess, clear_cell]
+	var flip_reveal: Array = []   # [excess, fog_COORD]
+	var flip_fog: Array = []      # [excess, clear_COORD]
 
 	for pair: Dictionary in _pulse_pairs:
 		var c: Vector2i = pair["clear"]

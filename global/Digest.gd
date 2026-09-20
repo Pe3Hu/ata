@@ -724,7 +724,7 @@ var terrain_to_cluster_size = {
 	Bozo.Terrain.FOREST: 4,
 }
 
-var terrain_to_start_cell = {
+var terrain_to_start_coord = {
 	Bozo.Terrain.DESERT: Vector2i(-6, 0),
 	Bozo.Terrain.SWAMP: Vector2i(0, 8),
 	Bozo.Terrain.FOREST: Vector2i(2, 12),
