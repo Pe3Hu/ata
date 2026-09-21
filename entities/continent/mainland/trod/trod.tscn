@@ -1,7 +1,22 @@
 [gd_scene format=3 uid="uid://cwsumdih65nu7"]
 
 [ext_resource type="Script" uid="uid://qqk15woos6t8" path="res://entities/continent/mainland/trod/trod.gd" id="1_bhtme"]
+[ext_resource type="Shader" uid="uid://cqihu1xnoipnu" path="res://entities/continent/mainland/trod/trod.gdshader" id="1_c2j78"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osbjn"]
+resource_local_to_scene = true
+shader = ExtResource("1_c2j78")
+shader_parameter/frequency = 0.5
+shader_parameter/speed = 3.0
+shader_parameter/direction = -1.0
+shader_parameter/color_even = Color(1, 1, 1, 0)
+shader_parameter/color_odd = Color(0, 0, 0, 1)
+shader_parameter/opacity = 1.0
 
 [node name="Trod" type="Line2D" unique_id=217642949]
-default_color = Color(0.49354547, 0.49354553, 0.49354553, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_osbjn")
+points = PackedVector2Array(228, 175, 341, 171)
+texture_mode = 1
+antialiased = true
 script = ExtResource("1_bhtme")

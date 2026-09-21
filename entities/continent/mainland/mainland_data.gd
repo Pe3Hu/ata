@@ -19,6 +19,7 @@ var magistrals: Array[MagistralData]
 var trods: Array[TrodData]
 
 var route: RouteData = RouteData.new(self)
+var master: MasterData = MasterData.new(self)
 
 
 #region init
@@ -29,7 +30,7 @@ func _init() -> void:
 	init_structures()
 	init_magistrals()
 	init_trods()
-	test_route()
+	update_start_structure()
 
 func init_shelters_and_wastelands() -> void:
 	var terrains = [Bozo.Terrain.DESERT, Bozo.Terrain.SWAMP, Bozo.Terrain.FOREST]
@@ -354,8 +355,14 @@ func init_magistral_trods() -> void:
 		magistral.init_trods()
 #endregion
 
-func test_route() -> void:
-	var structure = wastelands[0].structures[0]
-	route.set_structure(structure)
-	structure = wastelands[0].structures[1]
-	route.set_structure(structure)
+func update_start_structure() -> void:
+	#var structure = wastelands[0].structures[0]
+	#route.set_structure(structure)
+	#structure = wastelands[0].structures[1]
+	#route.set_structure(structure)
+	for index in Catalog.center_wasteland_indexs:
+		var wasteland = wastelands[index]
+		
+		if wasteland.type_to_structure.has(Bozo.Structure.TAVERN):
+			footprint.current_structure = wasteland.type_to_structure[Bozo.Structure.TAVERN]
+			route.start_structure = footprint.current_structure

@@ -2,18 +2,19 @@
 
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="1_3pv22"]
 [ext_resource type="PackedScene" uid="uid://bw7gsj4tnwwo5" path="res://entities/continent/mainland/mainland.tscn" id="1_3xmvj"]
+[ext_resource type="Script" uid="uid://blat4i8dp11xl" path="res://entities/continent/mainland/mainland_panel.gd" id="2_bl7b2"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="2_ymacv"]
 [ext_resource type="Shader" uid="uid://di23e8ar8ox0t" path="res://entities/isle/biome/neutral.gdshader" id="3_1vcfo"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="3_3pv22"]
 [ext_resource type="Texture2D" uid="uid://bl3l6gt1wmwdl" path="res://entities/continent/mainland/structure/images/atelier/body.png" id="4_bl7b2"]
+[ext_resource type="PackedScene" uid="uid://d0gycyj3eb3a8" path="res://entities/continent/guild/guild.tscn" id="5_jtw3p"]
+[ext_resource type="PackedScene" uid="uid://ndch2g5uhxwt" path="res://entities/continent/mainland/trod/route/route.tscn" id="5_qchim"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hxdvn"]
 shader = ExtResource("1_3pv22")
 shader_parameter/size = 45.00000209
 shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
 shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
 resource_local_to_scene = true
@@ -72,17 +73,40 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="MainlandPanel" type="PanelContainer" parent="HBox" unique_id=1021443631]
-custom_minimum_size = Vector2(1488, 928)
+[node name="MainlandPanel" type="SubViewportContainer" parent="HBox" unique_id=386350678]
 clip_contents = true
 layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+size_flags_horizontal = 3
+stretch = true
+script = ExtResource("2_bl7b2")
 
-[node name="Mainland" parent="HBox/MainlandPanel" unique_id=38056738 instance=ExtResource("1_3xmvj")]
+[node name="MainlandViewport" type="SubViewport" parent="HBox/MainlandPanel" unique_id=1001384133]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(924, 912)
+render_target_update_mode = 4
+
+[node name="Mainland" parent="HBox/MainlandPanel/MainlandViewport" unique_id=38056738 instance=ExtResource("1_3xmvj")]
+position = Vector2(36, 52)
 
 [node name="PanelContainer" type="PanelContainer" parent="HBox" unique_id=481269248]
 custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="HBox/PanelContainer" unique_id=286064590]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Route" parent="HBox/PanelContainer/VBox" unique_id=1537280593 instance=ExtResource("5_qchim")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Guild" parent="HBox/PanelContainer/VBox" unique_id=1910077611 instance=ExtResource("5_jtw3p")]
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HBox/PanelContainer" unique_id=1404395287]
@@ -110,4 +134,4 @@ text = "HOME"
 script = ExtResource("3_3pv22")
 metadata/_custom_type_script = "uid://gmp1wxiwy1n8"
 
-[connection signal="gui_input" from="." to="HBox/MainlandPanel/Mainland" method="_on_continent_gui_input"]
+[connection signal="gui_input" from="." to="HBox/MainlandPanel/MainlandViewport/Mainland" method="_on_continent_gui_input"]

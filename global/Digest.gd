@@ -606,7 +606,7 @@ const flux_to_index = {
 }
 
 var crown_to_face_to_bordes = {
-	4: [    
+	4: [
 		Vector2(13.0, 12.0),
 		Vector2(33.0, 32.0),
 		Vector2(43.0, 22.0),
@@ -743,20 +743,124 @@ var terrain_to_row_shift = {
 }
 #endregion
 
+#region sctructure
 var matter_to_sctructure = {
-	Bozo.Matter.GAS: Bozo.Structure.LIGHTHOUSE, 
-	Bozo.Matter.LIQUID: Bozo.Structure.THEATER, 
+	Bozo.Matter.GAS: Bozo.Structure.LIGHTHOUSE,
+	Bozo.Matter.LIQUID: Bozo.Structure.THEATER,
 	Bozo.Matter.SOLID: Bozo.Structure.WORKSHOP
 }
 
 var sctructure_to_matter = {
-	Bozo.Structure.OBSERVATORY: Bozo.Matter.GAS, 
-	Bozo.Structure.THEATER: Bozo.Matter.LIQUID, 
+	Bozo.Structure.OBSERVATORY: Bozo.Matter.GAS,
+	Bozo.Structure.THEATER: Bozo.Matter.LIQUID,
 	Bozo.Structure.WORKSHOP: Bozo.Matter.SOLID,
-	Bozo.Structure.LIGHTHOUSE: Bozo.Matter.GAS, 
-	Bozo.Structure.TAVERN: Bozo.Matter.LIQUID, 
+	Bozo.Structure.LIGHTHOUSE: Bozo.Matter.GAS,
+	Bozo.Structure.TAVERN: Bozo.Matter.LIQUID,
 }
 
+var flag_to_travel_time = {
+	true: 2,
+	false: 3
+}
+#endregion
+
+#region god
+var pantheon_to_god_to_aspect = {
+	Bozo.Pantheon.EGYPTIAN: {
+		Bozo.God.SEKHMET: Bozo.Aspect.STRENGTH,
+		Bozo.God.BASTET: Bozo.Aspect.DEXTERITY,
+		Bozo.God.THOTH: Bozo.Aspect.INTELLECT
+	},
+	Bozo.Pantheon.NORSE: {
+		Bozo.God.THOR: Bozo.Aspect.STRENGTH,
+		Bozo.God.LOKI: Bozo.Aspect.DEXTERITY,
+		Bozo.God.ODIN: Bozo.Aspect.INTELLECT
+	},
+	Bozo.Pantheon.AZTEC: {
+		Bozo.God.HUITZILOPOCHTLI: Bozo.Aspect.STRENGTH,
+		Bozo.God.XOLOTL: Bozo.Aspect.DEXTERITY,
+		Bozo.God.QUETZALCOATL: Bozo.Aspect.INTELLECT
+	},
+	Bozo.Pantheon.GREEK: {
+		Bozo.God.ZEUS: Bozo.Aspect.STRENGTH,
+		Bozo.God.HERMES: Bozo.Aspect.DEXTERITY,
+		Bozo.God.ATHENA: Bozo.Aspect.INTELLECT
+	},
+	Bozo.Pantheon.HINDU: {
+		Bozo.God.SHIVA: Bozo.Aspect.STRENGTH,
+		Bozo.God.HANUMAN: Bozo.Aspect.DEXTERITY,
+		Bozo.God.GANESHA: Bozo.Aspect.INTELLECT
+	},
+	Bozo.Pantheon.JAPANESE: {
+		Bozo.God.SUSANOO: Bozo.Aspect.STRENGTH,
+		Bozo.God.FUJIN: Bozo.Aspect.DEXTERITY,
+		Bozo.God.AMATERASU: Bozo.Aspect.INTELLECT
+	}
+}
+
+var pantheon_to_aspect_to_god = {
+	Bozo.Pantheon.EGYPTIAN: {
+		Bozo.Aspect.STRENGTH: Bozo.God.SEKHMET,
+		Bozo.Aspect.DEXTERITY: Bozo.God.BASTET,
+		Bozo.Aspect.INTELLECT: Bozo.God.THOTH
+	},
+	Bozo.Pantheon.NORSE: {
+		Bozo.Aspect.STRENGTH: Bozo.God.THOR,
+		Bozo.Aspect.DEXTERITY: Bozo.God.LOKI,
+		Bozo.Aspect.INTELLECT: Bozo.God.ODIN
+	},
+	Bozo.Pantheon.AZTEC: {
+		Bozo.Aspect.STRENGTH: Bozo.God.HUITZILOPOCHTLI,
+		Bozo.Aspect.DEXTERITY: Bozo.God.XOLOTL,
+		Bozo.Aspect.INTELLECT: Bozo.God.QUETZALCOATL
+	},
+	Bozo.Pantheon.GREEK: {
+		Bozo.Aspect.STRENGTH: Bozo.God.ZEUS,
+		Bozo.Aspect.DEXTERITY: Bozo.God.HERMES,
+		Bozo.Aspect.INTELLECT: Bozo.God.ATHENA
+	},
+	Bozo.Pantheon.HINDU: {
+		Bozo.Aspect.STRENGTH: Bozo.God.SHIVA,
+		Bozo.Aspect.DEXTERITY: Bozo.God.HANUMAN,
+		Bozo.Aspect.INTELLECT: Bozo.God.GANESHA
+	},
+	Bozo.Pantheon.JAPANESE: {
+		Bozo.Aspect.STRENGTH: Bozo.God.SUSANOO,
+		Bozo.Aspect.DEXTERITY: Bozo.God.FUJIN,
+		Bozo.Aspect.INTELLECT: Bozo.God.AMATERASU
+	}
+}
+#endregion
+
+#region master
+var master_to_structure = {
+	Bozo.Master.PRIEST: Bozo.Structure.SHRINE,
+	Bozo.Master.SHADOW: Bozo.Structure.RIFT,
+	Bozo.Master.CUSTODIAN: Bozo.Structure.RUIN,
+	Bozo.Master.BLACKSMITH: Bozo.Structure.FORGE,
+	Bozo.Master.MUSICIAN: Bozo.Structure.THEATER,
+	Bozo.Master.ARCHITECT: Bozo.Structure.WORKSHOP,
+	Bozo.Master.LIGHTKEEPER: Bozo.Structure.LIGHTHOUSE,
+	Bozo.Master.MINER: Bozo.Structure.MINE,
+	Bozo.Master.TAILOR: Bozo.Structure.ATELIER,
+	Bozo.Master.BARKEEPER: Bozo.Structure.TAVERN,
+	Bozo.Master.SCOUT: Bozo.Structure.OBSERVATORY
+};
+
+var structure_to_master = {
+	Bozo.Structure.SHRINE: Bozo.Master.PRIEST,
+	Bozo.Structure.RIFT: Bozo.Master.SHADOW,
+	Bozo.Structure.RUIN: Bozo.Master.CUSTODIAN,
+	Bozo.Structure.FORGE: Bozo.Master.BLACKSMITH,
+	Bozo.Structure.THEATER: Bozo.Master.MUSICIAN,
+	Bozo.Structure.WORKSHOP: Bozo.Master.ARCHITECT,
+	Bozo.Structure.LIGHTHOUSE: Bozo.Master.LIGHTKEEPER,
+	Bozo.Structure.MINE: Bozo.Master.MINER,
+	Bozo.Structure.ATELIER: Bozo.Master.TAILOR,
+	Bozo.Structure.TAVERN: Bozo.Master.BARKEEPER,
+	Bozo.Structure.OBSERVATORY: Bozo.Master.SCOUT
+};
+#endregion
 
 #region color
 var matter_to_color = {
@@ -829,21 +933,21 @@ func _init() -> void:
 
 func init_intros() -> void:
 	sum_to_matter_to_intro.clear()
-	
+
 	for sum in sum_to_index:
 		sum_to_matter_to_intro[sum] = {}
-		
+
 		for matter in Catalog.matters:
 			sum_to_matter_to_intro[sum][matter] = []
-		
+
 		for index in sum_to_index[sum] + 1:
 			var matters: Array[Bozo.Matter] = []
 			var dice = load("res://entities/dice/datas/intro/%d_%d.tres" % [sum, index])
-			
+
 			for value in dice.values:
 				for matter in Helper.get_matters(value):
 					if not matters.has(matter):
 						matters.append(matter)
-			
+
 			for matter in matters:
 				sum_to_matter_to_intro[sum][matter].append(dice)

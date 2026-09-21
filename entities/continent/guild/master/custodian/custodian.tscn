@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bn81p87jk4ihe"]
+
+[ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_h7ux6"]
+[ext_resource type="Script" uid="uid://b341jxwp5ye7g" path="res://entities/continent/guild/master/custodian/custodian.gd" id="2_eodk3"]
+
+[node name="Custodian" unique_id=1270337185 instance=ExtResource("1_h7ux6")]
+script = ExtResource("2_eodk3")
+
+[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+layout_mode = 2

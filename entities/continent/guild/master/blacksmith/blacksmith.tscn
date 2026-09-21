@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://djn1obmlxqp2a"]
+
+[ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_dtm40"]
+[ext_resource type="Script" uid="uid://bugvvtimpa4f5" path="res://entities/continent/guild/master/blacksmith/blacksmith.gd" id="2_ne08x"]
+
+[node name="Blacksmith" unique_id=1270337185 instance=ExtResource("1_dtm40")]
+script = ExtResource("2_ne08x")
+
+[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+layout_mode = 2

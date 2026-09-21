@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bmtpa7b07ovby"]
+
+[ext_resource type="Script" uid="uid://dwodgmephsqdp" path="res://entities/continent/mainland/camera/camera.gd" id="1_st4q8"]
+
+[node name="Camera" type="Camera2D" unique_id=1429311501]
+limit_left = 0
+limit_top = 0
+limit_right = 1488
+limit_bottom = 912
+position_smoothing_enabled = true
+script = ExtResource("1_st4q8")

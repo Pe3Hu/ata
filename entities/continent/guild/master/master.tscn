@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bqgagkcucwimy"]
+
+[ext_resource type="Script" uid="uid://bamve8pd25cj3" path="res://entities/continent/guild/master/master.gd" id="1_7jyam"]
+
+[node name="Master" type="PanelContainer" unique_id=1270337185]
+custom_minimum_size = Vector2(240, 480)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_7jyam")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=531094369]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="VBox" unique_id=2057881319]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoPanel" type="PanelContainer" parent="VBox" unique_id=1520670639]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBox" unique_id=1043793597]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Action"

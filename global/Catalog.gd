@@ -263,3 +263,11 @@ var magistral_steps = [
 	Vector2i(2, 4),
 ]
 const MAGISTRAL_EXCEPTION_INDEX: int = 13
+const trods = [Bozo.Trod.PRIMARY, Bozo.Trod.SECONDARY, Bozo.Trod.TERTIARY]
+
+const ROUTE_MAX_PATHS = 3
+const ROUTE_MAX_ENUMERATED = 200
+
+const TROD_FREQUENCY: float = 0.5
+const TROD_SPEED: float = 3.0 
+const TROD_SELECTED_FACTOR: float = 3

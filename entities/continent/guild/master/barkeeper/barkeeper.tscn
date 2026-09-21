@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dmu8eo0qshj8t"]
+
+[ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_6cw2x"]
+[ext_resource type="Script" uid="uid://cki5ckby6we2k" path="res://entities/continent/guild/master/barkeeper/barkeeper.gd" id="2_kd11u"]
+
+[node name="Barkeeper" unique_id=1270337185 instance=ExtResource("1_6cw2x")]
+script = ExtResource("2_kd11u")
+
+[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+layout_mode = 2

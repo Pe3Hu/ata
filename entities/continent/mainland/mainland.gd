@@ -16,6 +16,8 @@ var data: MainlandData:
 		init_wastelands()
 		init_trods()
 
+@export var camera: Camera2D
+
 
 #region init
 func _ready() -> void:
@@ -94,3 +96,4 @@ func _on_continent_gui_input(event: InputEvent) -> void:
 		data.beam.activate()
 		#data.footprint.activate()
 		data.route.activate()
+		camera.focus_on_structure()

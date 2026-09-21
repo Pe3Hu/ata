@@ -38,10 +38,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	match event.physical_keycode:
-		KEY_Q:
-			data.reveal_first_shelter_wave()
-		KEY_W:
-			data.reveal_first_wasteland_wave()
+		#KEY_Q:
+			#data.reveal_first_shelter_wave()
+		#KEY_W:
+			#data.reveal_first_wasteland_wave()
 		KEY_A:
 			data.reveal_shelter_then_neighbors_wave()
 		KEY_SPACE:

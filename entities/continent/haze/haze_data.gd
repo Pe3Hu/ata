@@ -301,7 +301,6 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 	if cluster_ is ShelterData:
 		mainland.beam.current_shelter = cluster_
 		cluster_.shrine.is_hazed = false
-		mainland.footprint.next_structure = cluster_.shrine
 
 	var info := _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
 	var pixels: Dictionary = info["pixels"]

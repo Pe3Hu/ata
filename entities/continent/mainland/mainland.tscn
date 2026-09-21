@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://buory3vjnq2bm" path="res://entities/continent/mainland/trod/footprint/footprint.tscn" id="6_hrun0"]
 [ext_resource type="PackedScene" uid="uid://co3w8het156f" path="res://entities/continent/haze/haze.tscn" id="6_x1b5c"]
 [ext_resource type="PackedScene" uid="uid://jwupei73adu3" path="res://entities/continent/mainland/beam/beam.tscn" id="7_1n7ec"]
+[ext_resource type="PackedScene" uid="uid://bmtpa7b07ovby" path="res://entities/continent/mainland/camera/camera.tscn" id="9_cugl8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2hdj"]
 texture = ExtResource("2_x1b5c")
@@ -1006,8 +1007,9 @@ sources/1 = SubResource("TileSetAtlasSource_xm0pn")
 sources/0 = SubResource("TileSetAtlasSource_r4tbc")
 sources/2 = SubResource("TileSetAtlasSource_cerdp")
 
-[node name="Mainland" type="Node2D" unique_id=38056738]
+[node name="Mainland" type="Node2D" unique_id=38056738 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_fttdw")
+camera = NodePath("Camera")
 
 [node name="Ocean" type="TileMapLayer" parent="." unique_id=1651553584]
 unique_name_in_owner = true
@@ -1046,3 +1048,8 @@ visible = false
 [node name="Haze" parent="." unique_id=1740775702 instance=ExtResource("6_x1b5c")]
 unique_name_in_owner = true
 visible = false
+
+[node name="Camera" parent="." unique_id=1429311501 node_paths=PackedStringArray("mainland") instance=ExtResource("9_cugl8")]
+position = Vector2(668, 388)
+limit_smoothed = true
+mainland = NodePath("..")

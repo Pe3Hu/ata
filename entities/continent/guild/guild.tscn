@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d0gycyj3eb3a8"]
+
+[ext_resource type="Script" uid="uid://bp6n2fmmt6src" path="res://entities/continent/guild/guild.gd" id="1_74v7n"]
+[ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="2_wq503"]
+
+[node name="Guild" type="PanelContainer" unique_id=1910077611 node_paths=PackedStringArray("current")]
+script = ExtResource("1_74v7n")
+current = NodePath("Master")
+
+[node name="Master" parent="." unique_id=1270337185 instance=ExtResource("2_wq503")]
+layout_mode = 2

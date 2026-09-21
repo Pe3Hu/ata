@@ -149,34 +149,82 @@ enum Footprint {
 	NONE = 0,
 	CIRCLING = 77,
 	MOVING = 78,
+	ROUTE = 79,
 }
 
 enum Structure {
 	NONE = 0,
-	SHRINE = 79,
-	RIFT = 80,
-	RUIN = 81,
-	FORGE = 82,
-	THEATER = 83,
-	WORKSHOP = 84,
-	LIGHTHOUSE = 85,
-	MINE = 86,
-	ATELIER = 87,
-	TAVERN = 88,
-	OBSERVATORY = 89,
+	SHRINE = 80,
+	RIFT = 81,
+	RUIN = 82,
+	FORGE = 83,
+	THEATER = 84,
+	WORKSHOP = 85,
+	LIGHTHOUSE = 86,
+	MINE = 87,
+	ATELIER = 88,
+	TAVERN = 89,
+	OBSERVATORY = 90,
 }
 
-
-enum Trod {
+enum Master {
 	NONE = 0,
-	MAIN = 98,
-	COLLATERAL = 99,
-}
+	PRIEST = 91,
+	SHADOW = 92,
+	CUSTODIAN = 93,
+	BLACKSMITH = 94,
+	MUSICIAN = 95,
+	ARCHITECT = 96,
+	LIGHTKEEPER = 97,
+	MINER = 98,
+	TAILOR = 99,
+	BARKEEPER = 100,
+	SCOUT = 101,
+};
 
 enum Status {
 	IDLE = 0,
-	PLAYING_ANIMATION = 100,
-	WAITING_FOR_TARGET = 101,
+	PLAYING_ANIMATION = 102,
+	WAITING_FOR_TARGET = 103,
+}
+
+enum Trod {
+	NONE = 0,
+	PRIMARY = 110,
+	SECONDARY = 111,
+	TERTIARY = 112,
+}
+
+enum Pantheon {
+	NONE = 0,
+	EGYPTIAN = 126,
+	NORSE = 127,
+	AZTEC = 128,
+	GREEK = 129,
+	HINDU = 130,
+	JAPANESE = 131,
+}
+
+enum God {
+	NONE = 0,
+	SEKHMET = 132,
+	BASTET = 133,
+	THOTH = 134,
+	THOR = 135,
+	LOKI = 136,
+	ODIN = 137,
+	HUITZILOPOCHTLI = 138,
+	XOLOTL = 139,
+	QUETZALCOATL = 140,
+	ZEUS = 141,
+	HERMES = 142,
+	ATHENA = 143,
+	SHIVA = 144,
+	HANUMAN = 145,
+	GANESHA = 146,
+	SUSANOO = 147,
+	FUJIN = 148,
+	AMATERASU = 149,
 }
 
 enum Action {
@@ -216,7 +264,9 @@ enum Type {
 	MANDATE = -16,
 	METHOD = -17,
 	STRUCTURE = -20,
-	
+	MASTER = -21,
+	PANTHEON = -22,
+	GOD = -23,
 	
 	ACTION = -100,
 	PHASE = -200,
@@ -240,7 +290,10 @@ const type_to_index = {
 	Type.OBSTACLE: 62,
 	Type.MANDATE: 65,
 	Type.METHOD: 68,
-	Type.STRUCTURE: 79,
+	Type.STRUCTURE: 80,
+	Type.MASTER: 91,
+	Type.PANTHEON: 126,
+	Type.GOD: 132,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -261,6 +314,9 @@ const type_to_enum = {
 	Type.MANDATE: Bozo.Mandate,
 	Type.METHOD: Bozo.Method,
 	Type.STRUCTURE: Bozo.Structure,
+	Type.MASTER: Bozo.Master,
+	Type.PANTHEON: Bozo.Pantheon,
+	Type.GOD: Bozo.God,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

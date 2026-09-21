@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bxdmlc7kum0nf"]
+
+[ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_grqao"]
+[ext_resource type="Script" uid="uid://4xnfd3euc4uo" path="res://entities/continent/guild/master/scout/scout.gd" id="2_6q8fu"]
+
+[node name="Scout" unique_id=1270337185 instance=ExtResource("1_grqao")]
+script = ExtResource("2_6q8fu")
+
+[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+layout_mode = 2
