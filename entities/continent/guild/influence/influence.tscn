@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cxlfablgiyeq7"]
+
+[ext_resource type="Script" uid="uid://c6q0nx260bnur" path="res://entities/continent/guild/influence/influence.gd" id="1_d40xo"]
+[ext_resource type="PackedScene" uid="uid://ksgxcdi6f6kj" path="res://entities/isle/loot/shard/shard.tscn" id="2_td7td"]
+
+[node name="Influence" type="PanelContainer" unique_id=316673987]
+script = ExtResource("1_d40xo")
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1587089605]
+layout_mode = 2
+
+[node name="Shards" type="HBoxContainer" parent="HBox" unique_id=992556254]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(152, 48)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="GasShard" parent="HBox/Shards" unique_id=356238751 instance=ExtResource("2_td7td")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="LiquidShard" parent="HBox/Shards" unique_id=480437571 instance=ExtResource("2_td7td")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="SolidShard" parent="HBox/Shards" unique_id=1725167767 instance=ExtResource("2_td7td")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ActionButton" type="Button" parent="HBox" unique_id=343958607]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Action"

@@ -2,7 +2,6 @@ class_name AsterismData
 extends RefCounted
 
 
-
 var welkin: WelkinData
 var main_star: StarData
 var secondary_star: StarData

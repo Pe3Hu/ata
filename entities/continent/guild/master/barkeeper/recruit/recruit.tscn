@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://carjm41nlnbpg"]
+
+[ext_resource type="Script" uid="uid://bmk1ow5s0jkb3" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.gd" id="1_0aoth"]
+[ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/atheneum/card/stamp/images/forfeit.png" id="2_h0qxe"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/atheneum/card/stamp/images/rank/f.png" id="3_i74eh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqn80"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 12
+
+[node name="Recruit" type="PanelContainer" unique_id=665226723]
+script = ExtResource("1_0aoth")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1872270869]
+layout_mode = 2
+
+[node name="Top" type="Panel" parent="VBoxContainer" unique_id=1866332452]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_dqn80")
+
+[node name="ForfeitIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=335670374]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-2, 0)
+texture = ExtResource("2_h0qxe")
+
+[node name="CardName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=1835588416]
+modulate = Color(0, 0.2627451, 0.14901961, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -8.0
+offset_right = 34.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "Recruit Name"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Top" unique_id=2110434729]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(4, 0)
+texture = ExtResource("3_i74eh")
+
+[node name="Silhouettes" type="GridContainer" parent="VBoxContainer" unique_id=1443728263]
+custom_minimum_size = Vector2(302, 316)
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 2

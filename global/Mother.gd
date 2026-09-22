@@ -1,6 +1,12 @@
 extends Node
 
 
+var isle: IsleData
+var mainland: MainlandData
+var guild: GuildData
 
-#var isle: IsleData = IsleData.new()
-var mainland: MainlandData = MainlandData.new()
+
+func _ready() -> void:
+	isle = IsleData.new()
+	mainland = MainlandData.new()
+	guild = GuildData.new()

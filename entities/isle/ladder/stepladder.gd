@@ -24,6 +24,7 @@ func _ready() -> void:
 	position = get_parent().size / 2
 	position -= Vector2(Catalog.LADDER_GRID) * Catalog.STAIR_SIZE / 2 
 	position += Catalog.STEPLADDER_OFFSET
+	position += Vector2(122, 9)
 	
 	%DiceContainer.offset_transform_position = Vector2(-Catalog.STAIR_SIZE.x / 3, Catalog.STEPLADDER_SIZE.y)
 

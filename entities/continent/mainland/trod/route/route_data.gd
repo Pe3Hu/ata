@@ -13,7 +13,7 @@ var start_structure: StructureData:
 var finish_structure: StructureData:
 	set(value_):
 		finish_structure = value_
-		mainland.master.structure = finish_structure
+		Mother.guild.structure = finish_structure
 		recalc_wastelands()
 
 var type_to_trods: Dictionary

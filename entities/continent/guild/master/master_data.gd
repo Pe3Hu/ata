@@ -2,22 +2,10 @@ class_name MasterData
 extends RefCounted
 
 
-signal type_changed
 
-var mainland: MainlandData
-var structure: StructureData:
-	set(value_):
-		if structure != value_: 
-			structure = value_
-			
-			if structure and structure.type != Bozo.Master.NONE:
-				type = Digest.structure_to_master[structure.type]
-var type: Bozo.Master:
-	set(value_):
-		if type == value_: return
-		type = value_
-		type_changed.emit()
+var guild: GuildData
+var type: Bozo.Master
 
 
-func _init(mainland_: MainlandData) -> void:
-	mainland = mainland_
+func _init(guild_: GuildData) -> void:
+	guild = guild_

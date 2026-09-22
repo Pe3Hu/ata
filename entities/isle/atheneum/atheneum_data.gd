@@ -58,5 +58,5 @@ func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
 	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter].pick_random()
 	var verse_index = Digest.matter_to_verse[matter].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-	var _origin = OriginData.new(self, matter, intro, verse)
+	var _origin = OriginData.new( matter, intro, verse, self)
 	house.attic.stamps.shuffle()

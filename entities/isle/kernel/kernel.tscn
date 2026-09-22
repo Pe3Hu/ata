@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqudx"]
 
 [node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("usurer", "pie", "maelstrom", "stepladder")]
-custom_minimum_size = Vector2(460, 460)
+custom_minimum_size = Vector2(732, 460)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -21,7 +21,7 @@ script = ExtResource("1_is0h4")
 usurer = NodePath("VBoxContainer/Usurer")
 pie = NodePath("VBoxContainer/Usurer/Pie")
 maelstrom = NodePath("VBoxContainer/Maelstrom")
-stepladder = NodePath("Stepladder")
+stepladder = NodePath("VBoxContainer/Maelstrom/Stepladder")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=1204869068]
 layout_mode = 2
@@ -32,6 +32,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Stepladder" parent="VBoxContainer/Maelstrom" unique_id=1091981830 instance=ExtResource("5_oy8l0")]
+position = Vector2(70, 0)
+
 [node name="Usurer" parent="VBoxContainer" unique_id=1197846844 node_paths=PackedStringArray("kernel") instance=ExtResource("5_2vrfl")]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -40,6 +43,3 @@ kernel = NodePath("../..")
 
 [node name="Pie" parent="VBoxContainer/Usurer" unique_id=1767828878 instance=ExtResource("3_8c6r2")]
 position = Vector2(-138, -91)
-
-[node name="Stepladder" parent="." unique_id=1091981830 instance=ExtResource("5_oy8l0")]
-position = Vector2(-23.291504, -98.17154)

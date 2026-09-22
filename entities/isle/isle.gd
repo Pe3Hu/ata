@@ -25,13 +25,13 @@ func _ready() -> void:
 		Arbitrator.start_new_round()
 
 func connect_datas() -> void:
-	kernel.data = data.kernel
+	#kernel.data = data.kernel
 	house.data = data.atheneum.house
 	odeum.data = data.odeum
 	forge.data = data.forge
 	
 	misson.data = data.mission
-	welkin.data = data.welkin
+	#welkin.data = data.welkin
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

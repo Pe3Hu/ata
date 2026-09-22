@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://di23e8ar8ox0t" path="res://entities/isle/biome/neutral.gdshader" id="3_1vcfo"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="3_3pv22"]
 [ext_resource type="Texture2D" uid="uid://bl3l6gt1wmwdl" path="res://entities/continent/mainland/structure/images/atelier/body.png" id="4_bl7b2"]
+[ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="4_qchim"]
 [ext_resource type="PackedScene" uid="uid://d0gycyj3eb3a8" path="res://entities/continent/guild/guild.tscn" id="5_jtw3p"]
 [ext_resource type="PackedScene" uid="uid://ndch2g5uhxwt" path="res://entities/continent/mainland/trod/route/route.tscn" id="5_qchim"]
 
@@ -95,10 +96,15 @@ custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Kernel" parent="HBox/PanelContainer" unique_id=601409116 instance=ExtResource("4_qchim")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
 [node name="VBox" type="VBoxContainer" parent="HBox/PanelContainer" unique_id=286064590]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme_override_constants/separation = 16
 
 [node name="Route" parent="HBox/PanelContainer/VBox" unique_id=1537280593 instance=ExtResource("5_qchim")]

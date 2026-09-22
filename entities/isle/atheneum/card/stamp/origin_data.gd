@@ -14,15 +14,17 @@ var mark_letter: String
 
 
 #region init
-func _init(atheneum_: AtheneumData, matter_: Bozo.Matter, intro_: DiceData, verse_: DiceData) -> void:
+func _init(matter_: Bozo.Matter, intro_: DiceData, verse_: DiceData, atheneum_: AtheneumData = null) -> void:
 	atheneum = atheneum_
 	matter = matter_
 	intro = intro_
 	verse = verse_
-	mark_letter = atheneum.alphabet.pop_back()
 	
-	if atheneum.alphabet.is_empty():
-		atheneum.refill_alphabet()
+	if atheneum:
+		mark_letter = atheneum.alphabet.pop_back()
+		
+		if atheneum.alphabet.is_empty():
+			atheneum.refill_alphabet()
 	
 	init_stamps()
 
@@ -55,12 +57,14 @@ func init_stamps() -> void:
 func add_stamp(intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	var stamp = StampData.new(self, intro_values_, verse_values_)
 	stamps.append(stamp)
-	atheneum.house.attic.stamps.append(stamp)
-	var str_mark = ""
 	
-	for _i in intro_values_.size():
-		var digit = stamps.size() + _i
-		str_mark += str(digit)
-	
-	stamp.mark_digits = str_mark
+	if atheneum:
+		atheneum.house.attic.stamps.append(stamp)
+		var str_mark = ""
+		
+		for _i in intro_values_.size():
+			var digit = stamps.size() + _i
+			str_mark += str(digit)
+		
+		stamp.mark_digits = str_mark
 #endregion

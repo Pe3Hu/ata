@@ -19,7 +19,6 @@ var magistrals: Array[MagistralData]
 var trods: Array[TrodData]
 
 var route: RouteData = RouteData.new(self)
-var master: MasterData = MasterData.new(self)
 
 
 #region init

@@ -19,6 +19,9 @@ var data: KernelData:
 
 
 #region init
+func _ready() -> void:
+	data = Mother.isle.kernel
+
 func connect_datas() -> void:
 	usurer.data = data.usurer
 	pie.data = data.pie

@@ -11,6 +11,9 @@ var data: WelkinData:
 		init_asterisms()
 
 
+func _ready() -> void:
+	data = Mother.isle.welkin
+
 func init_asterisms() -> void:
 	for asterim_data in data.asterisms:
 		add_asterism(asterim_data)

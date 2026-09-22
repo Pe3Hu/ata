@@ -12,10 +12,13 @@ var data: AsterismData:
 
 
 func connect_signals() -> void:
-	data.main_star.current_changed.connect(_on_main_current_chagned)
-	_on_main_current_chagned()
-	data.secondary_star.current_changed.connect(_on_secondary_current_changed)
-	_on_secondary_current_changed()
+	if not data.main_star.current_changed.is_connected(_on_main_current_chagned):
+		data.main_star.current_changed.connect(_on_main_current_chagned)
+		_on_main_current_chagned()
+		
+	if not data.secondary_star.current_changed.is_connected(_on_secondary_current_changed):
+		data.secondary_star.current_changed.connect(_on_secondary_current_changed)
+		_on_secondary_current_changed()
 
 func _on_main_current_chagned() -> void:
 	var mask = (1 << data.main_star.current) - 1
