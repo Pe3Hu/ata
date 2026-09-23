@@ -14,6 +14,9 @@ var structure: StructureData:
 
 var architect = ArchitectData.new(self)
 var barkeeper = BarkeeperData.new(self)
+var blacksmith = BlacksmithData.new(self)
+#var demon = DemonData.new(self)
+var guardian = GuardianData.new(self)
 
 var current_master: MasterData
 
@@ -32,4 +35,9 @@ func set_current_master(type_: Bozo.Master):
 	if master:
 		current_master = master
 		current_master.type = type_
+		
+		match type_:
+			Bozo.Master.BLACKSMITH:
+				current_master.init_instruments()
+		
 		master_changed.emit()

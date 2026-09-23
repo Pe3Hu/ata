@@ -11,7 +11,7 @@ var data: IsleData:
 @export var house: House
 @export var odeum: Odeum
 
-@export var forge: Forge
+@export var arsenal: Arsenal
 
 @export var misson: Mission
 @export var welkin: Welkin
@@ -28,7 +28,7 @@ func connect_datas() -> void:
 	#kernel.data = data.kernel
 	house.data = data.atheneum.house
 	odeum.data = data.odeum
-	forge.data = data.forge
+	arsenal.data = data.arsenal
 	
 	misson.data = data.mission
 	#welkin.data = data.welkin

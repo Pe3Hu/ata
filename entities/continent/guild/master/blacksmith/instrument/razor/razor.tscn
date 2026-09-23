@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://2smcb1akyroc"]
+
+[ext_resource type="Script" uid="uid://bnhny741w8j7x" path="res://entities/continent/guild/master/blacksmith/instrument/razor/razor.gd" id="1_b1ic4"]
+[ext_resource type="Shader" uid="uid://di23e8ar8ox0t" path="res://entities/isle/biome/neutral.gdshader" id="2_7xtky"]
+[ext_resource type="Texture2D" uid="uid://ds1xaq8tdos5m" path="res://entities/isle/atheneum/card/stamp/stake/images/plus.png" id="4_7xtky"]
+[ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="4_d1w72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tax58"]
+resource_local_to_scene = true
+shader = ExtResource("2_7xtky")
+shader_parameter/pattern_speed = 0.1
+shader_parameter/palette_speed = 0.05
+shader_parameter/hueA = 0.05
+shader_parameter/hueB = 0.75
+shader_parameter/palette_t0 = 0.0
+shader_parameter/palette_t1 = 0.5
+shader_parameter/invert_mask = 1.0
+shader_parameter/brightness = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_limb2"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Razor" type="PanelContainer" unique_id=468789252]
+custom_minimum_size = Vector2(48, 48)
+custom_maximum_size = Vector2(48, 48)
+offset_right = 36.0
+offset_bottom = 36.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_b1ic4")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=731944889]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="MatterBG" type="ColorRect" parent="MarginContainer" unique_id=1457471449]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_tax58")
+layout_mode = 2
+
+[node name="Border" type="Panel" parent="MarginContainer" unique_id=1249372101]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_limb2")
+
+[node name="Control" type="Control" parent="." unique_id=1499007020]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Number" type="Sprite2D" parent="Control" unique_id=1254406328]
+unique_name_in_owner = true
+texture = ExtResource("4_d1w72")
+hframes = 10
+vframes = 11
+
+[node name="Sign" type="Sprite2D" parent="Control" unique_id=2122479083]
+unique_name_in_owner = true
+scale = Vector2(1.017949, 1)
+texture = ExtResource("4_7xtky")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="VerseDiceData" format=3 uid="uid://chlo60qd4rbq6"]
+
+[ext_resource type="Script" uid="uid://du1av6q0m7a1f" path="res://entities/dice/datas/verse/verse_data.gd" id="1_2tmj7"]
+
+[resource]
+script = ExtResource("1_2tmj7")
+matters = Array[int]([2, 3])
+values = Array[int]([3, 5, 5, 15, 15, 15])
+metadata/_custom_type_script = "uid://du1av6q0m7a1f"

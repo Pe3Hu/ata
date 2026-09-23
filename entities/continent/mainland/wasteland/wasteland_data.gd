@@ -34,6 +34,11 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_
 		cell_ = cells_options.pick_random()
 	
 	var structure = StructureData.new(self, type_, cell_)
+	
+	match type_:
+		Bozo.Structure.RUIN:
+			structure = RuinData.new(self, type_, cell_)
+	
 	structures.append(structure)
 	cells_options.erase(cell_)
 	type_to_structure[type_] = structure

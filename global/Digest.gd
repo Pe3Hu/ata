@@ -7,8 +7,6 @@ var sum_to_matter_to_intro: Dictionary
 
 
 #region matter
-
-
 const outro_to_matter_to_values: Dictionary = {
 	0: {
 		Bozo.Matter.GAS: [2, 3, 4, 5],
@@ -167,6 +165,25 @@ const volume_to_matter_to_volume = {
 	32: {},
 }
 
+const volume_to_matters = {
+	2:  [Bozo.Matter.GAS],
+	3:  [Bozo.Matter.LIQUID],
+	4:  [Bozo.Matter.GAS],
+	5:  [Bozo.Matter.SOLID],
+	6:  [Bozo.Matter.GAS, Bozo.Matter.LIQUID],
+	8:  [Bozo.Matter.GAS],
+	9:  [Bozo.Matter.LIQUID],
+	10: [Bozo.Matter.GAS, Bozo.Matter.SOLID],
+	12: [Bozo.Matter.GAS, Bozo.Matter.LIQUID],
+	15: [Bozo.Matter.LIQUID, Bozo.Matter.SOLID],
+	18: [Bozo.Matter.GAS, Bozo.Matter.LIQUID],
+	20: [Bozo.Matter.GAS, Bozo.Matter.SOLID],
+	25: [Bozo.Matter.SOLID],
+	27: [Bozo.Matter.LIQUID],
+	30: [Bozo.Matter.GAS, Bozo.Matter.LIQUID, Bozo.Matter.SOLID],
+	32: [Bozo.Matter.GAS],
+}
+
 const volume_to_coord = {
 	2: Vector2i(2, 8),
 	3: Vector2i(2, 7),
@@ -184,6 +201,51 @@ const volume_to_coord = {
 	27: Vector2i(3, 1),
 	30: Vector2i(1, 1),
 	32: Vector2i(2, 0)
+}
+
+const rank_to_matter_to_matter_to_vesre = {
+	1: {
+		Bozo.Matter.GAS: {
+			Bozo.Matter.LIQUID: 35,
+			Bozo.Matter.SOLID: 34,
+		},
+		Bozo.Matter.LIQUID: {
+			Bozo.Matter.GAS: 35,
+			Bozo.Matter.SOLID: 36,
+		},
+		Bozo.Matter.SOLID: {
+			Bozo.Matter.GAS: 34,
+			Bozo.Matter.LIQUID: 36,
+		},
+	},
+	2: {
+		Bozo.Matter.GAS: {
+			Bozo.Matter.LIQUID: 59,
+			Bozo.Matter.SOLID: 57,
+		},
+		Bozo.Matter.LIQUID: {
+			Bozo.Matter.GAS: 59,
+			Bozo.Matter.SOLID: 58,
+		},
+		Bozo.Matter.SOLID: {
+			Bozo.Matter.GAS: 57,
+			Bozo.Matter.LIQUID: 58,
+		},
+	},
+	3: {
+		Bozo.Matter.GAS: {
+			Bozo.Matter.LIQUID: 89,
+			Bozo.Matter.SOLID: 87,
+		},
+		Bozo.Matter.LIQUID: {
+			Bozo.Matter.GAS: 89,
+			Bozo.Matter.SOLID: 88,
+		},
+		Bozo.Matter.SOLID: {
+			Bozo.Matter.GAS: 87,
+			Bozo.Matter.LIQUID: 88,
+		},
+	},
 }
 #endregion
 
@@ -236,7 +298,7 @@ const tune_to_math = {
 	Bozo.Tune.OUTRO: Bozo.Math.MULTIPLY,
 }
 
-var verse_to_spoil = {
+const verse_to_spoil = {
 	34: 1,
 	35: 1,
 	36: 1,
@@ -250,7 +312,7 @@ var verse_to_spoil = {
 #endregion
 
 #region fake dice
-var side_to_axis_to_side = {
+const side_to_axis_to_side = {
 	0: {
 		0: 4,
 		1: 3,
@@ -283,7 +345,7 @@ var side_to_axis_to_side = {
 	}
 }
 
-var rotation_to_face = {
+const rotation_to_face = {
 	Vector3(0, 0, 0): 0,
 	Vector3(0, 0, 90): 0,
 	Vector3(0, 0, 180): 0,
@@ -350,7 +412,7 @@ var rotation_to_face = {
 	Vector3(270, 270, 270): 4,
 }
 
-var face_to_rotations = {
+const face_to_rotations = {
 	0: [
 		Vector3(0, 0, 0), Vector3(0, 0, 90), Vector3(0, 0, 180), Vector3(0, 0, 270),
 		Vector3(180, 180, 0), Vector3(180, 180, 90), Vector3(180, 180, 180), Vector3(180, 180, 270)
@@ -381,7 +443,7 @@ var face_to_rotations = {
 	]
 }
 
-var face_to_normals = {
+const face_to_normals = {
 	0: [
 		Vector3(0.0, 0.0, 0.0),
 		Vector3(180.0, 180.0, 180.0)
@@ -412,7 +474,7 @@ var face_to_normals = {
 	]
 }
 
-var normal_to_mirror = {
+const normal_to_mirror = {
 	Vector3(270.0, 0.0, 180.0): Vector3(270.0, 90.0, 270.0),
 	Vector3(270.0, 180.0, 0.0): Vector3(270.0, 90.0, 270.0),
 	Vector3(90.0, 0.0, 270.0): Vector3(90.0, 90.0, 180.0),
@@ -605,7 +667,7 @@ const flux_to_index = {
 	32: 3,
 }
 
-var crown_to_face_to_bordes = {
+const crown_to_face_to_bordes = {
 	4: [
 		Vector2(13.0, 12.0),
 		Vector2(33.0, 32.0),
@@ -664,7 +726,7 @@ var crown_to_face_to_bordes = {
 	]
 }
 
-var crown_to_face_to_points = {
+const crown_to_face_to_points = {
 	4: [
 		[Vector2(13.0, 32.0), Vector2(23.0, 42.0), Vector2(33.0, 32.0), Vector2(23.0, 22.0)],
 		[Vector2(13.0, 32.0), Vector2(3.0, 22.0), Vector2(13.0, 12.0), Vector2(23.0, 22.0)],
@@ -690,7 +752,7 @@ var crown_to_face_to_points = {
 }
 #endregion
 
-var asterism_to_amount = {
+const asterism_to_amount = {
 	0: 0,
 	2: 10,
 	3: 12,
@@ -703,7 +765,7 @@ var asterism_to_amount = {
 	10: 10
 }
 
-var main_to_secondary = {
+const main_to_secondary = {
 	6: 4,
 	7: 5,
 	8: 3,
@@ -712,31 +774,31 @@ var main_to_secondary = {
 }
 
 #region terrain
-var terraint_to_index = {
+const terraint_to_index = {
 	Bozo.Terrain.FOREST: 0,
 	Bozo.Terrain.DESERT: 1,
 	Bozo.Terrain.SWAMP: 2,
 }
 
-var terrain_to_cluster_size = {
+const terrain_to_cluster_size = {
 	Bozo.Terrain.DESERT: 2,
 	Bozo.Terrain.SWAMP: 4,
 	Bozo.Terrain.FOREST: 4,
 }
 
-var terrain_to_start_coord = {
+const terrain_to_start_coord = {
 	Bozo.Terrain.DESERT: Vector2i(-6, 0),
 	Bozo.Terrain.SWAMP: Vector2i(0, 8),
 	Bozo.Terrain.FOREST: Vector2i(2, 12),
 }
 
-var terrain_to_col_shift = {
+const terrain_to_col_shift = {
 	Bozo.Terrain.DESERT: Vector2i(4, -2),
 	Bozo.Terrain.SWAMP: Vector2i(2, -6),
 	Bozo.Terrain.FOREST: Vector2i(2, -6),
 }
 
-var terrain_to_row_shift = {
+const terrain_to_row_shift = {
 	Bozo.Terrain.DESERT: Vector2i(2, 4),
 	Bozo.Terrain.SWAMP: Vector2i(6, 2),
 	Bozo.Terrain.FOREST: Vector2i(6, 2),
@@ -744,13 +806,13 @@ var terrain_to_row_shift = {
 #endregion
 
 #region sctructure
-var matter_to_sctructure = {
+const matter_to_sctructure = {
 	Bozo.Matter.GAS: Bozo.Structure.LIGHTHOUSE,
 	Bozo.Matter.LIQUID: Bozo.Structure.THEATER,
 	Bozo.Matter.SOLID: Bozo.Structure.WORKSHOP
 }
 
-var sctructure_to_matter = {
+const sctructure_to_matter = {
 	Bozo.Structure.OBSERVATORY: Bozo.Matter.GAS,
 	Bozo.Structure.THEATER: Bozo.Matter.LIQUID,
 	Bozo.Structure.WORKSHOP: Bozo.Matter.SOLID,
@@ -758,14 +820,14 @@ var sctructure_to_matter = {
 	Bozo.Structure.TAVERN: Bozo.Matter.LIQUID,
 }
 
-var flag_to_travel_time = {
+const flag_to_travel_time = {
 	true: 2,
 	false: 3
 }
 #endregion
 
 #region god
-var pantheon_to_god_to_aspect = {
+const pantheon_to_god_to_aspect = {
 	Bozo.Pantheon.EGYPTIAN: {
 		Bozo.God.SEKHMET: Bozo.Aspect.STRENGTH,
 		Bozo.God.BASTET: Bozo.Aspect.DEXTERITY,
@@ -798,7 +860,7 @@ var pantheon_to_god_to_aspect = {
 	}
 }
 
-var pantheon_to_aspect_to_god = {
+const pantheon_to_aspect_to_god = {
 	Bozo.Pantheon.EGYPTIAN: {
 		Bozo.Aspect.STRENGTH: Bozo.God.SEKHMET,
 		Bozo.Aspect.DEXTERITY: Bozo.God.BASTET,
@@ -833,10 +895,10 @@ var pantheon_to_aspect_to_god = {
 #endregion
 
 #region master
-var master_to_structure = {
+const master_to_structure = {
 	Bozo.Master.PRIEST: Bozo.Structure.SHRINE,
 	Bozo.Master.SHADOW: Bozo.Structure.RIFT,
-	Bozo.Master.CUSTODIAN: Bozo.Structure.RUIN,
+	Bozo.Master.GUARDIAN: Bozo.Structure.RUIN,
 	Bozo.Master.BLACKSMITH: Bozo.Structure.FORGE,
 	Bozo.Master.MUSICIAN: Bozo.Structure.THEATER,
 	Bozo.Master.ARCHITECT: Bozo.Structure.WORKSHOP,
@@ -845,12 +907,12 @@ var master_to_structure = {
 	Bozo.Master.TAILOR: Bozo.Structure.ATELIER,
 	Bozo.Master.BARKEEPER: Bozo.Structure.TAVERN,
 	Bozo.Master.SCOUT: Bozo.Structure.OBSERVATORY
-};
+}
 
-var structure_to_master = {
+const structure_to_master = {
 	Bozo.Structure.SHRINE: Bozo.Master.PRIEST,
 	Bozo.Structure.RIFT: Bozo.Master.SHADOW,
-	Bozo.Structure.RUIN: Bozo.Master.CUSTODIAN,
+	Bozo.Structure.RUIN: Bozo.Master.GUARDIAN,
 	Bozo.Structure.FORGE: Bozo.Master.BLACKSMITH,
 	Bozo.Structure.THEATER: Bozo.Master.MUSICIAN,
 	Bozo.Structure.WORKSHOP: Bozo.Master.ARCHITECT,
@@ -859,7 +921,28 @@ var structure_to_master = {
 	Bozo.Structure.ATELIER: Bozo.Master.TAILOR,
 	Bozo.Structure.TAVERN: Bozo.Master.BARKEEPER,
 	Bozo.Structure.OBSERVATORY: Bozo.Master.SCOUT
-};
+}
+
+const master_to_price = {
+	Bozo.Master.BLACKSMITH: 30,
+	Bozo.Master.MUSICIAN: 9,
+	Bozo.Master.ARCHITECT: 25,
+	Bozo.Master.LIGHTKEEPER: 8,
+	Bozo.Master.MINER: 60,
+	Bozo.Master.BARKEEPER: 18,
+	Bozo.Master.SCOUT: 32,
+}
+
+const master_to_volumes = {
+	Bozo.Master.BLACKSMITH: [12, 20, 30],
+	Bozo.Master.MUSICIAN: [9, 27],
+	Bozo.Master.ARCHITECT: [25],
+	Bozo.Master.LIGHTKEEPER: [4, 8, 32],
+	Bozo.Master.MINER: [12, 20, 30],
+	Bozo.Master.TAILOR: [6, 10, 15],
+	Bozo.Master.BARKEEPER: [9, 18, 27],
+	Bozo.Master.SCOUT: [4, 8, 32],
+}
 #endregion
 
 #region color
@@ -871,13 +954,13 @@ var matter_to_color = {
 	Bozo.Matter.GAS: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
 }
 
-var matter_to_hue = {
+const matter_to_hue = {
 	Bozo.Matter.SOLID: 0.05,
 	Bozo.Matter.LIQUID: 0.35,
 	Bozo.Matter.GAS: 0.75,
 }
 
-var matter_to_pure_hue = {
+const matter_to_pure_hue = {
 	Bozo.Matter.SOLID: 0.07,
 	Bozo.Matter.LIQUID: 0.42,
 	Bozo.Matter.GAS: 0.75,
@@ -899,7 +982,7 @@ var element_to_color = {
 	Bozo.Element.CHAOS: Color.from_hsv(305 / 360.0, 0.75, 0.75),
 }
 
-var element_to_hue = {
+const element_to_hue = {
 	Bozo.Element.CLOUD: 0.0,
 	Bozo.Element.VAPOR: 0.0,
 	Bozo.Element.DUST: 0.35,
@@ -915,13 +998,13 @@ var aspect_to_color = {
 	Bozo.Aspect.DEXTERITY: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
 }
 
-var aspect_to_matter = {
+const aspect_to_matter = {
 	Bozo.Aspect.STRENGTH: Bozo.Matter.SOLID,
 	Bozo.Aspect.INTELLECT: Bozo.Matter.LIQUID,
 	Bozo.Aspect.DEXTERITY: Bozo.Matter.GAS,
 }
 
-var canto_to_selection = {
+const canto_to_selection = {
 	true: Color.LIGHT_GRAY,
 	false: Color.WEB_GRAY,
 }

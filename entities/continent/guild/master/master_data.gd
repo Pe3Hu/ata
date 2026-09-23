@@ -2,7 +2,6 @@ class_name MasterData
 extends RefCounted
 
 
-
 var guild: GuildData
 var type: Bozo.Master
 

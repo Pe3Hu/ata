@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://c6q0nx260bnur" path="res://entities/continent/guild/influence/influence.gd" id="1_d40xo"]
 [ext_resource type="PackedScene" uid="uid://ksgxcdi6f6kj" path="res://entities/isle/loot/shard/shard.tscn" id="2_td7td"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8e2vd"]
+
 [node name="Influence" type="PanelContainer" unique_id=316673987]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8e2vd")
 script = ExtResource("1_d40xo")
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1587089605]

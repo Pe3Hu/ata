@@ -60,11 +60,11 @@ func add_stamp(intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	
 	if atheneum:
 		atheneum.house.attic.stamps.append(stamp)
-		var str_mark = ""
-		
-		for _i in intro_values_.size():
-			var digit = stamps.size() + _i
-			str_mark += str(digit)
-		
-		stamp.mark_digits = str_mark
+	var str_mark = ""
+	
+	for _i in intro_values_.size():
+		var digit = stamps.size() + _i
+		str_mark += str(digit)
+	
+	stamp.mark_digits = str_mark
 #endregion

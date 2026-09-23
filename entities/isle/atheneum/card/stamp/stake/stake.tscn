@@ -67,18 +67,18 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_limb2")
 
-[node name="Control" type="Control" parent="." unique_id=1499007020]
+[node name="Volume" type="Control" parent="." unique_id=1499007020]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Number" type="Sprite2D" parent="Control" unique_id=1254406328]
+[node name="Number" type="Sprite2D" parent="Volume" unique_id=1254406328]
 unique_name_in_owner = true
 texture = ExtResource("2_wq5lf")
 hframes = 10
 vframes = 11
 
-[node name="Sign" type="Sprite2D" parent="Control" unique_id=2122479083]
+[node name="Sign" type="Sprite2D" parent="Volume" unique_id=2122479083]
 unique_name_in_owner = true
 visible = false
 texture = ExtResource("3_wq5lf")

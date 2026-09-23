@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
 [ext_resource type="PackedScene" uid="uid://bv2lnr34ta3bu" path="res://entities/isle/welkin/welkin.tscn" id="9_5qj5p"]
-[ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/forge/forge.tscn" id="9_egsfe"]
+[ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/arsenal/arsenal.tscn" id="9_egsfe"]
 [ext_resource type="PackedScene" uid="uid://bfxpchr7aa5bp" path="res://entities/isle/mission/mission.tscn" id="10_6kinf"]
 [ext_resource type="Shader" uid="uid://dws1h5tr1lmg4" path="res://entities/isle/welkin/shaders/abstract lines.gdshader" id="11_egsfe"]
 [ext_resource type="Shader" uid="uid://coecb03gqhstb" path="res://entities/isle/mission/gene.gdshader" id="12_nhhp3"]
@@ -53,7 +53,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "forge", "misson", "welkin")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "house", "odeum", "arsenal", "misson", "welkin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +65,7 @@ script = ExtResource("1_kwh8c")
 kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
 house = NodePath("HBox/LeftPanel/MarginContainer/House")
 odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
-forge = NodePath("HBox/LeftPanel/MarginContainer/Forge")
+arsenal = NodePath("HBox/LeftPanel/MarginContainer/Arsenal")
 misson = NodePath("HBox/LeftPanel/MarginContainer/Mission")
 welkin = NodePath("Welkin")
 
@@ -192,7 +192,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Forge" parent="HBox/LeftPanel/MarginContainer" unique_id=1978344045 node_paths=PackedStringArray("isle") instance=ExtResource("9_egsfe")]
+[node name="Arsenal" parent="HBox/LeftPanel/MarginContainer" unique_id=1978344045 node_paths=PackedStringArray("isle") instance=ExtResource("9_egsfe")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4

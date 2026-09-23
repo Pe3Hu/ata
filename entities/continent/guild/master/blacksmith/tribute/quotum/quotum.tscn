@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dnoe0hc5lh1mu"]
+
+[ext_resource type="Script" uid="uid://wyyavyx8ivrl" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.gd" id="1_gugso"]
+[ext_resource type="PackedScene" uid="uid://ksgxcdi6f6kj" path="res://entities/isle/loot/shard/shard.tscn" id="2_ankgf"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_ywax8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[node name="Quotum" type="PanelContainer" unique_id=844251538]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -24.0
+offset_right = 37.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0017858, 1.008211)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_gugso")
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1483460704]
+layout_mode = 2
+
+[node name="Shard" parent="HBox" unique_id=356238751 instance=ExtResource("2_ankgf")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="HBox" unique_id=563800151]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x4"
+label_settings = ExtResource("3_ywax8")
+horizontal_alignment = 1
+vertical_alignment = 1

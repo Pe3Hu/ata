@@ -4,29 +4,33 @@
 [ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/atheneum/card/stamp/images/forfeit.png" id="2_h0qxe"]
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/atheneum/card/stamp/images/rank/f.png" id="3_i74eh"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pibd"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqn80"]
 resource_local_to_scene = true
 bg_color = Color(0, 0.7529412, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-corner_detail = 12
 
 [node name="Recruit" type="PanelContainer" unique_id=665226723]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2pibd")
 script = ExtResource("1_0aoth")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1872270869]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Top" type="Panel" parent="VBoxContainer" unique_id=1866332452]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2134348648]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_right = -4
+
+[node name="Top" type="Panel" parent="VBoxContainer/MarginContainer" unique_id=1866332452]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_dqn80")
 
-[node name="ForfeitIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=335670374]
+[node name="ForfeitIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/Top" unique_id=335670374]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -42,7 +46,7 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-2, 0)
 texture = ExtResource("2_h0qxe")
 
-[node name="CardName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=1835588416]
+[node name="RecruitName" type="RichTextLabel" parent="VBoxContainer/MarginContainer/Top" unique_id=1835588416]
 modulate = Color(0, 0.2627451, 0.14901961, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -67,7 +71,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Top" unique_id=2110434729]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/Top" unique_id=2110434729]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -81,7 +85,8 @@ offset_transform_position = Vector2(4, 0)
 texture = ExtResource("3_i74eh")
 
 [node name="Silhouettes" type="GridContainer" parent="VBoxContainer" unique_id=1443728263]
-custom_minimum_size = Vector2(302, 316)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(302, 214)
 layout_mode = 2
 theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14

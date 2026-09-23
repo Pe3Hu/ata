@@ -37,5 +37,6 @@ func get_stakes(type_: Bozo.Stake) -> VBoxContainer:
 	return get_node(path)
 
 func update_colors() -> void:
-	var color = Digest.matter_to_color[data.origin.matter]
+	var color = Digest.matter_to_color[data.stamp.origin.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
+	Helper.update_matter_colors(%MatterBG, [data.stamp.origin.matter])

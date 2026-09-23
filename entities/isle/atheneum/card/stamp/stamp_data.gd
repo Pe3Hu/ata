@@ -31,7 +31,8 @@ func _init(origin_: OriginData, intro_values_: Array[int], verse_values_: Array[
 	intro_values = intro_values_
 	verse_values = verse_values_
 	
-	shadow = ShadowData.new(self)
+	if origin.atheneum:
+		shadow = ShadowData.new(self)
 
 func init_stakes() -> void:
 	type_to_stakes.clear()

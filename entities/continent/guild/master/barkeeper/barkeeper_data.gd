@@ -17,18 +17,23 @@ func _init(guild_: GuildData) -> void:
 	init_recruits()
 
 func init_recruits() -> void:
-	add_recruit()
+	recruits.clear()
+	
+	for _i in Catalog.BARKEEPER_RECRUIT_AMOUNT:
+		add_recruit()
 	
 	current_recruit = recruits.front()
 
 func add_recruit(intro_sum_: int = 20, matter_: Variant = null) -> void:
-	if matter_ != null:
+	if matter_ == null:
 		matter_ = Catalog.matters.pick_random()
 	
 	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter_].pick_random()
 	var verse_index = Digest.matter_to_verse[matter_].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-	var _origin = OriginData.new(matter_, intro, verse) 
+	var origin = OriginData.new(matter_, intro, verse)
+	var recriut = RecruitData.new(origin)
+	recruits.append(recriut)
 
 func changed_recruit(shift_: int) -> void:
 	var index = recruits.find(current_recruit)

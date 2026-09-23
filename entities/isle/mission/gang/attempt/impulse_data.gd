@@ -19,5 +19,5 @@ func _init(attempt_: AttemptData, method_: Bozo.Method) -> void:
 	attempt.method_to_impulse[method] = self
 	attempt.impulses.append(self)
 	
-	if attempt.gang.attempt == null:
+	if attempt.gang.attempt == null and attempt.gang.mission.bank.ruin:
 		attempt.gang.mission.bank.type_to_method[method].impulse = self

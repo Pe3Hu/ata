@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://b4dmwfftw2v37"]
+
+[ext_resource type="Script" uid="uid://cjmxq16gadn67" path="res://entities/continent/guild/master/blacksmith/instrument/instrument.gd" id="1_74no5"]
+[ext_resource type="Texture2D" uid="uid://b0ld2mpxpm47b" path="res://entities/continent/guild/master/blacksmith/rank/images/1/body.png" id="2_dmxis"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_vo7xk"]
+[ext_resource type="Texture2D" uid="uid://da1gbt3pup1ji" path="res://entities/continent/guild/master/blacksmith/rank/images/1/border.png" id="3_7t110"]
+[ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="4_7t110"]
+[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_dqr50"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_vo7xk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xo13o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqr50"]
+resource_local_to_scene = true
+shader = ExtResource("2_vo7xk")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pd4q"]
+
+[node name="Instrument" type="PanelContainer" unique_id=807061399]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_74no5")
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=879868237]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="HBox" unique_id=1499632817]
+layout_mode = 2
+
+[node name="RankPanel" type="PanelContainer" parent="HBox/VBox" unique_id=1958763064]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xo13o")
+
+[node name="RankIconPanel" type="PanelContainer" parent="HBox/VBox/RankPanel" unique_id=1971614428]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+
+[node name="RankBody" type="TextureRect" parent="HBox/VBox/RankPanel/RankIconPanel" unique_id=602746758]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dqr50")
+layout_mode = 2
+texture = ExtResource("2_dmxis")
+
+[node name="RankBorder" type="TextureRect" parent="HBox/VBox/RankPanel/RankIconPanel" unique_id=2111221125]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_7t110")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/VBox/RankPanel" unique_id=1942870134]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 80
+
+[node name="PreviousRankButton" type="TextureButton" parent="HBox/VBox/RankPanel/HBoxContainer" unique_id=1301093069]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture_normal = ExtResource("4_dqr50")
+texture_pressed = ExtResource("4_dqr50")
+texture_hover = ExtResource("4_dqr50")
+flip_h = true
+script = ExtResource("5_vo7xk")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextRankButton" type="TextureButton" parent="HBox/VBox/RankPanel/HBoxContainer" unique_id=1014999101]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+mouse_filter = 1
+texture_normal = ExtResource("4_dqr50")
+texture_pressed = ExtResource("4_dqr50")
+texture_hover = ExtResource("4_dqr50")
+script = ExtResource("5_vo7xk")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Razors" type="GridContainer" parent="HBox/VBox" unique_id=1597175793]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(136, 92)
+layout_mode = 2
+theme_override_constants/h_separation = -4
+theme_override_constants/v_separation = -4
+columns = 3
+
+[node name="TributePanel" type="PanelContainer" parent="HBox" unique_id=1180357046]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8pd4q")
+
+[node name="HBox" type="VBoxContainer" parent="HBox/TributePanel" unique_id=1904925246]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 64
+
+[node name="PreviousQuotumButton" type="TextureButton" parent="HBox/TributePanel/HBox" unique_id=1592194216]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 4.712389
+texture_normal = ExtResource("4_dqr50")
+texture_pressed = ExtResource("4_dqr50")
+texture_hover = ExtResource("4_dqr50")
+script = ExtResource("5_vo7xk")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextQuotumButton" type="TextureButton" parent="HBox/TributePanel/HBox" unique_id=682592270]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
+mouse_filter = 1
+texture_normal = ExtResource("4_dqr50")
+texture_pressed = ExtResource("4_dqr50")
+texture_hover = ExtResource("4_dqr50")
+script = ExtResource("5_vo7xk")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Quotum" parent="HBox/TributePanel" unique_id=844251538 instance=ExtResource("4_7t110")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="HBox/VBox/RankPanel/HBoxContainer/PreviousRankButton" to="." method="_on_previous_rank_button_pressed"]
+[connection signal="pressed" from="HBox/VBox/RankPanel/HBoxContainer/NextRankButton" to="." method="_on_next_rank_button_pressed"]
+[connection signal="pressed" from="HBox/TributePanel/HBox/PreviousQuotumButton" to="." method="_on_previous_quotum_button_pressed"]
+[connection signal="pressed" from="HBox/TributePanel/HBox/NextQuotumButton" to="." method="_on_next_quotum_button_pressed"]

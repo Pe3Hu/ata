@@ -20,9 +20,9 @@ func _init(obstacle_: ObstacleData, type_: Bozo.Method) -> void:
 	type = type_
 	
 	obstacle.methods.append(self)
-	obstacle.bank.methods.append(self)
-	obstacle.bank.type_to_method[type] = self
+	obstacle.ruin.bank.methods.append(self)
+	obstacle.ruin.bank.type_to_method[type] = self
 
 func execute() -> void:
 	current_difficulty -= impulse.value
-	obstacle.bank.mission.gang.attempt.implement()
+	obstacle.ruin.bank.mission.gang.attempt.implement()

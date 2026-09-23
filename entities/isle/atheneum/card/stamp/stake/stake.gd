@@ -50,10 +50,4 @@ func update_matter_colors() -> void:
 	var color = Digest.matter_to_color[data.stamp.origin.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
 	Helper.update_matter_colors(%CantoBG, [data.stamp.origin.matter])
-	
-	#match tune:
-		#Bozo.Tune.INTRO:
-			#%Border.get_theme_stylebox("panel").border_width_left = 0
-		#Bozo.Tune.VERSE:
-			#%Border.get_theme_stylebox("panel").border_width_right = 0
 #endregion

@@ -2,15 +2,13 @@ class_name ShardData
 extends RefCounted
 
 
-var loot: LootData
 var matter: Bozo.Matter
-var amount: int
+var volume: int
 
 
-func _init(loot_: LootData, matter_: Bozo.Matter, amount_: int) -> void:
-	loot = loot_
+func _init(matter_: Bozo.Matter, volume_: int) -> void:
 	matter = matter_
-	amount = amount_
+	volume = volume_
 	
-	loot.shards.append(self)
-	loot.matter_to_shard[matter] = self
+	#loot.shards.append(self)
+	#loot.matter_to_shard[matter] = self

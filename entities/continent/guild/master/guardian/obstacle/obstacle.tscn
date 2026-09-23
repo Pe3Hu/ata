@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bvlxni1icaq4a"]
+
+[ext_resource type="Script" uid="uid://b6w32ry0872ua" path="res://entities/continent/guild/master/guardian/obstacle/obstacle.gd" id="1_44bfk"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader" id="2_kiy7b"]
+[ext_resource type="Texture2D" uid="uid://chavnp6auriwq" path="res://entities/continent/guild/master/guardian/obstacle/images/lock/body.png" id="3_caljp"]
+[ext_resource type="Texture2D" uid="uid://cm3tybamm7ocl" path="res://entities/continent/guild/master/guardian/obstacle/images/lock/border.png" id="4_drwxs"]
+[ext_resource type="Texture2D" uid="uid://b7jpo3sa4jhgk" path="res://entities/continent/guild/master/guardian/obstacle/images/complexity/0/body.png" id="5_drwxs"]
+[ext_resource type="Texture2D" uid="uid://cfijk1dot12vo" path="res://entities/continent/guild/master/guardian/obstacle/images/complexity/0/border.png" id="6_25svc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
+shader = ExtResource("2_kiy7b")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
+
+[node name="Obstacle" type="PanelContainer" unique_id=1805405428]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+script = ExtResource("1_44bfk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1590067575]
+layout_mode = 2
+
+[node name="ElementPanel" type="PanelContainer" parent="HBoxContainer" unique_id=1149154849]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="ElementBody" type="TextureRect" parent="HBoxContainer/ElementPanel" unique_id=480637684]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 2
+texture = ExtResource("3_caljp")
+
+[node name="ElementBorder" type="TextureRect" parent="HBoxContainer/ElementPanel" unique_id=264734982]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_drwxs")
+
+[node name="DifficultyPanel" type="PanelContainer" parent="HBoxContainer" unique_id=1708599515]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="DifficultyBody" type="TextureRect" parent="HBoxContainer/DifficultyPanel" unique_id=49109403]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("5_drwxs")
+
+[node name="DifficultyBorder" type="TextureRect" parent="HBoxContainer/DifficultyPanel" unique_id=1932289264]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_25svc")

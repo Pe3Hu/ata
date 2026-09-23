@@ -11,7 +11,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_fxemg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo8oi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhwtw"]
 resource_local_to_scene = true
 shader = ExtResource("6_4kt2x")
 shader_parameter/dash_count = 0
@@ -47,6 +47,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 12
 
 [node name="HBox2" type="HBoxContainer" parent="VBox/InfoPanel/HBox1/VBox1" index="0" unique_id=1080230593]
 custom_minimum_size = Vector2(102, 48)
@@ -105,7 +106,7 @@ vertical_alignment = 1
 
 [node name="Asterism" parent="VBox/InfoPanel/HBox1" index="1" unique_id=372333695 instance=ExtResource("5_245io")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_wo8oi")
+material = SubResource("ShaderMaterial_dhwtw")
 layout_mode = 2
 
 [connection signal="pressed" from="VBox/InfoPanel/HBox1/VBox1/HBox2/PreviousButton" to="." method="_on_previous_button_pressed"]

@@ -1,16 +1,27 @@
 [gd_scene format=3 uid="uid://cgb34egynev5o"]
 
 [ext_resource type="Script" uid="uid://f23i6m66bm53" path="res://entities/continent/guild/master/barkeeper/recruit/silhouette/silhouette.gd" id="1_mvlfp"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_ytfeq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41m5f"]
+resource_local_to_scene = true
+shader = ExtResource("2_ytfeq")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwofj"]
 resource_local_to_scene = true
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0, 0.7529412, 0.47058824, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
@@ -18,7 +29,7 @@ border_color = Color(0, 0.7529412, 0.47058824, 1)
 [node name="Silhouette" type="PanelContainer" unique_id=1990971153]
 custom_minimum_size = Vector2(144, 0)
 offset_right = 144.0
-offset_bottom = 96.0
+offset_bottom = 62.0
 offset_transform_enabled = true
 offset_transform_visual_only = false
 mouse_filter = 1
@@ -33,6 +44,11 @@ theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = -4
 theme_override_constants/margin_bottom = -4
 
+[node name="MatterBG" type="ColorRect" parent="BorderMargin" unique_id=2009891144]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_41m5f")
+layout_mode = 2
+
 [node name="Border" type="Panel" parent="BorderMargin" unique_id=860642714]
 unique_name_in_owner = true
 layout_mode = 2
@@ -40,8 +56,8 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nwofj")
 
 [node name="Center" type="Panel" parent="." unique_id=992183565]
-custom_minimum_size = Vector2(144, 96)
-custom_maximum_size = Vector2(144, 96)
+custom_minimum_size = Vector2(144, 62)
+custom_maximum_size = Vector2(144, 62)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 1

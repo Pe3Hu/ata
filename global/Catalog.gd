@@ -206,7 +206,6 @@ const ASTERISM_SIZE: Vector2 = Vector2(320, 320)
 
 const REFUGE_GRID: Vector2i = Vector2i(118, 66)
 
-
 #region mainland
 const MAINLAND_MATRIX: Vector2i = Vector2i(7, 7)
 const MAINLAND_COORD_SIZE: Vector2 = Vector2i(48, 48)
@@ -236,6 +235,7 @@ const structure_coords: Array[Vector2] = [
 ]
 #endregion
 
+#region structure
 const structures: Array[Bozo.Structure] = [
 	
 ]
@@ -257,7 +257,9 @@ const complexity_ranks = [
 ]
 
 const complexity_amounts = [2, 4, 4, 3, 2, 2, 1]
+#endregion
 
+#region trod
 var magistral_steps = [
 	Vector2i(4, -2),
 	Vector2i(2, 4),
@@ -271,3 +273,7 @@ const ROUTE_MAX_ENUMERATED = 200
 const TROD_FREQUENCY: float = 0.5
 const TROD_SPEED: float = 3.0 
 const TROD_SELECTED_FACTOR: float = 3
+#endregion
+
+const BARKEEPER_RECRUIT_AMOUNT: int = 3
+const DEMON_DEFAULT_COMPLEXITY: int = 35

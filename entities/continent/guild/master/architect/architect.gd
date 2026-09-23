@@ -22,11 +22,15 @@ func _on_asterism_changed() -> void:
 	_on_secondary_star_changed()
 
 func _on_main_star_changed() -> void:
-	%MainStar.text = 'Big Stars:\n%d/%d' % [data.current_asterism.main_star.current, data.current_asterism.main_star.limit]
+	var amount = '\nAmount: %d/%d' % [data.current_asterism.main_star.current, data.current_asterism.main_star.limit]
+	var volume = '\nVolume: %d' % data.current_asterism.main_star.volume
+	%MainStar.text = 'Big Stars' + volume + amount
 
 func _on_secondary_star_changed() -> void:
 	if data.current_asterism.secondary_star.limit > 0:
-		%SecondaryStar.text = 'Small Stars:\n%d/%d' % [data.current_asterism.secondary_star.current, data.current_asterism.secondary_star.limit]
+		var amount = '\nAmount: %d/%d' % [data.current_asterism.secondary_star.current, data.current_asterism.secondary_star.limit]
+		var volume = '\nVolume: %d' % data.current_asterism.secondary_star.volume
+		%SecondaryStar.text = 'Small Stars' + volume + amount
 	else:
 		%SecondaryStar.text = ''
 
