@@ -49,6 +49,9 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_
 	
 		if rank_ > 0:
 			structure.rank = rank_
+	
+	if type_ == Bozo.Structure.MINE:
+		pass
 
 func fill_ruins(complexity_: int) -> void:
 	var ranks = Catalog.complexity_ranks[complexity_]

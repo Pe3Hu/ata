@@ -17,6 +17,7 @@ var data: MainlandData:
 		init_trods()
 
 @export var camera: Camera2D
+@export var beam: Beam
 
 
 #region init
@@ -93,7 +94,7 @@ func add_trod(trod_data_: TrodData) -> void:
 
 func _on_continent_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		data.beam.activate()
+		#data.beam.activate()
 		#data.footprint.activate()
 		data.route.activate()
 		camera.focus_on_structure()

@@ -10,15 +10,19 @@ var verse: DiceData
 
 var stamps: Array[StampData]
 
+var rank: Bozo.Rank
+var talent: int
 var mark_letter: String
 
 
 #region init
-func _init(matter_: Bozo.Matter, intro_: DiceData, verse_: DiceData, atheneum_: AtheneumData = null) -> void:
+func _init(matter_: Bozo.Matter, intro_: DiceData, verse_: DiceData, talent_: int = 3, atheneum_: AtheneumData = null) -> void:
 	atheneum = atheneum_
 	matter = matter_
 	intro = intro_
 	verse = verse_
+	talent = talent_
+	rank = Digest.intro_to_talent_to_rank[intro.get_sum()][talent]
 	
 	if atheneum:
 		mark_letter = atheneum.alphabet.pop_back()

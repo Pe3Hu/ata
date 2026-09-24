@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bmk1ow5s0jkb3" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.gd" id="1_0aoth"]
 [ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/atheneum/card/stamp/images/forfeit.png" id="2_h0qxe"]
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/atheneum/card/stamp/images/rank/f.png" id="3_i74eh"]
+[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_dqn80"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_8rxe6"]
+[ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="6_jamvm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pibd"]
 
@@ -10,27 +13,33 @@
 resource_local_to_scene = true
 bg_color = Color(0, 0.7529412, 0.47058824, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u76jt"]
+
 [node name="Recruit" type="PanelContainer" unique_id=665226723]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2pibd")
 script = ExtResource("1_0aoth")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1872270869]
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1909649599]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBox" unique_id=1872270869]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2134348648]
+[node name="MarginContainer" type="MarginContainer" parent="HBox/VBoxContainer" unique_id=2134348648]
 layout_mode = 2
 theme_override_constants/margin_left = -4
 theme_override_constants/margin_right = -4
 
-[node name="Top" type="Panel" parent="VBoxContainer/MarginContainer" unique_id=1866332452]
+[node name="Top" type="Panel" parent="HBox/VBoxContainer/MarginContainer" unique_id=1866332452]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_dqn80")
 
-[node name="ForfeitIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/Top" unique_id=335670374]
+[node name="TalentIcon" type="TextureRect" parent="HBox/VBoxContainer/MarginContainer/Top" unique_id=335670374]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -46,7 +55,8 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-2, 0)
 texture = ExtResource("2_h0qxe")
 
-[node name="RecruitName" type="RichTextLabel" parent="VBoxContainer/MarginContainer/Top" unique_id=1835588416]
+[node name="RecruitName" type="RichTextLabel" parent="HBox/VBoxContainer/MarginContainer/Top" unique_id=1835588416]
+unique_name_in_owner = true
 modulate = Color(0, 0.2627451, 0.14901961, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -71,7 +81,8 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/Top" unique_id=2110434729]
+[node name="RankIcon" type="TextureRect" parent="HBox/VBoxContainer/MarginContainer/Top" unique_id=2110434729]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -84,10 +95,96 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(4, 0)
 texture = ExtResource("3_i74eh")
 
-[node name="Silhouettes" type="GridContainer" parent="VBoxContainer" unique_id=1443728263]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/VBoxContainer/MarginContainer" unique_id=133266917]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 128
+
+[node name="PreviousRecruitButton" type="TextureButton" parent="HBox/VBoxContainer/MarginContainer/HBoxContainer" unique_id=2100710182]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture_normal = ExtResource("4_dqn80")
+texture_pressed = ExtResource("4_dqn80")
+texture_hover = ExtResource("4_dqn80")
+flip_h = true
+script = ExtResource("5_8rxe6")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextRecruitButton" type="TextureButton" parent="HBox/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1790528369]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+mouse_filter = 1
+texture_normal = ExtResource("4_dqn80")
+texture_pressed = ExtResource("4_dqn80")
+texture_hover = ExtResource("4_dqn80")
+script = ExtResource("5_8rxe6")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Silhouettes" type="GridContainer" parent="HBox/VBoxContainer" unique_id=1443728263]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(302, 214)
 layout_mode = 2
 theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 2
+
+[node name="TributePanel" type="PanelContainer" parent="HBox" unique_id=1677702286]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 20)
+offset_transform_visual_only = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u76jt")
+
+[node name="HBox" type="VBoxContainer" parent="HBox/TributePanel" unique_id=1856965904]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 64
+
+[node name="PreviousQuotumButton" type="TextureButton" parent="HBox/TributePanel/HBox" unique_id=1440826489]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 4.712389
+texture_normal = ExtResource("4_dqn80")
+texture_pressed = ExtResource("4_dqn80")
+texture_hover = ExtResource("4_dqn80")
+script = ExtResource("5_8rxe6")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextQuotumButton" type="TextureButton" parent="HBox/TributePanel/HBox" unique_id=977890901]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
+mouse_filter = 1
+texture_normal = ExtResource("4_dqn80")
+texture_pressed = ExtResource("4_dqn80")
+texture_hover = ExtResource("4_dqn80")
+script = ExtResource("5_8rxe6")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Quotum" parent="HBox/TributePanel" unique_id=844251538 instance=ExtResource("6_jamvm")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="HBox/VBoxContainer/MarginContainer/HBoxContainer/PreviousRecruitButton" to="." method="_on_previous_recruit_button_pressed"]
+[connection signal="pressed" from="HBox/VBoxContainer/MarginContainer/HBoxContainer/NextRecruitButton" to="." method="_on_next_recruit_button_pressed"]
+[connection signal="pressed" from="HBox/TributePanel/HBox/PreviousQuotumButton" to="." method="_on_previous_quotum_button_pressed"]
+[connection signal="pressed" from="HBox/TributePanel/HBox/NextQuotumButton" to="." method="_on_next_quotum_button_pressed"]

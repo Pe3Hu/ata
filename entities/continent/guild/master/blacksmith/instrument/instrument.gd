@@ -4,7 +4,6 @@ extends PanelContainer
 
 var razor_scene = preload('uid://2smcb1akyroc')
 
-
 var data: InstrumentData:
 	set(value_):
 		data = value_

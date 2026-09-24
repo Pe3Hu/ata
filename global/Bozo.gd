@@ -180,20 +180,26 @@ enum Master {
 	TAILOR = 99,
 	BARKEEPER = 100,
 	SCOUT = 101,
-};
+}
 
-enum Status {
-	IDLE = 0,
-	PLAYING_ANIMATION = 102,
-	WAITING_FOR_TARGET = 103,
+enum Rank {
+	NONE = 0,
+	F = 102,
+	E = 103,
+	D = 104,
+	C = 105,
+	B = 106,
+	A = 107,
+	S = 108,
 }
 
 enum Trod {
 	NONE = 0,
-	PRIMARY = 110,
-	SECONDARY = 111,
-	TERTIARY = 112,
+	PRIMARY = 109,
+	SECONDARY = 110,
+	TERTIARY = 111,
 }
+
 
 enum Pantheon {
 	NONE = 0,
@@ -244,6 +250,12 @@ enum Phase {
 	RECRUITMENT = 206,
 }
 
+enum Status {
+	IDLE = 0,
+	PLAYING_ANIMATION = 300,
+	WAITING_FOR_TARGET = 301,
+}
+
 #region string
 enum Type {
 	NONE = 0,
@@ -265,8 +277,9 @@ enum Type {
 	METHOD = -17,
 	STRUCTURE = -20,
 	MASTER = -21,
-	PANTHEON = -22,
-	GOD = -23,
+	RANK = -22,
+	PANTHEON = -23,
+	GOD = -24,
 	
 	ACTION = -100,
 	PHASE = -200,
@@ -292,6 +305,7 @@ const type_to_index = {
 	Type.METHOD: 68,
 	Type.STRUCTURE: 80,
 	Type.MASTER: 91,
+	Type.RANK: 102,
 	Type.PANTHEON: 126,
 	Type.GOD: 132,
 	
@@ -315,6 +329,7 @@ const type_to_enum = {
 	Type.METHOD: Bozo.Method,
 	Type.STRUCTURE: Bozo.Structure,
 	Type.MASTER: Bozo.Master,
+	Type.RANK: Bozo.Rank,
 	Type.PANTHEON: Bozo.Pantheon,
 	Type.GOD: Bozo.God,
 	

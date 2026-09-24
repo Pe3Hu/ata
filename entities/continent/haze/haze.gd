@@ -1,23 +1,25 @@
 class_name Haze
 extends Sprite2D
 
+
 var data: HazeData:
 	set(value_):
 		data = value_
 		
 		connect_signals()
+		reveal_center_shelters()
+
+
+func reveal_center_shelters() -> void:
+	for index in Catalog.center_shelter_indexs:
+		data.reveal_shelter_then_neighbors_wave(index)
 
 func connect_signals() -> void:
-	if data == null:
-		texture = null
-		return
-	
 	if data.changed.is_connected(_on_data_changed):
 		data.changed.disconnect(_on_data_changed)
 	
 	data.changed.connect(_on_data_changed)
 	_on_data_changed()
-	data.reveal_shelter_then_neighbors_wave()
 
 func _on_data_changed() -> void:
 	if data == null: return
@@ -31,11 +33,8 @@ func _process(delta: float) -> void:
 		data.tick(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not (event is InputEventKey and event.pressed and not event.echo):
-		return
-	if data == null:
-		push_warning("Haze: data is null, nothing to reveal")
-		return
+	if not (event is InputEventKey and event.pressed and not event.echo): return
+	if data == null: return
 
 	match event.physical_keycode:
 		#KEY_Q:

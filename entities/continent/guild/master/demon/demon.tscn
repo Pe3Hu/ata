@@ -2,9 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_xi3an"]
 [ext_resource type="Script" uid="uid://b57a3r64hramy" path="res://entities/continent/guild/master/demon/demon.gd" id="2_dki7l"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_dki7l"]
 
 [node name="Demon" unique_id=1270337185 instance=ExtResource("1_xi3an")]
 script = ExtResource("2_dki7l")
 
-[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+[node name="Gloom" type="Label" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=1314044572]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+text = "Gloom: 100"
+label_settings = ExtResource("3_dki7l")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -2,12 +2,13 @@ class_name Pie
 extends Node2D
 
 
+var slice_scene = preload("uid://86usnsbi56nk")
+
 var data: PieData:
 	set(value_):
 		data = value_
 		init_slices()
 
-var slice_scene = preload("uid://86usnsbi56nk")
 
 @export_category("Geometry")
 var inner_radius: float = 160.0:
@@ -25,7 +26,6 @@ var thickness = 4
 func _ready() -> void:
 	position = get_parent().size / 2
 	inner_radius = inner_radius
-
 
 func init_slices() -> void:
 	Helper.clear_children(%Slices)

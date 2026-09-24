@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_4wvpm"]
 [ext_resource type="Script" uid="uid://boagvfq5ebh5k" path="res://entities/continent/guild/master/tailor/tailor.gd" id="2_amhne"]
+[ext_resource type="PackedScene" uid="uid://b51fd1yfg81o0" path="res://entities/continent/guild/master/tailor/attire/attire.tscn" id="3_yxafb"]
 
 [node name="Tailor" unique_id=1270337185 instance=ExtResource("1_4wvpm")]
 script = ExtResource("2_amhne")
 
-[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+[node name="Attire" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=627721668 instance=ExtResource("3_yxafb")]
+unique_name_in_owner = true
 layout_mode = 2

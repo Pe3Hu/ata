@@ -100,6 +100,12 @@ const matter_to_factor = {
 	Bozo.Matter.SOLID: 5,
 }
 
+var matter_to_rotation = {
+	Bozo.Matter.GAS: -PI / 2,
+	Bozo.Matter.LIQUID: -PI * 5 / 4,
+	Bozo.Matter.SOLID: 0,
+}
+
 const expiration_to_factor = {
 	Bozo.Matter.GAS: 2,
 	Bozo.Matter.LIQUID: 3,
@@ -927,7 +933,7 @@ const master_to_price = {
 	Bozo.Master.BLACKSMITH: 30,
 	Bozo.Master.MUSICIAN: 9,
 	Bozo.Master.ARCHITECT: 25,
-	Bozo.Master.LIGHTKEEPER: 8,
+	Bozo.Master.LIGHTKEEPER: 16,
 	Bozo.Master.MINER: 60,
 	Bozo.Master.BARKEEPER: 18,
 	Bozo.Master.SCOUT: 32,
@@ -943,7 +949,144 @@ const master_to_volumes = {
 	Bozo.Master.BARKEEPER: [9, 18, 27],
 	Bozo.Master.SCOUT: [4, 8, 32],
 }
+
+const master_to_rank = {
+	Bozo.Master.BLACKSMITH: 3,
+	Bozo.Master.MUSICIAN: 6,
+	Bozo.Master.ARCHITECT: 6,
+	Bozo.Master.LIGHTKEEPER: 4,
+	Bozo.Master.MINER: 3,
+	Bozo.Master.TAILOR: 3,
+	Bozo.Master.BARKEEPER: 6,
+	Bozo.Master.SCOUT: 2,
+}
+
+const master_to_matter = {
+	Bozo.Master.MUSICIAN: Bozo.Matter.LIQUID,
+	Bozo.Master.ARCHITECT: Bozo.Matter.SOLID,
+	Bozo.Master.LIGHTKEEPER: Bozo.Matter.GAS,
+	Bozo.Master.BARKEEPER: Bozo.Matter.LIQUID,
+	Bozo.Master.SCOUT: Bozo.Matter.GAS,
+}
+
+const matter_to_matter_to_volume = {
+	Bozo.Matter.GAS: {
+		Bozo.Matter.LIQUID: 12,
+		Bozo.Matter.SOLID: 10,
+	},
+	Bozo.Matter.LIQUID: {
+		Bozo.Matter.GAS: 12,
+		Bozo.Matter.SOLID: 15,
+	},
+	Bozo.Matter.SOLID: {
+		Bozo.Matter.GAS: 10,
+		Bozo.Matter.LIQUID: 15,
+	},
+}
 #endregion
+
+const matter_to_rank_to_volume_to_percent = {
+	Bozo.Matter.GAS: {
+		1: {
+			2: 30,
+			4: 20,
+			6: 20,
+			18: 30
+		},
+		2: {
+			2: 15,
+			8: 15,
+			10: 25,
+			20: 45
+		},
+		3: {
+			2: 25,
+			12: 20,
+			30: 25,
+			32: 30
+		},
+	},
+	Bozo.Matter.LIQUID: {
+		1: {
+			3: 35,
+			6: 25,
+			12: 20,
+			15: 20
+		},
+		2: {
+			3: 15,
+			9: 15,
+			15: 45,
+			18: 25
+		},
+		3: {
+			3: 25,
+			18: 20,
+			27: 30,
+			30: 25
+		}
+	},
+	Bozo.Matter.SOLID: {
+		1: {
+			5: 55,
+			10: 30,
+			15: 15,
+		},
+		2: {
+			5: 35,
+			10: 25,
+			20: 25,
+			25: 15
+		},
+		3: {
+			5: 20,
+			15: 25,
+			25: 25,
+			30: 30
+		}
+	}
+}
+
+var rank_to_avg = {
+	1: 8,
+	2: 13,
+	3: 20
+}
+
+var intro_to_talent_to_rank = {
+	20: {
+		3: Bozo.Rank.B
+	},
+	30: {
+		2: Bozo.Rank.C
+	},
+	40: {
+		1: Bozo.Rank.F
+	},
+	50: {
+		1: Bozo.Rank.E,
+		2: Bozo.Rank.B,
+		3: Bozo.Rank.A
+	},
+	60: {
+		1: Bozo.Rank.D
+	},
+	70: {
+		1: Bozo.Rank.C,
+		2: Bozo.Rank.A
+	},
+	80: {
+		1: Bozo.Rank.B,
+		3: Bozo.Rank.S
+	},
+	90: {
+		1: Bozo.Rank.A,
+		2: Bozo.Rank.S
+	},
+	100: {
+		1: Bozo.Rank.S
+	}
+}
 
 #region color
 var matter_to_color = {

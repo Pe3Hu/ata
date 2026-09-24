@@ -3,11 +3,13 @@ extends PanelContainer
 
 
 var data: MasterData
+var guild: Guild
 
 
 func _ready() -> void:
 	if Mother.guild.current_master:
 		data = Mother.guild.current_master
+		guild = get_parent()
 		
 		if data and data.type != Bozo.Master.NONE:
 			%Title.text = Bozo.enum_to_string(Bozo.Type.MASTER, data.type).capitalize()

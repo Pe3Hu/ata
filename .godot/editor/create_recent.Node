@@ -1,7 +1,7 @@
+Label
 VBoxContainer
 PanelContainer
 HBoxContainer
-Label
 TextureRect
 GridContainer
 MarginContainer

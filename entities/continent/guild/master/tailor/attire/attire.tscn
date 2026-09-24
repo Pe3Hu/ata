@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://b51fd1yfg81o0"]
+
+[ext_resource type="Script" uid="uid://cd7ijmd6u0u05" path="res://entities/continent/guild/master/tailor/attire/attire.gd" id="1_pox78"]
+[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="2_bo8wx"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="3_0oqao"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="4_bsprl"]
+[ext_resource type="Texture2D" uid="uid://dq8veyhenfbxv" path="res://entities/continent/guild/master/tailor/attire/images/1.png" id="5_aqjo7"]
+[ext_resource type="Texture2D" uid="uid://7mvsy3r84jfh" path="res://entities/continent/guild/master/tailor/attire/images/border.png" id="6_4a2mk"]
+[ext_resource type="PackedScene" uid="uid://c2j2ueheonqnf" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/spoil/spoil.tscn" id="7_0oqao"]
+[ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="7_t6oyn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v5phs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4l47n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2bfm"]
+resource_local_to_scene = true
+shader = ExtResource("4_bsprl")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uthi2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am6u2"]
+
+[node name="Attire" type="PanelContainer" unique_id=627721668]
+script = ExtResource("1_pox78")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=727467900]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer" unique_id=219125749]
+layout_mode = 2
+
+[node name="RankPanel" type="PanelContainer" parent="HBoxContainer/VBox" unique_id=1646694605]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v5phs")
+
+[node name="HBox" type="HBoxContainer" parent="HBoxContainer/VBox/RankPanel" unique_id=161021855]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 80
+
+[node name="PreviousRankButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=314254765]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture_normal = ExtResource("2_bo8wx")
+texture_pressed = ExtResource("2_bo8wx")
+texture_hover = ExtResource("2_bo8wx")
+flip_h = true
+script = ExtResource("3_0oqao")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextRankButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=672140703]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+mouse_filter = 1
+texture_normal = ExtResource("2_bo8wx")
+texture_pressed = ExtResource("2_bo8wx")
+texture_hover = ExtResource("2_bo8wx")
+script = ExtResource("3_0oqao")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="IconPanel" type="PanelContainer" parent="HBoxContainer/VBox/RankPanel" unique_id=923017906]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4l47n")
+
+[node name="Body" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/IconPanel" unique_id=745589899]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_x2bfm")
+layout_mode = 2
+texture = ExtResource("5_aqjo7")
+
+[node name="Border" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/IconPanel" unique_id=14015086]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_4a2mk")
+
+[node name="BlankPane" type="PanelContainer" parent="HBoxContainer/VBox" unique_id=1346812469]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uthi2")
+
+[node name="Spoil" parent="HBoxContainer/VBox/BlankPane" unique_id=844251538 instance=ExtResource("7_0oqao")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TributePanel" type="PanelContainer" parent="HBoxContainer" unique_id=790400353]
+custom_minimum_size = Vector2(85, 196)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am6u2")
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer/TributePanel" unique_id=1374693610]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="PreviousMatterButton" type="TextureButton" parent="HBoxContainer/TributePanel/VBox" unique_id=232190678]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 4.712389
+texture_normal = ExtResource("2_bo8wx")
+texture_pressed = ExtResource("2_bo8wx")
+texture_hover = ExtResource("2_bo8wx")
+script = ExtResource("3_0oqao")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Quotums" type="VBoxContainer" parent="HBoxContainer/TributePanel/VBox" unique_id=455569557]
+layout_mode = 2
+
+[node name="FirstQuotum" parent="HBoxContainer/TributePanel/VBox/Quotums" unique_id=1001384463 instance=ExtResource("7_t6oyn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SecondQuotum" parent="HBoxContainer/TributePanel/VBox/Quotums" unique_id=259219696 instance=ExtResource("7_t6oyn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NextMatterButton" type="TextureButton" parent="HBoxContainer/TributePanel/VBox" unique_id=870410760]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
+mouse_filter = 1
+texture_normal = ExtResource("2_bo8wx")
+texture_pressed = ExtResource("2_bo8wx")
+texture_hover = ExtResource("2_bo8wx")
+script = ExtResource("3_0oqao")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/PreviousRankButton" to="." method="_on_previous_rank_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/NextRankButton" to="." method="_on_next_rank_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/TributePanel/VBox/PreviousMatterButton" to="." method="_on_previous_matter_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/TributePanel/VBox/NextMatterButton" to="." method="_on_next_matter_button_pressed"]

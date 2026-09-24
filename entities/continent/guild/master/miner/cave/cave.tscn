@@ -1,0 +1,286 @@
+[gd_scene format=3 uid="uid://smirfinld8br"]
+
+[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="1_6j6cf"]
+[ext_resource type="Script" uid="uid://cpc8bv5jsansc" path="res://entities/continent/guild/master/miner/cave/cave.gd" id="1_7v3nb"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="2_7v3nb"]
+[ext_resource type="Texture2D" uid="uid://72p26l303w0l" path="res://entities/continent/guild/master/miner/cave/images/3.png" id="3_6j6cf"]
+[ext_resource type="Texture2D" uid="uid://ntxdst2g8ir7" path="res://entities/continent/guild/master/miner/cave/images/border.png" id="4_7v3nb"]
+[ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="5_dtxr6"]
+[ext_resource type="PackedScene" uid="uid://bckoiyn6a673d" path="res://entities/continent/guild/master/miner/cave/lode/lode.tscn" id="6_pnsrm"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="8_ra2rn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0alrj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lndui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1x4uf"]
+
+[sub_resource type="Shader" id="Shader_il1sq"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture : hint_default_white;
+uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
+uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
+uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
+uniform bool discomode = false;
+uniform float speed : hint_range(0.1, 2.0) = 0.2;
+uniform float scale : hint_range(0.1, 5.0) = 1.0;
+
+#define iTime (TIME * speed)
+
+float rand(vec4 p) {
+    return fract(sin(p.x*1234. + p.y*2345. + p.z*3456. + p.w*4567.) * 5678.);
+}
+
+float smoothnoise(vec4 p) {
+    const vec2 e = vec2(0.0, 1.0);
+    vec4 i = floor(p);
+    vec4 f = fract(p);
+
+    f = f*f*(3. - 2.*f);
+
+    return mix(mix(mix(mix(rand(i + e.xxxx),
+                           rand(i + e.yxxx), f.x),
+                       mix(rand(i + e.xyxx),
+                           rand(i + e.yyxx), f.x), f.y),
+                   mix(mix(rand(i + e.xxyx),
+                           rand(i + e.yxyx), f.x),
+                       mix(rand(i + e.xyyx),
+                           rand(i + e.yyyx), f.x), f.y), f.z),
+               mix(mix(mix(rand(i + e.xxxy),
+                           rand(i + e.yxxy), f.x),
+                       mix(rand(i + e.xyxy),
+                           rand(i + e.yyxy), f.x), f.y),
+                   mix(mix(rand(i + e.xxyy),
+                           rand(i + e.yxyy), f.x),
+                       mix(rand(i + e.xyyy),
+                           rand(i + e.yyyy), f.x), f.y), f.z), f.w);
+}
+
+float fbm(vec3 x) {
+    float v = 0.0;
+    float a = 0.5;
+    vec3 shift = vec3(1.0);
+    for (int i = 0; i < 10; ++i) {
+        v += a * smoothnoise(vec4(x, cos(iTime * 0.002) * 200.0));
+        x = x * 2.0 + shift;
+        a *= 0.5;
+    }
+    return v;
+}
+
+vec3 uvTo3D(vec2 uv) {
+    float theta = uv.x * 2.0 * 3.14159265359;
+    float phi = uv.y * 3.14159265359;
+    float x = sin(phi) * cos(theta);
+    float y = sin(phi) * sin(theta);
+    float z = cos(phi);
+    return vec3(x, y, z);
+}
+
+float max3(vec3 v) {
+    return max(max(v.x, v.y), v.z);
+}
+
+void fragment() {
+    vec3 col_a = colorA;
+    vec3 col_b = colorB;
+    vec3 col_c = colorC;
+
+    if (discomode) {
+        col_a = vec3(sin(iTime), sin(iTime + 7.0), cos(iTime));
+        col_b = vec3(cos(iTime), cos(iTime + 7.0), sin(iTime));
+        col_c = vec3(sin(iTime), cos(iTime), sin(iTime + 0.5));
+    }
+
+    vec2 screen_uv = SCREEN_UV;
+    vec3 pos = uvTo3D(screen_uv * scale);
+
+    pos.y += sin(iTime / 5.0);
+    pos.x += cos(iTime / 5.0);
+    pos.z += sin(iTime / 5.0);
+
+    float fbmm = fbm(pos);
+    vec3 q = vec3(fbmm, sin(fbmm), cos(fbmm));
+    vec3 r = vec3(fbmm, sin(fbmm), cos(fbmm));
+    float v = fbm(pos + 5.0 * r + iTime * 0.005);
+
+    vec3 col_top = vec3(1.0);
+    vec3 col_bot = vec3(0.0);
+
+    vec3 res_color = mix(col_a, col_b, clamp(r, 0.0, 1.0));
+    res_color = mix(res_color, col_c, clamp(q, 0.0, 1.0));
+
+    float poss = v * 2.0 - 1.0;
+    res_color = mix(res_color, col_top, clamp(poss, 0.0, 1.0));
+    res_color = mix(res_color, col_bot, clamp(-poss, 0.0, 1.0));
+
+    res_color = res_color / max(max3(res_color), 0.001);
+    res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
+
+    // --- Автовыбор маски ---
+    // Sprite2D / TextureRect -> TEXTURE имеет размер больше 1x1, берём альфу оттуда.
+    // ColorRect -> TEXTURE = 1x1 (или вовсе не задана), используем uniform mask_texture.
+    ivec2 tex_size = textureSize(TEXTURE, 0);
+    bool has_own_texture = (tex_size.x > 1 || tex_size.y > 1);
+
+    float mask_alpha = has_own_texture
+        ? texture(TEXTURE, UV).a
+        : texture(mask_texture, UV).a;
+
+    COLOR = vec4(res_color, mask_alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3eje"]
+resource_local_to_scene = true
+shader = SubResource("Shader_il1sq")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81iyp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5duf"]
+
+[node name="Cave" type="PanelContainer" unique_id=712909581]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0alrj")
+script = ExtResource("1_7v3nb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1747027950]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer" unique_id=860820763]
+layout_mode = 2
+
+[node name="RankPanel" type="PanelContainer" parent="HBoxContainer/VBox" unique_id=1908243986]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lndui")
+
+[node name="HBox" type="HBoxContainer" parent="HBoxContainer/VBox/RankPanel" unique_id=1855638984]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 80
+
+[node name="PreviousRankButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=698547667]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture_normal = ExtResource("1_6j6cf")
+texture_pressed = ExtResource("1_6j6cf")
+texture_hover = ExtResource("1_6j6cf")
+flip_h = true
+script = ExtResource("2_7v3nb")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextRankButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=1719213698]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+mouse_filter = 1
+texture_normal = ExtResource("1_6j6cf")
+texture_pressed = ExtResource("1_6j6cf")
+texture_hover = ExtResource("1_6j6cf")
+script = ExtResource("2_7v3nb")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="IconPanel" type="PanelContainer" parent="HBoxContainer/VBox/RankPanel" unique_id=743007695]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1x4uf")
+
+[node name="Body" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/IconPanel" unique_id=179208463]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_n3eje")
+layout_mode = 2
+texture = ExtResource("3_6j6cf")
+
+[node name="Border" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/IconPanel" unique_id=914644618]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_7v3nb")
+
+[node name="LodePane" type="PanelContainer" parent="HBoxContainer/VBox" unique_id=1014862414]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_81iyp")
+
+[node name="Lode" parent="HBoxContainer/VBox/LodePane" unique_id=1767828878 instance=ExtResource("6_pnsrm")]
+unique_name_in_owner = true
+
+[node name="TributePanel" type="PanelContainer" parent="HBoxContainer" unique_id=701177772]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 24)
+offset_transform_visual_only = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a5duf")
+
+[node name="HBox" type="VBoxContainer" parent="HBoxContainer/TributePanel" unique_id=675905435]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+theme_override_constants/separation = 64
+
+[node name="PreviousQuotumButton" type="TextureButton" parent="HBoxContainer/TributePanel/HBox" unique_id=1311286720]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 4.712389
+texture_normal = ExtResource("1_6j6cf")
+texture_pressed = ExtResource("1_6j6cf")
+texture_hover = ExtResource("1_6j6cf")
+script = ExtResource("2_7v3nb")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextQuotumButton" type="TextureButton" parent="HBoxContainer/TributePanel/HBox" unique_id=966894394]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
+mouse_filter = 1
+texture_normal = ExtResource("1_6j6cf")
+texture_pressed = ExtResource("1_6j6cf")
+texture_hover = ExtResource("1_6j6cf")
+script = ExtResource("2_7v3nb")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="Quotum" parent="HBoxContainer/TributePanel" unique_id=844251538 instance=ExtResource("5_dtxr6")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Avg" type="Label" parent="." unique_id=496050791]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(68, 23)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-12, 12)
+offset_transform_visual_only = false
+text = "Avg: 1"
+label_settings = ExtResource("8_ra2rn")
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/PreviousRankButton" to="." method="_on_previous_rank_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/NextRankButton" to="." method="_on_next_rank_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/TributePanel/HBox/PreviousQuotumButton" to="." method="_on_previous_quotum_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/TributePanel/HBox/NextQuotumButton" to="." method="_on_next_quotum_button_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://gcnprewai1fh"]
+
+[ext_resource type="PackedScene" uid="uid://carjm41nlnbpg" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.tscn" id="1_783c3"]
+[ext_resource type="Script" uid="uid://bcuu7a58f80su" path="res://entities/continent/guild/master/musician/veteran/veteran.gd" id="1_vl728"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4bt2"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+
+[node name="Veteran" unique_id=665226723 instance=ExtResource("1_783c3")]
+script = ExtResource("1_vl728")
+
+[node name="Top" parent="HBox/VBoxContainer/MarginContainer" parent_id_path=PackedInt32Array(2134348648) index="0" unique_id=1866332452]
+theme_override_styles/panel = SubResource("StyleBoxFlat_j4bt2")

@@ -1007,9 +1007,10 @@ sources/1 = SubResource("TileSetAtlasSource_xm0pn")
 sources/0 = SubResource("TileSetAtlasSource_r4tbc")
 sources/2 = SubResource("TileSetAtlasSource_cerdp")
 
-[node name="Mainland" type="Node2D" unique_id=38056738 node_paths=PackedStringArray("camera")]
+[node name="Mainland" type="Node2D" unique_id=38056738 node_paths=PackedStringArray("camera", "beam")]
 script = ExtResource("1_fttdw")
 camera = NodePath("Camera")
+beam = NodePath("Beam")
 
 [node name="Ocean" type="TileMapLayer" parent="." unique_id=1651553584]
 unique_name_in_owner = true
@@ -1047,7 +1048,6 @@ visible = false
 
 [node name="Haze" parent="." unique_id=1740775702 instance=ExtResource("6_x1b5c")]
 unique_name_in_owner = true
-visible = false
 
 [node name="Camera" parent="." unique_id=1429311501 node_paths=PackedStringArray("mainland") instance=ExtResource("9_cugl8")]
 position = Vector2(668, 388)

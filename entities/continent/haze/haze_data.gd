@@ -113,11 +113,11 @@ func refresh() -> void:
 # Вызывается из Haze._process каждый кадр.
 func tick(delta_: float) -> void:
 	@warning_ignore("shadowed_variable")
-	var changed := false
+	var changed = false
 
 	# 1. Если идёт волна/эрозия — снять пульсацию ДО обработки,
 	#    чтобы волны работали по чистой базе.
-	var busy_pre := not _delayed.is_empty() or not _waves.is_empty() or _erosion_pending > 0
+	var busy_pre = not _delayed.is_empty() or not _waves.is_empty() or _erosion_pending > 0
 	if busy_pre and _pulse_active:
 		if _undo_pulse():
 			changed = true
@@ -143,7 +143,7 @@ func tick(delta_: float) -> void:
 		changed = true
 
 	# 4. Дыхание периферии — только когда всё стихло.
-	var still_busy := not _delayed.is_empty() or not _waves.is_empty() or _erosion_pending > 0
+	var still_busy = not _delayed.is_empty() or not _waves.is_empty() or _erosion_pending > 0
 	if not pulse_enabled:
 		if _pulse_active:
 			if _undo_pulse():
@@ -204,11 +204,11 @@ func _pair_hash(c_: Vector2i, f_: Vector2i) -> float:
 
 func _compute_max_radius(pending_: Array[Vector2i], origin_: Vector2,
 		jitter_: float) -> float:
-	var max_r := 0.0
+	var max_r = 0.0
 	for p in pending_:
-		var d := origin_.distance_to(Vector2(p))
-		var n := (_hash01(p.x, p.y) - 0.5) * 2.0
-		var eff := d + n * jitter_
+		var d = origin_.distance_to(Vector2(p))
+		var n = (_hash01(p.x, p.y) - 0.5) * 2.0
+		var eff = d + n * jitter_
 		if eff > max_r:
 			max_r = eff
 	return max_r + 1.0
@@ -226,7 +226,7 @@ func _compute_max_radius(pending_: Array[Vector2i], origin_: Vector2,
 #   { "pixels": Dictionary[Vector2i -> true], "center": Vector2, "radius": float }
 func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
 		include_externals_: bool = true) -> Dictionary:
-	var result := {"pixels": {}, "center": Vector2.ZERO, "radius": 0.0}
+	var result = {"pixels": {}, "center": Vector2.ZERO, "radius": 0.0}
 	if cluster_ == null: return result
 
 	var cells: Array[Vector2i] = []
@@ -237,34 +237,34 @@ func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
 
 	var cell_size: Vector2i = Catalog.MAINLAND_COORD_SIZE
 
-	var min_c := Vector2i(1 << 30, 1 << 30)
-	var max_c := Vector2i(-(1 << 30), -(1 << 30))
+	var min_c = Vector2i(1 << 30, 1 << 30)
+	var max_c = Vector2i(-(1 << 30), -(1 << 30))
 	for cell in cells:
 		min_c.x = mini(min_c.x, cell.x)
 		min_c.y = mini(min_c.y, cell.y)
 		max_c.x = maxi(max_c.x, cell.x)
 		max_c.y = maxi(max_c.y, cell.y)
 
-	var tl := world_to_fog(Vector2(min_c * cell_size))
-	var br := world_to_fog(Vector2((max_c + Vector2i.ONE) * cell_size) - Vector2.ONE)
+	var tl = world_to_fog(Vector2(min_c * cell_size))
+	var br = world_to_fog(Vector2((max_c + Vector2i.ONE) * cell_size) - Vector2.ONE)
 
-	var center := (Vector2(tl) + Vector2(br)) * 0.5
-	var half := (Vector2(br) - Vector2(tl)) * 0.5
-	var radius := half.length()
+	var center = (Vector2(tl) + Vector2(br)) * 0.5
+	var half = (Vector2(br) - Vector2(tl)) * 0.5
+	var radius = half.length()
 
-	var pad := int(ceil(edge_jitter_)) + 2
-	var x0 := int(floor(center.x - radius)) - pad
-	var x1 := int(ceil (center.x + radius)) + pad
-	var y0 := int(floor(center.y - radius)) - pad
-	var y1 := int(ceil (center.y + radius)) + pad
+	var pad = int(ceil(edge_jitter_)) + 2
+	var x0 = int(floor(center.x - radius)) - pad
+	var x1 = int(ceil (center.x + radius)) + pad
+	var y0 = int(floor(center.y - radius)) - pad
+	var y1 = int(ceil (center.y + radius)) + pad
 
 	var pixels: Dictionary = {}
 	for y in range(y0, y1 + 1):
 		for x in range(x0, x1 + 1):
 			if not in_bounds(x, y): continue
-			var d := center.distance_to(Vector2(x, y))
-			var n := (_hash01(x, y) - 0.5) * 2.0
-			var effective := d + n * edge_jitter_
+			var d = center.distance_to(Vector2(x, y))
+			var n = (_hash01(x, y) - 0.5) * 2.0
+			var effective = d + n * edge_jitter_
 			if effective <= radius:
 				pixels[Vector2i(x, y)] = true
 
@@ -277,9 +277,9 @@ func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
 # Мгновенный вариант (для отладки / неанимированных случаев).
 func reveal_cluster(cluster_: Variant, edge_jitter_: float = 1.5,
 		include_externals_: bool = true) -> void:
-	var info := _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
+	var info = _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
 	var pixels: Dictionary = info["pixels"]
-	var any := false
+	var any = false
 	for p: Vector2i in pixels.keys():
 		if reveal_pixel(p.x, p.y):
 			any = true
@@ -302,7 +302,7 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 		mainland.beam.current_shelter = cluster_
 		cluster_.shrine.is_hazed = false
 
-	var info := _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
+	var info = _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
 	var pixels: Dictionary = info["pixels"]
 	if pixels.is_empty(): return
 
@@ -311,7 +311,7 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 		pending.append(p)
 
 	var origin: Vector2 = info["center"] if origin_override_ == null else origin_override_
-	var max_radius := _compute_max_radius(pending, origin, wave_jitter_)
+	var max_radius = _compute_max_radius(pending, origin, wave_jitter_)
 
 	# Расстояние, которое волне осталось пройти.
 	var dist: float = max(0.0, max_radius - initial_radius_)
@@ -328,7 +328,7 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 # Один шаг по всем активным волнам. Возвращает true, если хоть
 # одна волна что-то раскрыла в этом кадре.
 func _tick_waves(delta_: float) -> bool:
-	var revealed_any := false
+	var revealed_any = false
 	var surviving: Array[Dictionary] = []
 
 	for wave: Dictionary in _waves:
@@ -340,9 +340,9 @@ func _tick_waves(delta_: float) -> bool:
 
 		var still: Array[Vector2i] = []
 		for p in pending:
-			var d := origin.distance_to(Vector2(p))
-			var n := (_hash01(p.x, p.y) - 0.5) * 2.0
-			var eff := d + n * jitter
+			var d = origin.distance_to(Vector2(p))
+			var n = (_hash01(p.x, p.y) - 0.5) * 2.0
+			var eff = d + n * jitter
 			if eff <= radius:
 				if reveal_pixel(p.x, p.y):
 					revealed_any = true
@@ -451,7 +451,7 @@ func _tick_erosion(delta_: float) -> bool:
 
 	_erosion_accum += delta_ * erosion_speed_steps_per_sec
 	@warning_ignore("shadowed_variable")
-	var changed := false
+	var changed = false
 	while _erosion_accum >= 1.0 and _erosion_pending > 0:
 		if not _erode_step():
 			_erosion_pending = 0
@@ -483,14 +483,14 @@ func _collect_pulse_pairs() -> void:
 	for y in range(height):
 		for x in range(width):
 			if not _is_revealed(x, y): continue
-			var c := Vector2i(x, y)
+			var c = Vector2i(x, y)
 			if seen_clear.has(c): continue
 			for d in NEIGHBORS:
 				var nx: int = x + d.x
 				var ny: int = y + d.y
 				if not in_bounds(nx, ny): continue
 				if _is_revealed(nx, ny): continue
-				var f := Vector2i(nx, ny)
+				var f = Vector2i(nx, ny)
 				if seen_fog.has(f): continue
 				seen_clear[c] = true
 				seen_fog[f] = true
@@ -505,8 +505,8 @@ func _collect_pulse_pairs() -> void:
 	if _pulse_pairs.is_empty(): return
 
 	# Центр пар — для угловой координаты.
-	var cx := 0.0
-	var cy := 0.0
+	var cx = 0.0
+	var cy = 0.0
 	for pair: Dictionary in _pulse_pairs:
 		var c: Vector2i = pair["clear"]
 		var f: Vector2i = pair["fog"]
@@ -518,8 +518,8 @@ func _collect_pulse_pairs() -> void:
 	for pair: Dictionary in _pulse_pairs:
 		var c: Vector2i = pair["clear"]
 		var f: Vector2i = pair["fog"]
-		var mx := (float(c.x) + float(f.x)) * 0.5
-		var my := (float(c.y) + float(f.y)) * 0.5
+		var mx = (float(c.x) + float(f.x)) * 0.5
+		var my = (float(c.y) + float(f.y)) * 0.5
 		pair["angle"] = atan2(my - cy, mx - cx)
 
 
@@ -534,7 +534,7 @@ func _start_pulse() -> void:
 
 # Возвращает true, если что-то изменилось (требуется refresh).
 func _undo_pulse() -> bool:
-	var any := false
+	var any = false
 	for cell: Vector2i in _pulse_base.keys():
 		var base: bool = _pulse_base[cell]
 		if _is_revealed(cell.x, cell.y) != base:
@@ -564,10 +564,10 @@ func _undo_pulse() -> bool:
 #
 # Баланс: сколько пар ушло в засвет, столько же — в туман.
 func _apply_pulse() -> bool:
-	var omega := TAU * pulse_frequency
-	var t := _pulse_time
-	var ramp := minf(1.0, t / PULSE_RAMP_DURATION)
-	var time_amp := sin(omega * t) * ramp
+	var omega = TAU * pulse_frequency
+	var t = _pulse_time
+	var ramp = minf(1.0, t / PULSE_RAMP_DURATION)
+	var time_amp = sin(omega * t) * ramp
 
 	var flip_reveal: Array = []   # [excess, fog_COORD]
 	var flip_fog: Array = []      # [excess, clear_COORD]
@@ -603,7 +603,7 @@ func _apply_pulse() -> bool:
 		target_fog[flip_fog[i][1]] = true
 
 	@warning_ignore("shadowed_variable")
-	var changed := false
+	var changed = false
 	for cell: Vector2i in _pulse_base.keys():
 		var base: bool = _pulse_base[cell]
 		var current: bool = _is_revealed(cell.x, cell.y)
@@ -651,7 +651,7 @@ func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 
 	# Заранее считаем геометрию shelter’а: его центр и радиус, на
 	# котором волна остановится. Эти значения нужны для соседей.
-	var shelter_info := _collect_cluster_circle(shelter, edge_jitter_, true)
+	var shelter_info = _collect_cluster_circle(shelter, edge_jitter_, true)
 	var shelter_pixels: Dictionary = shelter_info["pixels"]
 	if shelter_pixels.is_empty(): return
 
@@ -659,7 +659,7 @@ func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 	var shelter_pending: Array[Vector2i] = []
 	for p: Vector2i in shelter_pixels.keys():
 		shelter_pending.append(p)
-	var shelter_max_radius := _compute_max_radius(shelter_pending, shelter_origin, wave_jitter_)
+	var shelter_max_radius = _compute_max_radius(shelter_pending, shelter_origin, wave_jitter_)
 
 	# 1. Shelter — как обычно, из своего центра.
 	reveal_cluster_wave(shelter, duration_, wave_jitter_, edge_jitter_, true)

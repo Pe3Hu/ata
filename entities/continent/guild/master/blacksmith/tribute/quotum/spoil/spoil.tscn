@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c2j2ueheonqnf"]
+
+[ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="1_n7s4p"]
+[ext_resource type="Script" uid="uid://djp1bkv7rf0fj" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/spoil/spoil.gd" id="2_d4rdh"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="2_lhfvc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d4rdh"]
+resource_local_to_scene = true
+font = ExtResource("2_lhfvc")
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Spoil" unique_id=844251538 instance=ExtResource("1_n7s4p")]
+script = ExtResource("2_d4rdh")
+
+[node name="Amount" parent="HBox" parent_id_path=PackedInt32Array(1483460704) index="1" unique_id=563800151]
+label_settings = SubResource("LabelSettings_d4rdh")

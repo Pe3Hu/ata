@@ -15,17 +15,15 @@ func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vect
 	cluster = cluster_
 	type = type_
 	coord = coord_
+	
+	if type == Bozo.Structure.MINE:
+		matters.append(cluster.biome.source.matter)
 
-func roll_matters(mixed_options: Array) -> void:
-	matters.append(cluster.biome.source.matter)
-	var options = Catalog.matters.filter(func (a): return not matters.has(a))
-	
-	if not mixed_options.is_empty():
-		options = options.filter(func (a): return mixed_options.has(a))
-	
-	var matter = options.pick_random()
-	matters.append(matter)
-	mixed_options.append(cluster.biome.source.matter)
+func roll_matters(shift_: int) -> void:
+	var index = Catalog.matters.find(cluster.biome.source.matter)
+	index = (index + shift_ + Catalog.matters.size()) % Catalog.matters.size()
+	var shift_matter = Catalog.matters[index]
+	matters = [cluster.biome.source.matter, shift_matter]
 
 func get_global_coord() -> Vector2i:
 	return Vector2i.ONE + cluster.internals.front() + coord

@@ -280,12 +280,12 @@ func init_matter_structures() -> void:
 
 func update_mixed_matters() -> void:
 	for structure_type in Catalog.mixed_sctructures:
-		var mixed_matters = []
+		var shift = randi_range(0, 1) * 2 - 1
 		
 		for wasteland in wastelands:
 			if wasteland.type_to_structure.has(structure_type):
 				var sctructure = wasteland.type_to_structure[structure_type]
-				sctructure.roll_matters(mixed_matters)
+				sctructure.roll_matters(shift)
 
 func init_ruin_structures() -> void:
 	var empty_wastelands = wastelands.filter(func (a): return a.structures.is_empty())
@@ -323,6 +323,7 @@ func init_ruin_structures() -> void:
 func init_magistrals() -> void:
 	for wasteland in wastelands:
 		add_magistral(wasteland)
+
 func add_magistral(wasteland_: WastelandData) -> void:
 	if wasteland_.neighbor_wastelands.size() != 2 and wasteland_.index != Catalog.MAGISTRAL_EXCEPTION_INDEX: return
 	

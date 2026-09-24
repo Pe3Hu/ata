@@ -2,6 +2,7 @@ class_name Guild
 extends PanelContainer
 
 
+@export var mainland: Mainland
 @export var current: Master
 
 

@@ -2,7 +2,6 @@ class_name ShelterData
 extends ClusterData
 
 
-
 var shrine: ShrineData = ShrineData.new(self, Bozo.Structure.SHRINE)
 
 

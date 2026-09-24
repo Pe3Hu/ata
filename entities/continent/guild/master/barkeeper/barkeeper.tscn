@@ -3,8 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_6cw2x"]
 [ext_resource type="Script" uid="uid://cki5ckby6we2k" path="res://entities/continent/guild/master/barkeeper/barkeeper.gd" id="2_kd11u"]
 [ext_resource type="PackedScene" uid="uid://carjm41nlnbpg" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.tscn" id="3_kd11u"]
-[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_klxhk"]
-[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_hc78f"]
 
 [node name="Barkeeper" unique_id=1270337185 instance=ExtResource("1_6cw2x")]
 script = ExtResource("2_kd11u")
@@ -12,39 +10,3 @@ script = ExtResource("2_kd11u")
 [node name="Recruit" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=665226723 instance=ExtResource("3_kd11u")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="1" unique_id=1102176754]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 128
-
-[node name="PreviousButton" type="TextureButton" parent="VBox/InfoPanel/HBoxContainer" index="0" unique_id=2034848841]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-offset_transform_enabled = true
-texture_normal = ExtResource("4_klxhk")
-texture_pressed = ExtResource("4_klxhk")
-texture_hover = ExtResource("4_klxhk")
-flip_h = true
-script = ExtResource("5_hc78f")
-metadata/_custom_type_script = "uid://c3ji6eownkceu"
-
-[node name="NextButton" type="TextureButton" parent="VBox/InfoPanel/HBoxContainer" index="1" unique_id=1475273266]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-offset_transform_enabled = true
-mouse_filter = 1
-texture_normal = ExtResource("4_klxhk")
-texture_pressed = ExtResource("4_klxhk")
-texture_hover = ExtResource("4_klxhk")
-script = ExtResource("5_hc78f")
-metadata/_custom_type_script = "uid://c3ji6eownkceu"
-
-[connection signal="pressed" from="VBox/InfoPanel/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
-[connection signal="pressed" from="VBox/InfoPanel/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

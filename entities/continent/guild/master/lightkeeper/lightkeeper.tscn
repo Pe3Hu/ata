@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bqgagkcucwimy" path="res://entities/continent/guild/master/master.tscn" id="1_68eiv"]
 [ext_resource type="Script" uid="uid://c53m1hitlv2jb" path="res://entities/continent/guild/master/lightkeeper/lightkeeper.gd" id="2_a83yx"]
+[ext_resource type="PackedScene" uid="uid://b5s1jkdhhxvod" path="res://entities/continent/guild/master/lightkeeper/firework/firework.tscn" id="3_57go4"]
 
 [node name="Lightkeeper" unique_id=1270337185 instance=ExtResource("1_68eiv")]
 script = ExtResource("2_a83yx")
 
-[node name="ColorRect" type="ColorRect" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=368424979]
+[node name="Firework" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=92810223 instance=ExtResource("3_57go4")]
+unique_name_in_owner = true
 layout_mode = 2

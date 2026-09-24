@@ -168,6 +168,7 @@ func choose_trod(trod_type_: Bozo.Trod, current_structure_: StructureData) -> St
 
 func activate() -> void:
 	if mainland.footprint.target_structure == null: return
+	if mainland.footprint.target_structure.type == Bozo.Structure.SHRINE: return
 	if start_structure == mainland.footprint.target_structure:
 		reset()
 		start_structure = null

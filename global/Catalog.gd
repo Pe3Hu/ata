@@ -21,13 +21,11 @@ const faces = [
 ]
 #endregion
 
-#region matter
 const matters: Array[Bozo.Matter] = [
 	Bozo.Matter.GAS,
 	Bozo.Matter.LIQUID,
 	Bozo.Matter.SOLID,
 ]
-#endregion
 
 #region canto
 const tunes = [
@@ -227,24 +225,22 @@ const wasteland_pattern_coords: Array[Vector2i] = [
 	Vector2i(1, 0)
 ]
 
+const center_wasteland_indexs = [5, 12]#[4, 5, 12, 13]
+const center_shelter_indexs = [9, 15]
+#endregion
+
+#region structure
 const structure_coords: Array[Vector2] = [
 	Vector2(1, -1),
 	Vector2(1, 1),
 	Vector2(-1, 1),
 	Vector2(-1, -1),
 ]
-#endregion
-
-#region structure
-const structures: Array[Bozo.Structure] = [
-	
-]
 
 const large_sctructures = [Bozo.Structure.FORGE, Bozo.Structure.MINE, Bozo.Structure.ATELIER]
 const matter_sctructures = [Bozo.Structure.THEATER, Bozo.Structure.WORKSHOP, Bozo.Structure.LIGHTHOUSE, Bozo.Structure.MINE]
 const mixed_sctructures = [Bozo.Structure.ATELIER, Bozo.Structure.FORGE]
 const single_sctructures = [Bozo.Structure.TAVERN, Bozo.Structure.OBSERVATORY]
-const center_wasteland_indexs = [5, 12]#[4, 5, 12, 13]
 
 const complexity_ranks = [
 	[0, 0, 0],
@@ -277,3 +273,5 @@ const TROD_SELECTED_FACTOR: float = 3
 
 const BARKEEPER_RECRUIT_AMOUNT: int = 3
 const DEMON_DEFAULT_COMPLEXITY: int = 35
+
+const ranks = [Bozo.Rank.F, Bozo.Rank.E, Bozo.Rank.D, Bozo.Rank.C, Bozo.Rank.B, Bozo.Rank.A, Bozo.Rank.S]

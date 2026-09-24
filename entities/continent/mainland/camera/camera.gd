@@ -11,7 +11,11 @@ var target_position: Vector2
 func _ready():
 	position_smoothing_speed = move_speed
 
-func focus_on_structure() -> void:
+func focus_on_structure(structure_: StructureData = null) -> void:
+	if structure_:
+		target_position = Helper.get_structure_position(structure_, true)
+		return
+	
 	if mainland.data.route.finish_structure == null: return
 	target_position = Helper.get_structure_position(mainland.data.route.finish_structure, true)
 

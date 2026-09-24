@@ -112,8 +112,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Guild" parent="HBox/PanelContainer/VBox" unique_id=1910077611 instance=ExtResource("5_jtw3p")]
+[node name="Guild" parent="HBox/PanelContainer/VBox" unique_id=1910077611 node_paths=PackedStringArray("mainland") instance=ExtResource("5_jtw3p")]
 layout_mode = 2
+mainland = NodePath("../../../MainlandPanel/MainlandViewport/Mainland")
 
 [node name="TextureRect" type="TextureRect" parent="HBox/PanelContainer" unique_id=1404395287]
 visible = false
