@@ -16,8 +16,8 @@ func _init(mission_: MissionData) -> void:
 	attempt = AttemptData.new(self)
 	ambition = AmbitionData.new(self)
 	init_ideas()
-	init_plans()
-	show_perfect_methods()
+	#init_plans()
+	#show_perfect_methods()
 
 func init_ideas() -> void:
 	var indexs = 4

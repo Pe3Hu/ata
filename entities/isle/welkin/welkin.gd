@@ -4,15 +4,12 @@ extends Control
 
 var asterism_scene = preload("uid://7422stye5c3g")
 
-var data: WelkinData:
-	set(value_):
-		data = value_
-		
-		init_asterisms()
+var data: WelkinData
 
 
 func _ready() -> void:
-	data = Mother.isle.welkin
+	data = Mother.welkin
+	init_asterisms()
 
 func init_asterisms() -> void:
 	for asterim_data in data.asterisms:

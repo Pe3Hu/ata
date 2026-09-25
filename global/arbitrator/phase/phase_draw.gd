@@ -10,16 +10,16 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	
-	if Arbitrator.faction.atheneum.house.bedroom.stamps.size() < 2:
+	if Mother.house.bedroom.stamps.size() < 2:
 		if Arbitrator.current_round > 1:
 			pass
-		Arbitrator.faction.atheneum.house.direct_refill_bedroom()
+		Mother.house.direct_refill_bedroom()
 	
-	Arbitrator.faction.atheneum.house.refill_parlor()
-	Arbitrator.faction.odeum.init_scenarios()
+	Mother.house.refill_parlor()
+	Mother.odeum.init_scenarios()
 	
 	status = Bozo.Status.PLAYING_ANIMATION
-	Arbitrator.faction.atheneum.house.draw_phase.emit()
+	Mother.house.draw_phase.emit()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

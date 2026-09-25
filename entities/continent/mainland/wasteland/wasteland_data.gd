@@ -6,9 +6,12 @@ var biome: BiomeData
 
 var structures: Array[StructureData]
 var type_to_structure: Dictionary
+var type_to_cell: Dictionary
 
 var pattern_coords: Array[Vector2i]
 var cells_options: Array[Vector2i]
+
+var refused_structures: Array[Bozo.Structure]
 
 
 #region init
@@ -29,7 +32,11 @@ func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) 
 		pattern_coords.append_array(Catalog.wasteland_pattern_coords)
 		pattern_coords.shuffle()
 
-func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_: int = -1) -> void:
+func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_: int = -1, is_forced_: bool = false) -> bool:
+	if not is_forced_ and not structures.is_empty():
+		refused_structures.append(type_)
+		return false
+	
 	if cell_ == -Vector2i.ONE:
 		cell_ = cells_options.pick_random()
 	
@@ -42,6 +49,7 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_
 	structures.append(structure)
 	cells_options.erase(cell_)
 	type_to_structure[type_] = structure
+	type_to_cell[type_] = cell_
 	
 	if type_ == Bozo.Structure.RUIN:
 		var matter = Catalog.matters.pick_random()
@@ -52,7 +60,21 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_
 	
 	if type_ == Bozo.Structure.MINE:
 		pass
+	
+	return true
+func remove_structure(type_: Bozo.Structure) -> bool:
+	if not type_to_structure.has(type_):
+		return false
 
+	var structure: StructureData = type_to_structure[type_]
+	var cell: Vector2i = type_to_cell[type_]
+
+	structures.erase(structure)
+	type_to_structure.erase(type_)
+	type_to_cell.erase(type_)
+	cells_options.append(cell)
+
+	return true
 func fill_ruins(complexity_: int) -> void:
 	var ranks = Catalog.complexity_ranks[complexity_]
 	cells_options.shuffle()
@@ -62,7 +84,7 @@ func fill_ruins(complexity_: int) -> void:
 			print_debug('fill_ruins bug')
 			return
 		var cell = cells_options.back()
-		add_structure(Bozo.Structure.RUIN, cell, rank)
+		add_structure(Bozo.Structure.RUIN, cell, rank, true)
 
 func init_trods() -> void:
 	for _i in structures.size():

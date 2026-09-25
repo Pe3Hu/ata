@@ -2,8 +2,6 @@ class_name MissionData
 extends RefCounted
 
 
-var isle: IsleData
-
 var bank: BankData
 var gang: GangData
 var loot: LootData
@@ -12,9 +10,7 @@ var counter = 1000
 var method_to_sum: Dictionary
 
 
-func _init(isle_: IsleData) -> void:
-	isle = isle_
-	
+func _init() -> void:
 	bank = BankData.new(self)
 	gang = GangData.new(self)
 	loot = LootData.new(self)

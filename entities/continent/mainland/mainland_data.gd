@@ -233,6 +233,8 @@ func init_structures() -> void:
 	init_structures_in_large_biomes()
 	init_matter_structures()
 	update_mixed_matters()
+	resolve_structure_exceptions()
+	#validate_pre_ruin_distribution()
 	init_ruin_structures()
 
 func init_single_structures() -> void:
@@ -286,6 +288,45 @@ func update_mixed_matters() -> void:
 			if wasteland.type_to_structure.has(structure_type):
 				var sctructure = wasteland.type_to_structure[structure_type]
 				sctructure.roll_matters(shift)
+
+func resolve_structure_exceptions() -> void:
+	var exceptions: Array = []
+	for wasteland in wastelands:
+		for structure in wasteland.refused_structures:
+			exceptions.append({"structure": structure, "wasteland": wasteland})
+		wasteland.refused_structures.clear()
+
+	var swapped_types: Dictionary = {}
+	var safety := wastelands.size() * 4
+
+	while not exceptions.is_empty() and safety > 0:
+		safety -= 1
+		var exc: Dictionary = exceptions.pop_back()
+		var exception_structure: Bozo.Structure = exc.structure
+		var source_wasteland: WastelandData = exc.wasteland
+
+		var empty_wastelands = wastelands.filter(func(a): return a.structures.is_empty())
+
+		# 1. Пытаемся положить в пустую пустошь без соседа с тем же типом
+		var candidates = empty_wastelands.filter(func(a):
+			return not Helper.wasteland_already_has_neighbor_structure(a, exception_structure))
+
+		if not candidates.is_empty():
+			candidates.pick_random().add_structure(exception_structure)
+			continue
+
+		# 2. Своп внутри исходной пустоши — не более одного раза на тип
+		if swapped_types.has(exception_structure) or source_wasteland.structures.is_empty():
+			push_error("resolve_exceptions: cannot place %s" % exception_structure)
+			continue
+
+		swapped_types[exception_structure] = true
+
+		var existing_type: Bozo.Structure = source_wasteland.structures[0].type
+		source_wasteland.remove_structure(existing_type)
+		source_wasteland.add_structure(exception_structure, -Vector2i.ONE, -1, true)
+
+		exceptions.append({"structure": existing_type, "wasteland": source_wasteland})
 
 func init_ruin_structures() -> void:
 	var empty_wastelands = wastelands.filter(func (a): return a.structures.is_empty())
@@ -366,3 +407,15 @@ func update_start_structure() -> void:
 		if wasteland.type_to_structure.has(Bozo.Structure.TAVERN):
 			footprint.current_structure = wasteland.type_to_structure[Bozo.Structure.TAVERN]
 			route.start_structure = footprint.current_structure
+
+func validate_pre_ruin_distribution() -> void:
+	var empty_count := 0
+	var duplicate_count := 0
+	for w in wastelands:
+		if w.structures.is_empty():
+			empty_count += 1
+		elif w.structures.size() > 1:
+			duplicate_count += 1
+	print_debug("empty=%d, duplicates=%d" % [empty_count, duplicate_count])
+	assert(empty_count == 1, "Должна остаться ровно одна пустая пустошь")
+	assert(duplicate_count == 0, "Дублирований быть не должно")

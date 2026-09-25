@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clmv2e7tl7rj2" path="res://entities/isle/ladder/stair/stair.gd" id="1_1kj0j"]
 [ext_resource type="Texture2D" uid="uid://c1dbbsc7army1" path="res://entities/isle/ladder/stair/images/circle body.png" id="2_e0yij"]
 [ext_resource type="Shader" uid="uid://chlh4giymkr0a" path="res://entities/isle/ladder/stair/portal.gdshader" id="2_ony7k"]
-[ext_resource type="Shader" uid="uid://c1sikno4agtpn" path="res://entities/isle/atheneum/card/stamp/stake/ban.gdshader" id="4_qscjs"]
+[ext_resource type="Shader" uid="uid://c1sikno4agtpn" path="res://entities/isle/house/card/stamp/stake/ban.gdshader" id="4_qscjs"]
 [ext_resource type="Texture2D" uid="uid://o11jh0lsyt5j" path="res://entities/isle/ladder/stair/images/circle border.png" id="5_2l2j1"]
 
 [sub_resource type="Gradient" id="Gradient_ony7k"]

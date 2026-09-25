@@ -1,0 +1,125 @@
+{
+  "B": {
+	"Egyptian": ["Baraka", "Bahira"],
+	"Greek": ["Barbara"],
+	"Hindu": ["Bhavik"],
+	"Japanese": ["Bunji", "Bakuya"]
+  },
+  "C": {
+	"Norse": ["Claus"],
+	"Aztec": ["Citlali", "Coatl"],
+	"Greek": ["Chloe", "Christopher", "Constantine"]
+  },
+  "D": {
+	"Norse": ["Dagmar"],
+	"Greek": ["Daphne", "Damian"],
+	"Hindu": ["Dhruv", "Deeya"],
+	"Japanese": ["Daisuke"]
+  },
+  "F": {
+	"Egyptian": ["Fatma", "Farida"],
+	"Norse": ["Frida"],
+	"Japanese": ["Fujio", "Fumio", "Fuyuki"]
+  },
+  "G": {
+	"Egyptian": ["Gamal"],
+	"Norse": ["Gudrun"],
+	"Greek": ["Gregory"],
+	"Hindu": ["Gaurav"],
+	"Japanese": ["Genji", "Gin"]
+  },
+  "H": {
+	"Egyptian": ["Hassan"],
+	"Norse": ["Harald", "Helga"],
+	"Greek": ["Hector"],
+	"Japanese": ["Haruto", "Himari"]
+  },
+  "J": {
+	"Egyptian": ["Jasmin"],
+	"Aztec": ["Jatziri", "Jarec"],
+	"Hindu": ["Jai", "Janvi"],
+	"Japanese": ["Jiro"]
+  },
+  "K": {
+	"Egyptian": ["Kamal"],
+	"Norse": ["Karl"],
+	"Greek": ["Kassandra"],
+	"Hindu": ["Kiran"],
+	"Japanese": ["Kaito", "Koharu"]
+  },
+  "L": {
+	"Egyptian": ["Layla"],
+	"Norse": ["Leonard"],
+	"Greek": ["Luca", "Larissa", "Lydia"],
+	"Hindu": ["Lavin"]
+  },
+  "M": {
+	"Egyptian": ["Mohamed"],
+	"Norse": ["Magnus"],
+	"Aztec": ["Meztli", "Mecatl"],
+	"Greek": ["Margaret"],
+	"Japanese": ["Minato"]
+  },
+  "N": {
+	"Norse": ["Nils"],
+	"Aztec": ["Necalli", "Nenetl"],
+	"Greek": ["Nicole"],
+	"Hindu": ["Neha"],
+	"Japanese": ["Naomi"]
+  },
+  "P": {
+	"Egyptian": ["Panya", "Pili"],
+	"Greek": ["Peter", "Philip"],
+	"Hindu": ["Parul", "Pavan"]
+  },
+  "Q": {
+	"Egyptian": ["Qibh", "Qerert"],
+	"Aztec": ["Quetzalli", "Quauhtli", "Quiahuitl"],
+	"Hindu": ["Qadir"]
+  },
+  "R": {
+	"Norse": ["Ragnar"],
+	"Hindu": ["Rajesh", "Rashmi", "Rahul"],
+	"Japanese": ["Rin", "Ryota"]
+  },
+  "S": {
+	"Egyptian": ["Samir"],
+	"Norse": ["Sven"],
+	"Greek": ["Sophia"],
+	"Hindu": ["Sakshi"],
+	"Japanese": ["Sota", "Sakura"]
+  },
+  "T": {
+	"Norse": ["Thorin"],
+	"Aztec": ["Tenoch", "Tochtli"],
+	"Greek": ["Tessa"],
+	"Hindu": ["Tejas"],
+	"Japanese": ["Tsumugi"]
+  },
+  "V": {
+	"Norse": ["Viggo", "Viktor", "Vanessa"],
+	"Hindu": ["Vihaan", "Viraj", "Vedika"]
+  },
+  "W": {
+	"Egyptian": ["Wael", "Wafaa", "Wagdi"],
+	"Norse": ["Wudga", "Witege"],
+	"Aztec": ["Wences"]
+  },
+  "X": {
+	"Egyptian": ["Xavier", "Xenon"],
+	"Aztec": ["Xipil", "Xochitl"],
+	"Greek": ["Xenia", "Xander"]
+  },
+  "Y": {
+	"Norse": ["Ymir", "Yrsa"],
+	"Aztec": ["Yaotl", "Yaretzi"],
+	"Hindu": ["Yashvi"],
+	"Japanese": ["Yamato"]
+  },
+  "Z": {
+	"Egyptian": ["Zahra"],
+	"Norse": ["Zelda"],
+	"Aztec": ["Zolin", "Zuma", "Zyanya"],
+	"Greek": ["Zoe"]
+  }
+}

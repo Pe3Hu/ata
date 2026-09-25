@@ -5,7 +5,6 @@ extends RefCounted
 signal bedroom_scenario_changed
 signal kitchen_scenario_changed
 
-var faction: FactionData
 var room_to_scenarios: Dictionary
 
 var bedroom_scenario: ScenarioData:
@@ -32,9 +31,7 @@ var current_canto: CantoData:
 var locked_stamps: Array[StampData]
 
 
-func _init(faction_: FactionData) -> void:
-	faction = faction_
-	
+func _init() -> void:
 	room_to_scenarios[Bozo.Room.BEDROOM] = []
 	room_to_scenarios[Bozo.Room.KITCHEN] = []
 	room_to_scenarios[Bozo.Room.PARLOR] = []
@@ -44,7 +41,7 @@ func init_scenarios(type_: Bozo.Room = Bozo.Room.BEDROOM) -> void:
 
 func init_permutations(type_: Bozo.Room) -> void:
 	room_to_scenarios[type_].clear()
-	var stamp_queue = faction.atheneum.house.type_to_room[type_].stamps.duplicate()
+	var stamp_queue = Mother.house.type_to_room[type_].stamps.duplicate()
 	
 	if type_ == Bozo.Room.KITCHEN and not locked_stamps.is_empty():
 		stamp_queue = stamp_queue.filter(func (a): return not locked_stamps.has(a))
@@ -77,19 +74,18 @@ func init_permutations(type_: Bozo.Room) -> void:
 	
 	room_to_scenarios[type_].sort_custom(func (a, b): return a.pulse_weight > b.pulse_weight)
 	
-	if faction == faction.policy.player_faction:
-		var scenario = room_to_scenarios[type_].front()
-		var pulses = []
+	var scenario = room_to_scenarios[type_].front()
+	var pulses = []
+	
+	for hymn in scenario.hymns:
+		pulses.append_array(hymn.get_canto_pulses())
 		
-		for hymn in scenario.hymns:
-			pulses.append_array(hymn.get_canto_pulses())
-		
-		#print([Bozo.enum_to_string(Bozo.Type.ROOM, type_), scenario.pulse_weight, pulses])
+	#print([Bozo.enum_to_string(Bozo.Type.ROOM, type_), scenario.pulse_weight, pulses])
 	
 	update_scenario(type_, room_to_scenarios[type_].front())
 
 func recalc_scenario(type_: Bozo.Room) -> void:
-	var permutation = faction.atheneum.house.type_to_room[type_].stamps.duplicate()
+	var permutation = Mother.house.type_to_room[type_].stamps.duplicate()
 	var scenario = ScenarioData.new(self, permutation, type_)
 	update_scenario(type_, scenario)
 
@@ -100,7 +96,7 @@ func update_scenario(type_: Bozo.Room, scenario_: ScenarioData) -> void:
 		Bozo.Room.KITCHEN:
 			kitchen_scenario = scenario_
 	
-	faction.atheneum.house.type_to_room[type_].apply_scenario_canto_stakes()
+	Mother.house.type_to_room[type_].apply_scenario_canto_stakes()
 
 func get_scenario(type_: Bozo.Room) -> Variant:
 	match type_:

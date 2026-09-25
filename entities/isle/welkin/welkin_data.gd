@@ -2,14 +2,11 @@ class_name WelkinData
 extends RefCounted
 
 
-var isle: IsleData
 var volume_to_asterism: Dictionary
 var asterisms: Array
 
 
-func _init(isle_: IsleData) -> void:
-	isle = isle_
-	
+func _init() -> void:
 	init_asterisms()
 
 func init_asterisms() -> void:

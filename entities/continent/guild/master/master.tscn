@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqgagkcucwimy"]
 
 [ext_resource type="Script" uid="uid://bamve8pd25cj3" path="res://entities/continent/guild/master/master.gd" id="1_7jyam"]
-[ext_resource type="PackedScene" uid="uid://cxlfablgiyeq7" path="res://entities/continent/guild/influence/influence.tscn" id="2_2pibd"]
+[ext_resource type="PackedScene" uid="uid://lx762uqy0d6d" path="res://entities/continent/guild/agent/agent.tscn" id="2_2pibd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0aoth"]
 
@@ -27,12 +27,10 @@ text = "Master"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Agent" parent="VBox" unique_id=2061342935 instance=ExtResource("2_2pibd")]
+layout_mode = 2
+
 [node name="InfoPanel" type="PanelContainer" parent="VBox" unique_id=1520670639]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h0qxe")
-
-[node name="Influence" parent="VBox" unique_id=316673987 instance=ExtResource("2_2pibd")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4

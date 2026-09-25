@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_dc2yg"]
 [ext_resource type="Shader" uid="uid://c7ddiq806filg" path="res://entities/isle/welkin/shaders/sun.gdshader" id="3_tor64"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_yl3e5"]
-[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/house/house.tscn" id="5_dd0e4"]
+[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/house/house.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
 [ext_resource type="PackedScene" uid="uid://bv2lnr34ta3bu" path="res://entities/isle/welkin/welkin.tscn" id="9_5qj5p"]
@@ -160,10 +160,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Welkin" parent="." unique_id=2087157546 instance=ExtResource("9_5qj5p")]
+visible = false
 layout_mode = 1
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1735999487]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,7 +187,6 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
 [node name="Mission" parent="HBox/LeftPanel/MarginContainer" unique_id=475274081 instance=ExtResource("10_6kinf")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -200,6 +199,7 @@ size_flags_vertical = 4
 isle = NodePath("../../../..")
 
 [node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
+visible = false
 layout_mode = 2
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]

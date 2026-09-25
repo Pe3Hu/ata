@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dya2galeartfl"]
+
+[ext_resource type="Script" uid="uid://cy3yr8lkujhix" path="res://entities/continent/guild/agent/hourglass/hourglass.gd" id="1_i3heq"]
+[ext_resource type="Shader" uid="uid://d1cgfxb85qjh3" path="res://entities/isle/kernel/usurer/dept/debt volume.gdshader" id="2_ii2xh"]
+[ext_resource type="Texture2D" uid="uid://jjfm7yff3pkp" path="res://entities/continent/guild/agent/hourglass/images/body.png" id="3_3bdei"]
+[ext_resource type="Texture2D" uid="uid://dyjpwrwmprfow" path="res://entities/continent/guild/agent/hourglass/images/border.png" id="4_yaprr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+resource_local_to_scene = true
+shader = ExtResource("2_ii2xh")
+shader_parameter/color_1 = Color(0.82, 0.6560001, 0, 0.5019608)
+shader_parameter/color_2 = Color(1, 0.86616665, 0.26999998, 0.87058824)
+shader_parameter/percentage = 0.86400004104
+shader_parameter/wave_frequency_1 = 1.0
+shader_parameter/wave_amplitude_1 = 0.04
+shader_parameter/wave_frequency_2 = 1.0
+shader_parameter/wave_amplitude_2 = 0.025
+shader_parameter/wave_phase_offset = 0.0
+shader_parameter/angle = 0.0
+
+[node name="Hourglass" type="PanelContainer" unique_id=1921839269]
+custom_minimum_size = Vector2(64, 64)
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_i3heq")
+
+[node name="Body" type="TextureRect" parent="." unique_id=735573431]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_60rxr")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_3bdei")
+
+[node name="Border" type="TextureRect" parent="." unique_id=299938319]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_yaprr")

@@ -24,6 +24,7 @@ var scout = ScoutData.new(self)
 var tailor = TailorData.new(self)
 
 var current_master: MasterData
+var hourglass_time: float = 0.0
 
 
 func set_current_master(type_: Bozo.Master):

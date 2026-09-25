@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dti2wf7uj7mxq" path="res://entities/continent/guild/master/lightkeeper/firework/images/body.png" id="4_1bhim"]
 [ext_resource type="Texture2D" uid="uid://cjdw4wqoyql1j" path="res://entities/continent/guild/master/lightkeeper/firework/images/4.png" id="5_55skb"]
 [ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="6_5hnia"]
+[ext_resource type="PackedScene" uid="uid://b8pkub18igoiq" path="res://entities/continent/guild/master/scout/circuit/circuit.tscn" id="6_ijr27"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjoys"]
 
@@ -208,15 +209,15 @@ texture_filter = 1
 layout_mode = 2
 texture = ExtResource("5_55skb")
 
-[node name="Index" type="Label" parent="HBoxContainer/VBox/RankPanel/IconPanel" unique_id=842628097]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1"
-
 [node name="BlankPane" type="PanelContainer" parent="HBoxContainer/VBox" unique_id=1016392540]
-custom_minimum_size = Vector2(144, 96)
+custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ren5b")
+
+[node name="Circuit" parent="HBoxContainer/VBox/BlankPane" unique_id=1972257342 instance=ExtResource("6_ijr27")]
+unique_name_in_owner = true
 
 [node name="TributePanel" type="PanelContainer" parent="HBoxContainer" unique_id=236713014]
 layout_mode = 2

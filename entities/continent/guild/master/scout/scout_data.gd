@@ -34,6 +34,7 @@ func add_internal(shelter_: ShelterData) -> void:
 		extrenals.erase(shelter_)
 	
 	internals.append(shelter_)
+	sort_extrenals()
 
 func remove_internal(shelter_: ShelterData) -> void:
 	extrenals = extrenals.filter(func (a): return not shelter_.neighbor_shelters.has(a))
@@ -42,6 +43,31 @@ func remove_internal(shelter_: ShelterData) -> void:
 		internals.erase(shelter_)
 	
 	extrenals.append(shelter_)
+	sort_extrenals()
+
+func sort_extrenals() -> void:
+	if extrenals.size() < 3: return
+	
+	var positions := PackedVector2Array()
+	for shelter in extrenals:
+		positions.append(Helper.get_cluster_position(shelter))
+	
+	var hull := Geometry2D.convex_hull(positions)
+	if hull.is_empty(): return
+	
+	var position_to_shelter: Dictionary
+	for shelter in extrenals:
+		position_to_shelter[Helper.get_cluster_position(shelter)] = shelter
+	
+	var sorted: Array[ShelterData]
+	sorted.resize(hull.size())
+	
+	for _i in hull.size():
+		var shelter: ShelterData = position_to_shelter.get(hull[_i])
+		if shelter:
+			sorted[_i] = shelter
+	
+	extrenals = sorted
 
 func init_spotlights() -> void:
 	spotlights.clear()
@@ -51,7 +77,6 @@ func init_spotlights() -> void:
 	
 	current_spotlight = spotlights.front()
 #endregion
-
 
 func changed_spotlight(shift_: int) -> void:
 	var index = spotlights.find(current_spotlight)

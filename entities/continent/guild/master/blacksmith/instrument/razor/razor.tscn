@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnhny741w8j7x" path="res://entities/continent/guild/master/blacksmith/instrument/razor/razor.gd" id="1_b1ic4"]
 [ext_resource type="Shader" uid="uid://di23e8ar8ox0t" path="res://entities/isle/biome/neutral.gdshader" id="2_7xtky"]
-[ext_resource type="Texture2D" uid="uid://ds1xaq8tdos5m" path="res://entities/isle/atheneum/card/stamp/stake/images/plus.png" id="4_7xtky"]
+[ext_resource type="Texture2D" uid="uid://ds1xaq8tdos5m" path="res://entities/isle/house/card/stamp/stake/images/plus.png" id="4_7xtky"]
 [ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="4_d1w72"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]

@@ -10,7 +10,7 @@ extends Control
 func _ready() -> void:
 	if Arbitrator.is_gameover:
 		await get_tree().process_frame
-		_on_continent_button_pressed()
+		_on_isle_button_pressed()
 
 func _on_isle_button_pressed() -> void:
 	get_tree().change_scene_to_packed(isle_scene)

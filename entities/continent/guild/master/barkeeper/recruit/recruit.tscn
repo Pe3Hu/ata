@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://carjm41nlnbpg"]
 
 [ext_resource type="Script" uid="uid://bmk1ow5s0jkb3" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.gd" id="1_0aoth"]
-[ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/atheneum/card/stamp/images/forfeit.png" id="2_h0qxe"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/atheneum/card/stamp/images/rank/f.png" id="3_i74eh"]
+[ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/house/card/stamp/images/forfeit.png" id="2_h0qxe"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_i74eh"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_dqn80"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_8rxe6"]
 [ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/master/blacksmith/tribute/quotum/quotum.tscn" id="6_jamvm"]

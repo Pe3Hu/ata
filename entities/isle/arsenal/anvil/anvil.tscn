@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bf50ul084wkr1"]
 
 [ext_resource type="Script" uid="uid://bijh34xnmsy0f" path="res://entities/isle/arsenal/anvil/anvil.gd" id="1_q2oa5"]
-[ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/atheneum/card/stamp/stamp.tscn" id="2_xfejm"]
+[ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/house/card/stamp/stamp.tscn" id="2_xfejm"]
 [ext_resource type="Texture2D" uid="uid://31c65owf3bu7" path="res://entities/isle/arsenal/anvil/images/fusion 2.png" id="3_nhw1j"]
 [ext_resource type="Texture2D" uid="uid://b0vwl84c10qr8" path="res://entities/isle/arsenal/anvil/images/fusion 0.png" id="3_r7gt8"]
 [ext_resource type="Texture2D" uid="uid://imhhs3ipj6ry" path="res://entities/isle/arsenal/anvil/images/fusion 1.png" id="4_6oe1o"]

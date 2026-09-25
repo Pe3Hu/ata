@@ -98,3 +98,9 @@ func _on_continent_gui_input(event: InputEvent) -> void:
 		#data.footprint.activate()
 		data.route.activate()
 		camera.focus_on_structure()
+
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_ESCAPE:
+				get_tree().quit()

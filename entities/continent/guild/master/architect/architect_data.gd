@@ -12,10 +12,10 @@ var current_asterism: AsterismData:
 
 func _init(guild_: GuildData) -> void:
 	super._init(guild_)
-	current_asterism = Mother.isle.welkin.asterisms.front()
+	current_asterism = Mother.welkin.asterisms.front()
 
 func changed_asterism(shift_: int) -> void:
-	var index = Mother.isle.welkin.asterisms.find(current_asterism)
-	var n = Mother.isle.welkin.asterisms.size()
+	var index = Mother.welkin.asterisms.find(current_asterism)
+	var n = Mother.welkin.asterisms.size()
 	index = (index + shift_ + n) % n
-	current_asterism = Mother.isle.welkin.asterisms[index]
+	current_asterism = Mother.welkin.asterisms[index]

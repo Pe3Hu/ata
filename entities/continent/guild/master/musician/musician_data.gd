@@ -31,7 +31,7 @@ func add_veteran(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null
 	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter_].pick_random()
 	var verse_index = Digest.matter_to_verse[matter_].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-	var origin = OriginData.new(matter_, intro, verse, talent_)
+	var origin = OriginData.new(self, matter_, intro, verse, talent_)
 	var recriut = VeteranData.new(self, origin)
 	veterans.append(recriut)
 

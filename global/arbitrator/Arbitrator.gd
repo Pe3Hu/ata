@@ -10,7 +10,6 @@ var phases: Array[Phase]
 var current_phase_index: int = 0
 var current_phase: Phase
 
-var faction: FactionData
 var last_action: ActionData:
 	set(value_):
 		last_action = value_

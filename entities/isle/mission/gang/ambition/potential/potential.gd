@@ -44,7 +44,7 @@ func update_textures() -> void:
 		%Body.material.shader = matter_shader
 		path = Bozo.enum_to_string(Bozo.Type.ASPECT, data.aspect)
 		var matter = Digest.aspect_to_matter[data.aspect]
-		Helper.update_colors(%Body, matter)
+		Helper.update_matter_colors(%Body, [matter])
 		%Body.material.set_shader_parameter('mask_texture', load('res://entities/isle/mission/gang/idea/intention/images/body/%s.png' % path))
 	else:
 		%Body.material.shader = element_shader

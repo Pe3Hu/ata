@@ -9,6 +9,7 @@ var data: TrodData:
 		connect_signals()
 		init_points()
 
+
 func connect_signals() -> void:
 	data.type_chaned.connect(_on_type_changed)
 	_on_type_changed()

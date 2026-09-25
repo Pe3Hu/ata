@@ -157,7 +157,7 @@ func get_penalty() -> int:
 func update_perfect() -> void:
 	is_perfect = false
 	
-	for stamp in hymn.scenario.odeum.faction.atheneum.house.parlor.stamps:
+	for stamp in Mother.house.parlor.stamps:
 		if stamp.shadow.current_shade == pulse_value:
 			is_perfect = true
 			

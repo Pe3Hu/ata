@@ -6,6 +6,7 @@ var data: SpotlightData:
 	set(value_):
 		data = value_
 		
+		%Circuit.update_points()
 		connect_signals()
 
 var scout: Scout
@@ -30,7 +31,7 @@ func apply_shelter() -> void:
 	Mother.mainland.beam.update_shelters()
 	var camera = scout.guild.mainland.camera
 	camera.focus_on_structure(data.shelter.shrine)
-	%Index.text = str(data.shelter.index)
+	%Circuit.marker_shelter = data.shelter
 
 #func update_rank_textures() -> void:
 	#Helper.update_matter_colors(%Body, [data.tribute.current_quotum.shard.matter])
