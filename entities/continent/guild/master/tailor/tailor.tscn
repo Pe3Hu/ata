@@ -10,3 +10,5 @@ script = ExtResource("2_amhne")
 [node name="Attire" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=627721668 instance=ExtResource("3_yxafb")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

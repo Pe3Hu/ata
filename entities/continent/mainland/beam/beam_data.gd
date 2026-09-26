@@ -28,7 +28,7 @@ func get_angle() -> float:
 	return rad_to_deg(angle)
 
 func update_shelters() -> void:
-	var spotlight = Mother.guild.scout.current_spotlight
+	var spotlight = Mother.guild.scout.current_task
 	var options = Mother.guild.scout.internals.filter(func (a): return a.neighbor_shelters.has(spotlight.shelter))
 	current_shelter = options.front()
 	next_shelter = spotlight.shelter

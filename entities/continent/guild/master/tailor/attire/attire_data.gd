@@ -1,5 +1,5 @@
 class_name AttireData
-extends RefCounted
+extends TaskData
 
 
 signal spoil_changed
@@ -20,7 +20,7 @@ func _init(tailor_: TailorData, rank_: int) -> void:
 	tailor = tailor_
 	rank = rank_
 	
-	tailor.attires.append(self)
+	tailor.tasks.append(self)
 	init_tribute()
 	init_spoils()
 

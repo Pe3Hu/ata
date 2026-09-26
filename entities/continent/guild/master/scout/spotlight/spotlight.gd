@@ -13,8 +13,8 @@ var scout: Scout
 
 
 func connect_signals() -> void:
-	if not data.scout.spotlight_changed.is_connected(_on_spotlight_changed):
-		data.scout.spotlight_changed.connect(_on_spotlight_changed)
+	if not data.scout.task_changed.is_connected(_on_spotlight_changed):
+		data.scout.task_changed.connect(_on_spotlight_changed)
 	
 	if not data.tribute.quotum_changed.is_connected(_on_quotum_changed):
 		data.tribute.quotum_changed.connect(_on_quotum_changed)
@@ -23,7 +23,7 @@ func connect_signals() -> void:
 	apply_shelter()
 
 func _on_spotlight_changed() -> void:
-	data = data.scout.current_spotlight
+	data = data.scout.current_task
 	_on_quotum_changed()
 	apply_shelter()
 
@@ -49,8 +49,8 @@ func _on_next_quotum_button_pressed() -> void:
 	data.tribute.changed_quotum(1)
 
 func _on_previous_shelter_button_pressed() -> void:
-	data.scout.changed_spotlight(-1)
+	data.scout.changed_task(-1)
 
 func _on_next_shelter_button_pressed() -> void:
-	data.scout.changed_spotlight(1)
+	data.scout.changed_task(1)
 #endregion

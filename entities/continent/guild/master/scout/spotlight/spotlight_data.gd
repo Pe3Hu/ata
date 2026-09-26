@@ -1,5 +1,5 @@
 class_name SpotlightData
-extends RefCounted
+extends TaskData
 
 
 var scout: ScoutData
@@ -14,7 +14,7 @@ func _init(scout_: ScoutData, shelter_: ShelterData) -> void:
 	shelter = shelter_
 	rank = 1
 	
-	scout.spotlights.append(self)
+	scout.tasks.append(self)
 	
 	init_tribute()
 

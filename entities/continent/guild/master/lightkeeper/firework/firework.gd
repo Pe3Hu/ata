@@ -10,8 +10,8 @@ var data: FireworkData:
 
 
 func connect_signals() -> void:
-	if not data.lightkeeper.firework_changed.is_connected(_on_firework_changed):
-		data.lightkeeper.firework_changed.connect(_on_firework_changed)
+	if not data.lightkeeper.task_changed.is_connected(_on_firework_changed):
+		data.lightkeeper.task_changed.connect(_on_firework_changed)
 	
 	if not data.tribute.quotum_changed.is_connected(_on_quotum_changed):
 		data.tribute.quotum_changed.connect(_on_quotum_changed)
@@ -19,7 +19,7 @@ func connect_signals() -> void:
 	_on_quotum_changed()
 
 func _on_firework_changed() -> void:
-	data = data.lightkeeper.current_firework
+	data = data.lightkeeper.current_task
 	_on_quotum_changed()
 
 func update_rank_textures() -> void:
@@ -38,8 +38,8 @@ func _on_next_quotum_button_pressed() -> void:
 	data.tribute.changed_quotum(1)
 
 func _on_previous_rank_button_pressed() -> void:
-	data.lightkeeper.changed_firework(-1)
+	data.lightkeeper.changed_task(-1)
 
 func _on_next_rank_button_pressed() -> void:
-	data.lightkeeper.changed_firework(1)
+	data.lightkeeper.changed_task(1)
 #endregion

@@ -1,5 +1,5 @@
 class_name RecruitData
-extends RefCounted
+extends TaskData
 
 
 var barkeeper: BarkeeperData

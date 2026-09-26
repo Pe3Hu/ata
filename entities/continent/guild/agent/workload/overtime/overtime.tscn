@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ch6w8tyhq8jts"]
+
+[ext_resource type="Shader" uid="uid://bjpr1p6gjesms" path="res://entities/continent/guild/agent/workload/overtime/overtime.gdshader" id="1_6br84"]
+[ext_resource type="Script" uid="uid://dv3835trwbtxf" path="res://entities/continent/guild/agent/workload/overtime/overtime.gd" id="1_7377m"]
+[ext_resource type="Texture2D" uid="uid://csj3idl7hskyu" path="res://entities/continent/guild/agent/workload/overtime/body.png" id="1_l0nu3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gl6b4"]
+shader = ExtResource("1_6br84")
+shader_parameter/hue = 0.110000005225
+shader_parameter/saturation = 1.0
+shader_parameter/brightness = 1.0
+shader_parameter/alpha_multiplier = 1.0
+shader_parameter/cluster_whiteness = 1.0
+shader_parameter/cluster_sharpness = 3.0
+
+[node name="Overtime" type="Sprite2D" unique_id=505727060]
+texture_filter = 1
+material = SubResource("ShaderMaterial_gl6b4")
+texture = ExtResource("1_l0nu3")
+centered = false
+script = ExtResource("1_7377m")

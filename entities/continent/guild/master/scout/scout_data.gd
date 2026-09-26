@@ -2,16 +2,8 @@ class_name ScoutData
 extends MasterData
 
 
-signal spotlight_changed
-
 var extrenals: Array[ShelterData]
 var internals: Array[ShelterData]
-var spotlights: Array[SpotlightData]
-
-var current_spotlight: SpotlightData:
-	set(value_):
-		current_spotlight = value_
-		spotlight_changed.emit()
 
 
 #region init
@@ -69,17 +61,11 @@ func sort_extrenals() -> void:
 	
 	extrenals = sorted
 
-func init_spotlights() -> void:
-	spotlights.clear()
+func init_tasks() -> void:
+	tasks.clear()
 	
 	for extrenal in extrenals:
 		SpotlightData.new(self, extrenal)
 	
-	current_spotlight = spotlights.front()
+	current_task = tasks.front()
 #endregion
-
-func changed_spotlight(shift_: int) -> void:
-	var index = spotlights.find(current_spotlight)
-	var n = spotlights.size()
-	index = (index + shift_ + n) % n
-	current_spotlight = spotlights[index]

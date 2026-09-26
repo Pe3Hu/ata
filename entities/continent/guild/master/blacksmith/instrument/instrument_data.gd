@@ -1,5 +1,5 @@
 class_name InstrumentData
-extends RefCounted
+extends TaskData
 
 
 var blacksmith: BlacksmithData
@@ -15,7 +15,7 @@ func _init(blacksmith_: BlacksmithData, rank_: int, verse_index: int) -> void:
 	rank = rank_
 	verse = load('res://entities/dice/datas/verse/%d.tres' % verse_index)
 	
-	blacksmith.instruments.append(self)
+	blacksmith.tasks.append(self)
 	
 	init_tribute()
 	init_razor()

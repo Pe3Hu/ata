@@ -969,6 +969,18 @@ const master_to_matter = {
 	Bozo.Master.SCOUT: Bozo.Matter.GAS,
 }
 
+const master_to_workloads = {
+	Bozo.Master.BLACKSMITH: [12, 18, 24],
+	Bozo.Master.MUSICIAN: [9, 12, 15, 18, 21, 24],
+	Bozo.Master.ARCHITECT: [24, 24, 24, 24, 24, 24],
+	Bozo.Master.LIGHTKEEPER: [12, 16, 20, 24],
+	Bozo.Master.MINER: [12, 16, 20, 24],
+	Bozo.Master.TAILOR: [6, 9, 12],
+	Bozo.Master.BARKEEPER: [12, 12, 12, 12, 12, 12],
+	Bozo.Master.SCOUT: [16, 16, 16],
+}
+#endregion
+
 const matter_to_matter_to_volume = {
 	Bozo.Matter.GAS: {
 		Bozo.Matter.LIQUID: 12,
@@ -983,7 +995,6 @@ const matter_to_matter_to_volume = {
 		Bozo.Matter.LIQUID: 15,
 	},
 }
-#endregion
 
 const matter_to_rank_to_volume_to_percent = {
 	Bozo.Matter.GAS: {
@@ -1087,6 +1098,8 @@ var intro_to_talent_to_rank = {
 		1: Bozo.Rank.S
 	}
 }
+
+
 
 #region color
 var matter_to_color = {

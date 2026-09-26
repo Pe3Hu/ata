@@ -4,17 +4,166 @@
 [ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/house/card/stamp/images/forfeit.png" id="2_lms6a"]
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_etprk"]
 [ext_resource type="PackedScene" uid="uid://dya2galeartfl" path="res://entities/continent/guild/agent/hourglass/hourglass.tscn" id="4_etprk"]
+[ext_resource type="PackedScene" uid="uid://bl303f1gm4iw8" path="res://entities/continent/guild/agent/workload/workload.tscn" id="4_gl6b4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl6b4"]
 resource_local_to_scene = true
 bg_color = Color(0, 0.7529412, 0.47058824, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enm1i"]
+
+[sub_resource type="Shader" id="Shader_gl6b4"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+// --- Parameters (were hard-coded globals in the original) ---
+uniform float speed = 0.3;
+uniform float scale = 2.2;
+uniform int octaves : hint_range(1, 8) = 4;
+uniform bool turbulence = false;
+uniform float shift = 0.3;
+uniform float start_amp = 0.8;
+uniform float mag = 0.2;
+uniform vec3 tint = vec3(0.98, 0.95, 0.997);
+
+// ---------------------------------------------------------------------------
+// Simplex 3D Noise by Ian McEwan, Ashima Arts
+// https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83
+// ---------------------------------------------------------------------------
+vec4 permute(vec4 x) { return mod(((x * 34.0) + 1.0) * x, 289.0); }
+vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+float snoise(vec3 v) {
+    vec2 C = vec2(1.0 / 6.0, 1.0 / 3.0);
+    vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+
+    // First corner
+    vec3 i  = floor(v + dot(v, C.yyy));
+    vec3 x0 = v - i + dot(i, C.xxx);
+
+    // Other corners
+    vec3 g = step(x0.yzx, x0.xyz);
+    vec3 l = 1.0 - g;
+    vec3 i1 = min(g.xyz, l.zxy);
+    vec3 i2 = max(g.xyz, l.zxy);
+
+    vec3 x1 = x0 - i1 + 1.0 * C.xxx;
+    vec3 x2 = x0 - i2 + 2.0 * C.xxx;
+    vec3 x3 = x0 - 1.0 + 3.0 * C.xxx;
+
+    // Permutations
+    i = mod(i, 289.0);
+    vec4 p = permute(permute(permute(
+                 i.z + vec4(0.0, i1.z, i2.z, 1.0))
+               + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+               + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+
+    // Gradients: N*N points uniformly over a square, mapped onto an octahedron.
+    float n_ = 1.0 / 7.0; // N=7
+    vec3 ns = n_ * D.wyz - D.xzx;
+
+    vec4 j = p - 49.0 * floor(p * ns.z * ns.z); // mod(p, N*N)
+
+    vec4 x_ = floor(j * ns.z);
+    vec4 y_ = floor(j - 7.0 * x_); // mod(j, N)
+
+    vec4 x = x_ * ns.x + ns.yyyy;
+    vec4 y = y_ * ns.x + ns.yyyy;
+    vec4 h = 1.0 - abs(x) - abs(y);
+
+    vec4 b0 = vec4(x.xy, y.xy);
+    vec4 b1 = vec4(x.zw, y.zw);
+
+    vec4 s0 = floor(b0) * 2.0 + 1.0;
+    vec4 s1 = floor(b1) * 2.0 + 1.0;
+    vec4 sh = -step(h, vec4(0.0));
+
+    vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+    vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+
+    vec3 p0 = vec3(a0.xy, h.x);
+    vec3 p1 = vec3(a0.zw, h.y);
+    vec3 p2 = vec3(a1.xy, h.z);
+    vec3 p3 = vec3(a1.zw, h.w);
+
+    // Normalise gradients
+    vec4 norm = taylorInvSqrt(vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));
+    p0 *= norm.x;
+    p1 *= norm.y;
+    p2 *= norm.z;
+    p3 *= norm.w;
+
+    // Mix final noise value
+    vec4 m = max(0.6 - vec4(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), 0.0);
+    m = m * m;
+    return 42.0 * dot(m * m, vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));
+}
+
+// ---------------------------------------------------------------------------
+// Fractal Brownian Motion
+// ---------------------------------------------------------------------------
+float fbm(vec3 st) {
+    float value = 0.0;
+    float amplitude = start_amp;
+
+    // Godot needs a constant loop bound, so cap it and break early.
+    for (int i = 0; i < 8; i++) {
+        if (i >= octaves) {
+            break;
+        }
+        value += amplitude * snoise(st);
+        st *= 2.0;
+        amplitude *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    // Equivalent of iResolution in a canvas_item shader
+    vec2 res = 1.0 / SCREEN_PIXEL_SIZE;
+    vec2 uv = (FRAGCOORD.xy - 0.5 * res) / res.y;
+
+    float time = TIME * speed;
+    float plain_y = uv.y + 0.5;
+
+    uv *= scale;
+
+    float n = fbm(vec3(uv, time * 0.2));
+    n = fbm(vec3(uv - time * 0.2, n * mag + time * 0.1));
+    n = fbm(vec3(uv - time * 0.4, n * mag + time * 0.2));
+
+    if (turbulence) {
+        n = abs(n);
+    } else {
+        n = n * 0.5 + 0.5;
+    }
+
+    n = pow(n, shift + plain_y * (1.0 - shift));
+    n *= 1.0 - plain_y;
+
+    vec3 color = vec3(n * tint.r, n * tint.g, n * tint.b);
+
+    COLOR = vec4(color, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8jrw"]
+resource_local_to_scene = true
+shader = SubResource("Shader_gl6b4")
+shader_parameter/speed = 0.3
+shader_parameter/scale = 2.2
+shader_parameter/octaves = 4
+shader_parameter/turbulence = false
+shader_parameter/shift = 0.3
+shader_parameter/start_amp = 0.8
+shader_parameter/mag = 0.2
+shader_parameter/tint = Vector3(0.98, 0.95, 0.997)
 
 [node name="Agent" type="PanelContainer" unique_id=2061342935]
 script = ExtResource("1_rk4ea")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2071951052]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 4
 
 [node name="Top" type="Panel" parent="VBoxContainer" unique_id=1170062607]
 unique_name_in_owner = true
@@ -83,8 +232,28 @@ texture = ExtResource("3_etprk")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=807598106]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_enm1i")
 
-[node name="Hourglass" parent="VBoxContainer/PanelContainer" unique_id=1921839269 instance=ExtResource("4_etprk")]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=1460300506]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Workload" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1961124138 instance=ExtResource("4_gl6b4")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_c8jrw")
+layout_mode = 2
+
+[node name="Hourglass" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1921839269 instance=ExtResource("4_etprk")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HourglassTimer" type="Timer" parent="." unique_id=150169969]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="HourglassTimer" to="." method="_on_hourglass_timer_timeout"]

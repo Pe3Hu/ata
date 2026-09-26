@@ -2,27 +2,19 @@ class_name MusicianData
 extends MasterData
 
 
-signal veteran_changed
-
-var veterans: Array[VeteranData]
-
-var current_veteran: VeteranData:
-	set(value_):
-		current_veteran = value_
-		veteran_changed.emit()
 
 func _init(guild_: GuildData) -> void:
 	super._init(guild_)
 	type = Bozo.Master.BARKEEPER
-	init_veterans()
+	init_tasks()
 
-func init_veterans() -> void:
-	veterans.clear()
+func init_tasks() -> void:
+	tasks.clear()
 	
 	for _i in Catalog.BARKEEPER_RECRUIT_AMOUNT:
 		add_veteran()
 	
-	current_veteran = veterans.front()
+	current_task = tasks.front()
 
 func add_veteran(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null) -> void:
 	if matter_ == null:
@@ -33,10 +25,4 @@ func add_veteran(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var origin = OriginData.new(self, matter_, intro, verse, talent_)
 	var recriut = VeteranData.new(self, origin)
-	veterans.append(recriut)
-
-func changed_veteran(shift_: int) -> void:
-	var index = veterans.find(current_veteran)
-	var n = veterans.size()
-	index = (index + shift_ + n) % n
-	current_veteran = veterans[index]
+	tasks.append(recriut)

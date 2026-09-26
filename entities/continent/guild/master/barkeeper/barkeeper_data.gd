@@ -2,34 +2,26 @@ class_name BarkeeperData
 extends MasterData
 
 
-signal recruit_changed
 
 var origins: Array[OriginData]
 
 var alphabet: Array
 var recruiment_matters: Array[Bozo.Matter]
 
-var recruits: Array[RecruitData]
-
-var current_recruit: RecruitData:
-	set(value_):
-		current_recruit = value_
-		recruit_changed.emit()
-
 
 func _init(guild_: GuildData) -> void:
 	super._init(guild_)
 	type = Bozo.Master.BARKEEPER
 	refill_alphabet()
-	init_recruits()
+	init_tasks()
 
-func init_recruits() -> void:
-	recruits.clear()
+func init_tasks() -> void:
+	tasks.clear()
 	
 	for _i in Catalog.BARKEEPER_RECRUIT_AMOUNT:
 		add_recruit()
 	
-	current_recruit = recruits.front()
+	current_task = tasks.front()
 
 func add_recruit(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null) -> void:
 	if matter_ == null:
@@ -40,13 +32,7 @@ func add_recruit(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var origin = OriginData.new(self, matter_, intro, verse, talent_)
 	var recriut = RecruitData.new(self, origin)
-	recruits.append(recriut)
-
-func changed_recruit(shift_: int) -> void:
-	var index = recruits.find(current_recruit)
-	var n = recruits.size()
-	index = (index + shift_ + n) % n
-	current_recruit = recruits[index]
+	tasks.append(recriut)
 
 	init_origins()
 

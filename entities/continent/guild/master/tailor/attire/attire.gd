@@ -11,17 +11,17 @@ var data: AttireData:
 
 #region init
 func connect_signals() -> void:
-	if not data.tailor.attire_changed.is_connected(_on_changed):
-		data.tailor.attire_changed.connect(_on_changed)
+	if not data.tailor.task_changed.is_connected(_on_changed):
+		data.tailor.task_changed.connect(_on_changed)
 	
-	if not data.tailor.current_attire.spoil_changed.is_connected(_on_changed):
-		data.tailor.current_attire.spoil_changed.connect(_on_changed)
+	if not data.tailor.current_task.spoil_changed.is_connected(_on_changed):
+		data.tailor.current_task.spoil_changed.connect(_on_changed)
 	
 	_on_rank_changed()
 	_on_spoil_changed()
 
 func _on_changed() -> void:
-	data = data.tailor.current_attire
+	data = data.tailor.current_task
 	_on_rank_changed()
 	_on_spoil_changed()
 
@@ -43,8 +43,8 @@ func _on_next_matter_button_pressed() -> void:
 	data.changed_spoil(-1)
 
 func _on_previous_rank_button_pressed() -> void:
-	data.tailor.changed_attire(-1)
+	data.tailor.changed_task(-1)
 
 func _on_next_rank_button_pressed() -> void:
-	data.tailor.changed_attire(1)
+	data.tailor.changed_task(1)
 #endregion

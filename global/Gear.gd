@@ -19,7 +19,7 @@ const sorts: Array[float] = [0.2, 0.4, 0.8]
 const bonds: Array[float] = [0.2, 0.4, 0.8]
 const dissolves: Array[float] = [0.2, 0.4, 0.8]
 const pressures: Array[float] = [0.2, 0.4, 0.8]
-
+const workloads: Array[float] = [1.5, 1.5, 1.5]
 
 
 

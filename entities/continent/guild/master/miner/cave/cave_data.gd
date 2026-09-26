@@ -1,5 +1,5 @@
 class_name CaveData
-extends RefCounted
+extends TaskData
 
 
 var miner: MinerData
@@ -13,7 +13,7 @@ func _init(miner_: MinerData, rank_: int) -> void:
 	miner = miner_
 	rank = rank_
 	
-	miner.caves.append(self)
+	miner.tasks.append(self)
 	
 	lode = LodeData.new(self)
 	init_tribute()

@@ -275,3 +275,8 @@ const BARKEEPER_RECRUIT_AMOUNT: int = 3
 const DEMON_DEFAULT_COMPLEXITY: int = 35
 
 const ranks = [Bozo.Rank.F, Bozo.Rank.E, Bozo.Rank.D, Bozo.Rank.C, Bozo.Rank.B, Bozo.Rank.A, Bozo.Rank.S]
+
+const OVERTIME_GRID: Vector2i = Vector2i(5, 5)
+const OVERTIME_SIZE: Vector2i = Vector2i(16, 18)
+const OVERTIME_OFFSET: Vector2i = Vector2i(0, 3)
+var MAX_OVERTIME = OVERTIME_GRID.x * OVERTIME_GRID.y

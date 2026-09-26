@@ -5,4 +5,4 @@ extends Master
 func _ready() -> void:
 	data = Mother.guild.miner
 	super._ready()
-	%Cave.data = data.current_cave
+	%Cave.data = data.current_task

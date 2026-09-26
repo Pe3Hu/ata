@@ -41,13 +41,13 @@ func set_current_master(type_: Bozo.Master):
 		
 		match type_:
 			Bozo.Master.BLACKSMITH:
-				current_master.init_instruments()
+				current_master.init_tasks()
 			Bozo.Master.MINER:
-				current_master.init_caves()
+				current_master.init_tasks()
 			Bozo.Master.TAILOR:
-				current_master.init_attires()
+				current_master.init_tasks()
 			Bozo.Master.SCOUT:
-				current_master.init_spotlights()
+				current_master.init_tasks()
 		
 		master_changed.emit()
 

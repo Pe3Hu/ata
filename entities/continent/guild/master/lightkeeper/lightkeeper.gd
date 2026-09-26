@@ -5,4 +5,4 @@ extends Master
 func _ready() -> void:
 	data = Mother.guild.lightkeeper
 	super._ready()
-	%Firework.data = data.current_firework
+	%Firework.data = data.current_task

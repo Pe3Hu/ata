@@ -1,5 +1,5 @@
 class_name FireworkData
-extends RefCounted
+extends TaskData
 
 
 var lightkeeper: LightkeeperData
@@ -12,7 +12,7 @@ func _init(lightkeeper_: LightkeeperData, rank_: int) -> void:
 	lightkeeper = lightkeeper_
 	rank = rank_
 	
-	lightkeeper.fireworks.append(self)
+	lightkeeper.tasks.append(self)
 	
 	init_tribute()
 

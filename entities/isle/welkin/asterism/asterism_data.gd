@@ -1,5 +1,5 @@
 class_name AsterismData
-extends RefCounted
+extends TaskData
 
 
 var welkin: WelkinData
