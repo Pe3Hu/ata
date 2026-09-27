@@ -113,10 +113,11 @@ func get_coord_based_on_value(value_: int, base_: int = 10) -> Vector2i:
 	var y = floor(value_ / base_)
 	return Vector2i(x, y)
 
-func update_matter_colors(node_, matters_: Array[Bozo.Matter]) -> void:
+func update_matter_colors(node_, matters_: Array) -> void:
 	match matters_.size():
 		1:
-			var hue = Digest.matter_to_hue[matters_.front()]
+			var matter = matters_.front()
+			var hue = Digest.matter_to_hue[matter]
 			var color_a: Color = Color(Digest.matter_to_pallete[0])
 			var color_b: Color = Color(Digest.matter_to_pallete[1])
 			var color_c: Color = Color(Digest.matter_to_pallete[2])
@@ -124,7 +125,7 @@ func update_matter_colors(node_, matters_: Array[Bozo.Matter]) -> void:
 			color_b.h += hue
 			color_c.h += hue
 			
-			if matters_.front() == Bozo.Matter.NONE:
+			if matter == Bozo.Matter.NONE:
 				color_a.s = 0
 				color_b.s = 0
 				color_c.s = 0
@@ -200,3 +201,41 @@ func wasteland_already_has_neighbor_structure(wasteland_: WastelandData, structu
 			if structure.type == structure_type_: return true
 	
 	return false
+
+func get_random_names(letter_: String) -> Dictionary:
+	var file := FileAccess.open("res://shared/jsons/names.json", FileAccess.READ)
+	if file == null:
+		push_error("Не удалось открыть JSON-файл")
+		return {}
+
+	var json := JSON.new()
+	var err := json.parse(file.get_as_text())
+	file.close()
+	if err != OK:
+		push_error("Ошибка парсинга JSON: %s" % json.get_error_message())
+		return {}
+
+	var data: Dictionary = json.data
+	letter_ = letter_.to_upper()
+
+	if not data.has(letter_):
+		push_warning("Буква '%s' отсутствует в данных" % letter_)
+		return {}
+
+	var cultures: Dictionary = data[letter_]
+	var culture_keys: Array = cultures.keys()
+
+	if culture_keys.size() < 3:
+		push_warning("Для буквы '%s' меньше 3 культур" % letter_)
+		return {}
+
+	culture_keys.shuffle()
+	var chosen_cultures: Array = culture_keys.slice(0, 3)
+
+	var result: Dictionary = {}
+	for culture in chosen_cultures:
+		var names: Array = cultures[culture]
+		if names.is_empty(): continue
+		result[culture] = names.pick_random()
+
+	return result

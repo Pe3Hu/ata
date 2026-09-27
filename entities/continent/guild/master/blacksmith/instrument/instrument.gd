@@ -29,8 +29,8 @@ func add_razor(razor_data_: RazorData) -> void:
 	razor.data = razor_data_
 
 func connect_signals() -> void:
-	if not data.blacksmith.task_changed.is_connected(_on_instrument_changed):
-		data.blacksmith.task_changed.connect(_on_instrument_changed)
+	if not data.master.task_changed.is_connected(_on_instrument_changed):
+		data.master.task_changed.connect(_on_instrument_changed)
 	
 	if not data.tribute.quotum_changed.is_connected(_on_quotum_changed):
 		data.tribute.quotum_changed.connect(_on_quotum_changed)
@@ -38,7 +38,7 @@ func connect_signals() -> void:
 	_on_quotum_changed()
 
 func _on_instrument_changed() -> void:
-	data = data.blacksmith.current_task
+	data = data.master.current_task
 	_on_quotum_changed()
 
 func _on_quotum_changed() -> void:
@@ -59,8 +59,8 @@ func _on_next_quotum_button_pressed() -> void:
 	data.tribute.changed_quotum(1)
 
 func _on_previous_rank_button_pressed() -> void:
-	data.blacksmith.changed_task(-1)
+	data.master.changed_task(-1)
 
 func _on_next_rank_button_pressed() -> void:
-	data.blacksmith.changed_task(1)
+	data.master.changed_task(1)
 #endregion

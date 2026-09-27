@@ -3,6 +3,7 @@ extends RefCounted
 
 
 var master: MasterData
+var task: TaskData
 var matter: Bozo.Matter
 
 var intro: DiceData
@@ -12,7 +13,7 @@ var stamps: Array[StampData]
 
 var rank: Bozo.Rank
 var talent: int
-var mark_letter: String
+var name: String
 
 
 #region init
@@ -25,7 +26,7 @@ func _init(master_: MasterData, matter_: Bozo.Matter, intro_: DiceData, verse_: 
 	rank = Digest.intro_to_talent_to_rank[intro.get_sum()][talent]
 	
 	if master as BarkeeperData:
-		mark_letter = master.alphabet.pop_back()
+		name = master.roll_name()
 		
 		if master.alphabet.is_empty():
 			master.refill_alphabet()

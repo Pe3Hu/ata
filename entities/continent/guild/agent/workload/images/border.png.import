@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csj3idl7hskyu"
-path="res://.godot/imported/body.png-c615ce38edba58a8f8d92be1d19edeac.ctex"
+uid="uid://dxagn5tmhdm7k"
+path="res://.godot/imported/border.png-ec803ee777903422dd38fe08a104e41c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/continent/guild/agent/workload/overtime/body.png"
-dest_files=["res://.godot/imported/body.png-c615ce38edba58a8f8d92be1d19edeac.ctex"]
+source_file="res://entities/continent/guild/agent/workload/images/border.png"
+dest_files=["res://.godot/imported/border.png-ec803ee777903422dd38fe08a104e41c.ctex"]
 
 [params]
 

@@ -2,21 +2,21 @@ class_name FireworkData
 extends TaskData
 
 
-var lightkeeper: LightkeeperData
+var master: MasterData
 var rank: int
 
 var tribute: TributeData
 
 
-func _init(lightkeeper_: LightkeeperData, rank_: int) -> void:
-	lightkeeper = lightkeeper_
+func _init(master_: MasterData, rank_: int) -> void:
+	master = master_
 	rank = rank_
 	
-	lightkeeper.tasks.append(self)
+	master.tasks.append(self)
 	
 	init_tribute()
 
 func init_tribute() -> void:
-	var price = Digest.master_to_price[lightkeeper.type] * rank
-	var volumes = Digest.master_to_volumes[lightkeeper.type]
+	var price = Digest.master_to_price[master.type] * rank
+	var volumes = Digest.master_to_volumes[master.type]
 	tribute = TributeData.new(price, volumes)

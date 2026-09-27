@@ -21,7 +21,7 @@ func update_texture() -> void:
 			
 
 func update_matter_colors() -> void:
-	var matters = data.instrument.blacksmith.guild.structure.matters
+	var matters = data.instrument.master.guild.structure.matters
 	Helper.update_matter_colors(%MatterBG, matters)
 
 func update_quotum_matter() -> void:

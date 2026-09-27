@@ -4,7 +4,7 @@ extends TaskData
 
 signal spoil_changed
 
-var tailor: TailorData
+var master: MasterData
 var rank: int
 
 var tributes: Array[TributeData]
@@ -16,17 +16,17 @@ var current_spoil: SpoilData:
 		spoil_changed.emit()
 
 
-func _init(tailor_: TailorData, rank_: int) -> void:
-	tailor = tailor_
+func _init(master_: MasterData, rank_: int) -> void:
+	master = master_
 	rank = rank_
 	
-	tailor.tasks.append(self)
+	master.tasks.append(self)
 	init_tribute()
 	init_spoils()
 
 func init_tribute() -> void:
 	tributes.clear()
-	var matters = tailor.guild.structure.matters
+	var matters = master.guild.structure.matters
 	var volume = Digest.matter_to_matter_to_volume[matters.front()][matters.back()]
 	
 	for matter in matters:
@@ -39,7 +39,7 @@ func init_tribute() -> void:
 
 func init_spoils() -> void:
 	spoils.clear()
-	var matters = tailor.guild.structure.matters
+	var matters = master.guild.structure.matters
 	var volume = Digest.matter_to_matter_to_volume[matters.front()][matters.back()] * 2
 	var amount = rank * 2 - 1
 	
@@ -54,4 +54,4 @@ func changed_spoil(shift_: int) -> void:
 	var n = spoils.size()
 	index = (index + shift_ + n) % n
 	current_spoil = spoils[index]
-	tailor.sync_spoil(self)
+	master.sync_spoil(self)

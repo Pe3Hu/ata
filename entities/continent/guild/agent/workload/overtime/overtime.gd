@@ -11,7 +11,7 @@ var coord: Vector2i:
 
 
 func update_position() -> void:
-	var gap = Catalog.OVERTIME_OFFSET + Catalog.OVERTIME_SIZE
-	var x = gap.x * coord.x + (coord.y % Catalog.OVERTIME_GRID.y) *Catalog.OVERTIME_OFFSET.y * 2 
+	var gap = Vector2(0, Catalog.OVERTIME_OFFSET.y) + Catalog.OVERTIME_SIZE
+	var x = gap.x * coord.x + (coord.y % Catalog.OVERTIME_GRID.y) * Catalog.OVERTIME_OFFSET.x
 	var y = -gap.y * coord.y
 	position = Vector2(x, y)

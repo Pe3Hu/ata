@@ -26,6 +26,12 @@ var tailor = TailorData.new(self)
 var current_master: MasterData
 var hourglass_time: float = 0.0
 
+var agent_origin: OriginData
+
+
+func _init() -> void:
+	pass
+	change_agent_origin(0)
 
 func set_current_master(type_: Bozo.Master):
 	if type_ == Bozo.Master.NONE:
@@ -51,6 +57,16 @@ func set_current_master(type_: Bozo.Master):
 		
 		master_changed.emit()
 
+func change_agent_origin(shift_: int) -> void:
+	var free_origins = barkeeper.origins.filter(func (a): return a.task == null)
+	var index = 0
+	
+	if agent_origin != null:
+		index = free_origins.find(agent_origin)
+		var n = free_origins.size()
+		index = (index + shift_ + n) % n
+	
+	agent_origin = free_origins[index]
 
 func test_veins() -> void:
 	for matter in Digest.matter_to_rank_to_volume_to_percent:

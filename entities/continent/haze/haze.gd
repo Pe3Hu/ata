@@ -43,5 +43,5 @@ func _unhandled_input(event: InputEvent) -> void:
 			#data.reveal_first_wasteland_wave()
 		KEY_A:
 			data.reveal_shelter_then_neighbors_wave()
-		KEY_SPACE:
+		KEY_S:
 			data.trigger_periphery_erosion()

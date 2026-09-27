@@ -8,18 +8,19 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0qxe"]
 
 [node name="Master" type="PanelContainer" unique_id=1270337185]
-custom_minimum_size = Vector2(428, 472)
+custom_minimum_size = Vector2(688, 459)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0aoth")
 script = ExtResource("1_7jyam")
 
-[node name="VBox" type="VBoxContainer" parent="." unique_id=531094369]
+[node name="VBox" type="HBoxContainer" parent="." unique_id=807664740]
 layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="Title" type="Label" parent="VBox" unique_id=2057881319]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -34,6 +35,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="InfoPanel" type="PanelContainer" parent="VBox" unique_id=1520670639]
+custom_minimum_size = Vector2(428, 320)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h0qxe")

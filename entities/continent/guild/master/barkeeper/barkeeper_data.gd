@@ -2,7 +2,6 @@ class_name BarkeeperData
 extends MasterData
 
 
-
 var origins: Array[OriginData]
 
 var alphabet: Array
@@ -13,6 +12,8 @@ func _init(guild_: GuildData) -> void:
 	super._init(guild_)
 	type = Bozo.Master.BARKEEPER
 	refill_alphabet()
+	
+	init_origins()
 	init_tasks()
 
 func init_tasks() -> void:
@@ -34,19 +35,22 @@ func add_recruit(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null
 	var recriut = RecruitData.new(self, origin)
 	tasks.append(recriut)
 
-	init_origins()
-
 func init_origins() -> void:
 	origins.clear()
 	var n = 2
 	
 	for _i in n:
 		recruiment_phase()
+	
+	Mother.house.attic.stamps.shuffle()
 
 func refill_alphabet() -> void:
 	if not alphabet.is_empty(): return
 	var l = floori(float(origins.size()) / 26) + 1
 	alphabet = range(26).map(func(a): return char(90 - a).repeat(l))
+	alphabet = alphabet.filter(func (a): return not Catalog.vowels.has(a))
+	alphabet.shuffle()
+	alphabet.erase('V')
 #endregion
 
 #func discard_bedroom(is_phase_: bool = true) -> void:
@@ -75,5 +79,12 @@ func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
 	var verse_index = Digest.matter_to_verse[matter].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var talent = 3
-	var _origin = OriginData.new(self, matter, intro, verse, talent)
-	Mother.house.attic.stamps.shuffle()
+	var origin = OriginData.new(self, matter, intro, verse, talent)
+	origins.append(origin)
+
+func roll_name() -> String:
+	var letter = alphabet.pop_back()
+	var options = Helper.get_random_names(letter)
+	var pantheons = options.keys()
+	var pantheon = pantheons.pick_random()
+	return options[pantheon]

@@ -5,5 +5,5 @@ extends Master
 func _ready() -> void:
 	data = Mother.guild.scout
 	super._ready()
-	%Spotlight.scout = self
+	%Spotlight.master = self
 	%Spotlight.data = data.current_task

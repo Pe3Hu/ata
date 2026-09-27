@@ -18,7 +18,8 @@ func _ready() -> void:
 		connect_datas()
 
 func connect_signals() -> void:
-	%Agent.data = data.current_task.agent
+	if data and data.current_task and data.current_task.agent:
+		%Agent.data = data.current_task.agent
 
 func connect_datas() -> void:
 	pass

@@ -1,27 +1,29 @@
-res://entities/continent/guild/agent/agent.tscn
-res://entities/continent/guild/agent/workload/shaders/workload.gdshader
-res://entities/continent/guild/agent/workload/shaders/bar.gdshader
-res://entities/continent/guild/agent/workload/shaders/orange wave.gdshader
-res://entities/isle/biome/matter.gdshader
 res://entities/continent/guild/agent/agent.gd
-res://entities/continent/guild/agent/workload/workload.tscn
-res://entities/continent/guild/agent/workload/shaders/table pink.gdshader
-res://entities/continent/guild/agent/workload/shaders/golden table.gdshader
-res://entities/continent/guild/agent/workload/shaders/pixel flow.gdshader
-res://entities/continent/guild/agent/workload/shaders/bad pixel.gdshader
-res://entities/continent/guild/agent/workload/workload.gd
-res://entities/continent/guild/agent/workload/overtime/overtime.tscn
-res://entities/continent/guild/agent/workload/overtime/overtime.gd
-res://entities/continent/guild/master/master.tscn
-res://entities/continent/guild/guild_data.gd
-res://entities/continent/guild/master/master.gd
-res://entities/continent/guild/agent/agent_data.gd
-res://entities/continent/guild/agent/task_data.gd
-res://entities/continent/guild/master/barkeeper/recruit/recruit.tscn
-res://entities/continent/guild/master/master_data.gd
-res://entities/continent/guild/master/barkeeper/recruit/recruit.gd
-res://global/Catalog.gd
-res://entities/continent/guild/agent/workload/workload_data.gd
-res://global/Gear.gd
-res://entities/continent/haze/haze.gdshader
+res://entities/continent/guild/master/barkeeper/barkeeper_data.gd
+res://entities/continent/guild/agent/agent.tscn
+res://entities/isle/kernel/usurer/dept/debt volume.gdshader
 res://entities/continent/guild/agent/workload/overtime/overtime.gdshader
+res://entities/continent/guild/guild_data.gd
+res://entities/isle/house/card/stamp/origin_data.gd
+res://entities/continent/guild/master/tailor/attire/attire_data.gd
+res://entities/continent/guild/master/miner/cave/cave_data.gd
+res://entities/continent/guild/master/lightkeeper/firework/firework_data.gd
+res://entities/continent/guild/master/blacksmith/instrument/instrument_data.gd
+res://entities/continent/guild/master/barkeeper/recruit/recruit_data.gd
+res://entities/continent/guild/master/scout/spotlight/spotlight_data.gd
+res://entities/continent/guild/agent/task_data.gd
+res://entities/continent/guild/master/musician/veteran/veteran_data.gd
+res://entities/continent/guild/agent/workload/workload_data.gd
+res://entities/continent/guild/master/blacksmith/instrument/instrument.gd
+res://entities/continent/guild/master/miner/cave/lode/lode_data.gd
+res://entities/continent/guild/master/blacksmith/instrument/razor/razor.gd
+res://entities/continent/guild/master/scout/spotlight/spotlight.gd
+res://entities/continent/guild/master/tailor/attire/attire.gd
+res://entities/continent/guild/master/scout/scout.gd
+res://entities/continent/mainland/mainland.tscn
+res://entities/continent/guild/master/miner/cave/cave.gd
+res://entities/continent/guild/master/lightkeeper/firework/firework.gd
+res://entities/continent/guild/master/musician/veteran/veteran.gd
+res://entities/continent/guild/master/barkeeper/recruit/recruit.gd
+res://entities/continent/guild/agent/hourglass/hourglass.tscn
+res://entities/continent/guild/agent/task/task.gd

@@ -1,89 +1,127 @@
 shader_type canvas_item;
 
-uniform float hue : hint_range(0.0, 1.0) = 0.6;
-uniform float saturation : hint_range(0.0, 1.0) = 1.0;
-uniform float brightness : hint_range(0.0, 2.0) = 1.0;
+uniform vec3 pattern_color : source_color = vec3(1.0, 0.9, 0.0); // жёлтый
+uniform vec3 border_color  : source_color = vec3(0.0, 0.0, 0.0); // чёрный
 
-uniform float alpha_multiplier : hint_range(0.0, 1.0) = 1.0;
-// Насколько «белыми» делать ядра кластеров (0 — старое поведение, 1 — полностью белые)
-uniform float cluster_whiteness : hint_range(0.0, 1.0) = 1.0;
-// Порог/мягкость перехода: чем больше, тем тоньше белые ядра
-uniform float cluster_sharpness : hint_range(0.5, 8.0) = 3.0;
+uniform float border_width  : hint_range(0.001, 0.5) = 0.15;
+uniform float contour_count : hint_range(1.0, 30.0) = 2.0;
+uniform float pattern_scale : hint_range(1.0, 20.0) = 2.0;
+uniform int   vector_mode   : hint_range(0, 1) = 0;
 
-const float OCTAVES = 4.0;
+// Размер «блока» пикселизации в ПИКСЕЛЯХ ЭКРАНА.
+// 1 = 1 пиксель экрана.
+uniform float pixel_size : hint_range(1.0, 32.0) = 4.0;
 
-vec2 rand2d(vec2 value)
-{
-    return fract(sin(vec2(
-        dot(value, vec2(23.1245, 87.2980)),
-        dot(value, vec2(127.5123, 39.183))
-    )) * 5387.58135649);
+const float velocity_x = 0.1;
+const float velocity_y = 0.2;
+
+const float mode_2_speed  = 2.5;
+const float mode_1_detail = 200.0;
+const float mode_1_twist  = 50.0;
+
+const int iterationTime1 = 20;
+const int iterationTime2 = 20;
+
+varying vec4 vertex_color;
+
+void vertex() {
+    vertex_color = COLOR;
 }
 
-float getCell(vec2 uv, float time)
-{
-    vec2 iuv = floor(uv);
-    vec2 fuv = fract(uv);
-    float mdist = 1.0;
+float f(vec2 p) {
+    return sin(p.x + sin(p.y + TIME * velocity_x))
+         * sin(p.y * p.x * 0.1 + TIME * velocity_y);
+}
 
-    for (int y = -1; y <= 1; y++)
-    {
-        for (int x = -1; x <= 1; x++)
-        {
-            vec2 n = vec2(float(x), float(y));
-            vec2 p = rand2d(iuv + n);
+vec4 field(vec2 p, int mode) {
+    vec2 vel = vec2(0.0);
+    vec2 pos = vec2(0.0);
 
-            p.y = 0.5 + 0.5 * sin(time + 5.0 * p.y);
-            p.x = 0.5 + 0.5 * cos(time + 5.0 * p.x);
+    if (mode == 0) {
+        vec2 ep = vec2(0.05, 0.0);
+        vec2 rz = vec2(0.0);
 
-            vec2 diff = n + p - fuv;
-            float dist = length(diff);
-            mdist = min(mdist, dist);
+        for (int i = 0; i < iterationTime1; i++) {
+            float t0 = f(p);
+            float t1 = f(p + ep.xy);
+            float t2 = f(p + ep.yx);
+            vec2 g = vec2((t1 - t0), (t2 - t0)) / ep.xx;
+            vec2 t = vec2(-g.y, g.x);
+
+            p += (mode_1_twist * 0.01) * t + g * (1.0 / mode_1_detail);
+            p.x += sin(TIME * mode_2_speed / 10.0) / 10.0;
+            p.y += cos(TIME * mode_2_speed / 10.0) / 10.0;
+            rz = g;
         }
+
+        vel = rz;
+        return vec4(vel, pos);
     }
-    return mdist;
+
+    if (mode == 1) {
+        vec2 ep = vec2(0.05, 0.0);
+        vec2 rz = vec2(0.0);
+
+        for (int i = 0; i < iterationTime1; i++) {
+            float t0 = f(p);
+            float t1 = f(p + ep.xy);
+            float t2 = f(p + ep.yx);
+            vec2 g = vec2((t1 - t0), (t2 - t0)) / ep.xx;
+            vec2 t = vec2(-g.y, g.x);
+
+            p += (mode_1_twist * 0.01) * t + g * (1.0 / mode_1_detail);
+            p.x += sin(TIME * mode_2_speed / 10.0) / 10.0;
+            p.y += cos(TIME * mode_2_speed / 10.0) / 10.0;
+            rz = g;
+        }
+
+        vel = rz;
+
+        for (int i = 1; i < iterationTime2; i++) {
+            p.x += 0.3 / float(i) * sin(float(i) * 3.0 * p.y + TIME * mode_2_speed) + 0.5;
+            p.y += 0.3 / float(i) * cos(float(i) * 3.0 * p.x + TIME * mode_2_speed) + 0.5;
+        }
+
+        pos = p;
+        return vec4(vel, pos);
+    }
+
+    return vec4(0.0);
 }
 
-vec3 hsv2rgb(vec3 c)
-{
-    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
-    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
-}
+void fragment() {
+    // --- Привязка к ЭКРАНУ -------------------------------------------
+    // Размер экрана в пикселях.
+    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
 
-void fragment()
-{
-    vec4 tex = texture(TEXTURE, UV);
+    // Квантуем координаты фрагмента по сетке блоков (в пикселях экрана).
+    // Все фрагменты внутри одного блока получают одинаковую позицию,
+    // поэтому узор блочный и «приклеен» к экрану, а не к спрайту.
+    vec2 block = vec2(max(pixel_size, 1.0));
+    vec2 screen_pixel = floor(FRAGCOORD.xy / block) * block + block * 0.5;
+    vec2 screen_uv    = screen_pixel / screen_size;
 
-    vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
-    vec2 fragCoord = vec2(FRAGCOORD.x, iResolution.y - FRAGCOORD.y);
+    // Приводим к диапазону [-0.5, 0.5] и делаем узор изотропным
+    // (иначе на широком экране круги превратятся в эллипсы).
+    float aspect = screen_size.x / screen_size.y;
+    vec2 p = screen_uv - 0.5;
+    p.x *= aspect;
+    p *= pattern_scale;
 
-    vec2 p = fragCoord * 0.01 + 1.0;
+    vec4 fld = field(p, vector_mode);
+    vec2 v = (vector_mode == 0) ? fld.xy : fld.zw;
 
-    // acc маленькое в центрах кластеров (~0), большое между ними
-    float acc = 0.0;
-    for (float i = 1.0; i < OCTAVES; i += 1.0)
-    {
-        acc += getCell(p, TIME) / i;
-        p *= OCTAVES;
-    }
-    acc = pow(acc, 2.2);
+    float s = length(v);
+    s = clamp(s, 0.0, 1.0);
 
-    // Маска «внутри кластера»: 1 в ядре, 0 в фоне
-    float cluster = 1.0 - clamp(acc, 0.0, 1.0);
-    cluster = pow(cluster, cluster_sharpness); // управляем толщиной белых ядер
-    cluster = clamp(cluster * cluster_whiteness * 2.0, 0.0, 1.0);
+    float bands = s * contour_count;
+    float contour_pos = abs(fract(bands) - 0.5) * 2.0;
+    float is_border = 1.0 - smoothstep(0.0, border_width, contour_pos);
 
-    // Тонированный фон (между кластерами)
-    vec3 tint = hsv2rgb(vec3(hue, saturation, brightness));
-    vec3 tinted = tint * acc;
+    vec3 col = mix(pattern_color, border_color, is_border);
 
-    // Ядра кластеров — белые
-    vec3 white = vec3(1.0) * (1.0 - acc) * brightness;
-    white = clamp(white, 0.0, 1.0);
+    // Альфа берётся из текстуры спрайта (чтобы работала маска/форма).
+    float tex_alpha = texture(TEXTURE, UV).a;
 
-    vec3 col = mix(tinted, white, cluster);
-
-    float alpha = tex.a * alpha_multiplier;
-    COLOR = vec4(col, alpha);
+    COLOR = vec4(col, tex_alpha) * vertex_color;
 }

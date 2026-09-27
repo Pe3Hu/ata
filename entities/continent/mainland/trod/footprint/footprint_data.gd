@@ -1,6 +1,7 @@
 class_name FootprintData
 extends RefCounted
 
+
 signal structures_changed
 
 var mainland: MainlandData

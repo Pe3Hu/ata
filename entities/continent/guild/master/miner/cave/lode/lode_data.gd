@@ -9,7 +9,7 @@ var matter: Bozo.Matter
 
 func _init(cave_: CaveData) -> void:
 	cave = cave_
-	matter = cave.miner.guild.structure.matters.front()
+	matter = cave.master.guild.structure.matters.front()
 	
 	init_veins()
 

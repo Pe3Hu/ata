@@ -38,9 +38,15 @@ shader_parameter/vertex_fill_glow = 0.003
 shader_parameter/edge_fade = 0.15
 
 [node name="Architect" unique_id=1270337185 instance=ExtResource("1_6o3h1")]
+offset_right = 428.0
+offset_bottom = 459.0
 script = ExtResource("2_mncny")
 
-[node name="HBox1" type="HBoxContainer" parent="VBox/InfoPanel" parent_id_path=PackedInt32Array(1520670639) index="0" unique_id=1129919593]
+[node name="InfoPanel" parent="VBox" parent_id_path=PackedInt32Array(531094369) index="2" unique_id=1520670639]
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="HBox1" type="HBoxContainer" parent="VBox/InfoPanel" index="0" unique_id=1129919593]
 layout_mode = 2
 
 [node name="VBox1" type="VBoxContainer" parent="VBox/InfoPanel/HBox1" index="0" unique_id=1671550198]
