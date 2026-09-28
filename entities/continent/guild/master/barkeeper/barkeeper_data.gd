@@ -8,15 +8,12 @@ var alphabet: Array
 var recruiment_matters: Array[Bozo.Matter]
 
 
-func _init(guild_: GuildData) -> void:
-	super._init(guild_)
-	type = Bozo.Master.BARKEEPER
+func _init(guild_: GuildData, type_: Bozo.Master) -> void:
 	refill_alphabet()
-	
 	init_origins()
-	init_tasks()
+	super._init(guild_, type_)
 
-func init_tasks() -> void:
+func init_static_tasks() -> void:
 	tasks.clear()
 	
 	for _i in Catalog.BARKEEPER_RECRUIT_AMOUNT:
@@ -24,7 +21,7 @@ func init_tasks() -> void:
 	
 	current_task = tasks.front()
 
-func add_recruit(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null) -> void:
+func add_recruit(intro_sum_: int = 20, talent_: int = 2, matter_: Variant = null) -> void:
 	if matter_ == null:
 		matter_ = Catalog.matters.pick_random()
 	
@@ -32,7 +29,7 @@ func add_recruit(intro_sum_: int = 40, talent_: int = 1, matter_: Variant = null
 	var verse_index = Digest.matter_to_verse[matter_].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var origin = OriginData.new(self, matter_, intro, verse, talent_)
-	var recriut = RecruitData.new(self, origin)
+	var recriut = RecruitData.new(self, 2, origin)
 	tasks.append(recriut)
 
 func init_origins() -> void:
@@ -78,7 +75,7 @@ func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
 	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter].pick_random()
 	var verse_index = Digest.matter_to_verse[matter].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-	var talent = 3
+	var talent = 2
 	var origin = OriginData.new(self, matter, intro, verse, talent)
 	origins.append(origin)
 

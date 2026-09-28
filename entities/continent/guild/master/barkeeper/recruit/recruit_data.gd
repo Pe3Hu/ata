@@ -2,19 +2,15 @@ class_name RecruitData
 extends TaskData
 
 
-var master: MasterData
 var origin: OriginData
 var silhouettes: Array[SilhouetteData]
 
-var tribute: TributeData
 
-
-func _init(master_: MasterData, origin_: OriginData) -> void:
-	master = master_
+func _init(master_: MasterData, rank_: int, origin_: OriginData) -> void:
 	origin = origin_
+	super._init(master_, rank_)
 	
 	init_silhouettes()
-	init_tribute()
 
 func init_silhouettes() -> void:
 	for stamp in origin.stamps:
@@ -35,7 +31,7 @@ func init_silhouettes() -> void:
 	)
 
 func init_tribute() -> void:
-	var rank = Catalog.ranks.find(origin.rank) + 1
+	rank = Catalog.ranks.find(origin.rank) + 1
 	var price = Digest.master_to_price[master.type] * rank
 	var volumes = Digest.master_to_volumes[master.type]
 	tribute = TributeData.new(price, volumes)

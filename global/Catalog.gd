@@ -276,9 +276,15 @@ const DEMON_DEFAULT_COMPLEXITY: int = 35
 
 const ranks = [Bozo.Rank.F, Bozo.Rank.E, Bozo.Rank.D, Bozo.Rank.C, Bozo.Rank.B, Bozo.Rank.A, Bozo.Rank.S]
 
+#region overtime
 const OVERTIME_GRID: Vector2i = Vector2i(5, 4)
 const OVERTIME_SIZE: Vector2 = Vector2(16, 18)
 const OVERTIME_OFFSET: Vector2 = Vector2(7, 3)
 var MAX_OVERTIME = OVERTIME_GRID.x * OVERTIME_GRID.y
+#endregion
 
 const vowels = ['A', 'E', 'I', 'O', 'U']
+const noicon_masters = [Bozo.Master.ARCHITECT, Bozo.Master.SCOUT, Bozo.Master.BARKEEPER, Bozo.Master.MUSICIAN]
+
+const AVG_HOUR_PROGRESS: int = 8
+const REAL_SECONDS_PER_GAME_HOUR := 1.0

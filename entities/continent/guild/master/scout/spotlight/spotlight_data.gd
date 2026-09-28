@@ -2,23 +2,9 @@ class_name SpotlightData
 extends TaskData
 
 
-var master: MasterData
 var shelter: ShelterData
-var rank: int
-
-var tribute: TributeData
 
 
-func _init(master_: MasterData, shelter_: ShelterData) -> void:
-	master = master_
+func _init(master_: MasterData, rank_: int, shelter_: ShelterData) -> void:
+	super._init(master_, rank_)
 	shelter = shelter_
-	rank = 1
-	
-	master.tasks.append(self)
-	
-	init_tribute()
-
-func init_tribute() -> void:
-	var price = Digest.master_to_price[master.type] * rank
-	var volumes = Digest.master_to_volumes[master.type]
-	tribute = TributeData.new(price, volumes)

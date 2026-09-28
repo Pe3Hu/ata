@@ -24,7 +24,7 @@ var thickness = 4
 
 
 func _ready() -> void:
-	position = get_parent().size / 2
+	#position = get_parent().size / 2
 	inner_radius = inner_radius
 
 func init_slices() -> void:

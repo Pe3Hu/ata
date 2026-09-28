@@ -2,6 +2,7 @@ extends Node
 
 
 signal declare_gameover
+signal clock_updated(hand_angle: float)
 
 var kernel: KernelData
 var house: HouseData
@@ -13,6 +14,7 @@ var welkin: WelkinData
 
 var mainland: MainlandData
 var guild: GuildData
+var clock: ClockData
 
 
 func _ready() -> void:
@@ -27,8 +29,10 @@ func _ready() -> void:
 	mission = MissionData.new()
 	
 	kernel = KernelData.new()
+	clock = ClockData.new()
 	
 	declare_gameover.connect(_on_declare_gameover)
+	clock.time_changed.connect(func(_t): clock_updated.emit(clock.get_hand_angle()))
 
 func _on_declare_gameover() -> void:
 	Arbitrator.s_gameover = true

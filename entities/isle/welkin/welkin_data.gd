@@ -10,5 +10,5 @@ func _init() -> void:
 	init_asterisms()
 
 func init_asterisms() -> void:
-	for main_volume in Digest.main_to_secondary:
-		var _asterism = AsterismData.new(self, main_volume)
+	for external_volume in Digest.external_to_internal:
+		AsterismData.new(self, external_volume)

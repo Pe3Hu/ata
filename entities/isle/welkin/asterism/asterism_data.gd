@@ -1,30 +1,30 @@
 class_name AsterismData
-extends TaskData
+extends RefCounted
 
 
 var welkin: WelkinData
-var main_star: StarData
-var secondary_star: StarData
+var external_star: StarData
+var internal_star: StarData
 
 
-func _init(welkin_: WelkinData, main_volume_: int) -> void:
+func _init(welkin_: WelkinData, external_volume_: int) -> void:
 	welkin = welkin_
 	
-	main_star = StarData.new(main_volume_)
-	main_star.asterism = self
-	secondary_star = StarData.new(Digest.main_to_secondary[main_volume_])
-	secondary_star.asterism = self
+	external_star = StarData.new(external_volume_)
+	external_star.asterism = self
+	internal_star = StarData.new(Digest.external_to_internal[external_volume_])
+	internal_star.asterism = self
 	
 	reset()
 	
 	welkin.asterisms.append(self)
-	welkin.volume_to_asterism[main_star.volume] = self
-	welkin.volume_to_asterism[main_star.volume] = self
+	welkin.volume_to_asterism[external_star.volume] = self
+	welkin.volume_to_asterism[external_star.volume] = self
 
 func reset() -> void:
-	main_star.current = 0
-	secondary_star.current = 0
+	external_star.current = 0
+	internal_star.current = 0
 
 func full_fill() -> void:
-	main_star.current = secondary_star.current
-	secondary_star.current = secondary_star.limit
+	external_star.current = internal_star.current
+	internal_star.current = internal_star.limit

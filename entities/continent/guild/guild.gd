@@ -16,8 +16,7 @@ func _on_master_changed() -> void:
 		current.queue_free()
 		current = null
 
-	if not Mother.guild.current_master:
-		return
+	if not Mother.guild.current_master: return
 
 	var str_type = Bozo.enum_to_string(Bozo.Type.MASTER, Mother.guild.current_master.type)
 	var path = "res://entities/continent/guild/master/%s/%s.tscn" % [str_type, str_type]

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bqgagkcucwimy"]
 
-[ext_resource type="Script" uid="uid://bamve8pd25cj3" path="res://entities/continent/guild/master/master.gd" id="1_7jyam"]
-[ext_resource type="PackedScene" uid="uid://lx762uqy0d6d" path="res://entities/continent/guild/agent/agent.tscn" id="2_2pibd"]
+[ext_resource type="Script" uid="uid://bamve8pd25cj3" path="res://entities/continent/guild/master/master.gd" id="1_vd5fh"]
+[ext_resource type="PackedScene" uid="uid://lx762uqy0d6d" path="res://entities/continent/guild/agent/agent.tscn" id="2_h6xx7"]
+[ext_resource type="PackedScene" uid="uid://ndch2g5uhxwt" path="res://entities/continent/mainland/trod/route/route.tscn" id="3_ffgka"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0aoth"]
 
@@ -12,7 +13,7 @@ custom_minimum_size = Vector2(688, 459)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0aoth")
-script = ExtResource("1_7jyam")
+script = ExtResource("1_vd5fh")
 
 [node name="VBox" type="HBoxContainer" parent="." unique_id=807664740]
 layout_mode = 2
@@ -28,14 +29,26 @@ text = "Master"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Agent" parent="VBox" unique_id=2061342935 instance=ExtResource("2_2pibd")]
+[node name="VBox" type="VBoxContainer" parent="VBox" unique_id=153440443]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -4
+
+[node name="Agent" parent="VBox/VBox" unique_id=2061342935 instance=ExtResource("2_h6xx7")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Route" parent="VBox/VBox" unique_id=1537280593 instance=ExtResource("3_ffgka")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
 [node name="InfoPanel" type="PanelContainer" parent="VBox" unique_id=1520670639]
 custom_minimum_size = Vector2(428, 320)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h0qxe")

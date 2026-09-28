@@ -9,33 +9,29 @@
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_h5ua1"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_uasgc"]
 [ext_resource type="PackedScene" uid="uid://t1702e0u2fqx" path="res://entities/isle/ladder/fake/fake_dice.tscn" id="7_724r4"]
+[ext_resource type="PackedScene" uid="uid://cpce7h1kdvvoh" path="res://entities/continent/guild/agent/calendar/calendar.tscn" id="10_h5ua1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxemg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st6mn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl6b4"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+border_color = Color(0.11119684, 0.11119687, 0.11119675, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_uasgc"]
 grow_begin = 0.0
 grow_end = 0.0
 thickness = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl6b4"]
-resource_local_to_scene = true
-bg_color = Color(0, 0.7529412, 0.47058824, 1)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_60rxr"]
-grow_begin = 0.0
-grow_end = 0.0
-thickness = 4
-vertical = true
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enm1i"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_lxk3t"]
-grow_begin = 0.0
-grow_end = 0.0
-thickness = 4
-vertical = true
-
-[sub_resource type="Shader" id="Shader_ipsu7"]
+[sub_resource type="Shader" id="Shader_h5ua1"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -169,9 +165,9 @@ void fragment() {
     COLOR = vec4(color, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5ua1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntiry"]
 resource_local_to_scene = true
-shader = SubResource("Shader_ipsu7")
+shader = SubResource("Shader_h5ua1")
 shader_parameter/speed = 0.3
 shader_parameter/scale = 2.2
 shader_parameter/octaves = 4
@@ -181,20 +177,21 @@ shader_parameter/start_amp = 0.8
 shader_parameter/mag = 0.2
 shader_parameter/tint = Vector3(0.98, 0.95, 0.997)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lxk3t"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 4
+vertical = true
+
 [node name="Agent" type="PanelContainer" unique_id=2061342935]
 offset_right = 172.0
 offset_bottom = 131.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_fxemg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_st6mn")
 script = ExtResource("1_rk4ea")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2071951052]
 layout_mode = 2
 theme_override_constants/separation = 0
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=84148973]
-layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="Top" type="Panel" parent="VBoxContainer" unique_id=1170062607]
 unique_name_in_owner = true
@@ -221,32 +218,6 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-8, 0)
 texture = ExtResource("2_lms6a")
 
-[node name="AgentName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=456538627]
-unique_name_in_owner = true
-modulate = Color(0, 0.2627451, 0.14901961, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -8.0
-offset_right = 34.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
-text = "Agent Name"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top" unique_id=1685011924]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
@@ -255,15 +226,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -72.0
+offset_left = -76.0
 offset_top = -20.0
-offset_right = 72.0
+offset_right = 76.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 80
+theme_override_constants/separation = 5
 
 [node name="PreviousAgentButton" type="TextureButton" parent="VBoxContainer/Top/HBoxContainer" unique_id=906712825]
 unique_name_in_owner = true
@@ -277,6 +248,22 @@ texture_hover = ExtResource("3_ipsu7")
 flip_h = true
 script = ExtResource("4_h5ua1")
 metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="AgentName" type="RichTextLabel" parent="VBoxContainer/Top/HBoxContainer" unique_id=456538627]
+unique_name_in_owner = true
+modulate = Color(0, 0.2627451, 0.14901961, 1)
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "Christopher"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NextAgentButton" type="TextureButton" parent="VBoxContainer/Top/HBoxContainer" unique_id=1749071378]
 unique_name_in_owner = true
@@ -306,26 +293,6 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(8, 0)
 texture = ExtResource("3_etprk")
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Top" unique_id=1695947759]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 40.0
-theme_override_styles/separator = SubResource("StyleBoxLine_60rxr")
-
-[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/Top" unique_id=863328564]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_60rxr")
-
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=810698935]
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -343,20 +310,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1705914028]
-layout_mode = 2
-offset_transform_enabled = true
-theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
-
 [node name="VBox" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=2137199726]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = -6
 
 [node name="VBoxLabels" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox" unique_id=1561403491]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox/VBoxLabels" unique_id=871874589]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 3)
 text = "Progress"
 label_settings = ExtResource("4_uasgc")
 horizontal_alignment = 1
@@ -364,7 +329,7 @@ vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox/VBoxLabels" unique_id=658081008]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="WorkoadLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox/VBoxLabels" unique_id=980919885]
@@ -375,10 +340,16 @@ label_settings = ExtResource("4_uasgc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox/VBoxLabels" unique_id=1572057863]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
+
 [node name="Workload" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox" unique_id=1961124138 instance=ExtResource("4_gl6b4")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_h5ua1")
+material = SubResource("ShaderMaterial_ntiry")
 layout_mode = 2
+offset_transform_position = Vector2(0, 3)
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1871877714]
 layout_mode = 2
@@ -389,6 +360,7 @@ layout_mode = 2
 
 [node name="VBox2" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2" unique_id=1383685849]
 layout_mode = 2
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=1969940912]
@@ -413,6 +385,11 @@ label_settings = ExtResource("4_uasgc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=1265793911]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
+
 [node name="Hourglass" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2" unique_id=1921839269 instance=ExtResource("4_etprk")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -428,6 +405,7 @@ layout_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3" unique_id=1436324897]
 layout_mode = 2
+theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=1494162128]
 layout_mode = 2
@@ -450,25 +428,26 @@ label_settings = ExtResource("4_uasgc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=46203597]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
+
 [node name="Dice" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3" unique_id=518126039 instance=ExtResource("7_724r4")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="VSeparator4" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=498939192]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
-
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer" unique_id=2054259434]
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -4)
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="HourglassTimer" type="Timer" parent="." unique_id=150169969]
 unique_name_in_owner = true
 wait_time = 3.0
 autostart = true
 
+[node name="Calendar" parent="." unique_id=1440266826 instance=ExtResource("10_h5ua1")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+offset_transform_position = Vector2(4, -72)
+
 [connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/PreviousAgentButton" to="." method="_on_previous_agent_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/NextAgentButton" to="." method="_on_next_agent_button_pressed"]
 [connection signal="timeout" from="HourglassTimer" to="." method="_on_hourglass_timer_timeout"]

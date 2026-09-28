@@ -69,10 +69,10 @@ func animate_overtime(target_idx: int) -> void:
 	var duration = Gear.workloads[Gear.tempo]
 	overtime_tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	overtime_tween.tween_method(
-		func(v: float) -> void:
-			visual_boundary = v
-			for i in overtimes.size():
-				overtimes[i].visible = i < v,
+		func(a: float) -> void:
+			visual_boundary = a
+			for _i in overtimes.size():
+				overtimes[_i].visible = _i < a,
 		from_boundary,
 		to_boundary,
 		duration

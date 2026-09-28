@@ -3,8 +3,10 @@ extends MasterData
 
 
 
-func _init(guild_: GuildData) -> void:
-	super._init(guild_)
+func init_static_tasks() -> void:
+	tasks.clear()
 	
-	tasks.append_array(Mother.welkin.asterisms)
+	for asterism in Mother.welkin.asterisms:
+		SculptureData.new(self, 0, asterism)
+	
 	current_task = tasks.front()

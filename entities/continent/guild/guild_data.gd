@@ -12,16 +12,16 @@ var structure: StructureData:
 			if structure and structure.type != Bozo.Master.NONE:
 				set_current_master(Digest.structure_to_master[structure.type])
 
-var architect = ArchitectData.new(self)
-var barkeeper = BarkeeperData.new(self)
-var blacksmith = BlacksmithData.new(self)
-#var demon = DemonData.new(self)
-var guardian = GuardianData.new(self)
-var lightkeeper = LightkeeperData.new(self)
-var miner = MinerData.new(self)
-var musician = MusicianData.new(self)
-var scout = ScoutData.new(self)
-var tailor = TailorData.new(self)
+var architect = ArchitectData.new(self, Bozo.Master.ARCHITECT)
+var barkeeper = BarkeeperData.new(self, Bozo.Master.BARKEEPER)
+var blacksmith = BlacksmithData.new(self, Bozo.Master.BLACKSMITH)
+#var demon = DemonData.new(self, Bozo.Master.)
+var guardian = GuardianData.new(self, Bozo.Master.GUARDIAN)
+var lightkeeper = LightkeeperData.new(self, Bozo.Master.LIGHTKEEPER)
+var miner = MinerData.new(self, Bozo.Master.MINER)
+var musician = MusicianData.new(self, Bozo.Master.MUSICIAN)
+var scout = ScoutData.new(self, Bozo.Master.SCOUT)
+var tailor = TailorData.new(self, Bozo.Master.TAILOR)
 
 var current_master: MasterData
 var hourglass_time: float = 0.0
@@ -47,13 +47,15 @@ func set_current_master(type_: Bozo.Master):
 		
 		match type_:
 			Bozo.Master.BLACKSMITH:
-				current_master.init_tasks()
+				current_master.init_dinamic_tasks()
 			Bozo.Master.MINER:
-				current_master.init_tasks()
+				current_master.init_dinamic_tasks()
 			Bozo.Master.TAILOR:
-				current_master.init_tasks()
+				current_master.init_dinamic_tasks()
 			Bozo.Master.SCOUT:
-				current_master.init_tasks()
+				current_master.init_dinamic_tasks()
+			Bozo.Master.MUSICIAN:
+				current_master.init_dinamic_tasks()
 		
 		master_changed.emit()
 

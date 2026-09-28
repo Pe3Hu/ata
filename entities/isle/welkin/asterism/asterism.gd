@@ -12,20 +12,20 @@ var data: AsterismData:
 
 
 func connect_signals() -> void:
-	if not data.main_star.current_changed.is_connected(_on_main_current_chagned):
-		data.main_star.current_changed.connect(_on_main_current_chagned)
-		_on_main_current_chagned()
+	if not data.external_star.current_changed.is_connected(_on_external_current_chagned):
+		data.external_star.current_changed.connect(_on_external_current_chagned)
+		_on_external_current_chagned()
 		
-	if not data.secondary_star.current_changed.is_connected(_on_secondary_current_changed):
-		data.secondary_star.current_changed.connect(_on_secondary_current_changed)
-		_on_secondary_current_changed()
+	if not data.internal_star.current_changed.is_connected(_on_internal_current_changed):
+		data.internal_star.current_changed.connect(_on_internal_current_changed)
+		_on_internal_current_changed()
 
-func _on_main_current_chagned() -> void:
-	var mask = (1 << data.main_star.current) - 1
+func _on_external_current_chagned() -> void:
+	var mask = (1 << data.external_star.current) - 1
 	material.set_shader_parameter("vertex_fill_mask", mask)
 
-func _on_secondary_current_changed() -> void:
-	var mask = (1 << data.secondary_star.current) - 1
+func _on_internal_current_changed() -> void:
+	var mask = (1 << data.internal_star.current) - 1
 	material.set_shader_parameter("dash_cross_mask", mask)
 
 func update_position() -> void:
@@ -35,12 +35,12 @@ func update_position() -> void:
 	offset_transform_position = Vector2.from_angle(anchor_angle - PI / 2) * Catalog.ASTERISM_RAIDUS
 
 func update_shader() -> void:
-	material.set_shader_parameter('vertex_circle_count', data.main_star.volume)
-	material.set_shader_parameter('dash_count', Digest.asterism_to_amount[data.secondary_star.volume])
+	material.set_shader_parameter('vertex_circle_count', data.external_star.volume)
+	material.set_shader_parameter('dash_count', Digest.asterism_to_amount[data.internal_star.volume])
 	var rotation_speed = Helper.rng.randf_range(-0.15, -0.25)
 	material.set_shader_parameter('rotation_speed', rotation_speed)
 	
-	match data.main_star.volume:
+	match data.external_star.volume:
 		10:
 			material.set_shader_parameter('star_step', 4)
 			material.set_shader_parameter('dash_inner', 0.35)

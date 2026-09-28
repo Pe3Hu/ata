@@ -4,9 +4,6 @@ extends TaskData
 
 signal spoil_changed
 
-var master: MasterData
-var rank: int
-
 var tributes: Array[TributeData]
 var spoils: Array[SpoilData]
 
@@ -17,11 +14,7 @@ var current_spoil: SpoilData:
 
 
 func _init(master_: MasterData, rank_: int) -> void:
-	master = master_
-	rank = rank_
-	
-	master.tasks.append(self)
-	init_tribute()
+	super._init(master_, rank_)
 	init_spoils()
 
 func init_tribute() -> void:
@@ -31,7 +24,7 @@ func init_tribute() -> void:
 	
 	for matter in matters:
 		var volumes = [volume]
-		var price = volume * (rank * 2 - 1)
+		var price = volume * (rank * 2 + 1)
 		var _tribute = TributeData.new(price, volumes)
 		tributes.append(_tribute)
 		_tribute.quotums = _tribute.quotums.filter(func (a): return a.shard.matter == matter)
@@ -41,7 +34,7 @@ func init_spoils() -> void:
 	spoils.clear()
 	var matters = master.guild.structure.matters
 	var volume = Digest.matter_to_matter_to_volume[matters.front()][matters.back()] * 2
-	var amount = rank * 2 - 1
+	var amount = rank * 2 + 1
 	
 	for matter in matters:
 		var spoil = SpoilData.new(matter, volume, amount)

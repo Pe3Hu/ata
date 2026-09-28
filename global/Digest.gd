@@ -210,7 +210,7 @@ const volume_to_coord = {
 }
 
 const rank_to_matter_to_matter_to_vesre = {
-	1: {
+	0: {
 		Bozo.Matter.GAS: {
 			Bozo.Matter.LIQUID: 35,
 			Bozo.Matter.SOLID: 34,
@@ -224,7 +224,7 @@ const rank_to_matter_to_matter_to_vesre = {
 			Bozo.Matter.LIQUID: 36,
 		},
 	},
-	2: {
+	1: {
 		Bozo.Matter.GAS: {
 			Bozo.Matter.LIQUID: 59,
 			Bozo.Matter.SOLID: 57,
@@ -238,7 +238,7 @@ const rank_to_matter_to_matter_to_vesre = {
 			Bozo.Matter.LIQUID: 58,
 		},
 	},
-	3: {
+	2: {
 		Bozo.Matter.GAS: {
 			Bozo.Matter.LIQUID: 89,
 			Bozo.Matter.SOLID: 87,
@@ -259,7 +259,13 @@ const rank_to_matter_to_matter_to_vesre = {
 const sum_to_index = {
 	20: 11,
 	30: 20,
-	40: 22
+	40: 22,
+	50: 15,
+	60: 21,
+	70: 15,
+	80: 14,
+	90: 11,
+	100: 9
 }
 
 const sum_to_grades = {
@@ -771,7 +777,7 @@ const asterism_to_amount = {
 	10: 10
 }
 
-const main_to_secondary = {
+const external_to_internal = {
 	6: 4,
 	7: 5,
 	8: 3,
@@ -979,6 +985,17 @@ const master_to_workloads = {
 	Bozo.Master.BARKEEPER: [12, 12, 12, 12, 12, 12],
 	Bozo.Master.SCOUT: [16, 16, 16],
 }
+
+const master_to_task = {
+	Bozo.Master.BLACKSMITH: 'instrument',
+	Bozo.Master.MUSICIAN: 'veteran',
+	Bozo.Master.ARCHITECT: 'sculpture',
+	Bozo.Master.LIGHTKEEPER: 'firework',
+	Bozo.Master.MINER: 'cave',
+	Bozo.Master.TAILOR: 'attire',
+	Bozo.Master.BARKEEPER: 'recruit',
+	Bozo.Master.SCOUT: 'spotlight',
+}
 #endregion
 
 const matter_to_matter_to_volume = {
@@ -998,19 +1015,19 @@ const matter_to_matter_to_volume = {
 
 const matter_to_rank_to_volume_to_percent = {
 	Bozo.Matter.GAS: {
-		1: {
+		0: {
 			2: 30,
 			4: 20,
 			6: 20,
 			18: 30
 		},
-		2: {
+		1: {
 			2: 15,
 			8: 15,
 			10: 25,
 			20: 45
 		},
-		3: {
+		2: {
 			2: 25,
 			12: 20,
 			30: 25,
@@ -1018,19 +1035,19 @@ const matter_to_rank_to_volume_to_percent = {
 		},
 	},
 	Bozo.Matter.LIQUID: {
-		1: {
+		0: {
 			3: 35,
 			6: 25,
 			12: 20,
 			15: 20
 		},
-		2: {
+		1: {
 			3: 15,
 			9: 15,
 			15: 45,
 			18: 25
 		},
-		3: {
+		2: {
 			3: 25,
 			18: 20,
 			27: 30,
@@ -1038,18 +1055,18 @@ const matter_to_rank_to_volume_to_percent = {
 		}
 	},
 	Bozo.Matter.SOLID: {
-		1: {
+		0: {
 			5: 55,
 			10: 30,
 			15: 15,
 		},
-		2: {
+		1: {
 			5: 35,
 			10: 25,
 			20: 25,
 			25: 15
 		},
-		3: {
+		2: {
 			5: 20,
 			15: 25,
 			25: 25,
@@ -1058,46 +1075,52 @@ const matter_to_rank_to_volume_to_percent = {
 	}
 }
 
-var rank_to_avg = {
-	1: 8,
-	2: 13,
-	3: 20
+const rank_to_avg = {
+	0: 8,
+	1: 13,
+	2: 20
 }
 
-var intro_to_talent_to_rank = {
+const intro_to_talent_to_rank = {
 	20: {
-		3: Bozo.Rank.B
+		2: Bozo.Rank.B
 	},
 	30: {
-		2: Bozo.Rank.C
+		1: Bozo.Rank.C
 	},
 	40: {
-		1: Bozo.Rank.F
+		0: Bozo.Rank.F
 	},
 	50: {
-		1: Bozo.Rank.E,
-		2: Bozo.Rank.B,
-		3: Bozo.Rank.A
-	},
-	60: {
-		1: Bozo.Rank.D
-	},
-	70: {
-		1: Bozo.Rank.C,
+		0: Bozo.Rank.E,
+		1: Bozo.Rank.B,
 		2: Bozo.Rank.A
 	},
-	80: {
-		1: Bozo.Rank.B,
-		3: Bozo.Rank.S
+	60: {
+		0: Bozo.Rank.D
 	},
-	90: {
-		1: Bozo.Rank.A,
+	70: {
+		0: Bozo.Rank.C,
+		1: Bozo.Rank.A
+	},
+	80: {
+		0: Bozo.Rank.B,
 		2: Bozo.Rank.S
 	},
-	100: {
+	90: {
+		0: Bozo.Rank.A,
 		1: Bozo.Rank.S
+	},
+	100: {
+		0: Bozo.Rank.S
 	}
 }
+
+const talent_to_veteran = {
+	0: 10,
+	1: 20,
+	2: 30
+} 
 
 
 
@@ -1190,3 +1213,4 @@ func init_intros() -> void:
 
 			for matter in matters:
 				sum_to_matter_to_intro[sum][matter].append(dice)
+	

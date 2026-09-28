@@ -7,8 +7,8 @@ var internals: Array[ShelterData]
 
 
 #region init
-func _init(guild_: GuildData) -> void:
-	super._init(guild_)
+func _init(guild_: GuildData, type_: Bozo.Master) -> void:
+	super._init(guild_, type_)
 	
 	init_internals()
 
@@ -61,11 +61,11 @@ func sort_extrenals() -> void:
 	
 	extrenals = sorted
 
-func init_tasks() -> void:
+func init_dinamic_tasks() -> void:
 	tasks.clear()
 	
 	for extrenal in extrenals:
-		SpotlightData.new(self, extrenal)
+		SpotlightData.new(self, 1, extrenal)
 	
 	current_task = tasks.front()
 #endregion

@@ -1,0 +1,426 @@
+[gd_scene format=3 uid="uid://4ewn6y6w2rkb"]
+
+[ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_qodl5"]
+[ext_resource type="Script" uid="uid://m1byny4s1ke8" path="res://entities/continent/guild/master/architect/sculpture/sculpture.gd" id="2_qodl5"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="3_h5n3s"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="4_3usp5"]
+[ext_resource type="PackedScene" uid="uid://7422stye5c3g" path="res://entities/isle/welkin/asterism/asterism.tscn" id="5_gfbwc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxk3t"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gk4o0"]
+resource_local_to_scene = true
+font = ExtResource("4_3usp5")
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1olkd"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_uyv0h"]
+resource_local_to_scene = true
+grow_begin = 4.0
+grow_end = 4.0
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hvtkq"]
+resource_local_to_scene = true
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ll2sf"]
+resource_local_to_scene = true
+shader = ExtResource("3_h5n3s")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="Shader" id="Shader_qodl5"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+// --- Центральные чёрточки ---
+uniform int dash_count : hint_range(0, 16) = 0;
+uniform float dash_inner : hint_range(0.0, 2.0) = 0.35;
+uniform float dash_length : hint_range(0.0, 2.0) = 0.2;
+uniform float dash_glow : hint_range(0.0, 0.02) = 0.005;
+
+// --- Дополнительные перпендикулярные чёрточки (кресты) ---
+// Битовая маска: бит i = 1 → радиальная чёрточка для i-го луча включена.
+uniform int dash_cross_mask : hint_range(0, 65535) = 0;
+uniform float dash_cross_glow : hint_range(0.0, 0.02) = 0.005;
+
+// --- Многоугольник ---
+uniform int vertex_circle_count : hint_range(4, 360) = 10;
+uniform int star_step : hint_range(1, 360) = 3;
+uniform float star_glow : hint_range(0.0, 0.02) = 0.005;
+
+// --- Анимация ---
+uniform float rotation_speed : hint_range(-5.0, 5.0) = 0.0;
+uniform float pulse_speed : hint_range(0.0, 10.0) = 0.0;
+uniform float pulse_amount : hint_range(0.0, 0.5) = 0.02;
+
+// --- Внешнее кольцо ---
+uniform float outer_circle_radius : hint_range(0.0, 2.0) = 0.85;
+uniform float outer_circle_thickness : hint_range(0.0, 0.5) = 0.05;
+uniform float outer_circle_glow : hint_range(0.0, 0.02) = 0.005;
+uniform float vertex_dot_glow : hint_range(0.0, 0.02) = 0.004;
+uniform float vertex_ring_glow : hint_range(0.0, 0.02) = 0.008;
+
+// --- Засечки на внешнем кольце (свечение) ---
+uniform float hatch_glow : hint_range(0.0, 0.02) = 0.002;
+
+// --- Заливка вершин многоугольника ---
+// Битовая маска: бит i = 1 → вершина i залита.
+uniform int vertex_fill_mask : hint_range(0, 65535) = 0;
+uniform float vertex_fill_radius : hint_range(0.0, 0.2) = 0.05;
+uniform float vertex_fill_glow : hint_range(0.0, 0.02) = 0.003;
+
+// --- Край текстуры (круговая маска) ---
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+vec2 rot2(vec2 p, float rad) {
+	float c = cos(rad);
+	float s = sin(rad);
+	return vec2(p.x * c - p.y * s, p.x * s + p.y * c);
+}
+
+vec2 scale2(vec2 p, float r) {
+	return p * r;
+}
+
+// Универсальная проверка бита в маске (до 31 бита).
+bool bit_on(int mask, int i) {
+	return ((mask >> i) & 1) == 1;
+}
+
+float circle(float pre, vec2 p, float r1, float r2, float power) {
+	float leng = length(p);
+	float d = min(abs(leng - r1), abs(leng - r2));
+	if (r1 < leng && leng < r2) pre /= exp(d) / r2;
+	float res = power / max(d, 1e-6);
+	return clamp(pre + res, 0.0, 1.0);
+}
+
+float segment(float pre, vec2 p, vec2 a, vec2 b, float power) {
+	vec2 pa = p - a;
+	vec2 ba = b - a;
+	float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+	float d = length(pa - ba * h);
+	return clamp(pre + power / max(d, 1e-6), 0.0, 1.0);
+}
+
+float radiation(float pre, vec2 p, float r1, float r2, int num, float power) {
+	float angle = 2.0 * PI / float(num);
+	float d = 1e10;
+	for (int i = 0; i < 360; i++) {
+		if (i >= num) break;
+		float _d = (r1 < p.y && p.y < r2) ?
+			abs(p.x) :
+			min(length(p - vec2(0.0, r1)), length(p - vec2(0.0, r2)));
+		d = min(d, _d);
+		p = rot2(p, angle);
+	}
+	float res = power / max(d, 1e-6);
+	return clamp(pre + res, 0.0, 1.0);
+}
+
+// Сплошной закрашенный круг: внутри радиуса — единица, снаружи — свечение.
+float disk(float pre, vec2 p, float r, float power) {
+	float d = length(p) - r;
+	if (d < 0.0) return 1.0;
+	return clamp(pre + power / max(d, 1e-6), 0.0, 1.0);
+}
+
+vec3 calc(vec2 p) {
+	float dst = 0.0;
+	float T = TIME * rotation_speed;
+	float pulse = 1.0 + pulse_amount * sin(PI * pulse_speed * TIME);
+	p = scale2(p, pulse);
+
+	// Внешнее кольцо + мелкая внешняя штриховка (ровно 2 засечки между вершинами)
+	{
+		vec2 q = p;
+		q = rot2(q, T * PI / 6.0);
+		float ht = outer_circle_thickness * 0.5;
+		float r_in = outer_circle_radius - ht;
+		float r_out = outer_circle_radius + ht;
+		dst = circle(dst, q, r_in, r_out, outer_circle_glow);
+
+		int n = vertex_circle_count;
+		if (n > 0) {
+			float step_ang = 2.0 * PI / float(n);
+			float base = step_ang * 0.5;      // угол первой вершины
+			float third = step_ang / 3.0;     // треть дуги между вершинами
+
+			// Первая засечка — на 1/3 дуги между вершинами
+			vec2 q1 = rot2(q, -(base + third));
+			dst = radiation(dst, q1, r_in, r_out, n, hatch_glow);
+
+			// Вторая засечка — на 2/3 дуги между вершинами
+			vec2 q2 = rot2(q, -(base + 2.0 * third));
+			dst = radiation(dst, q2, r_in, r_out, n, hatch_glow);
+		}
+	}
+
+	// Звёздчатый многоугольник {n/star_step}
+	{
+		vec2 q = p;
+		q = rot2(q, T * PI / 6.0);
+		float R = outer_circle_radius;
+		float step_ang = 2.0 * PI / float(vertex_circle_count);
+		float start = step_ang * 0.5;
+		for (int i = 0; i < 360; i++) {
+			if (i >= vertex_circle_count) break;
+			float a1 = start + float(i) * step_ang;
+			float a2 = start + float(i + star_step) * step_ang;
+			vec2 va = vec2(R * sin(a1), R * cos(a1));
+			vec2 vb = vec2(R * sin(a2), R * cos(a2));
+			dst = segment(dst, q, va, vb, star_glow);
+		}
+	}
+
+	// Внешние круги — вершины многоугольника
+	{
+		vec2 q = p;
+		q = rot2(q, T * PI / 6.0);
+		q = rot2(q, 2.0 * PI / float(vertex_circle_count) / 2.0);
+		float angle = 2.0 * PI / float(vertex_circle_count);
+		for (int i = 0; i < 360; i++) {
+			if (i >= vertex_circle_count) break;
+			vec2 vp = q - vec2(0.0, outer_circle_radius);
+			dst = circle(dst, vp, 0.001, 0.05, vertex_dot_glow);
+			dst = circle(dst, vp, 0.001, 0.001, vertex_ring_glow);
+
+			if (i < 16 && bit_on(vertex_fill_mask, i)) {
+				dst = disk(dst, vp, vertex_fill_radius, vertex_fill_glow);
+			}
+
+			q = rot2(q, angle);
+		}
+	}
+
+	// Центральные чёрточки: перпендикулярные всегда, радиальные — по биту маски
+	{
+		vec2 q = p;
+		q = rot2(q, T * PI / 6.0);
+		float r1 = dash_inner;
+		float r2 = dash_inner + dash_length;
+
+		if (dash_count > 0) {
+			float step_ang = 2.0 * PI / float(dash_count);
+			float rm = (r1 + r2) * 0.5;
+			float hl = (r2 - r1) * 0.5;
+			vec2 rq = q;
+			for (int i = 0; i < 16; i++) {
+				if (i >= dash_count) break;
+
+				// Перпендикулярная чёрточка — всегда видна
+				{
+					vec2 a = vec2(-hl, rm);
+					vec2 b = vec2( hl, rm);
+					dst = segment(dst, rq, a, b, dash_cross_glow);
+				}
+
+				// Радиальная чёрточка — только когда бит i установлен
+				if (bit_on(dash_cross_mask, i)) {
+					vec2 a = vec2(0.0, r1);
+					vec2 b = vec2(0.0, r2);
+					dst = segment(dst, rq, a, b, dash_glow);
+				}
+
+				rq = rot2(rq, step_ang);
+			}
+		}
+	}
+
+	return pow(dst, 2.5) * vec3(1.0, 0.95, 0.8);
+}
+
+void fragment() {
+	vec2 res = (TEXTURE_PIXEL_SIZE.x > 0.0) ? 1.0 / TEXTURE_PIXEL_SIZE : 1.0 / SCREEN_PIXEL_SIZE;
+	vec2 frag = UV * res;
+	vec2 uv = (res - frag * 2.0) / min(res.x, res.y);
+
+	// Круглая маска: всё, что дальше радиуса 1 от центра, — прозрачно.
+	float r = length(uv);
+	float fade = 1.0 - smoothstep(1.0 - edge_fade, 1.0, r);
+
+	if (fade <= 0.0) {
+		COLOR = vec4(0.0);        // за пределами круга — полностью прозрачно
+	} else {
+		vec3 col = calc(uv);
+		COLOR = vec4(col, fade);  // цвет НЕ умножаем — иначе свечение гаснет дважды
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndwu4"]
+resource_local_to_scene = true
+shader = SubResource("Shader_qodl5")
+shader_parameter/dash_count = 0
+shader_parameter/dash_inner = 0.35
+shader_parameter/dash_length = 0.2
+shader_parameter/dash_glow = 0.005
+shader_parameter/dash_cross_mask = 0
+shader_parameter/dash_cross_glow = 0.005
+shader_parameter/vertex_circle_count = 10
+shader_parameter/star_step = 3
+shader_parameter/star_glow = 0.0050000002375
+shader_parameter/rotation_speed = 0.0
+shader_parameter/pulse_speed = 0.0
+shader_parameter/pulse_amount = 0.02
+shader_parameter/outer_circle_radius = 0.85
+shader_parameter/outer_circle_thickness = 0.05
+shader_parameter/outer_circle_glow = 0.0050000002375
+shader_parameter/vertex_dot_glow = 0.004
+shader_parameter/vertex_ring_glow = 0.008
+shader_parameter/hatch_glow = 0.002
+shader_parameter/vertex_fill_mask = 0
+shader_parameter/vertex_fill_radius = 0.05
+shader_parameter/vertex_fill_glow = 0.003
+shader_parameter/edge_fade = 0.15
+
+[node name="Sculpture" unique_id=1199540049 instance=ExtResource("1_qodl5")]
+script = ExtResource("2_qodl5")
+
+[node name="Rank" parent="HBoxContainer/VBox/RankPanel/HBox" parent_id_path=PackedInt32Array(1691597745) index="1" unique_id=835826759]
+theme_override_styles/panel = SubResource("StyleBoxFlat_lxk3t")
+
+[node name="StarHBox" type="HBoxContainer" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" index="0" unique_id=13815017]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ExternalVBox" type="VBoxContainer" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox" index="0" unique_id=116743856]
+custom_minimum_size = Vector2(106, 64)
+layout_mode = 2
+alignment = 1
+
+[node name="ExternalLabel" type="Label" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/ExternalVBox" index="0" unique_id=1414243631]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "External"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/ExternalVBox" index="1" unique_id=695839396]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_1olkd")
+
+[node name="HBox" type="HBoxContainer" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/ExternalVBox" index="2" unique_id=1470541644]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ExternalVolume" type="Label" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/ExternalVBox/HBox" index="0" unique_id=1968625243]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/ExternalVBox/HBox" index="1" unique_id=1050857661]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_uyv0h")
+
+[node name="ExternalAmount" type="Label" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/ExternalVBox/HBox" index="2" unique_id=936450303]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "22/22"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox" index="1" unique_id=1611656677]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_hvtkq")
+
+[node name="InternalPanel" type="PanelContainer" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox" index="2" unique_id=1595476686]
+custom_minimum_size = Vector2(106, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+
+[node name="InternalVBox" type="VBoxContainer" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel" index="0" unique_id=666008492]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="InternalLabel" type="Label" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel/InternalVBox" index="0" unique_id=781921631]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Internal"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel/InternalVBox" index="1" unique_id=1925087514]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_1olkd")
+
+[node name="HBox2" type="HBoxContainer" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel/InternalVBox" index="2" unique_id=2097838097]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InternalVolume" type="Label" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel/InternalVBox/HBox2" index="0" unique_id=979830882]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel/InternalVBox/HBox2" index="1" unique_id=1263333452]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_uyv0h")
+
+[node name="InternalAmount" type="Label" parent="HBoxContainer/VBox/RankPanel/HBox/Rank/StarHBox/InternalPanel/InternalVBox/HBox2" index="2" unique_id=1955980027]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "22/22"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" index="1" unique_id=1569300309]
+visible = false
+material = SubResource("ShaderMaterial_ll2sf")
+
+[node name="RankBorder" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" index="2" unique_id=2101966008]
+visible = false
+
+[node name="Asterism" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=372333695 instance=ExtResource("5_gfbwc")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ndwu4")
+layout_mode = 2
+
+[node name="PreviousQuotumButton" parent="HBoxContainer/TributePanel/HBox" parent_id_path=PackedInt32Array(219740309) index="0" unique_id=1221755932]
+visible = false
+
+[node name="NextQuotumButton" parent="HBoxContainer/TributePanel/HBox" parent_id_path=PackedInt32Array(219740309) index="1" unique_id=48148708]
+visible = false

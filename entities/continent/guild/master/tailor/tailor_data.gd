@@ -2,12 +2,11 @@ class_name TailorData
 extends MasterData
 
 
-
-func init_tasks() -> void:
+func init_dinamic_tasks() -> void:
 	tasks.clear()
 	
 	for rank in Digest.master_to_rank[type]:
-		AttireData.new(self, rank + 1)
+		AttireData.new(self, rank)
 	
 	current_task = tasks.front()
 

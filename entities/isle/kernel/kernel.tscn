@@ -42,4 +42,4 @@ size_flags_vertical = 4
 kernel = NodePath("../..")
 
 [node name="Pie" parent="VBoxContainer/Usurer" unique_id=1767828878 instance=ExtResource("3_8c6r2")]
-position = Vector2(-138, -91)
+position = Vector2(92, 139)

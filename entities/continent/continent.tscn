@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bl3l6gt1wmwdl" path="res://entities/continent/mainland/structure/images/atelier/body.png" id="4_bl7b2"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="4_qchim"]
 [ext_resource type="PackedScene" uid="uid://d0gycyj3eb3a8" path="res://entities/continent/guild/guild.tscn" id="5_jtw3p"]
-[ext_resource type="PackedScene" uid="uid://ndch2g5uhxwt" path="res://entities/continent/mainland/trod/route/route.tscn" id="5_qchim"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hxdvn"]
 shader = ExtResource("1_3pv22")
@@ -106,11 +105,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 16
-
-[node name="Route" parent="HBox/PanelContainer/VBox" unique_id=1537280593 instance=ExtResource("5_qchim")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Guild" parent="HBox/PanelContainer/VBox" unique_id=1910077611 node_paths=PackedStringArray("mainland") instance=ExtResource("5_jtw3p")]
 layout_mode = 2

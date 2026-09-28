@@ -1,6 +1,7 @@
 extends Node2D
 class_name Footprint
 
+
 var data: FootprintData:
 	set(value_):
 		if data == value_:
@@ -13,13 +14,13 @@ var data: FootprintData:
 var right_texture = preload('uid://ced1aqrcnk41l')
 var radius: float = 44#48.0
 var total_footprints: int = 12    # должно быть чётным
-var step_interval: float = 0.15#0.6
+var step_interval: float = 0.6#0.15
 var fade_in: float = 0.08
 var fade_hold: float = 0.4
 var fade_out: float = 1.0
 var side_offset: float = 6.0
 
-@export var move_speed: float = 248.0#48.0
+@export var move_speed: float = 48.0 # фолбэк, если часы не заданы
 @export var curve_samples: int = 48
 @export_range(0.2, 1.0) var curve_tension: float = 0.45
 
@@ -41,6 +42,12 @@ var _last_footprint_pos: Vector2 = Vector2.ZERO
 var _has_last_footprint: bool = false
 
 var _route_structures: Array = []
+
+# --- Тайминги маршрута ---
+var _route_hours: float = 0.0       # сколько игровых часов занимает текущий переход/маршрут
+var _route_speed: float = 0.0       # пикселей в реальную секунду (пересчитывается на старте)
+var _time_origin: float = 0.0       # Mother.clock.total_hours в момент старта
+var _elapsed_real: float = 0.0      # сколько реальных секунд уже прошло с начала маршрута
 
 
 #region init
@@ -110,10 +117,53 @@ func _emit_footprint(is_left: bool, coord_pos: Vector2, rot: float) -> void:
 	tw.tween_callback(sprite.queue_free)
 #endregion
 
+#region timing
+func _get_hop_hours(a: StructureData, b: StructureData) -> float:
+	# Ищем трод, соединяющий a и b, через словарь trod_to_structure у структуры.
+	for trod in a.trod_to_structure:
+		if a.trod_to_structure[trod] == b:
+			return float(trod.travel_time)
+	# Фолбэк, если связи нет (не должно случаться на нормальном маршруте).
+	return 2.0
+
+func _get_trod_hours(trod) -> float:
+	return float(trod.travel_time)
+
+func _measure_path() -> float:
+	var total := 0.0
+	for i in range(1, _path.size()):
+		total += _path[i - 1].distance_to(_path[i])
+	return total
+
+func _apply_route_timing(hours: float) -> void:
+	_route_hours = max(hours, 0.0001)
+	var length := _measure_path()
+	var real_seconds = _route_hours * Catalog.REAL_SECONDS_PER_GAME_HOUR
+	_route_speed = length / max(real_seconds, 0.0001)
+	_time_origin = Mother.clock.total_hours
+	_elapsed_real = 0.0
+	print(_route_speed)
+
+func _sync_clock() -> void:
+	if _route_hours <= 0.0:
+		return
+	var total_real: float = _route_hours * Catalog.REAL_SECONDS_PER_GAME_HOUR
+	var t: float = clamp(_elapsed_real / max(total_real, 0.0001), 0.0, 1.0)
+	Mother.clock.set_time(_time_origin + t * _route_hours)
+
+func _finalize_clock() -> void:
+	Mother.clock.set_time(_time_origin + _route_hours)
+	_elapsed_real = 0.0
+	_route_hours = 0.0
+	_route_speed = 0.0
+#endregion
+
 #region moving
 func _begin_move() -> void:
 	var from_pos: Vector2 = Helper.get_structure_position(data.current_structure, true)
 	var to_pos: Vector2 = Helper.get_structure_position(data.next_structure, true)
+
+	var hours := _get_hop_hours(data.current_structure, data.next_structure)
 
 	var t = _circle_phase + float(_step) * TAU / float(total_footprints)
 	var p0 = from_pos + Vector2(cos(t), sin(t)) * radius
@@ -121,6 +171,8 @@ func _begin_move() -> void:
 
 	if from_pos.distance_squared_to(to_pos) < 0.0001:
 		_walker_pos = to_pos
+		_route_hours = max(hours, 0.0001)
+		_time_origin = Mother.clock.total_hours
 		_arrive(to_pos)
 		return
 
@@ -132,6 +184,7 @@ func _begin_move() -> void:
 	var tension = max(dist * curve_tension, 30.0)
 
 	_build_path(p0, p0 + d0 * tension, p3 - d1 * tension, p3)
+	_apply_route_timing(hours)
 
 	_center = from_pos
 	_walker_pos = p0
@@ -160,6 +213,8 @@ func _spawn_walk_step() -> void:
 	_step = (_step + 1) % total_footprints
 
 func _arrive(new_center: Vector2) -> void:
+	_finalize_clock()
+
 	var step_angle = TAU / float(total_footprints)
 
 	if _has_last_footprint:
@@ -194,6 +249,7 @@ func start_route() -> void:
 	update_route()
 
 	var structures: Array = []
+	var total_hours: float = 0.0
 	for trod in trods:
 		if trod == null or trod.structures.size() < 2: continue
 		var s0: StructureData = trod.structures[0]
@@ -203,6 +259,7 @@ func start_route() -> void:
 		if structures.is_empty():
 			structures.append(a)
 		structures.append(b)
+		total_hours += _get_trod_hours(trod)
 
 	if structures.size() < 2: return
 
@@ -214,6 +271,7 @@ func start_route() -> void:
 	var d0: Vector2 = Vector2(-sin(t), cos(t))
 
 	_build_route_path(structures, p0, d0)
+	_apply_route_timing(total_hours)
 
 	data.is_silent = true
 	data.current_structure = structures[0]
@@ -267,7 +325,10 @@ func _build_route_path(structures: Array, p_start: Vector2, d_start: Vector2) ->
 			_path.append(_bezier(a, cp1, cp2, b, u))
 
 func _advance_along_path(delta: float) -> bool:
-	var remaining: float = move_speed * delta
+	if _path_index >= _path.size():
+		return true
+
+	var remaining: float = _route_speed * delta
 	while remaining > 0.0:
 		if _path_index >= _path.size():
 			return true
@@ -299,14 +360,20 @@ func _advance_along_path(delta: float) -> bool:
 	return false
 
 func _process_moving(delta: float) -> void:
+	_elapsed_real += delta
+	_sync_clock()
 	if _advance_along_path(delta):
 		_arrive(Helper.get_structure_position(data.next_structure, true))
 
 func _process_route(delta: float) -> void:
+	_elapsed_real += delta
+	_sync_clock()
 	if _advance_along_path(delta):
 		_finish_route()
 
 func _finish_route() -> void:
+	_finalize_clock()
+
 	if _route_structures.is_empty():
 		_state = Bozo.Footprint.CIRCLING
 		data.mainland.route.start_structure = data.mainland.footprint.current_structure
