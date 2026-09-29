@@ -232,8 +232,8 @@ func init_structures() -> void:
 	init_single_structures()
 	init_structures_in_large_biomes()
 	init_matter_structures()
-	update_mixed_matters()
 	resolve_structure_exceptions()
+	update_mixed_matters()
 	#validate_pre_ruin_distribution()
 	init_ruin_structures()
 

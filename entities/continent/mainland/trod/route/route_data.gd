@@ -8,10 +8,13 @@ signal selected_type_changed
 var mainland: MainlandData
 var start_structure: StructureData:
 	set(value_):
+		if start_structure == value_: return
 		start_structure = value_
 		recalc_wastelands()
 var finish_structure: StructureData:
 	set(value_):
+		if finish_structure == value_: return
+		if value_ != null and start_structure == value_: return
 		finish_structure = value_
 		Mother.guild.structure = finish_structure
 		recalc_wastelands()
@@ -171,7 +174,6 @@ func activate() -> void:
 	if mainland.footprint.target_structure.type == Bozo.Structure.SHRINE: return
 	if start_structure == mainland.footprint.target_structure:
 		reset()
-		start_structure = null
 		finish_structure = null
 		return
 	

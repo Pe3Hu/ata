@@ -10,10 +10,16 @@ var marker_shelter: ShelterData:
 		marker_shelter = value_
 		%Body.position = shelter_to_point[marker_shelter]
 
+
 func _ready() -> void:
 	Helper.update_matter_colors(%Body, [Bozo.Matter.GAS])
+	connect_signals()
 
-func update_points() -> void:
+func connect_signals() -> void:
+	Mother.guild.scout.extrenals_changed.connect(_on_extrenals_changed)
+	_on_extrenals_changed()
+
+func _on_extrenals_changed() -> void:
 	var donor_points := PackedVector2Array()
 	
 	for shelter in Mother.guild.scout.extrenals:

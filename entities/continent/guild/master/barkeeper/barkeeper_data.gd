@@ -29,12 +29,11 @@ func add_recruit(intro_sum_: int = 20, talent_: int = 2, matter_: Variant = null
 	var verse_index = Digest.matter_to_verse[matter_].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var origin = OriginData.new(self, matter_, intro, verse, talent_)
-	var recriut = RecruitData.new(self, 2, origin)
-	tasks.append(recriut)
+	RecruitData.new(self, 2, origin)
 
 func init_origins() -> void:
 	origins.clear()
-	var n = 2
+	var n = 3
 	
 	for _i in n:
 		recruiment_phase()

@@ -287,4 +287,4 @@ const vowels = ['A', 'E', 'I', 'O', 'U']
 const noicon_masters = [Bozo.Master.ARCHITECT, Bozo.Master.SCOUT, Bozo.Master.BARKEEPER, Bozo.Master.MUSICIAN]
 
 const AVG_HOUR_PROGRESS: int = 8
-const REAL_SECONDS_PER_GAME_HOUR := 1.0
+const REAL_SECONDS_PER_GAME_HOUR: float = 0.25

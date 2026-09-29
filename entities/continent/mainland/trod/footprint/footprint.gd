@@ -142,17 +142,19 @@ func _apply_route_timing(hours: float) -> void:
 	_route_speed = length / max(real_seconds, 0.0001)
 	_time_origin = Mother.clock.total_hours
 	_elapsed_real = 0.0
-	print(_route_speed)
 
 func _sync_clock() -> void:
 	if _route_hours <= 0.0:
 		return
 	var total_real: float = _route_hours * Catalog.REAL_SECONDS_PER_GAME_HOUR
 	var t: float = clamp(_elapsed_real / max(total_real, 0.0001), 0.0, 1.0)
-	Mother.clock.set_time(_time_origin + t * _route_hours)
+	var target_hours: float = _time_origin + t * _route_hours
+	var delta_hours: float = target_hours - Mother.clock.total_hours
+	if absf(delta_hours) > 0.0001:
+		Mother.clock.advance(delta_hours)
 
 func _finalize_clock() -> void:
-	Mother.clock.set_time(_time_origin + _route_hours)
+	#Mother.clock.set_time(_time_origin + _route_hours)
 	_elapsed_real = 0.0
 	_route_hours = 0.0
 	_route_speed = 0.0

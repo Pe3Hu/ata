@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://r3lc2qetu0xr" path="res://entities/isle/kernel/clock/clock.gd" id="2_42q1i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
 shader = ExtResource("1_cwanb")
 shader_parameter/hand_angle = 0.0
+shader_parameter/hand_length = 0.7
 shader_parameter/rome_offset = 0.15
 shader_parameter/clock_scale = 2.4
 shader_parameter/numbers_color = Color(0, 0, 0, 1)
+shader_parameter/numbers_color_active = Color(1, 1, 1, 1)
 shader_parameter/hand_fill_color = Color(1, 1, 1, 1)
 shader_parameter/hand_border_color = Color(0, 0, 0, 1)
 shader_parameter/resolution = Vector2(360, 360)

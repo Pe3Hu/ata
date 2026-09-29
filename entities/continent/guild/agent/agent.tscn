@@ -218,7 +218,28 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-8, 0)
 texture = ExtResource("2_lms6a")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top" unique_id=1685011924]
+[node name="AgentName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=456538627]
+unique_name_in_owner = true
+modulate = Color(0, 0.2627451, 0.14901961, 1)
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 0
+offset_left = 83.0
+offset_top = 12.0
+offset_right = 153.0
+offset_bottom = 28.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "Agent Name"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AgentHBox" type="HBoxContainer" parent="VBoxContainer/Top" unique_id=1685011924]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 1
 anchors_preset = 8
@@ -234,9 +255,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 5
+theme_override_constants/separation = 78
 
-[node name="PreviousAgentButton" type="TextureButton" parent="VBoxContainer/Top/HBoxContainer" unique_id=906712825]
+[node name="PreviousAgentButton" type="TextureButton" parent="VBoxContainer/Top/AgentHBox" unique_id=906712825]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -249,23 +270,7 @@ flip_h = true
 script = ExtResource("4_h5ua1")
 metadata/_custom_type_script = "uid://c3ji6eownkceu"
 
-[node name="AgentName" type="RichTextLabel" parent="VBoxContainer/Top/HBoxContainer" unique_id=456538627]
-unique_name_in_owner = true
-modulate = Color(0, 0.2627451, 0.14901961, 1)
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
-text = "Christopher"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NextAgentButton" type="TextureButton" parent="VBoxContainer/Top/HBoxContainer" unique_id=1749071378]
+[node name="NextAgentButton" type="TextureButton" parent="VBoxContainer/Top/AgentHBox" unique_id=1749071378]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -319,7 +324,9 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox/VBoxLabels" unique_id=871874589]
+custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
+size_flags_horizontal = 4
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 3)
 text = "Progress"
@@ -342,7 +349,7 @@ vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox/VBoxLabels" unique_id=1572057863]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="Workload" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox" unique_id=1961124138 instance=ExtResource("4_gl6b4")]
@@ -378,6 +385,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="HourglassLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=1545370772]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "~8"
@@ -422,6 +430,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="DiceLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=1605547525]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 text = "8.33"
 label_settings = ExtResource("4_uasgc")
@@ -436,18 +445,13 @@ theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HourglassTimer" type="Timer" parent="." unique_id=150169969]
-unique_name_in_owner = true
-wait_time = 3.0
-autostart = true
-
-[node name="Calendar" parent="." unique_id=1440266826 instance=ExtResource("10_h5ua1")]
+[node name="Calendar" parent="." unique_id=1440266826 node_paths=PackedStringArray("agent") instance=ExtResource("10_h5ua1")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 offset_transform_position = Vector2(4, -72)
+agent = NodePath("..")
 
-[connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/PreviousAgentButton" to="." method="_on_previous_agent_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Top/HBoxContainer/NextAgentButton" to="." method="_on_next_agent_button_pressed"]
-[connection signal="timeout" from="HourglassTimer" to="." method="_on_hourglass_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/Top/AgentHBox/PreviousAgentButton" to="." method="_on_previous_agent_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Top/AgentHBox/NextAgentButton" to="." method="_on_next_agent_button_pressed"]

@@ -39,6 +39,7 @@ material = SubResource("ShaderMaterial_smjm0")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 0
 texture_normal = ExtResource("2_8xgfu")
 texture_hover = ExtResource("3_0dh5v")
 script = ExtResource("4_6dtk1")

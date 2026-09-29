@@ -35,5 +35,10 @@ func update_shelters() -> void:
 
 func activate() -> void:
 	if current_shelter == null or next_shelter == null: return
+	Mother.guild.scout.add_internal(next_shelter)
 	mainland.haze.reveal_shelter_then_neighbors_wave(next_shelter.index)
+	reset()
+
+func reset() -> void:
+	current_shelter = null
 	next_shelter = null

@@ -1,5 +1,6 @@
 extends SubViewportContainer
 
+
 func _input(event: InputEvent) -> void:
 	for view_child in get_children():
 		if view_child is SubViewport:

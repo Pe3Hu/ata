@@ -1,20 +1,44 @@
+class_name Calendar
 extends PanelContainer
 
 
-var is_locked := false
+@export var agent: Agent
 
+const TEX_LOCK_NORMAL := preload("uid://dyhnuea3y1a4l")
+const TEX_LOCK_HOVER  := preload("uid://b72sd1i2dgnu1")
+const TEX_FREE_NORMAL := preload("uid://b8733ha1tlasv")
+const TEX_FREE_HOVER  := preload("uid://dm8qufe13tojk")
+
+
+func _ready() -> void:
+	_apply(false)
 
 func _on_button_pressed() -> void:
-	is_locked = not is_locked
+	if agent == null or agent.data == null: return
+	if agent.data.workload.current_progress > 0: return
+
+	if agent.preview_origin != null and agent.preview_origin.task == agent.data.task:
+		agent.data.unassign()
+	else:
+		agent.data.assign(agent.preview_origin)
+
+	agent.update_view()
 	update_textures()
 
 func update_textures() -> void:
-	if is_locked:
-		%Button.texture_normal = preload("uid://dyhnuea3y1a4l")
-		%Button.texture_hover  = preload("uid://b72sd1i2dgnu1")
+	if agent == null or agent.data == null:
+		_apply(false)
+		return
+	
+	_apply(agent.preview_origin != null and agent.preview_origin.task == agent.data.task)
+
+func _apply(locked_: bool) -> void:
+	if locked_:
+		%Button.texture_normal = TEX_LOCK_NORMAL
+		%Button.texture_hover  = TEX_LOCK_HOVER
 	else:
-		%Button.texture_normal = preload("uid://b8733ha1tlasv")
-		%Button.texture_hover  = preload("uid://dm8qufe13tojk")
+		%Button.texture_normal = TEX_FREE_NORMAL
+		%Button.texture_hover  = TEX_FREE_HOVER
 
 func apply_matter(matter_: Bozo.Matter) -> void:
 	Helper.update_matter_colors(%Button, [matter_])

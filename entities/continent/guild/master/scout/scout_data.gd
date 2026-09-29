@@ -2,8 +2,10 @@ class_name ScoutData
 extends MasterData
 
 
-var extrenals: Array[ShelterData]
-var internals: Array[ShelterData]
+signal extrenals_changed
+
+var extrenals: Array[ShelterData] = []
+var internals: Array[ShelterData] = []
 
 
 #region init
@@ -18,12 +20,12 @@ func init_internals() -> void:
 		add_internal(shelter)
 
 func add_internal(shelter_: ShelterData) -> void:
-	for neighbor in shelter_.neighbor_shelters:
-		if not internals.has(neighbor):
-			extrenals.append(neighbor)
-	
 	if extrenals.has(shelter_):
 		extrenals.erase(shelter_)
+	
+	for neighbor in shelter_.neighbor_shelters:
+		if not internals.has(neighbor) and not extrenals.has(neighbor):
+			extrenals.append(neighbor)
 	
 	internals.append(shelter_)
 	sort_extrenals()
@@ -38,34 +40,24 @@ func remove_internal(shelter_: ShelterData) -> void:
 	sort_extrenals()
 
 func sort_extrenals() -> void:
-	if extrenals.size() < 3: return
+	if extrenals.size() < 3:
+		extrenals_changed.emit()
+		return
 	
-	var positions := PackedVector2Array()
+	var center := Vector2.ZERO
 	for shelter in extrenals:
-		positions.append(Helper.get_cluster_position(shelter))
+		center += Helper.get_cluster_position(shelter)
+	center /= extrenals.size()
 	
-	var hull := Geometry2D.convex_hull(positions)
-	if hull.is_empty(): return
+	extrenals.sort_custom(func(a, b):
+		var pa = Helper.get_cluster_position(a) - center
+		var pb = Helper.get_cluster_position(b) - center
+		return pa.angle() < pb.angle()
+	)
 	
-	var position_to_shelter: Dictionary
-	for shelter in extrenals:
-		position_to_shelter[Helper.get_cluster_position(shelter)] = shelter
-	
-	var sorted: Array[ShelterData]
-	sorted.resize(hull.size())
-	
-	for _i in hull.size():
-		var shelter: ShelterData = position_to_shelter.get(hull[_i])
-		if shelter:
-			sorted[_i] = shelter
-	
-	extrenals = sorted
+	extrenals_changed.emit()
 
-func init_dinamic_tasks() -> void:
-	tasks.clear()
-	
+func init_tasks() -> void:
 	for extrenal in extrenals:
 		SpotlightData.new(self, 1, extrenal)
-	
-	current_task = tasks.front()
 #endregion

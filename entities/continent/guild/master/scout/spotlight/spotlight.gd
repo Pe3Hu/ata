@@ -7,7 +7,6 @@ var master: Master
 
 func connect_signals() -> void:
 	super.connect_signals()
-	%Circuit.update_points()
 	apply_shelter()
 
 func _on_task_changed() -> void:

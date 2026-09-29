@@ -4,17 +4,18 @@ extends Node
 signal declare_gameover
 signal clock_updated(hand_angle: float)
 
-var kernel: KernelData
-var house: HouseData
-var odeum: OdeumData
+static var kernel: KernelData
+static var house: HouseData
+static var odeum: OdeumData
 
-var arsenal: ArsenalData
-var mission: MissionData
-var welkin: WelkinData
+static var arsenal: ArsenalData
+static var mission: MissionData
+static var welkin: WelkinData
 
-var mainland: MainlandData
-var guild: GuildData
-var clock: ClockData
+static var mainland: MainlandData
+static var guild: GuildData
+static var clock: ClockData
+static var overseer: OverseerData
 
 
 func _ready() -> void:
@@ -30,6 +31,7 @@ func _ready() -> void:
 	
 	kernel = KernelData.new()
 	clock = ClockData.new()
+	overseer = OverseerData.new()
 	
 	declare_gameover.connect(_on_declare_gameover)
 	clock.time_changed.connect(func(_t): clock_updated.emit(clock.get_hand_angle()))

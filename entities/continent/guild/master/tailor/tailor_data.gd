@@ -2,13 +2,9 @@ class_name TailorData
 extends MasterData
 
 
-func init_dinamic_tasks() -> void:
-	tasks.clear()
-	
+func init_tasks() -> void:
 	for rank in Digest.master_to_rank[type]:
 		AttireData.new(self, rank)
-	
-	current_task = tasks.front()
 
 func sync_spoil(source_: AttireData) -> void:
 	var matter = source_.current_spoil.shard.matter
