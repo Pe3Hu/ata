@@ -17,4 +17,4 @@ func apply_shelter() -> void:
 	Mother.mainland.beam.update_shelters()
 	var camera = master.guild.mainland.camera
 	camera.focus_on_structure(data.shelter.shrine)
-	%Circuit.marker_shelter = data.shelter
+	%Circuit.update_markers([data.shelter])

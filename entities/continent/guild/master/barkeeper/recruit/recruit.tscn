@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_i74eh"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_dqn80"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_8rxe6"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="5_jamvm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rxe6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u76jt"]
 resource_local_to_scene = true
 shader = ExtResource("2_0aoth")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -22,6 +23,13 @@ shader_parameter/scale = 1.0
 resource_local_to_scene = true
 bg_color = Color(0, 0.7529412, 0.47058824, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_tvoq7"]
+resource_local_to_scene = true
+font = ExtResource("5_jamvm")
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Recruit" unique_id=1199540049 instance=ExtResource("1_bujff")]
 script = ExtResource("1_0aoth")
 
@@ -29,7 +37,7 @@ script = ExtResource("1_0aoth")
 visible = false
 
 [node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_8rxe6")
+material = SubResource("ShaderMaterial_u76jt")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="1" unique_id=1785433385]
 layout_mode = 2
@@ -60,29 +68,23 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-2, 0)
 texture = ExtResource("2_h0qxe")
 
-[node name="RecruitName" type="RichTextLabel" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="1" unique_id=811243899]
+[node name="RecruitName" type="Label" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="1" unique_id=1155105584]
 unique_name_in_owner = true
-modulate = Color(0, 0.2627451, 0.14901961, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -34.0
+offset_left = -41.0
 offset_top = -8.0
-offset_right = 34.0
+offset_right = 41.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
 text = "Recruit Name"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+label_settings = SubResource("LabelSettings_tvoq7")
 horizontal_alignment = 1
 vertical_alignment = 1
 

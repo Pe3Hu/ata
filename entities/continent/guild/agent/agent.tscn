@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/house/card/stamp/images/forfeit.png" id="2_lms6a"]
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_etprk"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_ipsu7"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="3_ntiry"]
 [ext_resource type="PackedScene" uid="uid://dya2galeartfl" path="res://entities/continent/guild/agent/hourglass/hourglass.tscn" id="4_etprk"]
 [ext_resource type="PackedScene" uid="uid://bl303f1gm4iw8" path="res://entities/continent/guild/agent/workload/workload.tscn" id="4_gl6b4"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_h5ua1"]
@@ -24,6 +25,12 @@ resource_local_to_scene = true
 bg_color = Color(0, 0.7529412, 0.47058824, 1)
 border_color = Color(0.11119684, 0.11119687, 0.11119675, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lvgf5"]
+resource_local_to_scene = true
+font = ExtResource("3_ntiry")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_uasgc"]
 grow_begin = 0.0
 grow_end = 0.0
@@ -31,7 +38,7 @@ thickness = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enm1i"]
 
-[sub_resource type="Shader" id="Shader_h5ua1"]
+[sub_resource type="Shader" id="Shader_ry650"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -165,9 +172,9 @@ void fragment() {
     COLOR = vec4(color, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntiry"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfyg4"]
 resource_local_to_scene = true
-shader = SubResource("Shader_h5ua1")
+shader = SubResource("Shader_ry650")
 shader_parameter/speed = 0.3
 shader_parameter/scale = 2.2
 shader_parameter/octaves = 4
@@ -218,23 +225,17 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(-8, 0)
 texture = ExtResource("2_lms6a")
 
-[node name="AgentName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=456538627]
+[node name="AgentName" type="Label" parent="VBoxContainer/Top" unique_id=1239312195]
 unique_name_in_owner = true
-modulate = Color(0, 0.2627451, 0.14901961, 1)
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 0
 offset_left = 83.0
 offset_top = 12.0
-offset_right = 153.0
+offset_right = 155.0
 offset_bottom = 28.0
 size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
 text = "Agent Name"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+label_settings = SubResource("LabelSettings_lvgf5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -354,7 +355,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="Workload" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox" unique_id=1961124138 instance=ExtResource("4_gl6b4")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_ntiry")
+material = SubResource("ShaderMaterial_vfyg4")
 layout_mode = 2
 offset_transform_position = Vector2(0, 3)
 

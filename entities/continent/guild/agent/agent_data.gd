@@ -3,10 +3,12 @@ extends RefCounted
 
 
 signal locked_changed
+signal quotums_changed
 
 var task: TaskData
 var origin: OriginData
 var workload: WorkloadData
+var quotums: Array[QuotumData]
 
 var is_locked: bool:
 	get: return task != null and task.agent == self
@@ -15,6 +17,45 @@ var is_locked: bool:
 func _init(task_: TaskData) -> void:
 	task = task_
 	workload = WorkloadData.new(self)
+	_sync_quotums_from_tributes()
+
+# Снимок/пересинхронизация из task.tributes
+func _sync_quotums_from_tributes() -> void:
+	quotums.clear()
+	if task == null: return
+	for tribute in task.tributes:
+		quotums.append(tribute.current_quotum)
+	quotums_changed.emit()
+
+# Единственная точка изменения выбора. Работает только пока не приступили.
+func set_quotum(tribute_idx: int, new_quotum: QuotumData) -> bool:
+	if workload.current_progress > 0: return false
+	if tribute_idx < 0 or tribute_idx >= task.tributes.size(): return false
+	if not task.tributes[tribute_idx].quotums.has(new_quotum): return false
+
+	task.tributes[tribute_idx].current_quotum = new_quotum
+	if quotums.size() <= tribute_idx:
+		_sync_quotums_from_tributes()
+	else:
+		quotums[tribute_idx] = new_quotum
+		quotums_changed.emit()
+	return true
+
+# Обёртка для кнопок «вперёд/назад» — зеркалит TributeData.changed_quotum,
+# но пишет ещё и в agent.quotums.
+func changed_quotum(tribute_idx: int, shift_: int) -> bool:
+	if workload.current_progress > 0: return false
+	if tribute_idx < 0 or tribute_idx >= task.tributes.size(): return false
+
+	var tribute := task.tributes[tribute_idx]
+	var list := tribute.quotums
+	if list.is_empty(): return false
+
+	var i := list.find(tribute.current_quotum)
+	if i == -1: i = 0
+	var n := list.size()
+	i = ((i + shift_) % n + n) % n
+	return set_quotum(tribute_idx, list[i])
 
 # ЕДИНСТВЕННАЯ точка, которая привязывает рабочего к задаче.
 func assign(new_origin: OriginData) -> void:
@@ -33,6 +74,8 @@ func assign(new_origin: OriginData) -> void:
 	origin = new_origin
 	task.agent = self
 	origin.task = task
+	
+	_sync_quotums_from_tributes()
 
 	Mother.overseer.add_agent(self)      # подписывает на hour_passed
 	locked_changed.emit()
@@ -75,3 +118,7 @@ func get_avg_hour() -> int:
 func roll_progress() -> void:
 	origin.intro.roll_result()
 	workload.current_progress += origin.intro.result * 8
+
+func pay() -> void:
+	for quotum in quotums:
+		quotum.pay()

@@ -38,3 +38,7 @@ func changed_quotum(shift_: int) -> void:
 	var n = quotums.size()
 	index = (index + shift_ + n) % n
 	current_quotum = quotums[index]
+
+func introduce_quotums() -> void:
+	for quotum in quotums:
+		quotum.pay()

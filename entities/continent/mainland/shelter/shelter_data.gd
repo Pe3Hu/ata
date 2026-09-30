@@ -33,3 +33,11 @@ func link_shelter_neighbors() -> void:
 		if mainland.coord_to_cluster.has(neighbor_coord):
 			var neighbor_shelter = mainland.coord_to_cluster[neighbor_coord]
 			neighbor_shelters.append(neighbor_shelter)
+
+func count_total_fog_pixels() -> int:
+	var fog_count = 0# = count_fog_pixels()
+	
+	for neighbor_wasteland in neighbor_shelters:
+		fog_count += neighbor_wasteland.count_fog_pixels()
+	
+	return fog_count

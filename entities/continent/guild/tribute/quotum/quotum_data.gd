@@ -9,3 +9,6 @@ var amount: int
 func _init(matter_: Bozo.Matter, volume_: int, amount_: int) -> void:
 	shard = ShardData.new(matter_, volume_)
 	amount = amount_
+
+func pay() -> void:
+	Mother.kernel.pie.minus_quotum(self)

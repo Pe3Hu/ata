@@ -14,6 +14,7 @@ func _init(kernel_: KernelData) -> void:
 	kernel = kernel_
 	
 	init_slices()
+	init_debug_amounts()
 	#init_start_amounts()
 
 func init_slices() -> void:
@@ -89,8 +90,8 @@ func is_available(volume_: int, amount_: int = 1, matter_: Bozo.Matter = Bozo.Ma
 	
 	return amount_ <= available_amount
 
-func get_payment_matter(volume_: int, amount_: int = 1) -> Variant:
-	if not is_available(volume_, amount_): return null
+func get_payment_matter(volume_: int, amount_: int = 1, matter_: Bozo.Matter = Bozo.Matter.ANY) -> Variant:
+	if not is_available(volume_, amount_, matter_): return null
 	var options = []
 	
 	for matter in volume_to_matter_to_slice[volume_]:
@@ -98,6 +99,9 @@ func get_payment_matter(volume_: int, amount_: int = 1) -> Variant:
 		
 		if slice.amount >= amount_:
 			options.append(matter)
+	
+	if matter_ != Bozo.Matter.ANY:
+		options  = options.filter(func (a): return a.matter == matter_)
 	
 	return options.pick_random()
 
@@ -114,3 +118,18 @@ func show_shopping() -> void:
 	for slice in slices:
 		if slice.shopping_amount > 0:
 			print([Bozo.enum_to_string(Bozo.Type.MATTER, slice.matter), slice.volume, slice.shopping_amount])
+
+func init_debug_amounts() -> void:
+	for slice in slices:
+		slice.amount += 50
+
+func plus_spoil(spoil_: SpoilData) -> void:
+	var slice = matter_to_volume_to_slice[spoil_.shard.matter][spoil_.shard.volume]
+	slice.amount += spoil_.amount
+
+func minus_quotum(quotum_: QuotumData) -> void:
+	if is_available(quotum_.shard.volume, quotum_.amount, quotum_.shard.matter):
+		var slice = matter_to_volume_to_slice[quotum_.shard.matter][quotum_.shard.volume]
+		slice.amount -= quotum_.amount
+	else:
+		print_debug('bug minus_quotum')

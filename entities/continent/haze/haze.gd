@@ -8,6 +8,7 @@ var data: HazeData:
 		
 		connect_signals()
 		reveal_center_shelters()
+		reveal_debug_shelters()
 
 
 func reveal_center_shelters() -> void:
@@ -37,11 +38,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if data == null: return
 
 	match event.physical_keycode:
-		#KEY_Q:
-			#data.reveal_first_shelter_wave()
-		#KEY_W:
-			#data.reveal_first_wasteland_wave()
+		KEY_Q:
+			data.reveal_shelter_wave()
+		KEY_W:
+			data.reveal_current_wasteland_wave()
 		KEY_A:
+			data.erode_left()
+		KEY_D:
+			data.erode_right()
+		KEY_Z:
 			data.reveal_shelter_then_neighbors_wave()
 		KEY_S:
 			data.trigger_periphery_erosion()
+
+func reveal_debug_shelters() -> void:
+	
+	for index in Catalog.debug_shelter_indexs:
+		data.reveal_shelter_then_neighbors_wave(index)
+	
+	await get_tree().create_timer(2).timeout
+	data.erode_right()

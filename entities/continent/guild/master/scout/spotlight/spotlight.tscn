@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_18saf"]
 [ext_resource type="Script" uid="uid://hv1qb7qdg33d" path="res://entities/continent/guild/master/scout/spotlight/spotlight.gd" id="1_uu8wd"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_nv3ex"]
-[ext_resource type="PackedScene" uid="uid://b8pkub18igoiq" path="res://entities/continent/guild/master/scout/circuit/circuit.tscn" id="6_ijr27"]
+[ext_resource type="PackedScene" uid="uid://dc13bh7yk0s1g" path="res://entities/continent/guild/circuit/scout/scout_circuit.tscn" id="4_ria5g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ria5g"]
 resource_local_to_scene = true
@@ -31,5 +31,5 @@ visible = false
 [node name="InfoPanel" parent="HBoxContainer/VBox" parent_id_path=PackedInt32Array(63145426) index="1" unique_id=1268189010]
 custom_minimum_size = Vector2(144, 144)
 
-[node name="Circuit" parent="HBoxContainer/VBox/InfoPanel" index="0" unique_id=1972257342 instance=ExtResource("6_ijr27")]
+[node name="Circuit" parent="HBoxContainer/VBox/InfoPanel" index="0" unique_id=1972257342 instance=ExtResource("4_ria5g")]
 unique_name_in_owner = true

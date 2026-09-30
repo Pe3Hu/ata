@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://byv1y4wuo5gyb" path="res://entities/continent/guild/master/lightkeeper/firework/firework.gd" id="1_1dywy"]
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_njbx8"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="4_jpu4j"]
+[ext_resource type="PackedScene" uid="uid://d2nppufaiimnc" path="res://entities/continent/guild/circuit/lightkeeper/lightkeeper_circuit.tscn" id="4_mcrre"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcu3w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jr7tg"]
 resource_local_to_scene = true
 shader = ExtResource("4_jpu4j")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -18,4 +19,7 @@ shader_parameter/scale = 1.0
 script = ExtResource("1_1dywy")
 
 [node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_pcu3w")
+material = SubResource("ShaderMaterial_jr7tg")
+
+[node name="Circuit" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=1972257342 instance=ExtResource("4_mcrre")]
+unique_name_in_owner = true

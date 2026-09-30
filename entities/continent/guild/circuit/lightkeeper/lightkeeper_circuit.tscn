@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2nppufaiimnc"]
+
+[ext_resource type="PackedScene" uid="uid://b8pkub18igoiq" path="res://entities/continent/guild/circuit/circuit.tscn" id="1_jtmrj"]
+[ext_resource type="Script" uid="uid://c78nxg7crvo45" path="res://entities/continent/guild/circuit/lightkeeper/lightkeeper_circuit.gd" id="2_we4yr"]
+
+[node name="LightkeeperCircuit" unique_id=1972257342 instance=ExtResource("1_jtmrj")]
+script = ExtResource("2_we4yr")

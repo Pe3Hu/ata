@@ -7,6 +7,8 @@ signal overtime_changed
 var agent: AgentData
 var current_progress: int:
 	set(value_):
+		if value_ > 0 and current_progress == 0:
+			agent.pay()
 		current_progress = min(value_, limit_progress)
 		
 		if current_progress >= limit_progress:

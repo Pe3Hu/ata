@@ -12,9 +12,10 @@ func connect_signals() -> void:
 	if not data.master.task_changed.is_connected(_on_task_changed):
 		data.master.task_changed.connect(_on_task_changed)
 	
-	if data.tribute:
-		if not data.tribute.quotum_changed.is_connected(_on_quotum_changed):
-			data.tribute.quotum_changed.connect(_on_quotum_changed)
+	if not data.tributes.is_empty():
+		for tribute in data.tributes:
+			if not tribute.quotum_changed.is_connected(_on_quotum_changed):
+				tribute.quotum_changed.connect(_on_quotum_changed)
 		
 		_on_quotum_changed()
 	
@@ -25,7 +26,7 @@ func _on_task_changed() -> void:
 	_on_quotum_changed()
 
 func _on_quotum_changed() -> void:
-	%Quotum.data = data.tribute.current_quotum
+	%Quotum.data = data.tributes.front().current_quotum
 	update_rank_textures()
 	update_colors()
 
@@ -40,7 +41,7 @@ func update_rank_textures() -> void:
 			matters = [data.lode.matter]
 	
 	if matters.is_empty():
-		matters = [data.tribute.current_quotum.shard.matter]
+		matters = [data.tributes.front().current_quotum.shard.matter]
 	
 	Helper.update_matter_colors(%RankBody, matters)
 	var master_str = Bozo.enum_to_string(Bozo.Type.MASTER, data.master.type)
@@ -53,10 +54,10 @@ func update_colors() -> void:
 
 #region buttons
 func _on_previous_quotum_button_pressed() -> void:
-	data.tribute.changed_quotum(-1)
+	data.tributes.front().changed_quotum(-1)
 
 func _on_next_quotum_button_pressed() -> void:
-	data.tribute.changed_quotum(1)
+	data.tributes.front().changed_quotum(1)
 
 func _on_previous_rank_button_pressed() -> void:
 	data.master.changed_task(-1)

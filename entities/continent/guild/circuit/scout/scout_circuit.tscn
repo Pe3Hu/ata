@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dc13bh7yk0s1g"]
+
+[ext_resource type="PackedScene" uid="uid://b8pkub18igoiq" path="res://entities/continent/guild/circuit/circuit.tscn" id="1_kutpi"]
+[ext_resource type="Script" uid="uid://dtt80k58bknc6" path="res://entities/continent/guild/circuit/scout/scout_circuit.gd" id="2_kkrbi"]
+
+[node name="ScoutCircuit" unique_id=1972257342 instance=ExtResource("1_kutpi")]
+script = ExtResource("2_kkrbi")

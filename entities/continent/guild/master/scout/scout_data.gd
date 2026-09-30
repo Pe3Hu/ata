@@ -3,6 +3,7 @@ extends MasterData
 
 
 signal extrenals_changed
+signal internals_changed
 
 var extrenals: Array[ShelterData] = []
 var internals: Array[ShelterData] = []
@@ -13,9 +14,15 @@ func _init(guild_: GuildData, type_: Bozo.Master) -> void:
 	super._init(guild_, type_)
 	
 	init_internals()
+	debug_internals()
 
 func init_internals() -> void:
 	for index in Catalog.center_shelter_indexs:
+		var shelter = Mother.mainland.shelters[index]
+		add_internal(shelter)
+
+func debug_internals() -> void:
+	for index in Catalog.debug_shelter_indexs:
 		var shelter = Mother.mainland.shelters[index]
 		add_internal(shelter)
 
@@ -28,6 +35,7 @@ func add_internal(shelter_: ShelterData) -> void:
 			extrenals.append(neighbor)
 	
 	internals.append(shelter_)
+	sort_internals()
 	sort_extrenals()
 
 func remove_internal(shelter_: ShelterData) -> void:
@@ -37,6 +45,7 @@ func remove_internal(shelter_: ShelterData) -> void:
 		internals.erase(shelter_)
 	
 	extrenals.append(shelter_)
+	sort_internals()
 	sort_extrenals()
 
 func sort_extrenals() -> void:
@@ -56,6 +65,24 @@ func sort_extrenals() -> void:
 	)
 	
 	extrenals_changed.emit()
+
+func sort_internals() -> void:
+	if internals.size() < 3:
+		internals_changed.emit()
+		return
+	
+	var center := Vector2.ZERO
+	for shelter in internals:
+		center += Helper.get_cluster_position(shelter)
+	center /= internals.size()
+	
+	internals.sort_custom(func(a, b):
+		var pa = Helper.get_cluster_position(a) - center
+		var pb = Helper.get_cluster_position(b) - center
+		return pa.angle() < pb.angle()
+	)
+	
+	internals_changed.emit()
 
 func init_tasks() -> void:
 	for extrenal in extrenals:

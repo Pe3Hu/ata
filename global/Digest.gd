@@ -1000,11 +1000,11 @@ const master_to_task = {
 
 const matter_to_matter_to_volume = {
 	Bozo.Matter.GAS: {
-		Bozo.Matter.LIQUID: 12,
+		Bozo.Matter.LIQUID: 6,
 		Bozo.Matter.SOLID: 10,
 	},
 	Bozo.Matter.LIQUID: {
-		Bozo.Matter.GAS: 12,
+		Bozo.Matter.GAS: 6,
 		Bozo.Matter.SOLID: 15,
 	},
 	Bozo.Matter.SOLID: {

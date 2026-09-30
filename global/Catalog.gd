@@ -227,6 +227,7 @@ const wasteland_pattern_coords: Array[Vector2i] = [
 
 const center_wasteland_indexs = [5, 12]#[4, 5, 12, 13]
 const center_shelter_indexs = [9, 15]
+const debug_shelter_indexs = [3, 8, 10, 16, 20]
 #endregion
 
 #region structure

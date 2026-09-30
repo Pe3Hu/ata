@@ -1,3 +1,5 @@
+res://entities/continent/guild/circuit/scout/
+res://entities/continent/guild/circuit/
 res://entities/continent/guild/master/tailor/attire/
 res://entities/continent/guild/agent/task/
 res://entities/continent/guild/master/scout/spotlight/
@@ -7,7 +9,5 @@ res://entities/continent/guild/master/blacksmith/instrument/
 res://entities/continent/guild/master/musician/veteran/
 res://entities/continent/guild/master/barkeeper/recruit/
 D:/godot/ata/global/
-res://entities/continent/guild/master/blacksmith/tribute/quotum/spoil/
-res://entities/continent/guild/master/blacksmith/tribute/quotum/
 res://entities/continent/marker/
 res://entities/continent/

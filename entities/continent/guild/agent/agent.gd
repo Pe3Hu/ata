@@ -4,6 +4,7 @@ extends PanelContainer
 
 var data: AgentData:
 	set(value_):
+		if value_ == null: return
 		data = value_
 		
 		preview_origin = data.origin if data.origin != null else _first_free()
@@ -23,7 +24,8 @@ func connect_datas() -> void:
 	%Calendar.update_textures()
 
 func connect_signals() -> void:
-	data.workload.overtime_changed.connect(_on_overtime_changed)
+	if not data.workload.overtime_changed.is_connected(_on_overtime_changed):
+		data.workload.overtime_changed.connect(_on_overtime_changed)
 	#_on_overtime_changed()
 
 func _on_overtime_changed() -> void:

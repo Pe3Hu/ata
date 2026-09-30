@@ -16,16 +16,19 @@ var current_task: TaskData:
 		task_changed.emit()
 
 
+#region init
 func _init(guild_: GuildData, type_: Bozo.Master) -> void:
 	guild = guild_
 	type = type_
-	
+
 	init_static_tasks()
 
 func init_static_tasks() -> void:
 	pass
 
 func init_dinamic_tasks() -> void:
+	if guild.structure.type != Digest.master_to_structure[type]: return
+	
 	var has_locked := false
 	for t in tasks:
 		if t.agent != null:
@@ -43,6 +46,7 @@ func init_dinamic_tasks() -> void:
 
 func init_tasks() -> void:
 	pass
+#endregion
 
 func changed_task(shift_: int) -> void:
 	var index = tasks.find(current_task)

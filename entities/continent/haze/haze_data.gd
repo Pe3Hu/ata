@@ -22,46 +22,42 @@ var width: int = 0
 var height: int = 0
 var world_position: Vector2 = Vector2.ZERO
 
-# Каждая волна — Dictionary:
-#   { "pending": Array[Vector2i], "origin": Vector2, "radius": float,
-#     "max_radius": float, "speed": float, "jitter": float }
 var _waves: Array[Dictionary] = []
-var _delayed: Array[Dictionary] = [] 
-# Пауза между стартами соседних wastelands при триггере A (сек).
+var _delayed: Array[Dictionary] = []
 var neighbor_stagger: float = 0.1
 
-# --- Состояние эрозии (возврат тумана по периферии) ---
+# --- Состояние эрозии ---
 var erosion_steps_per_press: int = 3
 var erosion_speed_steps_per_sec: float = 15.0
 
-var _frontier: Dictionary = {}       # Vector2i -> true
+var _frontier: Dictionary = {}
 var _frontier_dirty: bool = true
 var _erosion_pending: int = 0
 var _erosion_accum: float = 0.0
+# 0 — вся периферия; -1 — левая половина; +1 — правая половина.
+# Половина определяется как x < / >= центра масс ТЕКУЩЕЙ разведанной
+# области. Так как центр масс смещается вслед за фронтом, направленная
+# эрозия со временем съедает всю территорию.
+var _erosion_side: int = 0
 
-# --- «Дыхание» периферии (прилив/отлив) ---
-# Каждая пара «засвет-граница ↔ туман-граница» имеет:
-#   * пространственную фазу spatial = sin(lobes * angle + bias)  (знак =
-#     какая сторона границы сейчас вдох, какая — выдох);
-#   * собственный порог flip_threshold = hash(pair) ∈ [0,1).
-# Пара «переворачивается» из базового состояния, когда
-#     |sin(omega*t) * ramp * spatial| > flip_threshold.
-# Так как у каждой пары свой порог, а sin() меняется плавно, пары
-# переключаются по одной — граница непрерывно «дышит», без рывков.
-# Баланс клеток сохраняется: сколько засветилось — столько и затуманилось.
+# Кэш центра масс (по X) разведанных пикселей — O(1) на запрос.
+var _revealed_sum_x: int = 0
+var _revealed_count: int = 0
+
+# --- «Дыхание» периферии ---
 var pulse_enabled: bool = true
-var pulse_frequency: float = 0.10                 # Гц — один полный вдох-выдох ~10 с
-var pulse_lobes: float = 1.0                      # число антифазных зон
-var pulse_lobe_bias: float = 0.0                  # рад — сдвиг зон по кругу
-var pulse_amplitude: float = 0.35                 # 0..1 — макс. доля пар на пике
-const PULSE_RAMP_DURATION: float = 1.5            # сек — плавный ввод амплитуды
-const PULSE_STABLE_DELAY: float = 0.3             # сек — пауза перед стартом
+var pulse_frequency: float = 0.10
+var pulse_lobes: float = 1.0
+var pulse_lobe_bias: float = 0.0
+var pulse_amplitude: float = 0.35
+const PULSE_RAMP_DURATION: float = 1.5
+const PULSE_STABLE_DELAY: float = 0.3
 
 var _pulse_active: bool = false
 var _pulse_time: float = 0.0
 var _pulse_stable_timer: float = 0.0
 var _pulse_pairs: Array[Dictionary] = []
-var _pulse_base: Dictionary = {}                  # Vector2i -> bool (базовое состояние)
+var _pulse_base: Dictionary = {}
 
 
 func _init(mainland_: MainlandData) -> void:
@@ -94,6 +90,9 @@ func generate() -> void:
 	_frontier_dirty = true
 	_erosion_pending = 0
 	_erosion_accum = 0.0
+	_erosion_side = 0
+	_revealed_sum_x = 0
+	_revealed_count = 0
 
 	_pulse_active = false
 	_pulse_time = 0.0
@@ -110,19 +109,15 @@ func refresh() -> void:
 	changed.emit()
 
 
-# Вызывается из Haze._process каждый кадр.
 func tick(delta_: float) -> void:
 	@warning_ignore("shadowed_variable")
 	var changed = false
 
-	# 1. Если идёт волна/эрозия — снять пульсацию ДО обработки,
-	#    чтобы волны работали по чистой базе.
 	var busy_pre = not _delayed.is_empty() or not _waves.is_empty() or _erosion_pending > 0
 	if busy_pre and _pulse_active:
 		if _undo_pulse():
 			changed = true
 
-	# 2. Отложенные старты соседей.
 	if not _delayed.is_empty():
 		var still: Array[Dictionary] = []
 		for d in _delayed:
@@ -136,13 +131,11 @@ func tick(delta_: float) -> void:
 				still.append(d)
 		_delayed = still
 
-	# 3. Волны и эрозия.
 	if not _waves.is_empty() and _tick_waves(delta_):
 		changed = true
 	if _erosion_pending > 0 and _tick_erosion(delta_):
 		changed = true
 
-	# 4. Дыхание периферии — только когда всё стихло.
 	var still_busy = not _delayed.is_empty() or not _waves.is_empty() or _erosion_pending > 0
 	if not pulse_enabled:
 		if _pulse_active:
@@ -178,27 +171,34 @@ func reveal_pixel(x_: int, y_: int) -> bool:
 	if fog_image.get_pixel(x_, y_).r >= 1.0: return false
 	clear_image.set_pixel(x_, y_, clear_color)
 	fog_image.set_pixel(x_, y_, Color(1.0, fog_color.g, fog_color.b, fog_color.a))
+	_revealed_sum_x += x_
+	_revealed_count += 1
 	_frontier_dirty = true
 	return true
 
 func _set_revealed(x_: int, y_: int, revealed_: bool) -> void:
 	if not in_bounds(x_, y_): return
+	var was: bool = fog_image.get_pixel(x_, y_).r > 0.5
+	if was == revealed_:
+		return
 	if revealed_:
 		clear_image.set_pixel(x_, y_, clear_color)
 		fog_image.set_pixel(x_, y_, Color(1.0, fog_color.g, fog_color.b, fog_color.a))
+		_revealed_sum_x += x_
+		_revealed_count += 1
 	else:
 		clear_image.set_pixel(x_, y_, Color(0, 0, 0, 0))
 		fog_image.set_pixel(x_, y_, fog_color)
+		_revealed_sum_x -= x_
+		_revealed_count -= 1
 	_frontier_dirty = true
 
-# Стабильный псевдослучайный шум в [0,1) для пары координат.
 func _hash01(x_: int, y_: int) -> float:
 	var h: int = x_ * 374761393 + y_ * 668265263
 	h = (h ^ (h >> 13)) * 1274126177
 	h = h ^ (h >> 16)
 	return float(h & 0x7fffffff) / float(0x7fffffff)
 
-# Стабильный шум для пары клеток (используется как per-pair порог).
 func _pair_hash(c_: Vector2i, f_: Vector2i) -> float:
 	return _hash01(c_.x * 7919 + f_.x * 4241, c_.y * 4793 + f_.y * 2753)
 
@@ -217,15 +217,8 @@ func _compute_max_radius(pending_: Array[Vector2i], origin_: Vector2,
 
 #region reveal
 
-# Собирает fog-пиксели, покрывающие кластер.
-# include_externals_ = true  → internals + externals (shelter)
-# include_externals_ = false → только internals    (wasteland)
-# Форма — описанная окружность вокруг bbox, слегка неровная за счёт
-# стабильного шума по координатам пикселя.
-# Возвращает:
-#   { "pixels": Dictionary[Vector2i -> true], "center": Vector2, "radius": float }
 func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
-		include_externals_: bool = true) -> Dictionary:
+		include_externals_: bool = true, reveal_radius_scale_: float = 1.0) -> Dictionary:
 	var result = {"pixels": {}, "center": Vector2.ZERO, "radius": 0.0}
 	if cluster_ == null: return result
 
@@ -250,7 +243,7 @@ func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
 
 	var center = (Vector2(tl) + Vector2(br)) * 0.5
 	var half = (Vector2(br) - Vector2(tl)) * 0.5
-	var radius = half.length()
+	var radius = half.length() * reveal_radius_scale_
 
 	var pad = int(ceil(edge_jitter_)) + 2
 	var x0 = int(floor(center.x - radius)) - pad
@@ -274,7 +267,6 @@ func _collect_cluster_circle(cluster_: Variant, edge_jitter_: float,
 	return result
 
 
-# Мгновенный вариант (для отладки / неанимированных случаев).
 func reveal_cluster(cluster_: Variant, edge_jitter_: float = 1.5,
 		include_externals_: bool = true) -> void:
 	var info = _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
@@ -287,22 +279,17 @@ func reveal_cluster(cluster_: Variant, edge_jitter_: float = 1.5,
 		refresh()
 
 
-# origin_override_   — если задан, волна стартует из этой точки.
-# initial_radius_    — стартовый радиус фронта. Для соседей shelter’а
-#                      передаётся радиус, на котором shelter закончился —
-#                      так фронт получается непрерывным.
-#                      duration_ в этом случае трактуется как время от
-#                      initial_radius_ до max_radius.
 func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5,
 		include_externals_: bool = true, origin_override_ = null,
-		initial_radius_: float = 0.0) -> void:
+		initial_radius_: float = 0.0,
+		reveal_radius_scale_: float = 1.0) -> void:
 	if cluster_ == null: return
 	if cluster_ is ShelterData:
 		mainland.beam.current_shelter = cluster_
 		cluster_.shrine.is_hazed = false
 
-	var info = _collect_cluster_circle(cluster_, edge_jitter_, include_externals_)
+	var info = _collect_cluster_circle(cluster_, edge_jitter_, include_externals_, reveal_radius_scale_)
 	var pixels: Dictionary = info["pixels"]
 	if pixels.is_empty(): return
 
@@ -313,7 +300,6 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 	var origin: Vector2 = info["center"] if origin_override_ == null else origin_override_
 	var max_radius = _compute_max_radius(pending, origin, wave_jitter_)
 
-	# Расстояние, которое волне осталось пройти.
 	var dist: float = max(0.0, max_radius - initial_radius_)
 
 	_waves.append({
@@ -325,8 +311,7 @@ func reveal_cluster_wave(cluster_: Variant, duration_: float = 0.5,
 		"jitter": wave_jitter_,
 	})
 
-# Один шаг по всем активным волнам. Возвращает true, если хоть
-# одна волна что-то раскрыла в этом кадре.
+
 func _tick_waves(delta_: float) -> bool:
 	var revealed_any = false
 	var surviving: Array[Dictionary] = []
@@ -353,7 +338,6 @@ func _tick_waves(delta_: float) -> bool:
 
 		if not still.is_empty() and wave["radius"] < wave["max_radius"]:
 			surviving.append(wave)
-		# Иначе — волна завершилась, не переносим её в surviving.
 
 	_waves = surviving
 	return revealed_any
@@ -362,18 +346,15 @@ func _tick_waves(delta_: float) -> bool:
 
 #region periphery erosion
 
-# Публичный триггер: вызывается из Haze по пробелу.
-# steps_ < 0 — использовать erosion_steps_per_press.
-#
-# ВАЖНО: здесь НЕ перестраиваем frontier. Если пульсация активна,
-# undo_pulse() выполнится в tick() уже ПОСЛЕ этого вызова, и только
-# тогда состояние стабилизируется. Перестроение frontier откладываем
-# до начала реальной эрозии (см. _tick_erosion), чтобы она работала
-# по согласованному с изображением состоянию.
-func trigger_periphery_erosion(steps_: int = -1) -> void:
+# steps_ < 0  — использовать erosion_steps_per_press.
+# side_ = 0   — вся периферия (равномерно со всех сторон).
+# side_ = -1  — левая половина (туман наступает слева, до полного покрытия).
+# side_ = +1  — правая половина (туман наступает справа, до полного покрытия).
+func trigger_periphery_erosion(steps_: int = -1, side_: int = 0) -> void:
 	if steps_ < 0:
 		steps_ = erosion_steps_per_press
 	if steps_ <= 0: return
+	_erosion_side = side_
 	_frontier_dirty = true
 	_erosion_pending += steps_
 
@@ -382,8 +363,6 @@ func _is_revealed(x_: int, y_: int) -> bool:
 	return fog_image.get_pixel(x_, y_).r > 0.5
 
 
-# Границей считается ТОЛЬКО сосед-пиксель в пределах изображения.
-# За картой — не туман, иначе края «съедаются» сами в себя.
 func _has_fog_neighbor(x_: int, y_: int) -> bool:
 	for d in NEIGHBORS:
 		var nx = x_ + d.x
@@ -393,9 +372,21 @@ func _has_fog_neighbor(x_: int, y_: int) -> bool:
 	return false
 
 
+# Центр масс разведанных пикселей по X — O(1) благодаря кэшу.
+# Именно он делит периметр на «левую» и «правую» половины.
+func _get_center_x() -> float:
+	if _revealed_count == 0:
+		return float(width) * 0.5
+	return float(_revealed_sum_x) / float(_revealed_count)
+
+
+# Frontier — полный (все пограничные пиксели). Фильтр по стороне
+# применяется только в _erode_step, чтобы frontier оставался корректным
+# и не рвался при переключении сторон.
 func _mark_frontier(x_: int, y_: int) -> void:
-	if _is_revealed(x_, y_) and _has_fog_neighbor(x_, y_):
-		_frontier[Vector2i(x_, y_)] = true
+	if not _is_revealed(x_, y_): return
+	if not _has_fog_neighbor(x_, y_): return
+	_frontier[Vector2i(x_, y_)] = true
 
 
 func _rebuild_frontier() -> void:
@@ -413,23 +404,41 @@ func _refresh_frontier_around(p_: Vector2i) -> void:
 		_mark_frontier(q.x, q.y)
 
 
-# Один шаг эрозии: снять один «слой» засветки по всей периферии.
+# Один «слой» эрозии.
+# side_ == 0 — eat всех frontier-пикселей.
+# side_ != 0 — eat только пикселей на соответствующей стороне от центра
+#              масс текущей разведанной области. Так как по мере эрозии
+#              центр масс смещается, «половина» сама едет за фронтом,
+#              и эрозия с одной стороны в итоге съедает всю территорию.
 func _erode_step() -> bool:
 	if _frontier.is_empty():
 		return false
 
+	var split_x: float = 0.0
+	if _erosion_side != 0:
+		split_x = _get_center_x()
+
 	var to_fog: Array[Vector2i] = []
 	for p: Vector2i in _frontier.keys():
-		if _is_revealed(p.x, p.y) and _has_fog_neighbor(p.x, p.y):
-			to_fog.append(p)
+		if not _is_revealed(p.x, p.y):
+			continue
+		if not _has_fog_neighbor(p.x, p.y):
+			continue
+		if _erosion_side < 0 and float(p.x) >= split_x:
+			continue
+		if _erosion_side > 0 and float(p.x) < split_x:
+			continue
+		to_fog.append(p)
 
-	_frontier.clear()
 	if to_fog.is_empty():
 		return false
 
 	for p in to_fog:
+		_frontier.erase(p)
 		clear_image.set_pixel(p.x, p.y, Color(0, 0, 0, 0))
 		fog_image.set_pixel(p.x, p.y, fog_color)
+		_revealed_sum_x -= p.x
+		_revealed_count -= 1
 
 	for p in to_fog:
 		_refresh_frontier_around(p)
@@ -437,9 +446,6 @@ func _erode_step() -> bool:
 	return true
 
 
-# Прогресс эрозии. Frontier перестраивается здесь, а не в триггере —
-# так мы гарантируем, что undo_pulse() из этого же кадра уже применён,
-# и _frontier соответствует актуальному fog_image.
 func _tick_erosion(delta_: float) -> bool:
 	if _frontier_dirty:
 		_rebuild_frontier()
@@ -467,12 +473,6 @@ func _tick_erosion(delta_: float) -> bool:
 
 #region periphery breathing
 
-# Собирает пары «засвет-граница ↔ туман-граница» по всему периметру.
-# Пара — соседние клетки, одна засвечена, другая в тумане.
-# Каждая клетка участвует максимум в одной паре.
-# Для каждой пары храним:
-#   angle  — угол её середины относительно центра пар (для spatial-фазы);
-#   thr    — собственный порог переключения [0,1) (для плавной очереди).
 func _collect_pulse_pairs() -> void:
 	_pulse_pairs.clear()
 	_pulse_base.clear()
@@ -504,7 +504,6 @@ func _collect_pulse_pairs() -> void:
 
 	if _pulse_pairs.is_empty(): return
 
-	# Центр пар — для угловой координаты.
 	var cx = 0.0
 	var cy = 0.0
 	for pair: Dictionary in _pulse_pairs:
@@ -532,7 +531,6 @@ func _start_pulse() -> void:
 	_pulse_active = true
 
 
-# Возвращает true, если что-то изменилось (требуется refresh).
 func _undo_pulse() -> bool:
 	var any = false
 	for cell: Vector2i in _pulse_base.keys():
@@ -547,30 +545,14 @@ func _undo_pulse() -> bool:
 	return any
 
 
-# Один кадр «дыхания».
-#
-# time_amp = sin(omega * t) * ramp  — общая временная огибающая (плавно
-#                                     меняется каждый кадр);
-# spatial  = sin(lobes * angle + bias) — пространственный знак: у одной
-#                                     части границы положительный, у
-#                                     противоположной — отрицательный
-#                                     (антифаза);
-# v = time_amp * spatial            — «смещение» для пары;
-# thr = pair.thr                    — собственный порог пары.
-#
-# Пара выходит из базового состояния ровно тогда, когда |v| пересекает
-# её порог. Поскольку пороги у пар разные, они переключаются по одной,
-# и граница плавно «дышит», а не мигает кадрами.
-#
-# Баланс: сколько пар ушло в засвет, столько же — в туман.
 func _apply_pulse() -> bool:
 	var omega = TAU * pulse_frequency
 	var t = _pulse_time
 	var ramp = minf(1.0, t / PULSE_RAMP_DURATION)
 	var time_amp = sin(omega * t) * ramp
 
-	var flip_reveal: Array = []   # [excess, fog_COORD]
-	var flip_fog: Array = []      # [excess, clear_COORD]
+	var flip_reveal: Array = []
+	var flip_fog: Array = []
 
 	for pair: Dictionary in _pulse_pairs:
 		var c: Vector2i = pair["clear"]
@@ -622,15 +604,13 @@ func _apply_pulse() -> bool:
 
 #region debug-triggers
 
-# Q — первый shelter (internals + externals).
-func reveal_current_shelter_wave(duration_: float = 0.5,
-		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5) -> void:
+func reveal_shelter_wave(shelter_index: int = 0, duration_: float = 0.5,
+		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5, reveal_radius_scale: float = 2.0) -> void:
 	if mainland == null: return
 	if mainland.shelters.is_empty(): return
-	reveal_cluster_wave(mainland.shelters[0], duration_, wave_jitter_, edge_jitter_, true)
+	reveal_cluster_wave(mainland.shelters[shelter_index], duration_, wave_jitter_, edge_jitter_, true, null, 0.0, reveal_radius_scale)
 
 
-# W — первый wasteland (только internals).
 func reveal_current_wasteland_wave(duration_: float = 0.5,
 		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5) -> void:
 	if mainland == null: return
@@ -638,20 +618,17 @@ func reveal_current_wasteland_wave(duration_: float = 0.5,
 	reveal_cluster_wave(mainland.wastelands[0], duration_, wave_jitter_, edge_jitter_, false)
 
 
-# A — shelter (с externals), затем его соседние wastelands (internals),
-# волна каждого wasteland'а расходится ИЗ ЦЕНТРА shelter'а.
 func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 		duration_: float = 0.5,
 		wave_jitter_: float = 0.8,
-		edge_jitter_: float = 1.5) -> void:
+		edge_jitter_: float = 1.5,
+		reveal_radius_scale_: float = 1.0) -> void:
 	if mainland == null: return
 	if shelter_index_ < 0 or shelter_index_ >= mainland.shelters.size(): return
 
 	var shelter: ShelterData = mainland.shelters[shelter_index_]
 
-	# Заранее считаем геометрию shelter’а: его центр и радиус, на
-	# котором волна остановится. Эти значения нужны для соседей.
-	var shelter_info = _collect_cluster_circle(shelter, edge_jitter_, true)
+	var shelter_info = _collect_cluster_circle(shelter, edge_jitter_, true, reveal_radius_scale_)
 	var shelter_pixels: Dictionary = shelter_info["pixels"]
 	if shelter_pixels.is_empty(): return
 
@@ -661,12 +638,8 @@ func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 		shelter_pending.append(p)
 	var shelter_max_radius = _compute_max_radius(shelter_pending, shelter_origin, wave_jitter_)
 
-	# 1. Shelter — как обычно, из своего центра.
 	reveal_cluster_wave(shelter, duration_, wave_jitter_, edge_jitter_, true)
 
-	# 2. Соседи — стартуют ровно в момент окончания shelter’а, из того же
-	#    центра, с радиусом, на котором остановился shelter. Фронт
-	#    получается непрерывным: где shelter закончил — там сосед начал.
 	var t: float = duration_
 	for w in shelter.neighbor_wastelands:
 		_delayed.append({
@@ -680,4 +653,19 @@ func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 			"initial_radius": shelter_max_radius,
 		})
 		t += neighbor_stagger
+
+
+# E — эрозия слева: туман наступает слева, до полного покрытия.
+func erode_left(steps_: int = -1) -> void:
+	trigger_periphery_erosion(steps_, -1)
+
+
+# D — эрозия справа: туман наступает справа, до полного покрытия.
+func erode_right(steps_: int = -1) -> void:
+	trigger_periphery_erosion(steps_, +1)
+
+
+# S — эрозия по всей периферии (равномерно со всех сторон).
+func erode_full(steps_: int = -1) -> void:
+	trigger_periphery_erosion(steps_, 0)
 #endregion

@@ -4,7 +4,6 @@ extends TaskData
 
 signal spoil_changed
 
-var tributes: Array[TributeData]
 var spoils: Array[SpoilData]
 
 var current_spoil: SpoilData:
@@ -13,11 +12,13 @@ var current_spoil: SpoilData:
 		spoil_changed.emit()
 
 
+#region init
 func _init(master_: MasterData, rank_: int) -> void:
 	super._init(master_, rank_)
 	init_spoils()
 
-func init_tribute() -> void:
+func init_tributes() -> void:
+	#if master.guild.structure and master.guild.structure.type != Digest.master_to_structure[master.type]: return
 	tributes.clear()
 	var matters = master.guild.structure.matters
 	var volume = Digest.matter_to_matter_to_volume[matters.front()][matters.back()]
@@ -31,6 +32,7 @@ func init_tribute() -> void:
 		_tribute.current_quotum = _tribute.quotums.front()
 
 func init_spoils() -> void:
+	#if master.guild.structure and master.guild.structure.type != Digest.master_to_structure[master.type]: return
 	spoils.clear()
 	var matters = master.guild.structure.matters
 	var volume = Digest.matter_to_matter_to_volume[matters.front()][matters.back()] * 2
@@ -41,6 +43,7 @@ func init_spoils() -> void:
 		spoils.append(spoil)
 	
 	current_spoil = spoils.front()
+#endregion
 
 func changed_spoil(shift_: int) -> void:
 	var index = spoils.find(current_spoil)
@@ -48,3 +51,11 @@ func changed_spoil(shift_: int) -> void:
 	index = (index + shift_ + n) % n
 	current_spoil = spoils[index]
 	master.sync_spoil(self)
+
+func _on_finished() -> void:
+	stitch()
+	super._on_finished()
+
+func stitch() -> void:
+	for spoil in spoils:
+		Mother.kernel.pie.plus_spoil(spoil)

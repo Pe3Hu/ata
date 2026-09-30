@@ -18,8 +18,18 @@ func _ready() -> void:
 		connect_datas()
 
 func connect_signals() -> void:
-	if data and data.current_task and data.current_task.agent:
-		%Agent.data = data.current_task.agent
+	if data == null:
+		return
+	if not data.task_changed.is_connected(_on_task_changed):
+		data.task_changed.connect(_on_task_changed)
+	_on_task_changed()
+
+func _on_task_changed() -> void:
+	if data == null or data.current_task == null:
+		%Agent.data = null
+		return
+	%Agent.data = data.current_task.agent
+	%Agent.data._sync_quotums_from_tributes()
 
 func connect_datas() -> void:
 	pass
