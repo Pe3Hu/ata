@@ -2,11 +2,10 @@ class_name ArchitectData
 extends MasterData
 
 
+var altars: Array[AltarData]
 
-func init_static_tasks() -> void:
+
+func init_dinamic_tasks() -> void:
 	tasks.clear()
-	
-	for asterism in Mother.welkin.asterisms:
-		SculptureData.new(self, 0, asterism)
-	
+	SculptureData.new(self, 0)
 	current_task = tasks.front()

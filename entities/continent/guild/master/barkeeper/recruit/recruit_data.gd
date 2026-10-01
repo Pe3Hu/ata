@@ -31,7 +31,7 @@ func init_silhouettes() -> void:
 	)
 
 func init_tributes() -> void:
-	rank = Catalog.ranks.find(origin.rank) + 1
+	rank = Catalog.grades.find(origin.grade) + 1
 	var price = Digest.master_to_price[master.type] * rank
 	var volumes = Digest.master_to_volumes[master.type]
 	var tribute = TributeData.new(price, volumes)

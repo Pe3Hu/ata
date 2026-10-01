@@ -18,8 +18,7 @@ func _ready() -> void:
 		connect_datas()
 
 func connect_signals() -> void:
-	if data == null:
-		return
+	if data == null: return
 	if not data.task_changed.is_connected(_on_task_changed):
 		data.task_changed.connect(_on_task_changed)
 	_on_task_changed()

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://lx762uqy0d6d"]
 
 [ext_resource type="Script" uid="uid://cn505b15yp5jl" path="res://entities/continent/guild/agent/agent.gd" id="1_rk4ea"]
-[ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/house/card/stamp/images/forfeit.png" id="2_lms6a"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_etprk"]
+[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/stamp/images/talent/2.png" id="2_lvgf5"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/grade/f.png" id="3_etprk"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_ipsu7"]
 [ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="3_ntiry"]
 [ext_resource type="PackedScene" uid="uid://dya2galeartfl" path="res://entities/continent/guild/agent/hourglass/hourglass.tscn" id="4_etprk"]
@@ -11,6 +11,7 @@
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_uasgc"]
 [ext_resource type="PackedScene" uid="uid://t1702e0u2fqx" path="res://entities/isle/ladder/fake/fake_dice.tscn" id="7_724r4"]
 [ext_resource type="PackedScene" uid="uid://cpce7h1kdvvoh" path="res://entities/continent/guild/agent/calendar/calendar.tscn" id="10_h5ua1"]
+[ext_resource type="PackedScene" uid="uid://ndch2g5uhxwt" path="res://entities/continent/mainland/trod/route/route.tscn" id="12_lvgf5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st6mn"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -223,7 +224,7 @@ grow_horizontal = 0
 grow_vertical = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(-8, 0)
-texture = ExtResource("2_lms6a")
+texture = ExtResource("2_lvgf5")
 
 [node name="AgentName" type="Label" parent="VBoxContainer/Top" unique_id=1239312195]
 unique_name_in_owner = true
@@ -285,7 +286,7 @@ texture_hover = ExtResource("3_ipsu7")
 script = ExtResource("4_h5ua1")
 metadata/_custom_type_script = "uid://c3ji6eownkceu"
 
-[node name="RankIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=2116983595]
+[node name="GradeIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=2116983595]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -363,15 +364,56 @@ offset_transform_position = Vector2(0, 3)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
 
-[node name="VBox2" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=2061393131]
+[node name="VBox2" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=487444726]
 layout_mode = 2
 
-[node name="VBox2" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2" unique_id=1383685849]
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2" unique_id=1436324897]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox" unique_id=1494162128]
+layout_mode = 2
+text = "Avg
+roll"
+label_settings = ExtResource("4_uasgc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox" unique_id=106659902]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
+
+[node name="DiceLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox" unique_id=1605547525]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+text = "8.33"
+label_settings = ExtResource("4_uasgc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox" unique_id=46203597]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
+
+[node name="Dice" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2" unique_id=518126039 instance=ExtResource("7_724r4")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=2114196604]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
+
+[node name="VBox3" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=2061393131]
+layout_mode = 2
+
+[node name="VBox2" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3" unique_id=1383685849]
 layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=1969940912]
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox2" unique_id=1969940912]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Hours
@@ -379,12 +421,12 @@ left"
 label_settings = ExtResource("4_uasgc")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=2093847926]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox2" unique_id=2093847926]
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
-[node name="HourglassLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=1545370772]
+[node name="HourglassLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox2" unique_id=1545370772]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
@@ -394,57 +436,16 @@ label_settings = ExtResource("4_uasgc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2/VBox2" unique_id=1265793911]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox2" unique_id=1265793911]
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
-[node name="Hourglass" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox2" unique_id=1921839269 instance=ExtResource("4_etprk")]
+[node name="Hourglass" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3" unique_id=1921839269 instance=ExtResource("4_etprk")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=2114196604]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
-
-[node name="VBox3" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=487444726]
-layout_mode = 2
-
-[node name="VBox" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3" unique_id=1436324897]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=1494162128]
-layout_mode = 2
-text = "Avg
-roll"
-label_settings = ExtResource("4_uasgc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=106659902]
-layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
-
-[node name="DiceLabel" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=1605547525]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 26)
-layout_mode = 2
-text = "8.33"
-label_settings = ExtResource("4_uasgc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3/VBox" unique_id=46203597]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
-
-[node name="Dice" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox3" unique_id=518126039 instance=ExtResource("7_724r4")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="Calendar" parent="." unique_id=1440266826 node_paths=PackedStringArray("agent") instance=ExtResource("10_h5ua1")]
 unique_name_in_owner = true
@@ -453,6 +454,12 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 offset_transform_position = Vector2(4, -72)
 agent = NodePath("..")
+
+[node name="Route" parent="." unique_id=1537280593 instance=ExtResource("12_lvgf5")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_position = Vector2(4, 92)
 
 [connection signal="pressed" from="VBoxContainer/Top/AgentHBox/PreviousAgentButton" to="." method="_on_previous_agent_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Top/AgentHBox/NextAgentButton" to="." method="_on_next_agent_button_pressed"]

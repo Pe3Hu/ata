@@ -11,26 +11,43 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lxk3t"]
+thickness = 4
+
 [node name="Route" type="PanelContainer" unique_id=1537280593]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -8.0
-offset_right = 0.5
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(72, 0)
+offset_right = 72.0
+offset_bottom = 84.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_jtw3p")
 script = ExtResource("1_b7mvq")
 
-[node name="TravelTime" type="Label" parent="." unique_id=1202091764]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(176, 36)
+[node name="VBox" type="VBoxContainer" parent="." unique_id=234150718]
 layout_mode = 2
-text = "Travel time: 24"
+theme_override_constants/separation = 0
+
+[node name="TravelTitle" type="Label" parent="VBox" unique_id=1202091764]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "Travel
+time"
+label_settings = ExtResource("2_wt78s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBox" unique_id=52738457]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
+
+[node name="TravelTime" type="Label" parent="VBox" unique_id=1904017950]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+text = "0"
 label_settings = ExtResource("2_wt78s")
 horizontal_alignment = 1
 vertical_alignment = 1

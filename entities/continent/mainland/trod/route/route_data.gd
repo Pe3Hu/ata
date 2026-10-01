@@ -13,10 +13,10 @@ var start_structure: StructureData:
 		recalc_wastelands()
 var finish_structure: StructureData:
 	set(value_):
+		Mother.guild.structure = value_
 		if finish_structure == value_: return
 		if value_ != null and start_structure == value_: return
 		finish_structure = value_
-		Mother.guild.structure = finish_structure
 		recalc_wastelands()
 
 var type_to_trods: Dictionary
@@ -174,8 +174,8 @@ func activate() -> void:
 	if mainland.footprint.target_structure.type == Bozo.Structure.SHRINE: return
 	if start_structure == mainland.footprint.target_structure:
 		reset()
-		finish_structure = null
-		return
+		#finish_structure = null
+		#return
 	
 	finish_structure = mainland.footprint.target_structure
 
@@ -215,3 +215,6 @@ func update_trods() -> void:
 	for trod_type in type_to_trods:
 		for trod in type_to_trods[trod_type]:
 			trod.type_chaned.emit()
+
+func is_calendar() -> bool:
+	return start_structure == Mother.guild.structure

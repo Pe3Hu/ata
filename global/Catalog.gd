@@ -273,9 +273,11 @@ const TROD_SELECTED_FACTOR: float = 3
 #endregion
 
 const BARKEEPER_RECRUIT_AMOUNT: int = 3
+const MINER_SPOIL_FACTOR: int = 2
+const miner_max_spoil_amount = [5, 4, 3, 2]
 const DEMON_DEFAULT_COMPLEXITY: int = 35
 
-const ranks = [Bozo.Rank.F, Bozo.Rank.E, Bozo.Rank.D, Bozo.Rank.C, Bozo.Rank.B, Bozo.Rank.A, Bozo.Rank.S]
+const grades = [Bozo.Grade.F, Bozo.Grade.E, Bozo.Grade.D, Bozo.Grade.C, Bozo.Grade.B, Bozo.Grade.A, Bozo.Grade.S]
 
 #region overtime
 const OVERTIME_GRID: Vector2i = Vector2i(5, 4)
@@ -289,3 +291,14 @@ const noicon_masters = [Bozo.Master.ARCHITECT, Bozo.Master.SCOUT, Bozo.Master.BA
 
 const AVG_HOUR_PROGRESS: int = 8
 const REAL_SECONDS_PER_GAME_HOUR: float = 0.25
+
+const DEFAULT_RECRUIT_GRADE: Bozo.Grade = Bozo.Grade.B
+const DEFAULT_RECRUIT_INTRO: int = 20
+const DEFAULT_RECRUIT_TALENT: int = 2
+
+#region lode
+const LODE_OUTER_RADIUS: float = 96.0
+const LODE_SECTOR_HEIGHT: float = 96.0
+const LODE_ARC_SUBDIVISIONS: int = 32
+const LODE_THICKNESS: float = 4.0
+#endregion

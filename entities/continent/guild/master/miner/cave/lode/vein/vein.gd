@@ -27,23 +27,23 @@ func create_polygon() -> void:
 	var middle_points: PackedVector2Array
 	var center: Vector2 = Vector2.ZERO
 
-	var inner_radius: float = lode.outer_radius - lode.sector_height
+	var inner_radius: float = Catalog.LODE_OUTER_RADIUS - Catalog.LODE_SECTOR_HEIGHT
 
-	for _i in range(lode.arc_subdivisions + 1):
-		var t = float(_i) / lode.arc_subdivisions
+	for _i in range(Catalog.LODE_ARC_SUBDIVISIONS + 1):
+		var t = float(_i) / Catalog.LODE_ARC_SUBDIVISIONS
 		var angle = lerp(angle_start, angle_end, t)
 		var point = Vector2.from_angle(angle) * inner_radius
 		points.append(point)
 		center += point
 
-	for _i in range(lode.arc_subdivisions, -1, -1):
-		var t = float(_i) / lode.arc_subdivisions
+	for _i in range(Catalog.LODE_ARC_SUBDIVISIONS, -1, -1):
+		var t = float(_i) / Catalog.LODE_ARC_SUBDIVISIONS
 		var angle = lerp(angle_start, angle_end, t)
-		var point = Vector2.from_angle(angle) * lode.outer_radius
+		var point = Vector2.from_angle(angle) * Catalog.LODE_OUTER_RADIUS
 		points.append(point)
 		center += point
 
-		var middle_point = Vector2.from_angle(angle) * (inner_radius + lode.outer_radius) * 0.5
+		var middle_point = Vector2.from_angle(angle) * (inner_radius + Catalog.LODE_OUTER_RADIUS) * 0.5
 		middle_points.append(middle_point)
 
 	polygon = points
@@ -61,8 +61,8 @@ func create_polygon() -> void:
 	if data.percent == 15:
 		vol_factor = 0.66
 
-	var vol_radius: float = lode.outer_radius - lode.sector_height * vol_factor
-	var pct_radius: float = lode.outer_radius - lode.sector_height * pct_factor
+	var vol_radius: float = Catalog.LODE_OUTER_RADIUS - Catalog.LODE_SECTOR_HEIGHT * vol_factor
+	var pct_radius: float = Catalog.LODE_OUTER_RADIUS - Catalog.LODE_SECTOR_HEIGHT * pct_factor
 
 	%Volume.position  = norm * vol_radius - %Volume.size  * 0.5
 	%Percent.position = norm * pct_radius - %Percent.size * 0.5

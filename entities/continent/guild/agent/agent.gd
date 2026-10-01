@@ -74,6 +74,9 @@ func update_colors() -> void:
 
 func update_labels() -> void:
 	%AgentName.text = preview_origin.name
+	%GradeIcon.texture = load('res://entities/isle/house/card/stamp/images/grade/%s.png' % Bozo.enum_to_string(Bozo.Type.GRADE, preview_origin.grade))
+	%TalentIcon.texture = load('res://entities/isle/house/card/stamp/images/talent/%d.png' % preview_origin.talent)
+
 	%DiceLabel.text = str(snapped(float(preview_origin.intro.get_sum()) / 6.0, 0.01))
 	_on_overtime_changed()
 

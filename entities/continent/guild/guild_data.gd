@@ -35,9 +35,13 @@ func set_current_master(type_: Bozo.Master):
 	var str_type = Bozo.enum_to_string(Bozo.Type.MASTER, type_)
 	var master = get(str_type)
 	
-	if current_master == scout:
-		if current_master.current_task.agent.origin == null:
-			Mother.mainland.beam.reset()
+	if current_master:
+		match current_master.type:
+			Bozo.Master.SCOUT:
+				if current_master.current_task.agent.origin == null:
+					Mother.mainland.beam.reset()
+			Bozo.Master.MINER:
+				current_master.tasks.clear()
 	
 	if master:
 		current_master = master

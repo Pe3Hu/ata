@@ -7,31 +7,39 @@ var origins: Array[OriginData]
 var alphabet: Array
 var recruiment_matters: Array[Bozo.Matter]
 
+var month: int = 0
+var name_letter: String = ''
+
 
 func _init(guild_: GuildData, type_: Bozo.Master) -> void:
 	refill_alphabet()
-	init_origins()
+	init_default_origins()
 	super._init(guild_, type_)
 
 func init_static_tasks() -> void:
 	tasks.clear()
+	var intros = Digest.month_to_recruit_intros[month]
+	var talents = Digest.month_to_recruit_talents[month]
+	var matters = Catalog.matters.duplicate()
+	matters.shuffle()
+	var names = get_names()
 	
-	for _i in Catalog.BARKEEPER_RECRUIT_AMOUNT:
-		add_recruit()
+	for _i in talents.size():
+		add_recruit(intros[_i], talents[_i], matters[_i], names[_i])
 	
 	current_task = tasks.front()
+	print_debug('remove letter after recruit')
 
-func add_recruit(intro_sum_: int = 20, talent_: int = 2, matter_: Variant = null) -> void:
+func add_recruit(intro_sum_: int = 40, talent_: int = 0, matter_: Variant = null, name_: String = '') -> void:
 	if matter_ == null:
 		matter_ = Catalog.matters.pick_random()
 	
 	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter_].pick_random()
-	var verse_index = Digest.matter_to_verse[matter_].pick_random()
-	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-	var origin = OriginData.new(self, matter_, intro, verse, talent_)
-	RecruitData.new(self, 2, origin)
+	var verse = load("res://entities/dice/datas/verse/0.tres")
+	var origin = OriginData.new(self, matter_, intro, verse, talent_, name_)
+	RecruitData.new(self, 0, origin)
 
-func init_origins() -> void:
+func init_default_origins() -> void:
 	origins.clear()
 	var n = 3
 	
@@ -46,41 +54,38 @@ func refill_alphabet() -> void:
 	alphabet = range(26).map(func(a): return char(90 - a).repeat(l))
 	alphabet = alphabet.filter(func (a): return not Catalog.vowels.has(a))
 	alphabet.shuffle()
-	alphabet.erase('V')
 #endregion
 
-#func discard_bedroom(is_phase_: bool = true) -> void:
-	#var forge_stamps: Array[StampData]
-	#forge_stamps.append_array(Mother.bedroom.stamps)
-	#
-	#Mother.arsenal.stamps.append_array(forge_stamps)
-	#
-	#Mother.house.bedroom.clear()
-	#Mother.kernel.fleet.stamps.clear()
-	#
-	#if is_phase_:
-		#Mother.house.atheneum.discard_phase.emit()
-		#Mother.kernel.fleet.discard_phase.emit()
-
-func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
-	if matter_ != null:
-		recruiment_matters.append(matter_)
-	
+func recruiment_phase() -> void:
 	if recruiment_matters.is_empty():
 		recruiment_matters.append_array(Catalog.matters)
 		recruiment_matters.shuffle()
 	
 	var matter = recruiment_matters.pop_back()
-	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter].pick_random()
+	var intro_sum = Catalog.DEFAULT_RECRUIT_INTRO
+	var intro = Digest.sum_to_matter_to_intro[intro_sum][matter].pick_random()
 	var verse_index = Digest.matter_to_verse[matter].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-	var talent = 2
+	var talent = Catalog.DEFAULT_RECRUIT_TALENT
 	var origin = OriginData.new(self, matter, intro, verse, talent)
 	origins.append(origin)
 
 func roll_name() -> String:
-	var letter = alphabet.pop_back()
-	var options = Helper.get_random_names(letter)
+	if name_letter == '':
+		name_letter = alphabet.pop_back()
+	
+	var options = Helper.get_random_names(name_letter)
 	var pantheons = options.keys()
 	var pantheon = pantheons.pick_random()
 	return options[pantheon]
+
+func get_names() -> Array[String]:
+	name_letter = alphabet.pick_random()
+	var options = Helper.get_random_names(name_letter)
+	var names := []
+	
+	for pantheon in options:
+		var name = options[pantheon]
+		names.append(name)
+	
+	return names

@@ -1081,38 +1081,38 @@ const rank_to_avg = {
 	2: 20
 }
 
-const intro_to_talent_to_rank = {
+const intro_to_talent_to_grade = {
 	20: {
-		2: Bozo.Rank.B
+		2: Bozo.Grade.B
 	},
 	30: {
-		1: Bozo.Rank.C
+		1: Bozo.Grade.C
 	},
 	40: {
-		0: Bozo.Rank.F
+		0: Bozo.Grade.F
 	},
 	50: {
-		0: Bozo.Rank.E,
-		1: Bozo.Rank.B,
-		2: Bozo.Rank.A
+		0: Bozo.Grade.E,
+		1: Bozo.Grade.B,
+		2: Bozo.Grade.A
 	},
 	60: {
-		0: Bozo.Rank.D
+		0: Bozo.Grade.D
 	},
 	70: {
-		0: Bozo.Rank.C,
-		1: Bozo.Rank.A
+		0: Bozo.Grade.C,
+		1: Bozo.Grade.A
 	},
 	80: {
-		0: Bozo.Rank.B,
-		2: Bozo.Rank.S
+		0: Bozo.Grade.B,
+		2: Bozo.Grade.S
 	},
 	90: {
-		0: Bozo.Rank.A,
-		1: Bozo.Rank.S
+		0: Bozo.Grade.A,
+		1: Bozo.Grade.S
 	},
 	100: {
-		0: Bozo.Rank.S
+		0: Bozo.Grade.S
 	}
 }
 
@@ -1122,6 +1122,25 @@ const talent_to_veteran = {
 	2: 30
 } 
 
+const month_to_recruit_talents: = [
+	[0, 0, 0],
+	[0, 0, 1],
+	[0, 0, 1],
+	[0, 1, 1],
+	[0, 1, 2],
+	[0, 1, 2],
+	[0, 1, 2],
+]
+
+const month_to_recruit_intros:  = [
+	[40, 40, 40],
+	[40, 40, 30],
+	[40, 50, 30],
+	[50, 30, 30],
+	[50, 30, 20],
+	[60, 30, 20],
+	[60, 50, 20],
+]
 
 
 #region color

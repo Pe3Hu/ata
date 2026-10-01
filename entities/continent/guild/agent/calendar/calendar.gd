@@ -11,7 +11,12 @@ const TEX_FREE_HOVER  := preload("uid://dm8qufe13tojk")
 
 
 func _ready() -> void:
+	connect_signals()
 	_apply(false)
+
+func connect_signals() -> void:
+	if not Mother.mainland.footprint.route_finished.is_connected(update_visible):
+		Mother.mainland.footprint.route_finished.connect(update_visible)
 
 func _on_button_pressed() -> void:
 	if agent == null or agent.data == null: return
@@ -32,7 +37,12 @@ func update_textures() -> void:
 	
 	_apply(agent.preview_origin != null and agent.preview_origin.task == agent.data.task)
 
+func update_visible() -> void:
+	visible = Mother.mainland.route.is_calendar()
+
 func _apply(locked_: bool) -> void:
+	update_visible()
+
 	if locked_:
 		%Button.texture_normal = TEX_LOCK_NORMAL
 		%Button.texture_hover  = TEX_LOCK_HOVER

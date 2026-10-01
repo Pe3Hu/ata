@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://bmk1ow5s0jkb3" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.gd" id="1_0aoth"]
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_bujff"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_0aoth"]
-[ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/house/card/stamp/images/forfeit.png" id="2_h0qxe"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_i74eh"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/grade/f.png" id="3_i74eh"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_dqn80"]
+[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/stamp/images/talent/2.png" id="4_jamvm"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_8rxe6"]
 [ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="5_jamvm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u76jt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jamvm"]
 resource_local_to_scene = true
 shader = ExtResource("2_0aoth")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -33,11 +33,14 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Recruit" unique_id=1199540049 instance=ExtResource("1_bujff")]
 script = ExtResource("1_0aoth")
 
+[node name="VBox" parent="HBoxContainer" parent_id_path=PackedInt32Array(1677823058) index="0" unique_id=63145426]
+theme_override_constants/separation = 10
+
 [node name="HBox" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="0" unique_id=1691597745]
 visible = false
 
 [node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_u76jt")
+material = SubResource("ShaderMaterial_jamvm")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="1" unique_id=1785433385]
 layout_mode = 2
@@ -53,6 +56,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8rxe6")
 
 [node name="TalentIcon" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="0" unique_id=777845456]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -65,8 +69,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(-2, 0)
-texture = ExtResource("2_h0qxe")
+offset_transform_position = Vector2(-8, 0)
+texture = ExtResource("4_jamvm")
 
 [node name="RecruitName" type="Label" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="1" unique_id=1155105584]
 unique_name_in_owner = true
@@ -88,8 +92,9 @@ label_settings = SubResource("LabelSettings_tvoq7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RankIcon" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="2" unique_id=129188473]
+[node name="GradeIcon" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="2" unique_id=129188473]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -99,7 +104,7 @@ offset_right = 32.0
 offset_bottom = 16.0
 grow_vertical = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(4, 0)
+offset_transform_position = Vector2(8, 0)
 texture = ExtResource("3_i74eh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBox/RankPanel/MarginContainer" index="1" unique_id=1170901622]

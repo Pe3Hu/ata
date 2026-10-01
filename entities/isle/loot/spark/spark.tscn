@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dxf630vjxmpad"]
+
+[ext_resource type="Script" uid="uid://d1y40fnxvyvpr" path="res://entities/isle/loot/spark/spark.gd" id="1_diqgc"]
+[ext_resource type="Shader" uid="uid://5se0sl0f32uj" path="res://entities/isle/loot/spark/spark.gdshader" id="2_diqgc"]
+[ext_resource type="Texture2D" uid="uid://dioothcaawe7l" path="res://entities/isle/loot/spark/images/body.png" id="3_5t63g"]
+[ext_resource type="Texture2D" uid="uid://jix4ibhb4qkn" path="res://entities/isle/loot/spark/images/border.png" id="4_pyem1"]
+[ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="5_ycwuj"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="6_wmaml"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pd4q"]
+shader = ExtResource("2_diqgc")
+shader_parameter/speed = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5t63g"]
+resource_local_to_scene = true
+font = ExtResource("6_wmaml")
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Spark" type="PanelContainer" unique_id=356238751]
+custom_minimum_size = Vector2(89, 48)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+script = ExtResource("1_diqgc")
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1046107134]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBox" unique_id=45407208]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="Body" type="TextureRect" parent="HBox/PanelContainer" unique_id=1781022979]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8pd4q")
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("3_5t63g")
+
+[node name="Border" type="TextureRect" parent="HBox/PanelContainer" unique_id=831643573]
+unique_name_in_owner = true
+self_modulate = Color(0.86, 0.72555333, 0.28379998, 1)
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("4_pyem1")
+
+[node name="Control" type="Control" parent="HBox/PanelContainer" unique_id=857529182]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Volume" type="Sprite2D" parent="HBox/PanelContainer/Control" unique_id=75196308]
+unique_name_in_owner = true
+texture = ExtResource("5_ycwuj")
+hframes = 10
+vframes = 11
+frame = 1
+
+[node name="Amount" type="Label" parent="HBox" unique_id=829677791]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x1"
+label_settings = SubResource("LabelSettings_5t63g")
+horizontal_alignment = 1
+vertical_alignment = 1

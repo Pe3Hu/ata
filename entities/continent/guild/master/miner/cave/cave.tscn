@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://cpc8bv5jsansc" path="res://entities/continent/guild/master/miner/cave/cave.gd" id="1_7v3nb"]
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_f3nig"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_2lpq0"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="5_7v3nb"]
 [ext_resource type="PackedScene" uid="uid://bckoiyn6a673d" path="res://entities/continent/guild/master/miner/cave/lode/lode.tscn" id="6_pnsrm"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="8_ra2rn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6j6cf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7v3nb"]
 resource_local_to_scene = true
 shader = ExtResource("2_2lpq0")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -24,16 +25,34 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_pnsrm"]
+resource_local_to_scene = true
+font = ExtResource("5_7v3nb")
+font_size = 23
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_8pd4q"]
 grow_begin = 0.0
 grow_end = 0.0
 thickness = 4
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lxk3t"]
+thickness = 4
+vertical = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_ra2rn"]
+resource_local_to_scene = true
+font = ExtResource("5_7v3nb")
+font_size = 23
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Cave" unique_id=1199540049 instance=ExtResource("1_f3nig")]
 script = ExtResource("1_7v3nb")
 
 [node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_6j6cf")
+material = SubResource("ShaderMaterial_7v3nb")
 
 [node name="InfoPanel" parent="HBoxContainer/VBox" parent_id_path=PackedInt32Array(63145426) index="1" unique_id=1268189010]
 custom_minimum_size = Vector2(200, 200)
@@ -47,28 +66,65 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 offset_transform_enabled = true
-offset_transform_position = Vector2(-14, -10)
+offset_transform_position = Vector2(11, -10)
 theme_override_styles/panel = SubResource("StyleBoxFlat_lxk3t")
 
-[node name="VBox" type="VBoxContainer" parent="PanelContainer" index="0" unique_id=1041172353]
+[node name="HBox" type="HBoxContainer" parent="PanelContainer" index="0" unique_id=507578942]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer/HBox" index="0" unique_id=1041172353]
 layout_mode = 2
 
-[node name="AvgLabel" type="Label" parent="PanelContainer/VBox" index="0" unique_id=904133280]
+[node name="AmountLabel" type="Label" parent="PanelContainer/HBox/VBox" index="0" unique_id=904133280]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_visual_only = false
+text = "Spoil"
+label_settings = SubResource("LabelSettings_pnsrm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBox/VBox" index="1" unique_id=1549020250]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_8pd4q")
+
+[node name="AmountValue" type="Label" parent="PanelContainer/HBox/VBox" index="2" unique_id=1485103282]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_visual_only = false
+text = "210"
+label_settings = ExtResource("8_ra2rn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBox" index="1" unique_id=632255934]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
+
+[node name="VBox2" type="VBoxContainer" parent="PanelContainer/HBox" index="2" unique_id=2096471782]
+layout_mode = 2
+
+[node name="AvgLabel" type="Label" parent="PanelContainer/HBox/VBox2" index="0" unique_id=1316762049]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_visual_only = false
 text = "Avg"
-label_settings = ExtResource("8_ra2rn")
+label_settings = SubResource("LabelSettings_ra2rn")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBox" index="1" unique_id=1549020250]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBox/VBox2" index="1" unique_id=1298394301]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_8pd4q")
 
-[node name="AvgValue" type="Label" parent="PanelContainer/VBox" index="2" unique_id=1485103282]
+[node name="AvgValue" type="Label" parent="PanelContainer/HBox/VBox2" index="2" unique_id=212436690]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 24)
 layout_mode = 2
@@ -77,4 +133,4 @@ offset_transform_visual_only = false
 text = "10"
 label_settings = ExtResource("8_ra2rn")
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1

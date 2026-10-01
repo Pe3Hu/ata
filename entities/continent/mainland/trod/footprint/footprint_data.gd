@@ -2,6 +2,8 @@ class_name FootprintData
 extends RefCounted
 
 
+@warning_ignore("unused_signal")
+signal route_finished
 signal structures_changed
 
 var mainland: MainlandData

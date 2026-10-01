@@ -17,8 +17,7 @@ func connect_signals() -> void:
 	_on_selected_type_changed()
 
 func _on_selected_type_changed() -> void:
-	var travel_time = data.get_travel_time()
-	%TravelTime.text = 'Travel time: %d' % travel_time
+	%TravelTime.text = str(data.get_travel_time())
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

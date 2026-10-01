@@ -11,21 +11,22 @@ var verse: DiceData
 
 var stamps: Array[StampData]
 
-var rank: Bozo.Rank
+var grade: Bozo.Grade
 var talent: int
 var name: String
 
 
 #region init
-func _init(master_: MasterData, matter_: Bozo.Matter, intro_: DiceData, verse_: DiceData, talent_: int = 3) -> void:
+func _init(master_: MasterData, matter_: Bozo.Matter, intro_: DiceData, verse_: DiceData, talent_: int, name_: String = '') -> void:
 	master = master_
 	matter = matter_
 	intro = intro_
 	verse = verse_
 	talent = talent_
-	rank = Digest.intro_to_talent_to_rank[intro.get_sum()][talent]
+	name = name_
+	grade = Digest.intro_to_talent_to_grade[intro.get_sum()][talent]
 	
-	if master as BarkeeperData:
+	if name == '':
 		name = master.roll_name()
 		
 		if master.alphabet.is_empty():

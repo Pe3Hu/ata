@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cbet0tqjycopk"]
 
 [ext_resource type="Script" uid="uid://bkptlyetypcjw" path="res://entities/isle/house/card/stamp/stamp.gd" id="1_sx3sm"]
-[ext_resource type="Texture2D" uid="uid://diwoxa3n4ioyp" path="res://entities/isle/house/card/stamp/images/forfeit.png" id="2_h3ve8"]
+[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/stamp/images/talent/2.png" id="2_d8sdn"]
 [ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="2_o6mtg"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/rank/f.png" id="3_rxqop"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="3_87o3c"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/grade/f.png" id="3_rxqop"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6d1l"]
 bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
@@ -33,6 +34,13 @@ bg_color = Color(0, 0.7529412, 0.47058824, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_detail = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gfnv"]
+resource_local_to_scene = true
+font = ExtResource("3_87o3c")
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
 
@@ -115,7 +123,44 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ifnqu")
 
-[node name="ForfeitIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=1369078761]
+[node name="GradeIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=1752600401]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(4, 0)
+texture = ExtResource("3_rxqop")
+
+[node name="RecruitName" type="Label" parent="VBoxContainer/Top" unique_id=201566131]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -9.5
+offset_right = 50.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Recruit Name"
+label_settings = SubResource("LabelSettings_6gfnv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TalentIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=1369078761]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -129,45 +174,7 @@ grow_horizontal = 0
 grow_vertical = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(-2, 0)
-texture = ExtResource("2_h3ve8")
-
-[node name="CardName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=80602315]
-modulate = Color(0, 0.2627451, 0.14901961, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -8.0
-offset_right = 34.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
-text = "Card Name"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Top" unique_id=1752600401]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -16.0
-offset_right = 32.0
-offset_bottom = 16.0
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(4, 0)
-texture = ExtResource("3_rxqop")
+texture = ExtResource("2_d8sdn")
 
 [node name="Center" type="Panel" parent="VBoxContainer" unique_id=992183565]
 custom_minimum_size = Vector2(108, 236)

@@ -407,6 +407,7 @@ func _finish_route() -> void:
 	_path_index = 0
 	_route_structures.clear()
 	data.mainland.route.start_structure = data.mainland.footprint.current_structure
+	data.route_finished.emit()
 
 func update_route() -> void:
 	data.mainland.route.reset()

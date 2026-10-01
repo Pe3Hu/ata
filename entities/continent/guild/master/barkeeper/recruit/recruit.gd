@@ -8,8 +8,15 @@ var silhouette_scene = preload('uid://cgb34egynev5o')
 #region init
 func connect_signals() -> void:
 	super.connect_signals()
+	
+	update_name()
 	init_silhouettes()
 	update_colors()
+
+func update_name() -> void:
+	%RecruitName.text = data.origin.name
+	%GradeIcon.texture = load('res://entities/isle/house/card/stamp/images/grade/%s.png' % Bozo.enum_to_string(Bozo.Type.GRADE, data.origin.grade))
+	%TalentIcon.texture = load('res://entities/isle/house/card/stamp/images/talent/%d.png' % data.origin.talent)
 
 func init_silhouettes() -> void:
 	Helper.clear_children(%Silhouettes)

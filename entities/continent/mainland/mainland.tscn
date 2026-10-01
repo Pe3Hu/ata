@@ -1048,6 +1048,7 @@ visible = false
 
 [node name="Haze" parent="." unique_id=1740775702 instance=ExtResource("6_x1b5c")]
 unique_name_in_owner = true
+visible = false
 
 [node name="Camera" parent="." unique_id=1429311501 node_paths=PackedStringArray("mainland") instance=ExtResource("9_cugl8")]
 position = Vector2(668, 388)

@@ -7,7 +7,6 @@ uniform float dash_length : hint_range(0.0, 2.0) = 0.2;
 uniform float dash_glow : hint_range(0.0, 0.02) = 0.005;
 
 // --- Дополнительные перпендикулярные чёрточки (кресты) ---
-// Битовая маска: бит i = 1 → радиальная чёрточка для i-го луча включена.
 uniform int dash_cross_mask : hint_range(0, 65535) = 0;
 uniform float dash_cross_glow : hint_range(0.0, 0.02) = 0.005;
 
@@ -28,17 +27,23 @@ uniform float outer_circle_glow : hint_range(0.0, 0.02) = 0.005;
 uniform float vertex_dot_glow : hint_range(0.0, 0.02) = 0.004;
 uniform float vertex_ring_glow : hint_range(0.0, 0.02) = 0.008;
 
-// --- Засечки на внешнем кольце (свечение) ---
+// --- Засечки на внешнем кольце ---
 uniform float hatch_glow : hint_range(0.0, 0.02) = 0.002;
 
-// --- Заливка вершин многоугольника ---
-// Битовая маска: бит i = 1 → вершина i залита.
+// --- Заливка вершин ---
 uniform int vertex_fill_mask : hint_range(0, 65535) = 0;
 uniform float vertex_fill_radius : hint_range(0.0, 0.2) = 0.05;
 uniform float vertex_fill_glow : hint_range(0.0, 0.02) = 0.003;
 
-// --- Край текстуры (круговая маска) ---
+// --- Край текстуры ---
 uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+// --- Фон (плазма) ---
+uniform float bg_speed : hint_range(0.0, 5.0) = 1.0;
+uniform float bg_intensity : hint_range(0.0, 2.0) = 1.0;
+uniform float line_cover : hint_range(0.5, 8.0) = 3.0;
+// Мягкость обрезки плазмы по радиусу кольца (в UV-единицах).
+uniform float bg_clip_softness : hint_range(0.0, 0.2) = 0.02;
 
 vec2 rot2(vec2 p, float rad) {
 	float c = cos(rad);
@@ -50,7 +55,6 @@ vec2 scale2(vec2 p, float r) {
 	return p * r;
 }
 
-// Универсальная проверка бита в маске (до 31 бита).
 bool bit_on(int mask, int i) {
 	return ((mask >> i) & 1) == 1;
 }
@@ -86,7 +90,6 @@ float radiation(float pre, vec2 p, float r1, float r2, int num, float power) {
 	return clamp(pre + res, 0.0, 1.0);
 }
 
-// Сплошной закрашенный круг: внутри радиуса — единица, снаружи — свечение.
 float disk(float pre, vec2 p, float r, float power) {
 	float d = length(p) - r;
 	if (d < 0.0) return 1.0;
@@ -99,7 +102,7 @@ vec3 calc(vec2 p) {
 	float pulse = 1.0 + pulse_amount * sin(PI * pulse_speed * TIME);
 	p = scale2(p, pulse);
 
-	// Внешнее кольцо + мелкая внешняя штриховка (ровно 2 засечки между вершинами)
+	// Внешнее кольцо + штриховка
 	{
 		vec2 q = p;
 		q = rot2(q, T * PI / 6.0);
@@ -111,20 +114,18 @@ vec3 calc(vec2 p) {
 		int n = vertex_circle_count;
 		if (n > 0) {
 			float step_ang = 2.0 * PI / float(n);
-			float base = step_ang * 0.5;      // угол первой вершины
-			float third = step_ang / 3.0;     // треть дуги между вершинами
+			float base = step_ang * 0.5;
+			float third = step_ang / 3.0;
 
-			// Первая засечка — на 1/3 дуги между вершинами
 			vec2 q1 = rot2(q, -(base + third));
 			dst = radiation(dst, q1, r_in, r_out, n, hatch_glow);
 
-			// Вторая засечка — на 2/3 дуги между вершинами
 			vec2 q2 = rot2(q, -(base + 2.0 * third));
 			dst = radiation(dst, q2, r_in, r_out, n, hatch_glow);
 		}
 	}
 
-	// Звёздчатый многоугольник {n/star_step}
+	// Звёздчатый многоугольник
 	{
 		vec2 q = p;
 		q = rot2(q, T * PI / 6.0);
@@ -141,7 +142,7 @@ vec3 calc(vec2 p) {
 		}
 	}
 
-	// Внешние круги — вершины многоугольника
+	// Вершины
 	{
 		vec2 q = p;
 		q = rot2(q, T * PI / 6.0);
@@ -161,7 +162,7 @@ vec3 calc(vec2 p) {
 		}
 	}
 
-	// Центральные чёрточки: перпендикулярные всегда, радиальные — по биту маски
+	// Центральные чёрточки
 	{
 		vec2 q = p;
 		q = rot2(q, T * PI / 6.0);
@@ -176,14 +177,12 @@ vec3 calc(vec2 p) {
 			for (int i = 0; i < 16; i++) {
 				if (i >= dash_count) break;
 
-				// Перпендикулярная чёрточка — всегда видна
 				{
 					vec2 a = vec2(-hl, rm);
 					vec2 b = vec2( hl, rm);
 					dst = segment(dst, rq, a, b, dash_cross_glow);
 				}
 
-				// Радиальная чёрточка — только когда бит i установлен
 				if (bit_on(dash_cross_mask, i)) {
 					vec2 a = vec2(0.0, r1);
 					vec2 b = vec2(0.0, r2);
@@ -195,7 +194,44 @@ vec3 calc(vec2 p) {
 		}
 	}
 
+	// Изначальный цвет узора (жёлто-белый) — НЕ меняем.
 	return pow(dst, 2.5) * vec3(1.0, 0.95, 0.8);
+}
+
+// === Плазма из шейдера 2 с полной инверсией (бело-голубой градиент) ===
+vec3 plasma_background(vec2 I, vec2 iResolution) {
+	float t = TIME * bg_speed;
+	vec4  O = vec4(0.0);
+	float z = 0.0;
+	float d = 0.0;
+
+	for (int i = 0; i < 100; i++) {
+		vec3 p = z * normalize(vec3(I + I, 0.0) - iResolution.xyy);
+
+		vec4 c = cos((z + t) * 0.1 + vec4(0.0, 33.0, 11.0, 0.0));
+		p.xy *= mat2(c.xy, c.zw);
+		p.z -= 5.0 * t;
+
+		{
+			float k = 1.0;
+			while (k < 9.0) {
+				p += cos(p.yzx * k + t) / k;
+				k /= 0.7;
+			}
+		}
+
+		d = 0.02 + abs(2.0 - dot(cos(p), sin(p.yzx * 0.6))) / 8.0;
+		z += d;
+
+		O += vec4(1.2, 1.0, 0.2, 1.0) * (z / 7.0) / d;
+	}
+
+	O = tanh(O * O / 1e7);
+
+	// ★ Полная инверсия, как в оригинале шейдера 2 → жёлтый превращается в синий.
+	O.rgb = vec3(1.0) - O.rgb;
+
+	return O.rgb;
 }
 
 void fragment() {
@@ -203,14 +239,32 @@ void fragment() {
 	vec2 frag = UV * res;
 	vec2 uv = (res - frag * 2.0) / min(res.x, res.y);
 
-	// Круглая маска: всё, что дальше радиуса 1 от центра, — прозрачно.
+	// Круглая маска (как было): вне радиуса 1.0 — прозрачно.
 	float r = length(uv);
 	float fade = 1.0 - smoothstep(1.0 - edge_fade, 1.0, r);
 
 	if (fade <= 0.0) {
-		COLOR = vec4(0.0);        // за пределами круга — полностью прозрачно
+		COLOR = vec4(0.0);
 	} else {
 		vec3 col = calc(uv);
-		COLOR = vec4(col, fade);  // цвет НЕ умножаем — иначе свечение гаснет дважды
+
+		// ★ Маска плазмы: обрезаем по внешнему краю кольца.
+		//   Учитываем pulse, т.к. calc() умножает координату на pulse.
+		float pulse = 1.0 + pulse_amount * sin(PI * pulse_speed * TIME);
+		float ringR_uv = (outer_circle_radius + outer_circle_thickness * 0.5) / pulse;
+		float soft = max(bg_clip_softness, 1e-4);
+		float plasmaMask = 1.0 - smoothstep(ringR_uv - soft, ringR_uv + soft, r);
+
+		// Плазма видна только внутри кольца. Снаружи — 0 (прозрачно),
+		// поэтому сияние самого кольца (col) уходит за радиус без изменений.
+		vec2 iRes = 1.0 / SCREEN_PIXEL_SIZE;
+		vec3 bg = plasma_background(FRAGCOORD.xy, iRes) * bg_intensity * plasmaMask;
+
+		// Композитинг: где узор светится — его собственный цвет,
+		// где пусто — бело-голубая плазма (внутри) или прозрачность (снаружи).
+		float cover = clamp(max(max(col.r, col.g), col.b) * line_cover, 0.0, 1.0);
+		vec3 finalCol = mix(bg, col, cover);
+
+		COLOR = vec4(finalCol, fade);
 	}
 }

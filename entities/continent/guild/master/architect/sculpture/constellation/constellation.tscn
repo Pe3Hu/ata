@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://brpp3try7ww8m"]
+
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="1_prau4"]
+[ext_resource type="Script" uid="uid://b8exslgnumlxn" path="res://entities/continent/guild/master/architect/sculpture/constellation/constellation.gd" id="1_qx6xi"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="1_x1e8c"]
+[ext_resource type="Texture2D" uid="uid://dmb7tyyhcdpg7" path="res://entities/continent/guild/master/architect/sculpture/constellation/images/prepared.png" id="3_qx6xi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndwu4"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
+shader = ExtResource("1_x1e8c")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_gk4o0"]
+resource_local_to_scene = true
+font = ExtResource("1_prau4")
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_uyv0h"]
+resource_local_to_scene = true
+grow_begin = 4.0
+grow_end = 4.0
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hvtkq"]
+resource_local_to_scene = true
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pd4q"]
+
+[node name="Constellation" type="PanelContainer" unique_id=1708221837]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -36.0
+offset_right = 91.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndwu4")
+script = ExtResource("1_qx6xi")
+
+[node name="Stars" type="HBoxContainer" parent="." unique_id=1865687884]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ExternalContainer" type="PanelContainer" parent="Stars" unique_id=2107141710]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="ExternalBody" type="ColorRect" parent="Stars/ExternalContainer" unique_id=288248658]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 2
+
+[node name="ExternalHBox" type="HBoxContainer" parent="Stars/ExternalContainer" unique_id=1862983221]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ExternalVolume" type="Label" parent="Stars/ExternalContainer/ExternalHBox" unique_id=1337092909]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Stars/ExternalContainer/ExternalHBox" unique_id=1371446021]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_uyv0h")
+
+[node name="ExternalAmount" type="Label" parent="Stars/ExternalContainer/ExternalHBox" unique_id=1844593352]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "0/0"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Stars" unique_id=395215262]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_hvtkq")
+
+[node name="InternalPanel" type="PanelContainer" parent="Stars" unique_id=490746623]
+custom_minimum_size = Vector2(106, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+
+[node name="InternalBody" type="ColorRect" parent="Stars/InternalPanel" unique_id=1198220181]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 2
+
+[node name="InternalVBox" type="HBoxContainer" parent="Stars/InternalPanel" unique_id=812755694]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InternalVolume" type="Label" parent="Stars/InternalPanel/InternalVBox" unique_id=659583282]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "1"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Stars/InternalPanel/InternalVBox" unique_id=1958824512]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_uyv0h")
+
+[node name="InternalAmount" type="Label" parent="Stars/InternalPanel/InternalVBox" unique_id=1741786782]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "0/0"
+label_settings = SubResource("LabelSettings_gk4o0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Stars" unique_id=406868471]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_hvtkq")
+
+[node name="StatuslPanel" type="PanelContainer" parent="Stars" unique_id=1076000251]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8pd4q")
+
+[node name="StatusBody" type="ColorRect" parent="Stars/StatuslPanel" unique_id=608262709]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_lxk3t")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="StatusBorder" type="TextureRect" parent="Stars/StatuslPanel" unique_id=2057747679]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_qx6xi")
