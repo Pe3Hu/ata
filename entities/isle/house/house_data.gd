@@ -57,39 +57,39 @@ func update_room_ere() -> void:
 
 func reset() -> void:
 	for room in rooms:
-		room.stamps.clear()
+		room.echos.clear()
 #endregion
 
 #region refill
 func refill_parlor() -> void:
-	if attic.stamps.is_empty():
+	if attic.echos.is_empty():
 		attic.ere.clear()
-		attic.stamps.shuffle()
+		attic.echos.shuffle()
 	
 	var n = min(get_remaining_amount(), Catalog.GYRE_PARLOR_STAMP_SIZE)
 	
-	while parlor.stamps.size() < n:
-		attic.transfer_stamp()
+	while parlor.echos.size() < n:
+		attic.transfer_echo()
 
 func direct_refill_bedroom() -> void:
-	if attic.stamps.is_empty():
+	if attic.echos.is_empty():
 		attic.ere.clear()
-		attic.stamps.shuffle()
+		attic.echos.shuffle()
 	
 	var n = min(get_remaining_amount(), Catalog.GYRE_BEDROOM_STAMP_SIZE)
 	
-	while parlor.stamps.size() < n:
-		attic.transfer_stamp()
+	while parlor.echos.size() < n:
+		attic.transfer_echo()
 	
-	while bedroom.stamps.size() < n:
-		parlor.transfer_stamp()
+	while bedroom.echos.size() < n:
+		parlor.transfer_echo()
 
 func get_remaining_amount() -> int:
-	return attic.stamps.size() + cellar.stamps.size() + parlor.stamps.size()
+	return attic.echos.size() + cellar.echos.size() + parlor.echos.size()
 #endregion
 
 func _on_punishment_phase_end() -> void:
 	parlor.cards_reseted.emit()
 	kitchen.cards_reseted.emit()
 	bedroom.cards_reseted.emit()
-	Mother.odeum.locked_stamps.clear()
+	Mother.odeum.locked_echos.clear()

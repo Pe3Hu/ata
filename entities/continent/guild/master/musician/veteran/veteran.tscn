@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://tp2nxw2xocbo" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.tscn" id="1_j4bt2"]
 [ext_resource type="Script" uid="uid://bcuu7a58f80su" path="res://entities/continent/guild/master/musician/veteran/veteran.gd" id="1_vl728"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_haonb"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="4_s74a7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_haonb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s74a7"]
 resource_local_to_scene = true
 shader = ExtResource("2_haonb")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -14,15 +15,28 @@ shader_parameter/discomode = false
 shader_parameter/speed = 0.2
 shader_parameter/scale = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s74a7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asu7f"]
 resource_local_to_scene = true
 bg_color = Color(0, 0.7529412, 0.47058824, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jutvl"]
+resource_local_to_scene = true
+font = ExtResource("4_s74a7")
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Veteran" unique_id=1199540049 instance=ExtResource("1_j4bt2")]
 script = ExtResource("1_vl728")
 
-[node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_haonb")
+[node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
+material = SubResource("ShaderMaterial_s74a7")
 
 [node name="Top" parent="HBoxContainer/VBox/RankPanel/MarginContainer" parent_id_path=PackedInt32Array(1785433385) index="0" unique_id=855599644]
-theme_override_styles/panel = SubResource("StyleBoxFlat_s74a7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_asu7f")
+
+[node name="RecruitName" parent="HBoxContainer/VBox/RankPanel/MarginContainer/Top" index="1" unique_id=1155105584]
+label_settings = SubResource("LabelSettings_jutvl")
+
+[node name="HBoxContainer" parent="HBoxContainer/VBox/RankPanel/MarginContainer" parent_id_path=PackedInt32Array(1785433385) index="1" unique_id=1170901622]
+visible = false

@@ -8,12 +8,12 @@ var master: MasterData
 var agent: AgentData = null
 var tributes: Array[TributeData]
 
-var rank: int
+var order: int
 
 
-func _init(master_: MasterData, rank_: int) -> void:
+func _init(master_: MasterData, order_: int) -> void:
 	master = master_
-	rank = rank_
+	order = order_
 	
 	agent = AgentData.new(self)
 	master.tasks.append(self)
@@ -22,7 +22,7 @@ func _init(master_: MasterData, rank_: int) -> void:
 	is_finished.connect(_on_finished)
 
 func init_tributes() -> void:
-	var price = Digest.master_to_price[master.type] * (rank + 1)
+	var price = Digest.master_to_price[master.type] * (order + 1)
 	var volumes = Digest.master_to_volumes[master.type]
 	tributes = [TributeData.new(price, volumes)]
 

@@ -22,10 +22,10 @@ func _on_button_pressed() -> void:
 	if agent == null or agent.data == null: return
 	if agent.data.workload.current_progress > 0: return
 
-	if agent.preview_origin != null and agent.preview_origin.task == agent.data.task:
+	if agent.preview_soul != null and agent.preview_soul.task == agent.data.task:
 		agent.data.unassign()
 	else:
-		agent.data.assign(agent.preview_origin)
+		agent.data.assign(agent.preview_soul)
 
 	agent.update_view()
 	update_textures()
@@ -35,7 +35,7 @@ func update_textures() -> void:
 		_apply(false)
 		return
 	
-	_apply(agent.preview_origin != null and agent.preview_origin.task == agent.data.task)
+	_apply(agent.preview_soul != null and agent.preview_soul.task == agent.data.task)
 
 func update_visible() -> void:
 	visible = Mother.mainland.route.is_calendar()

@@ -21,8 +21,8 @@ func _init(cave_: CaveData) -> void:
 func init_veins() -> void:
 	volume_to_weight.clear()
 	
-	for volume in Digest.matter_to_rank_to_volume_to_percent[matter][cave.rank]:
-		var percent = Digest.matter_to_rank_to_volume_to_percent[matter][cave.rank][volume]
+	for volume in Digest.matter_to_order_to_volume_to_percent[matter][cave.order]:
+		var percent = Digest.matter_to_order_to_volume_to_percent[matter][cave.order][volume]
 		VeinData.new(self, volume, percent)
 		volume_to_weight[volume] = int(percent / 5)
 
@@ -37,7 +37,7 @@ func reset_spoils() -> void:
 
 func fill_spoils() -> void:
 	reset_spoils()
-	var total_spoil_amount: int = Digest.master_to_price[cave.master.type] * (cave.rank + 1) * Catalog.MINER_SPOIL_FACTOR
+	var total_spoil_amount: int = Digest.master_to_price[cave.master.type] * (cave.order + 1) * Catalog.MINER_SPOIL_FACTOR
 	var volume_to_index: Dictionary
 	
 	for _i in veins.size():

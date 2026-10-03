@@ -2,7 +2,7 @@ class_name BarkeeperData
 extends MasterData
 
 
-var origins: Array[OriginData]
+var souls: Array[SoulData]
 
 var alphabet: Array
 var recruiment_matters: Array[Bozo.Matter]
@@ -13,7 +13,7 @@ var name_letter: String = ''
 
 func _init(guild_: GuildData, type_: Bozo.Master) -> void:
 	refill_alphabet()
-	init_default_origins()
+	init_default_souls()
 	super._init(guild_, type_)
 
 func init_static_tasks() -> void:
@@ -36,27 +36,34 @@ func add_recruit(intro_sum_: int = 40, talent_: int = 0, matter_: Variant = null
 	
 	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter_].pick_random()
 	var verse = load("res://entities/dice/datas/verse/0.tres")
-	var origin = OriginData.new(self, matter_, intro, verse, talent_, name_)
-	RecruitData.new(self, 0, origin)
+	var soul = SoulData.new(self, matter_, intro, verse, talent_, name_)
+	RecruitData.new(self, 0, soul)
 
-func init_default_origins() -> void:
-	origins.clear()
+func init_default_souls() -> void:
+	souls.clear()
 	var n = 3
 	
 	for _i in n:
 		recruiment_phase()
 	
-	Mother.house.attic.stamps.shuffle()
+	Mother.house.attic.echos.shuffle()
 
 func refill_alphabet() -> void:
 	if not alphabet.is_empty(): return
-	var l = floori(float(origins.size()) / 26) + 1
+	var l = floori(float(souls.size()) / 26) + 1
 	alphabet = range(26).map(func(a): return char(90 - a).repeat(l))
 	alphabet = alphabet.filter(func (a): return not Catalog.vowels.has(a))
 	alphabet.shuffle()
 #endregion
 
-func recruiment_phase() -> void:
+func recruiment_phase(soul_: SoulData = null) -> void:
+	if soul_:
+		if not souls.has(soul_):
+			souls.append(soul_)
+		else:
+			pass
+		return
+	
 	if recruiment_matters.is_empty():
 		recruiment_matters.append_array(Catalog.matters)
 		recruiment_matters.shuffle()
@@ -67,8 +74,8 @@ func recruiment_phase() -> void:
 	var verse_index = Digest.matter_to_verse[matter].pick_random()
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 	var talent = Catalog.DEFAULT_RECRUIT_TALENT
-	var origin = OriginData.new(self, matter, intro, verse, talent)
-	origins.append(origin)
+	var soul = SoulData.new(self, matter, intro, verse, talent)
+	souls.append(soul)
 
 func roll_name() -> String:
 	if name_letter == '':
@@ -77,11 +84,12 @@ func roll_name() -> String:
 	var options = Helper.get_random_names(name_letter)
 	var pantheons = options.keys()
 	var pantheon = pantheons.pick_random()
+	name_letter = ''
 	return options[pantheon]
 
 func get_names() -> Array[String]:
-	name_letter = alphabet.pick_random()
-	var options = Helper.get_random_names(name_letter)
+	var letter = alphabet.pick_random()
+	var options = Helper.get_random_names(letter)
 	var names := []
 	
 	for pantheon in options:

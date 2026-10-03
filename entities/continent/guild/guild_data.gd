@@ -38,7 +38,7 @@ func set_current_master(type_: Bozo.Master):
 	if current_master:
 		match current_master.type:
 			Bozo.Master.SCOUT:
-				if current_master.current_task.agent.origin == null:
+				if current_master.current_task.agent.soul == null:
 					Mother.mainland.beam.reset()
 			Bozo.Master.MINER:
 				current_master.tasks.clear()

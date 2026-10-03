@@ -30,10 +30,12 @@ func init_dinamic_tasks() -> void:
 	if guild.structure.type != Digest.master_to_structure[type]: return
 	
 	var has_locked := false
-	for t in tasks:
-		if t.agent != null:
-			has_locked = true
-			break
+	
+	if type != Bozo.Master.MUSICIAN:
+		for task in tasks:
+			if task.agent != null:
+				has_locked = true
+				break
 
 	if not has_locked:
 		tasks.clear()

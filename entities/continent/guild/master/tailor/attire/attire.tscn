@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_bo8wx"]
 [ext_resource type="PackedScene" uid="uid://dnoe0hc5lh1mu" path="res://entities/continent/guild/tribute/quotum/quotum.tscn" id="6_0oqao"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oea2q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bo8wx"]
 resource_local_to_scene = true
 shader = ExtResource("2_todx3")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -21,8 +21,8 @@ shader_parameter/scale = 1.0
 [node name="Attire" unique_id=1199540049 instance=ExtResource("1_t4of4")]
 script = ExtResource("2_oea2q")
 
-[node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_oea2q")
+[node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
+material = SubResource("ShaderMaterial_bo8wx")
 
 [node name="Spoil" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=844251538 instance=ExtResource("4_bo8wx")]
 unique_name_in_owner = true

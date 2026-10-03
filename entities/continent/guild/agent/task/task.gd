@@ -19,7 +19,7 @@ func connect_signals() -> void:
 		
 		_on_quotum_changed()
 	
-	update_rank_textures()
+	update_order_textures()
 
 func _on_task_changed() -> void:
 	data = data.master.current_task
@@ -27,10 +27,10 @@ func _on_task_changed() -> void:
 
 func _on_quotum_changed() -> void:
 	%Quotum.data = data.tributes.front().current_quotum
-	update_rank_textures()
+	update_order_textures()
 	update_colors()
 
-func update_rank_textures() -> void:
+func update_order_textures() -> void:
 	if Catalog.noicon_masters.has(data.master.type): return
 	var matters: Array
 	
@@ -43,11 +43,11 @@ func update_rank_textures() -> void:
 	if matters.is_empty():
 		matters = [data.tributes.front().current_quotum.shard.matter]
 	
-	Helper.update_matter_colors(%RankBody, matters)
+	Helper.update_matter_colors(%OrderBody, matters)
 	var master_str = Bozo.enum_to_string(Bozo.Type.MASTER, data.master.type)
 	var task_str = Digest.master_to_task[data.master.type]
-	%RankBody.texture = load('res://entities/continent/guild/master/%s/%s/images/%d/body.png' % [master_str, task_str, data.rank])
-	%RankBorder.texture = load('res://entities/continent/guild/master/%s/%s/images/%d/border.png' % [master_str, task_str, data.rank])
+	%OrderBody.texture = load('res://entities/continent/guild/master/%s/%s/images/%d/body.png' % [master_str, task_str, data.order])
+	%OrderBorder.texture = load('res://entities/continent/guild/master/%s/%s/images/%d/border.png' % [master_str, task_str, data.order])
 
 func update_colors() -> void:
 	pass
@@ -59,9 +59,9 @@ func _on_previous_quotum_button_pressed() -> void:
 func _on_next_quotum_button_pressed() -> void:
 	data.tributes.front().changed_quotum(1)
 
-func _on_previous_rank_button_pressed() -> void:
+func _on_previous_order_button_pressed() -> void:
 	data.master.changed_task(-1)
 
-func _on_next_rank_button_pressed() -> void:
+func _on_next_order_button_pressed() -> void:
 	data.master.changed_task(1)
 #endregion

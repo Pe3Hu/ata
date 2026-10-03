@@ -209,7 +209,7 @@ const volume_to_coord = {
 	32: Vector2i(2, 0)
 }
 
-const rank_to_matter_to_matter_to_vesre = {
+const order_to_matter_to_matter_to_vesre = {
 	0: {
 		Bozo.Matter.GAS: {
 			Bozo.Matter.LIQUID: 35,
@@ -255,7 +255,7 @@ const rank_to_matter_to_matter_to_vesre = {
 }
 #endregion
 
-#region grade
+#region intro
 const sum_to_index = {
 	20: 11,
 	30: 20,
@@ -268,11 +268,11 @@ const sum_to_index = {
 	100: 9
 }
 
-const sum_to_grades = {
-	20: [1, 2],#[0, 1, 2],
-	30: [2, 3],#[1, 2, 3, 4],#[1, 2, 3],
-	40: [3, 4]#[2, 3, 4],
-}
+#const sum_to_grades = {
+	#20: [1, 2],#[0, 1, 2],
+	#30: [2, 3],#[1, 2, 3, 4],#[1, 2, 3],
+	#40: [3, 4]#[2, 3, 4],
+#}
 #endregion
 
 #region stamp
@@ -956,7 +956,7 @@ const master_to_volumes = {
 	Bozo.Master.SCOUT: [4, 8, 32],
 }
 
-const master_to_rank = {
+const master_to_order = {
 	Bozo.Master.BLACKSMITH: 3,
 	Bozo.Master.MUSICIAN: 6,
 	Bozo.Master.ARCHITECT: 6,
@@ -1013,7 +1013,7 @@ const matter_to_matter_to_volume = {
 	},
 }
 
-const matter_to_rank_to_volume_to_percent = {
+const matter_to_order_to_volume_to_percent = {
 	Bozo.Matter.GAS: {
 		0: {
 			2: 30,
@@ -1075,44 +1075,44 @@ const matter_to_rank_to_volume_to_percent = {
 	}
 }
 
-const rank_to_avg = {
+const order_to_avg = {
 	0: 8,
 	1: 13,
 	2: 20
 }
 
-const intro_to_talent_to_grade = {
+const intro_to_talent_to_rank = {
 	20: {
-		2: Bozo.Grade.B
+		2: Bozo.Rank.B
 	},
 	30: {
-		1: Bozo.Grade.C
+		1: Bozo.Rank.C
 	},
 	40: {
-		0: Bozo.Grade.F
+		0: Bozo.Rank.F
 	},
 	50: {
-		0: Bozo.Grade.E,
-		1: Bozo.Grade.B,
-		2: Bozo.Grade.A
+		0: Bozo.Rank.E,
+		1: Bozo.Rank.B,
+		2: Bozo.Rank.A
 	},
 	60: {
-		0: Bozo.Grade.D
+		0: Bozo.Rank.D
 	},
 	70: {
-		0: Bozo.Grade.C,
-		1: Bozo.Grade.A
+		0: Bozo.Rank.C,
+		1: Bozo.Rank.A
 	},
 	80: {
-		0: Bozo.Grade.B,
-		2: Bozo.Grade.S
+		0: Bozo.Rank.B,
+		2: Bozo.Rank.S
 	},
 	90: {
-		0: Bozo.Grade.A,
-		1: Bozo.Grade.S
+		0: Bozo.Rank.A,
+		1: Bozo.Rank.S
 	},
 	100: {
-		0: Bozo.Grade.S
+		0: Bozo.Rank.S
 	}
 }
 

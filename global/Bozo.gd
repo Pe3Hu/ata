@@ -182,7 +182,7 @@ enum Master {
 	SCOUT = 101,
 }
 
-enum Grade {
+enum Rank {
 	NONE = 0,
 	F = 102,
 	E = 103,
@@ -277,7 +277,7 @@ enum Type {
 	METHOD = -17,
 	STRUCTURE = -20,
 	MASTER = -21,
-	GRADE = -22,
+	RANK = -22,
 	PANTHEON = -23,
 	GOD = -24,
 	
@@ -305,7 +305,7 @@ const type_to_index = {
 	Type.METHOD: 68,
 	Type.STRUCTURE: 80,
 	Type.MASTER: 91,
-	Type.GRADE: 102,
+	Type.RANK: 102,
 	Type.PANTHEON: 126,
 	Type.GOD: 132,
 	
@@ -329,7 +329,7 @@ const type_to_enum = {
 	Type.METHOD: Bozo.Method,
 	Type.STRUCTURE: Bozo.Structure,
 	Type.MASTER: Bozo.Master,
-	Type.GRADE: Bozo.Grade,
+	Type.RANK: Bozo.Rank,
 	Type.PANTHEON: Bozo.Pantheon,
 	Type.GOD: Bozo.God,
 	

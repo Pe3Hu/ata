@@ -13,8 +13,8 @@ var current_spoil: SpoilData:
 
 
 #region init
-func _init(master_: MasterData, rank_: int) -> void:
-	super._init(master_, rank_)
+func _init(master_: MasterData, order_: int) -> void:
+	super._init(master_, order_)
 	init_spoils()
 
 func init_tributes() -> void:
@@ -25,7 +25,7 @@ func init_tributes() -> void:
 	
 	for matter in matters:
 		var volumes = [volume]
-		var price = volume * (rank * 2 + 1)
+		var price = volume * (order * 2 + 1)
 		var _tribute = TributeData.new(price, volumes)
 		tributes.append(_tribute)
 		_tribute.quotums = _tribute.quotums.filter(func (a): return a.shard.matter == matter)
@@ -36,7 +36,7 @@ func init_spoils() -> void:
 	spoils.clear()
 	var matters = master.guild.structure.matters
 	var volume = Digest.matter_to_matter_to_volume[matters.front()][matters.back()] * 2
-	var amount = rank * 2 + 1
+	var amount = order * 2 + 1
 	
 	for matter in matters:
 		var spoil = SpoilData.new(matter, volume, amount)

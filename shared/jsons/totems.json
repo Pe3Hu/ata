@@ -1,0 +1,16 @@
+{
+  "Ammit": ["Crocodile", "Hippo", "Lion"],
+  "Chimera": ["Lion", "Sheep", "Viper"],
+  "Nue": ["Monkey", "Tiger", "Viper"],
+  "Leviathan": ["Crocodile", "Hippo", "Narwhal"],
+  "Yeti": ["Gorilla", "Sheep", "Yak"],
+  "Pegasus": ["Deer", "Quetzal", "Zebra"],
+  "Phoenix": ["Parrot", "Quetzal", "Xeme"],
+  "Cerberus": ["Fox", "Jackal", "Wolf"],
+  "Kitsune": ["Fox", "Jackal", "Wolf"],
+  "Unicorn": ["Kudu", "Narwhal", "Zebra"],
+  "Qilin": ["Deer", "Kudu", "Rhino"],
+  "Minotaur": ["Bison", "Gorilla", "Yak"],
+  "Harpy": ["Monkey", "Parrot", "Xeme"],
+  "Baku": ["Bison", "Rhino", "Tiger"]
+}

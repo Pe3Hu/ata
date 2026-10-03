@@ -3,40 +3,40 @@ extends RefCounted
 
 
 var arsenal: ArsenalData
-var stamps: Array[StampData]
+var echos: Array[EchoData]
 
-var new_stamp: StampData
+var new_echo: EchoData
 
 
 #region init
-func _init(arsenal_: ArsenalData, stamps_: Array) -> void:
+func _init(arsenal_: ArsenalData, echos_: Array) -> void:
 	arsenal = arsenal_
-	stamps.append_array(stamps_)
+	echos.append_array(echos_)
 	
 	arsenal.anvils.append(self)
-	init_new_stamp()
+	init_new_echo()
 
-func init_new_stamp() -> void:
+func init_new_echo() -> void:
 	var intro_values: Array[int]
 	var verse_values: Array[int]
 	var letters = []
 	
-	for stamp in stamps:
-		for stake in stamp.tune_to_stakes[Bozo.Tune.INTRO]:
+	for echo in echos:
+		for stake in echo.tune_to_stakes[Bozo.Tune.INTRO]:
 			intro_values.append(stake.value)
 		
-		for stake in stamp.tune_to_stakes[Bozo.Tune.VERSE]:
+		for stake in echo.tune_to_stakes[Bozo.Tune.VERSE]:
 			verse_values.append(stake.value)
 		
-		for letter in stamp.mark_digits.split(""):
+		for letter in echo.mark_digits.split(""):
 			if not letters.has(letter):
 				letters.append(letter)
 	
 	intro_values.sort()
 	intro_values.reverse()
 	
-	var origin = stamps.front().origin
-	new_stamp = StampData.new(origin, intro_values, verse_values)
+	var origin = echos.front().origin
+	new_echo = EchoData.new(origin, intro_values, verse_values)
 	
 	letters.sort()
 	var str_mark = ""
@@ -44,16 +44,16 @@ func init_new_stamp() -> void:
 	for mark in letters:
 		str_mark += mark
 	
-	new_stamp.mark_digits = str_mark
+	new_echo.mark_digits = str_mark
 #endregion
 
 func fusion() -> void:
-	var origin = stamps.front().origin
+	var origin = echos.front().origin
 	
-	for stamp in stamps:
-		origin.stamps.erase(stamp)
-		origin.atheneum.house.cellar.stamps.erase(stamp)
+	for echo in echos:
+		origin.echos.erase(echo)
+		origin.atheneum.house.cellar.echos.erase(echo)
 	
-	origin.stamps.append(new_stamp)
-	origin.atheneum.house.cellar.stamps.append(new_stamp)
+	origin.echos.append(new_echo)
+	origin.atheneum.house.cellar.echos.append(new_echo)
 	Arbitrator.current_phase.exit_phase()

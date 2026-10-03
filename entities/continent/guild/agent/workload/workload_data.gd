@@ -30,7 +30,7 @@ func _init(agent_: AgentData) -> void:
 	calc_progress()
 
 func calc_progress() -> void:
-	limit_progress = Digest.master_to_workloads[agent.task.master.type][agent.task.rank] * Catalog.AVG_HOUR_PROGRESS
+	limit_progress = Digest.master_to_workloads[agent.task.master.type][agent.task.order] * Catalog.AVG_HOUR_PROGRESS
 	#current_progress = 0
 
 func update_overtime() -> void:

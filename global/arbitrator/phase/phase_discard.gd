@@ -8,22 +8,22 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	update_forge_stamps()
+	update_forge_echos()
 	
-	if Arbitrator.faction.atheneum.house.kitchen.stamps.is_empty():
+	if Arbitrator.faction.atheneum.house.kitchen.echos.is_empty():
 		exit_phase()
 	else: 
 		Arbitrator.faction.atheneum.house.kitchen.clear()
 		Arbitrator.faction.atheneum.house.discard_phase.emit()
 
-func update_forge_stamps() -> void:
-	var forge_stamps: Array[StampData] 
+func update_forge_echos() -> void:
+	var forge_echos: Array[EchoData] 
 	
-	#for stamp in Arbitrator.faction.atheneum.house.kitchen.stamps:
-		#forge_stamps.append(stamp)
-	forge_stamps.append_array(Arbitrator.faction.atheneum.house.kitchen.stamps)
+	#for echo in Arbitrator.faction.atheneum.house.kitchen.echos:
+		#forge_echos.append(echo)
+	forge_echos.append_array(Arbitrator.faction.atheneum.house.kitchen.echos)
 	
-	Arbitrator.faction.policy.isle.forge.stamps = forge_stamps
+	Arbitrator.faction.policy.isle.forge.echos = forge_echos
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

@@ -3,16 +3,9 @@ extends RecruitData
 
 
 
-#func _init(master_: MasterData, origin_: OriginData) -> void:
-	#master = master_
-	#origin = origin_
-	#
-	#init_silhouettes()
-	#init_tribute()
-
 func init_tributes() -> void:
-	rank = Catalog.grades.find(origin.grade) + 1
-	var price = Digest.master_to_price[master.type] * rank
+	order = Catalog.ranks.find(soul.rank) + 1
+	var price = Digest.master_to_price[master.type] * order
 	var volumes = Digest.master_to_volumes[master.type]
 	var tribute = TributeData.new(price, volumes)
 	
@@ -22,3 +15,12 @@ func init_tributes() -> void:
 		tribute.current_quotum = tribute.quotums.front()
 	
 	tributes = [tribute]
+
+func _on_finished() -> void:
+	ascension()
+	super._on_finished()
+
+func ascension() -> void:
+	Mother.guild.barkeeper.souls.erase(agent.soul)
+	Mother.guild.barkeeper.recruiment_phase(soul)
+	restatic()

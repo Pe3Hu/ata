@@ -32,14 +32,14 @@ func _on_shade_changed() -> void:
 	bottom_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
 
 func _on_perished() -> void:
-	card.flip_on_stamp()
+	card.flip_on_echo()
 
 func connect_datas() -> void:
 	top_pressure.data = data.pressure
 	bottom_pressure.data = data.pressure
 
 func update_colors() -> void:
-	var color = Digest.matter_to_color[data.stamp.origin.matter]
+	var color = Digest.matter_to_color[data.echo.soul.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
 	%Top.get_theme_stylebox("panel").bg_color = color
 	%Bottom.get_theme_stylebox("panel").bg_color = color
@@ -90,7 +90,7 @@ func expand_out() -> void:
 	await expand_tween.finished
 	expand_tween.kill()
 	
-	card.flip_on_stamp()
+	card.flip_on_echo()
 #endregion
 
 func process_click() -> void:

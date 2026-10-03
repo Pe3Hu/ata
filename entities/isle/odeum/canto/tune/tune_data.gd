@@ -3,16 +3,16 @@ extends RefCounted
 
 
 var canto: CantoData
-var stamp: StampData
+var echo: EchoData
 var type: Bozo.Tune
 
 var stake: StakeData
 
 
-func _init(canto_: CantoData, stamp_: StampData, type_: Bozo.Tune) -> void:
+func _init(canto_: CantoData, echo_: EchoData, type_: Bozo.Tune) -> void:
 	canto = canto_
-	stamp = stamp_
+	echo = echo_
 	type = type_
 	
-	stake = stamp.get_stake(canto_.joint, Digest.tune_to_stake[type])
+	stake = echo.get_stake(canto_.joint, Digest.tune_to_stake[type])
 	canto.type_to_stake[stake.type] = stake

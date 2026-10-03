@@ -239,3 +239,8 @@ func get_random_names(letter_: String) -> Dictionary:
 		result[culture] = names.pick_random()
 
 	return result
+
+func roll_reincarnation(soul_: SoulData) -> DiceData:
+	var intro_sum = soul_.intro.get_sum()
+	var intro = Digest.sum_to_matter_to_intro[intro_sum][soul_.matter].pick_random()
+	return intro

@@ -3,7 +3,7 @@ extends Resource
 
 
 var odeum: OdeumData
-var chains: Array[StampData]
+var chains: Array[EchoData]
 var room: Bozo.Room
 
 var pulse_weight: int = 0
@@ -11,7 +11,7 @@ var pulse_weight: int = 0
 var hymns: Array[HymnData]
 
 
-func _init(odeum_: OdeumData, chains_: Array[StampData], room_: Bozo.Room) -> void:
+func _init(odeum_: OdeumData, chains_: Array[EchoData], room_: Bozo.Room) -> void:
 	odeum = odeum_
 	chains.append_array(chains_)
 	room = room_

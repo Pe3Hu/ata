@@ -14,9 +14,9 @@ func connect_signals() -> void:
 	update_colors()
 
 func update_name() -> void:
-	%RecruitName.text = data.origin.name
-	%GradeIcon.texture = load('res://entities/isle/house/card/stamp/images/grade/%s.png' % Bozo.enum_to_string(Bozo.Type.GRADE, data.origin.grade))
-	%TalentIcon.texture = load('res://entities/isle/house/card/stamp/images/talent/%d.png' % data.origin.talent)
+	%RecruitName.text = data.soul.name
+	%GradeIcon.texture = load('res://entities/isle/house/card/echo/images/rank/%s.png' % Bozo.enum_to_string(Bozo.Type.RANK, data.soul.rank))
+	%TalentIcon.texture = load('res://entities/isle/house/card/echo/images/talent/%d.png' % data.soul.talent)
 
 func init_silhouettes() -> void:
 	Helper.clear_children(%Silhouettes)
@@ -30,7 +30,7 @@ func add_silhouette(silhouette_data_: SilhouetteData) -> void:
 	silhouette.data = silhouette_data_
 
 func update_colors() -> void:
-	var color = Digest.matter_to_color[data.origin.matter]
+	var color = Digest.matter_to_color[data.soul.matter]
 	%Top.get_theme_stylebox("panel").bg_color = color
 #endregion
 

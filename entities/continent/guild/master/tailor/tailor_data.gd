@@ -3,8 +3,8 @@ extends MasterData
 
 
 func init_tasks() -> void:
-	for rank in Digest.master_to_rank[type]:
-		AttireData.new(self, rank)
+	for order in Digest.master_to_order[type]:
+		AttireData.new(self, order)
 
 func sync_spoil(source_: AttireData) -> void:
 	var matter = source_.current_spoil.shard.matter

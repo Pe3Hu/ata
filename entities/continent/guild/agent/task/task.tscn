@@ -51,7 +51,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 8
 
-[node name="PreviousRankButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=1766449148]
+[node name="PreviousOrderButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=1766449148]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -64,25 +64,25 @@ flip_h = true
 script = ExtResource("3_acj3o")
 metadata/_custom_type_script = "uid://c3ji6eownkceu"
 
-[node name="Rank" type="PanelContainer" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=835826759]
+[node name="Order" type="PanelContainer" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=835826759]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_20b68")
 
-[node name="RankBody" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" unique_id=1569300309]
+[node name="OrderBody" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/HBox/Order" unique_id=1569300309]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_j305n")
 layout_mode = 2
 texture = ExtResource("5_ktrxt")
 
-[node name="RankBorder" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" unique_id=2101966008]
+[node name="OrderBorder" type="TextureRect" parent="HBoxContainer/VBox/RankPanel/HBox/Order" unique_id=2101966008]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("6_qc8je")
 
-[node name="NextRankButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=727919605]
+[node name="NextOrderButton" type="TextureButton" parent="HBoxContainer/VBox/RankPanel/HBox" unique_id=727919605]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -144,7 +144,7 @@ metadata/_custom_type_script = "uid://c3ji6eownkceu"
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/PreviousRankButton" to="." method="_on_previous_rank_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/NextRankButton" to="." method="_on_next_rank_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/PreviousOrderButton" to="." method="_on_previous_order_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBox/RankPanel/HBox/NextOrderButton" to="." method="_on_next_order_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/TributePanel/HBox/PreviousQuotumButton" to="." method="_on_previous_quotum_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/TributePanel/HBox/NextQuotumButton" to="." method="_on_next_quotum_button_pressed"]

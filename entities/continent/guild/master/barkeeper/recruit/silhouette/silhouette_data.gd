@@ -3,11 +3,11 @@ extends RefCounted
 
 
 var recruit: RecruitData
-var stamp: StampData
+var echo: EchoData
 
 
-func _init(recruit_: RecruitData, stamp_: StampData) -> void:
+func _init(recruit_: RecruitData, echo_: EchoData) -> void:
 	recruit = recruit_
-	stamp = stamp_
+	echo = echo_
 	
 	recruit.silhouettes.append(self)

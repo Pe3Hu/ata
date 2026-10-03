@@ -10,7 +10,7 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	
-	if Mother.house.bedroom.stamps.size() < 2:
+	if Mother.house.bedroom.echos.size() < 2:
 		if Arbitrator.current_round > 1:
 			pass
 		Mother.house.direct_refill_bedroom()

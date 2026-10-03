@@ -3,15 +3,15 @@ extends RefCounted
 
 
 var scenario: ScenarioData
-var stamps: Array[StampData]
+var echos: Array[EchoData]
 
 var cantos: Array[CantoData]
 var tune_to_canto: Dictionary
 
 
-func _init(scenario_: ScenarioData, stamps_: Array) -> void:
+func _init(scenario_: ScenarioData, echos_: Array) -> void:
 	scenario = scenario_
-	stamps.append_array(stamps_)
+	echos.append_array(echos_)
 	
 	init_cantos()
 	
@@ -19,8 +19,8 @@ func _init(scenario_: ScenarioData, stamps_: Array) -> void:
 		scenario.hymns.append(self)
 
 func init_cantos() -> void:
-	var first = stamps.front()
-	var second = stamps.back()
+	var first = echos.front()
+	var second = echos.back()
 	
 	for joint in first.joint_to_type_to_stakes:
 		var left_stake = second.get_stake(joint, Bozo.Stake.LEFT)

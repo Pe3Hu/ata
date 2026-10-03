@@ -277,7 +277,7 @@ const MINER_SPOIL_FACTOR: int = 2
 const miner_max_spoil_amount = [5, 4, 3, 2]
 const DEMON_DEFAULT_COMPLEXITY: int = 35
 
-const grades = [Bozo.Grade.F, Bozo.Grade.E, Bozo.Grade.D, Bozo.Grade.C, Bozo.Grade.B, Bozo.Grade.A, Bozo.Grade.S]
+const ranks = [Bozo.Rank.F, Bozo.Rank.E, Bozo.Rank.D, Bozo.Rank.C, Bozo.Rank.B, Bozo.Rank.A, Bozo.Rank.S]
 
 #region overtime
 const OVERTIME_GRID: Vector2i = Vector2i(5, 4)
@@ -292,7 +292,7 @@ const noicon_masters = [Bozo.Master.ARCHITECT, Bozo.Master.SCOUT, Bozo.Master.BA
 const AVG_HOUR_PROGRESS: int = 8
 const REAL_SECONDS_PER_GAME_HOUR: float = 0.25
 
-const DEFAULT_RECRUIT_GRADE: Bozo.Grade = Bozo.Grade.B
+const DEFAULT_RECRUIT_GRADE: Bozo.Rank = Bozo.Rank.B
 const DEFAULT_RECRUIT_INTRO: int = 20
 const DEFAULT_RECRUIT_TALENT: int = 2
 

@@ -14,7 +14,7 @@ var data: RoomData:
 
 var cards: Array[Card]
 
-var stamp_to_card: Dictionary
+var echo_to_card: Dictionary
 var current_card: Card
 
 var shift_tween: Tween
@@ -31,12 +31,12 @@ func _on_cards_reseted() -> void:
 
 func init_cards() -> void:
 	cards.clear()
-	stamp_to_card.clear()
+	echo_to_card.clear()
 	Helper.clear_children(%Cards)
 	
-	if not data.stamps.is_empty():
-		for stamp_data in data.stamps:
-			add_card(stamp_data)
+	if not data.echos.is_empty():
+		for echo_data in data.echos:
+			add_card(echo_data)
 		
 		sort_cards(false)
 	
@@ -44,13 +44,13 @@ func init_cards() -> void:
 		var offset = get_parent().get("theme_override_constants/separation")
 		%Cards.offset_transform_position.y = -(Catalog.STAMP_SIZE.y - Catalog.SHADOW_SIZE.y) / 2 + offset
 
-func add_card(stamp_data_: StampData) -> void:
+func add_card(echo_data_: EchoData) -> void:
 	var card = card_scene.instantiate()
 	%Cards.add_child(card)
-	stamp_to_card[stamp_data_] = card
+	echo_to_card[echo_data_] = card
 	card.room = self
-	card.stamp.data = stamp_data_
-	card.shadow.data = stamp_data_.shadow
+	card.echo.data = echo_data_
+	card.shadow.data = echo_data_.shadow
 	cards.append(card)
 	card.update_dice()
 	
@@ -61,10 +61,10 @@ func remove_card() -> void:
 	if %Cards.get_child_count() == 0: return
 	%Cards.get_children().back().destroy()
 	var card = cards.pop_back()
-	stamp_to_card.erase(card.stamp)
+	echo_to_card.erase(card.echo)
 
-func disappear_card(stamp_data_: StampData) -> void:
-	var card = stamp_to_card[stamp_data_]
+func disappear_card(echo_data_: EchoData) -> void:
+	var card = echo_to_card[echo_data_]
 	card.disappear()
 #endregion
 
@@ -100,21 +100,21 @@ func shift_card(card_: Card, shift_: int) -> void:
 	cards.erase(card_)
 	cards.insert(new_index, card_)
 	
-	update_stamps()
+	update_echos()
 	data.house.atheneum.faction.odeum.recalc_scenario(data.type)
 
-func update_stamps() -> void:
-	var stamp_datas = []
+func update_echos() -> void:
+	var echo_datas = []
 	
 	for card in cards:
-		stamp_datas.append(card.stamp.data)
+		echo_datas.append(card.echo.data)
 	
-	data.stamps.sort_custom(func (a, b): return stamp_datas.find(a) < stamp_datas.find(b))
+	data.echos.sort_custom(func (a, b): return echo_datas.find(a) < echo_datas.find(b))
 
 func sort_cards(with_animation_: bool = true) -> void:
 	if %Cards.get_child_count() == 0: return
 	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION and Arbitrator.current_phase.type != Bozo.Phase.DRAW: return
-	if data.stamps.is_empty(): return
+	if data.echos.is_empty(): return
 	
 	var scenarios = Mother.odeum.room_to_scenarios[data.type]
 	if scenarios.is_empty(): return
@@ -129,13 +129,13 @@ func sort_cards(with_animation_: bool = true) -> void:
 	for card in cards:
 		card.unhover()
 	
-	var all_found = sorted_cards.all(func(c): return scenario.chains.has(c.stamp.data))
+	var all_found = sorted_cards.all(func(c): return scenario.chains.has(c.echo.data))
 	if not all_found: return
 	
 	if sort_tween and sort_tween.is_running():
 		sort_tween.kill()
 	
-	sorted_cards.sort_custom(func (a, b): return scenario.chains.find(a.stamp.data) < scenario.chains.find(b.stamp.data))
+	sorted_cards.sort_custom(func (a, b): return scenario.chains.find(a.echo.data) < scenario.chains.find(b.echo.data))
 
 	if not with_animation_:
 		for _i in sorted_cards.size():
@@ -182,8 +182,8 @@ func close_up_cards(card_: Card) -> void:
 	
 	reset_offsets()
 	
-	if data.stamps.has(card_.stamp.data):
-		data.stamps.erase(card_.stamp.data)
+	if data.echos.has(card_.echo.data):
+		data.echos.erase(card_.echo.data)
 		#find_best_scenario()
 
 func slide_away() -> void:
@@ -245,24 +245,24 @@ func get_card_target(card_: Card) -> Vector2:
 func plus_card(card_: Card) -> void:
 	var card_parent = card_.get_parent()
 	card_parent.remove_child(card_)
-	card_.room.stamp_to_card.erase(card_.stamp.data)
+	card_.room.echo_to_card.erase(card_.echo.data)
 	card_.room.cards.erase(card_)
-	card_.room.data.stamps.erase(card_.stamp.data)
-	#data.house.atheneum.faction.odeum.kitchen_scenario.chains.erase(card_.stamp.data)
+	card_.room.data.echos.erase(card_.echo.data)
+	#data.house.atheneum.faction.odeum.kitchen_scenario.chains.erase(card_.echo.data)
 	#card_.room.find_best_scenario()
 	
-	#if not data.house.atheneum.faction.odeum.has_kitchen_not_locked_stamps():
+	#if not data.house.atheneum.faction.odeum.has_kitchen_not_locked_echos():
 		#pass
 	#if card_.room.data.type == Bozo.Room.KITCHEN:
 		#pass
-	#if card_.room.data.type == Bozo.Room.KITCHEN and not data.house.atheneum.faction.odeum.has_kitchen_not_locked_stamps():
+	#if card_.room.data.type == Bozo.Room.KITCHEN and not data.house.atheneum.faction.odeum.has_kitchen_not_locked_echos():
 		#data.house.atheneum.faction.odeum.kitchen_scenario = null
 	
 	%Cards.add_child(card_)
-	stamp_to_card[card_.stamp.data] = card_
+	echo_to_card[card_.echo.data] = card_
 	cards.append(card_)
 	card_.room = self
-	data.stamps.append(card_.stamp.data)
+	data.echos.append(card_.echo.data)
 	#find_best_scenario()
 
 func find_best_scenario() -> void:

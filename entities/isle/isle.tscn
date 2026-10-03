@@ -187,6 +187,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
 [node name="Mission" parent="HBox/LeftPanel/MarginContainer" unique_id=475274081 instance=ExtResource("10_6kinf")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -199,7 +200,6 @@ size_flags_vertical = 4
 isle = NodePath("../../../..")
 
 [node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("5_dd0e4")]
-visible = false
 layout_mode = 2
 
 [node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=874406166]

@@ -4,7 +4,7 @@ extends RefCounted
 
 var type: Bozo.Action
 
-var stamp: StampData
+var echo: EchoData
  
 var animation_left: int = 1:
 	set(value_):

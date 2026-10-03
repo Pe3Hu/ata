@@ -28,7 +28,7 @@ var current_canto: CantoData:
 			if current_canto:
 				current_canto.is_selected = true
 
-var locked_stamps: Array[StampData]
+var locked_echos: Array[EchoData]
 
 
 func _init() -> void:
@@ -41,26 +41,26 @@ func init_scenarios(type_: Bozo.Room = Bozo.Room.BEDROOM) -> void:
 
 func init_permutations(type_: Bozo.Room) -> void:
 	room_to_scenarios[type_].clear()
-	var stamp_queue = Mother.house.type_to_room[type_].stamps.duplicate()
+	var echo_queue = Mother.house.type_to_room[type_].echos.duplicate()
 	
-	if type_ == Bozo.Room.KITCHEN and not locked_stamps.is_empty():
-		stamp_queue = stamp_queue.filter(func (a): return not locked_stamps.has(a))
+	if type_ == Bozo.Room.KITCHEN and not locked_echos.is_empty():
+		echo_queue = echo_queue.filter(func (a): return not locked_echos.has(a))
 	
-	if not stamp_queue.is_empty():
-		var permutations = Helper.generate_permutations(stamp_queue)
+	if not echo_queue.is_empty():
+		var permutations = Helper.generate_permutations(echo_queue)
 		
 		for permutation in permutations:
-			if type_ == Bozo.Room.KITCHEN and not locked_stamps.is_empty():
+			if type_ == Bozo.Room.KITCHEN and not locked_echos.is_empty():
 				var chains = permutation.duplicate()
-				chains.append_array(locked_stamps)
+				chains.append_array(locked_echos)
 				var _scenario = ScenarioData.new(self, chains, type_)
 				
 				for _i in permutation.size():
 					chains = permutation.duplicate()
 					
-					for _j in range(locked_stamps.size()-1, -1, -1):
-						var locked_stamp = locked_stamps[_j]
-						chains.insert(_i, locked_stamp)
+					for _j in range(locked_echos.size()-1, -1, -1):
+						var locked_echo = locked_echos[_j]
+						chains.insert(_i, locked_echo)
 				
 					_scenario = ScenarioData.new(self, chains, type_)
 			else:
@@ -85,7 +85,7 @@ func init_permutations(type_: Bozo.Room) -> void:
 	update_scenario(type_, room_to_scenarios[type_].front())
 
 func recalc_scenario(type_: Bozo.Room) -> void:
-	var permutation = Mother.house.type_to_room[type_].stamps.duplicate()
+	var permutation = Mother.house.type_to_room[type_].echos.duplicate()
 	var scenario = ScenarioData.new(self, permutation, type_)
 	update_scenario(type_, scenario)
 
@@ -107,14 +107,14 @@ func get_scenario(type_: Bozo.Room) -> Variant:
 	
 	return null
 
-func update_locked_stamps() -> void:
-	locked_stamps.clear()
-	locked_stamps = kitchen_scenario.chains.filter(func (a): return a.is_locked)
+func update_locked_echos() -> void:
+	locked_echos.clear()
+	locked_echos = kitchen_scenario.chains.filter(func (a): return a.is_locked)
 
-func has_kitchen_not_locked_stamps() -> bool:
+func has_kitchen_not_locked_echos() -> bool:
 	if not kitchen_scenario: return false
-	var not_locked_stamps = kitchen_scenario.chains.filter(func (a): return not a.is_locked)
-	return not not_locked_stamps.is_empty()
+	var not_locked_echos = kitchen_scenario.chains.filter(func (a): return not a.is_locked)
+	return not not_locked_echos.is_empty()
 
 func voice_all_cantos() -> void:
 	for hymn in kitchen_scenario.hymns:

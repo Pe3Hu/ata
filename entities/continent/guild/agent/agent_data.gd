@@ -6,7 +6,7 @@ signal locked_changed
 signal quotums_changed
 
 var task: TaskData
-var origin: OriginData
+var soul: SoulData
 var workload: WorkloadData
 var quotums: Array[QuotumData]
 
@@ -58,29 +58,29 @@ func changed_quotum(tribute_idx: int, shift_: int) -> bool:
 	return set_quotum(tribute_idx, list[i])
 
 # ЕДИНСТВЕННАЯ точка, которая привязывает рабочего к задаче.
-func assign(new_origin: OriginData) -> void:
-	if new_origin == null: return
-	if new_origin == origin and task.agent == self: return
+func assign(new_soul: SoulData) -> void:
+	if new_soul == null: return
+	if new_soul == soul and task.agent == self: return
 
 	# снять текущего с этой задачи (если он не мы)
 	if task.agent != null and task.agent != self:
 		task.agent.unassign()
 
 	# снять нового с его прежней задачи
-	if new_origin.task != null and new_origin.task != task:
-		var old := new_origin.task.agent
+	if new_soul.task != null and new_soul.task != task:
+		var old := new_soul.task.agent
 		if old != null: old.unassign()
 
-	origin = new_origin
+	soul = new_soul
 	task.agent = self
-	origin.task = task
+	soul.task = task
 	
 	_sync_quotums_from_tributes()
 
 	Mother.overseer.add_agent(self)      # подписывает на hour_passed
 	locked_changed.emit()
 
-# Снять привязку, НЕ трогая origin (AgentData остаётся как «draft»)
+# Снять привязку, НЕ трогая soul (AgentData остаётся как «draft»)
 func _detach() -> void:
 	var changed := false
 
@@ -88,8 +88,8 @@ func _detach() -> void:
 		task.agent = null
 		changed = true
 
-	if origin != null and origin.task == task:
-		origin.task = null
+	if soul != null and soul.task == task:
+		soul.task = null
 		changed = true
 
 	Mother.overseer.remove_agent(self)   # сам проверит, есть ли в списке
@@ -100,24 +100,24 @@ func _detach() -> void:
 func unassign() -> void:
 	if task == null: return
 	# реально нечего чистить
-	if task.agent != self and (origin == null or origin.task != task): return
+	if task.agent != self and (soul == null or soul.task != task): return
 	_detach()
 
 func get_avg_dice() -> float:
-	if origin == null: return 0.0
-	var value: float = float(origin.intro.get_sum())
+	if soul == null: return 0.0
+	var value: float = float(soul.intro.get_sum())
 	return snapped(value / 6, 0.01)
 
 func get_avg_hour() -> int:
-	if origin == null: return 0
+	if soul == null: return 0
 	var avg_per_hour: float = get_avg_dice()
 	if avg_per_hour <= 0.0: return 0
 	var progress_left := workload.limit_progress - workload.current_progress
 	return int(ceil(progress_left / avg_per_hour))
 
 func roll_progress() -> void:
-	origin.intro.roll_result()
-	workload.current_progress += origin.intro.result * 8
+	soul.intro.roll_result()
+	workload.current_progress += soul.intro.result * 8
 
 func pay() -> void:
 	for quotum in quotums:

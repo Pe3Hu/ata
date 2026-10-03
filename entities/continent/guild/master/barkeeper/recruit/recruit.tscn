@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://bmk1ow5s0jkb3" path="res://entities/continent/guild/master/barkeeper/recruit/recruit.gd" id="1_0aoth"]
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_bujff"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_0aoth"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/grade/f.png" id="3_i74eh"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/echo/images/rank/f.png" id="3_i74eh"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="4_dqn80"]
-[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/stamp/images/talent/2.png" id="4_jamvm"]
+[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/echo/images/talent/2.png" id="4_jamvm"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="5_8rxe6"]
 [ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="5_jamvm"]
 
@@ -39,7 +39,7 @@ theme_override_constants/separation = 10
 [node name="HBox" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="0" unique_id=1691597745]
 visible = false
 
-[node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
+[node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
 material = SubResource("ShaderMaterial_jamvm")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="1" unique_id=1785433385]

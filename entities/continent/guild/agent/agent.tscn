@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://lx762uqy0d6d"]
 
 [ext_resource type="Script" uid="uid://cn505b15yp5jl" path="res://entities/continent/guild/agent/agent.gd" id="1_rk4ea"]
-[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/stamp/images/talent/2.png" id="2_lvgf5"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/stamp/images/grade/f.png" id="3_etprk"]
+[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/echo/images/talent/2.png" id="2_lvgf5"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/echo/images/rank/f.png" id="3_etprk"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_ipsu7"]
 [ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="3_ntiry"]
 [ext_resource type="PackedScene" uid="uid://dya2galeartfl" path="res://entities/continent/guild/agent/hourglass/hourglass.tscn" id="4_etprk"]
@@ -39,7 +39,7 @@ thickness = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enm1i"]
 
-[sub_resource type="Shader" id="Shader_ry650"]
+[sub_resource type="Shader" id="Shader_lvgf5"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -173,9 +173,9 @@ void fragment() {
     COLOR = vec4(color, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfyg4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ry650"]
 resource_local_to_scene = true
-shader = SubResource("Shader_ry650")
+shader = SubResource("Shader_lvgf5")
 shader_parameter/speed = 0.3
 shader_parameter/scale = 2.2
 shader_parameter/octaves = 4
@@ -356,7 +356,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="Workload" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox" unique_id=1961124138 instance=ExtResource("4_gl6b4")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_vfyg4")
+material = SubResource("ShaderMaterial_ry650")
 layout_mode = 2
 offset_transform_position = Vector2(0, 3)
 

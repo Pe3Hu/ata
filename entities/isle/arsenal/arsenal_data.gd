@@ -7,9 +7,9 @@ signal fusion_phase
 signal phase_finished
 
 var anvils: Array[AnvilData]
-var stamps: Array[StampData]
+var echos: Array[EchoData]
 	#set(value_):
-		#stamps = value_
+		#echos = value_
 		#init_anvils()
 
 var biome_to_source: Dictionary
@@ -24,27 +24,27 @@ func init_anvils() -> void:
 	var sizes = [3, 2]
 	
 	for size in sizes:
-		var arrangements = Helper.generate_unique_arrangements_fixed_size(stamps, size)
+		var arrangements = Helper.generate_unique_arrangements_fixed_size(echos, size)
 		
 		for arrangement in arrangements:
-			if is_stamps_has_same_origin(arrangement):
-				if try_fuse_stamps(arrangement):
+			if is_echos_has_same_origin(arrangement):
+				if try_fuse_echos(arrangement):
 					var _anvil = AnvilData.new(self, arrangement)
 	
 	fusion_phase.emit()
 
-func is_stamps_has_same_origin(stamps_: Array) -> bool:
-	for stamp in stamps_:
-		if stamp.origin != stamps_.front().origin:
+func is_echos_has_same_origin(echos_: Array) -> bool:
+	for echo in echos_:
+		if echo.origin != echos_.front().origin:
 			return false
 	
 	return true
 
-func try_fuse_stamps(stamps_: Array) -> bool:
+func try_fuse_echos(echos_: Array) -> bool:
 	var digits_length = 0
 	
-	for stamp in stamps_:
-		digits_length += stamp.mark_digits.length()
+	for echo in echos_:
+		digits_length += echo.mark_digits.length()
 	
 	if not Catalog.fusion_mark_lengths.has(digits_length):
 		return false
@@ -52,8 +52,8 @@ func try_fuse_stamps(stamps_: Array) -> bool:
 	if digits_length == Catalog.MARK_DIGITS_MAX_LENGTH:
 		return true
 	
-	for stamp in stamps_:
-		if stamp.mark_digits.length() != stamps_.front().mark_digits.length():
+	for echo in echos_:
+		if echo.mark_digits.length() != echos_.front().mark_digits.length():
 			return false
 	
 	return Catalog.fusion_mark_lengths.has(digits_length)

@@ -5,7 +5,7 @@ extends RefCounted
 signal shade_changed
 signal is_perished
 
-var stamp: StampData
+var echo: EchoData
 var pressure: PressureData
 
 var current_shade: int:
@@ -33,8 +33,8 @@ var perfect_cantos: Array[CantoData]
 var action: ActionData
 
 
-func _init(stamp_: StampData) -> void:
-	stamp = stamp_
+func _init(echo_: EchoData) -> void:
+	echo = echo_
 	
 	pressure = PressureData.new()
 	pressure.shadow = self
@@ -42,9 +42,9 @@ func _init(stamp_: StampData) -> void:
 	calc_limit_shade()
 
 func calc_limit_shade() -> void:
-	var value = float(stamp.origin.intro.get_sum()) / 10 * 3
+	var value = float(echo.soul.intro.get_sum()) / 10 * 3
 	
-	for intro in stamp.intro_values:
+	for intro in echo.intro_values:
 		value += intro
 	
 	limit_shade = int(value)

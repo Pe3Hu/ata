@@ -3,5 +3,5 @@ extends MasterData
 
 
 func init_tasks() -> void:
-	for rank in Digest.master_to_rank[type]:
-		CaveData.new(self, rank)
+	for order in Digest.master_to_order[type]:
+		CaveData.new(self, order)

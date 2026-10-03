@@ -3,7 +3,7 @@ extends Control
 
 
 @export var room: Room
-@export var stamp: Stamp
+@export var echo: Echo
 @export var shadow: Shadow
 
 @export var angle_min: float = -0.0
@@ -11,10 +11,10 @@ extends Control
 
 @export var min_size_x_default: float:
 	get:
-		return stamp.size.x
+		return echo.size.x
 @export var min_size_x_hover: float:
 	get:
-		return stamp.size.x + abs(Catalog.JOINT_OFFEST) * 2
+		return echo.size.x + abs(Catalog.JOINT_OFFEST) * 2
 
 var duration_shift: float = 0
 
@@ -23,21 +23,21 @@ var appear_tween: Tween
 var activate_tween: Tween
 var flip_tween: Tween
 
-var is_face_stamp: bool = true
+var is_face_echo: bool = true
 
 @export var dice: FakeDice
 
 
 #region init
 func _ready() -> void:
-	stamp.border.self_modulate.a = 0.0
+	echo.border.self_modulate.a = 0.0
 	pivot_offset_ratio = Vector2(0.5, 0.5)
 	pivot_offset = size / 2
 	
-	stamp.mouse_entered.connect(hover)
-	stamp.mouse_exited.connect(
+	echo.mouse_entered.connect(hover)
+	echo.mouse_exited.connect(
 		func() -> void:
-			if !stamp.get_global_rect().has_point(get_global_mouse_position()):
+			if !echo.get_global_rect().has_point(get_global_mouse_position()):
 				unhover()
 	)
 	
@@ -46,13 +46,13 @@ func _ready() -> void:
 	first_appear()
 
 func update_dice() -> void:
-	var matter = Bozo.enum_to_string(Bozo.Type.MATTER, stamp.data.origin.matter)
+	var matter = Bozo.enum_to_string(Bozo.Type.MATTER, echo.data.soul.matter)
 	dice.data = load('res://entities/dice/datas/punishment/%s.tres' % matter)
 
 func _on_punishment_roll_end() -> void:
-	var debt_data = stamp.data.origin.atheneum.faction.kernel.usurer.matter_to_debt[stamp.data.origin.matter]
+	var debt_data = Mother.kernel.usurer.matter_to_debt[echo.data.soul.matter]
 	debt_data.next_value += dice.get_current_value()
-	stamp.data.origin.atheneum.faction.kernel.usurer.update_debts.emit()
+	Mother.kernel.usurer.update_debts.emit()
 
 func first_appear() -> void:
 	offset_transform_position.x = Catalog.CARD_APPEAR_DISTANCE
@@ -73,7 +73,7 @@ func appear() -> void:
 
 	await appear_tween.finished
 	mouse_filter = Control.MOUSE_FILTER_PASS
-	stamp.mouse_filter = Control.MOUSE_FILTER_PASS
+	echo.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func disappear(is_last_: bool = false) -> void:
 	if appear_tween and appear_tween.is_running(): return
@@ -104,10 +104,10 @@ func hover() -> void:
 	#if room.current_card == self: return
 	if hover_tween and hover_tween.is_running(): return
 	if room and room.data.type == Bozo.Room.PARLOR: return
-	if stamp.data.is_locked: return
+	if echo.data.is_locked: return
 	
 	z_index = 1
-	var current_x = stamp.position.x
+	var current_x = echo.position.x
 	
 	if room and room.current_card and room.current_card != self:
 		room.current_card.unhover()
@@ -119,15 +119,15 @@ func hover() -> void:
 	#	hover_tween.kill()
 	
 	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	hover_tween.tween_property(stamp, "offset_transform_position:y", -Catalog.STAMP_SIDE_HEIGHT, 0.15)
-	hover_tween.tween_property(stamp.border, "self_modulate:a", 1.0, 0.1)
+	hover_tween.tween_property(echo, "offset_transform_position:y", -Catalog.STAMP_SIDE_HEIGHT, 0.15)
+	hover_tween.tween_property(echo.border, "self_modulate:a", 1.0, 0.1)
 	hover_tween.tween_property(self, "custom_minimum_size:x", min_size_x_hover, 0.2)
-	hover_tween.tween_property(stamp, "position:x", current_x + (min_size_x_hover - min_size_x_default) / 2, 0.2)
+	hover_tween.tween_property(echo, "position:x", current_x + (min_size_x_hover - min_size_x_default) / 2, 0.2)
 	
 	await hover_tween.finished
 	
 	var local_mouse_pos = get_global_mouse_position()
-	var is_inside = stamp.get_global_rect().has_point(local_mouse_pos)
+	var is_inside = echo.get_global_rect().has_point(local_mouse_pos)
 	
 	if not is_inside:
 		unhover()
@@ -136,7 +136,7 @@ func unhover() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	if hover_tween and hover_tween.is_running(): return
 	if room.data.type == Bozo.Room.PARLOR: return
-	if stamp.data.is_locked: return
+	if echo.data.is_locked: return
 	z_index = 0
 	
 	if room.shift_tween and room.shift_tween.is_running():
@@ -149,15 +149,15 @@ func unhover() -> void:
 	#	hover_tween.kill()
 	
 	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	hover_tween.tween_property(stamp, "offset_transform_position:y", 0, 0.15)
-	hover_tween.tween_property(stamp.border, "self_modulate:a", 0.0, 0.1)
+	hover_tween.tween_property(echo, "offset_transform_position:y", 0, 0.15)
+	hover_tween.tween_property(echo.border, "self_modulate:a", 0.0, 0.1)
 	hover_tween.tween_property(self, "custom_minimum_size:x", min_size_x_default, 0.25)
-	hover_tween.tween_property(stamp, "position:x", 0, 0.25)
+	hover_tween.tween_property(echo, "position:x", 0, 0.25)
 	
 	await hover_tween.finished
 	
 	var local_mouse_pos = get_global_mouse_position()
-	var is_inside = stamp.get_global_rect().has_point(local_mouse_pos)
+	var is_inside = echo.get_global_rect().has_point(local_mouse_pos)
 	
 	if is_inside:
 		hover()
@@ -166,7 +166,7 @@ func unhover() -> void:
 #region activate
 func spoil() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	stamp.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	echo.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	unhover()
 	await hover_tween.finished
 	disappear()
@@ -244,7 +244,7 @@ func flip_on_shadow() -> void:
 		flip_tween.kill()
 	
 	flip_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC).set_parallel(true)
-	flip_tween.tween_property(stamp, "offset_transform_scale:x", 0.0, duration)
+	flip_tween.tween_property(echo, "offset_transform_scale:x", 0.0, duration)
 	
 	await flip_tween.finished
 	
@@ -255,7 +255,7 @@ func flip_on_shadow() -> void:
 	
 	shadow.expand_in()
 
-func flip_on_stamp() -> void:
+func flip_on_echo() -> void:
 	var duration = Gear.flips[Gear.tempo]
 	z_index = 10
 	
@@ -268,16 +268,16 @@ func flip_on_stamp() -> void:
 	await flip_tween.finished
 	
 	flip_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
-	flip_tween.tween_property(stamp, "offset_transform_scale:x", 1.0, duration)
+	flip_tween.tween_property(echo, "offset_transform_scale:x", 1.0, duration)
 	
 	await flip_tween.finished
 	
 	activate()
 
 func skip_on_shadow() -> void:
-	is_face_stamp = false
+	is_face_echo = false
 	
-	stamp.offset_transform_scale.x = 0
+	echo.offset_transform_scale.x = 0
 	shadow.offset_transform_scale.x = 1
 	
 	shadow.size.y = Catalog.SHADOW_SIZE.y
@@ -289,10 +289,10 @@ func skip_on_shadow() -> void:
 	shadow.top_pressure.offset_transform_rotation = -PI / 2
 	shadow.bottom_pressure.offset_transform_rotation = -PI / 2
 
-func skip_on_stamp() -> void:
-	is_face_stamp = true
+func skip_on_echo() -> void:
+	is_face_echo = true
 	
-	stamp.offset_transform_scale.x = 1
+	echo.offset_transform_scale.x = 1
 	shadow.offset_transform_scale.x = 0
 	
 	shadow.size.y = Catalog.STAMP_SIZE.y
@@ -305,12 +305,12 @@ func skip_on_stamp() -> void:
 	shadow.bottom_pressure.offset_transform_rotation = 0
 
 func switch_face() -> void:
-	if is_face_stamp:
+	if is_face_echo:
 		flip_on_shadow()
 	else:
 		shadow.expand_out()
 	
-	is_face_stamp = !is_face_stamp
+	is_face_echo = !is_face_echo
 #endregion
 
 func apply_punushment() -> void:

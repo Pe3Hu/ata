@@ -14,7 +14,7 @@ var data: SilhouetteData:
 
 func init_stakes() -> void:
 	for type in Catalog.stakes:
-		var stake_datas = data.stamp.type_to_stakes[type]
+		var stake_datas = data.echo.type_to_stakes[type]
 		
 		match type:
 			Bozo.Stake.LEFT:
@@ -37,6 +37,6 @@ func get_stakes(type_: Bozo.Stake) -> VBoxContainer:
 	return get_node(path)
 
 func update_colors() -> void:
-	var color = Digest.matter_to_color[data.stamp.origin.matter]
+	var color = Digest.matter_to_color[data.echo.soul.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
-	Helper.update_matter_colors(%MatterBG, [data.stamp.origin.matter])
+	Helper.update_matter_colors(%MatterBG, [data.echo.soul.matter])

@@ -9,23 +9,23 @@ func connect_signals() -> void:
 	if not data.master.current_task.spoil_changed.is_connected(_on_task_changed):
 		data.master.current_task.spoil_changed.connect(_on_task_changed)
 	
-	_on_rank_changed()
+	_on_order_changed()
 	_on_spoil_changed()
-	update_rank_textures()
+	update_order_textures()
 
 func _on_task_changed() -> void:
 	data = data.master.current_task
-	_on_rank_changed()
+	_on_order_changed()
 	_on_spoil_changed()
-	update_rank_textures()
+	update_order_textures()
 
-func _on_rank_changed() -> void:
+func _on_order_changed() -> void:
 	%FirstQuotum.data = data.tributes.front().current_quotum
 	%SecondQuotum.data = data.tributes.back().current_quotum
 
 func _on_spoil_changed() -> void:
 	%Spoil.data = data.current_spoil
-	Helper.update_matter_colors(%RankBody, [data.current_spoil.shard.matter])
+	Helper.update_matter_colors(%OrderBody, [data.current_spoil.shard.matter])
 #endregion
 
 #region buttons

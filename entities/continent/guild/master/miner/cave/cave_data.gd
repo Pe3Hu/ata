@@ -5,8 +5,8 @@ extends TaskData
 var lode: LodeData
 
 
-func _init(master_: MasterData, rank_: int) -> void:
-	super._init(master_, rank_)
+func _init(master_: MasterData, order_: int) -> void:
+	super._init(master_, order_)
 	lode = LodeData.new(self)
 
 func _on_finished() -> void:

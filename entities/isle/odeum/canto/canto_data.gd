@@ -39,7 +39,7 @@ var is_selected: bool = false:
 
 
 #region init
-func _init(hymn_: HymnData, joint_: int, intro_: StampData, verse_: Variant, outro_: Variant) -> void:
+func _init(hymn_: HymnData, joint_: int, intro_: EchoData, verse_: Variant, outro_: Variant) -> void:
 	hymn = hymn_
 	joint = joint_
 	intro = TuneData.new(self, intro_, Bozo.Tune.INTRO)
@@ -111,7 +111,7 @@ func apply_voice() -> void:
 	
 	for type in type_to_stake:
 		var stake = type_to_stake[type]
-		stake.stamp.is_locked = true
+		stake.echo.is_locked = true
 		stake.canto = null
 		var volume = stake.value
 		
@@ -127,7 +127,7 @@ func apply_voice() -> void:
 	
 	if outro:
 		penalty_values.append(get_penalty())
-		penalty_matters.append(outro.stamp.origin.matter)
+		penalty_matters.append(outro.echo.origin.matter)
 	
 	if not penalty_matters.is_empty():
 		var usurer = pie.kernel.usurer
@@ -140,7 +140,7 @@ func apply_voice() -> void:
 	if hymn.scenario.odeum.current_canto:
 		hymn.scenario.odeum.current_canto = null
 	
-	hymn.scenario.odeum.update_locked_stamps()
+	hymn.scenario.odeum.update_locked_echos()
 	hymn.cantos.erase(self)
 	
 	if hymn.cantos.is_empty():
@@ -157,9 +157,9 @@ func get_penalty() -> int:
 func update_perfect() -> void:
 	is_perfect = false
 	
-	for stamp in Mother.house.parlor.stamps:
-		if stamp.shadow.current_shade == pulse_value:
+	for echo in Mother.house.parlor.echos:
+		if echo.shadow.current_shade == pulse_value:
 			is_perfect = true
 			
-			if not stamp.shadow.perfect_cantos.has(self):
-				stamp.shadow.perfect_cantos.append(self)
+			if not echo.shadow.perfect_cantos.has(self):
+				echo.shadow.perfect_cantos.append(self)
