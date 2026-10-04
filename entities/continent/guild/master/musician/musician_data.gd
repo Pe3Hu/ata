@@ -2,9 +2,8 @@ class_name MusicianData
 extends MasterData
 
 
-
 func init_tasks() -> void:
-	for soul in guild.barkeeper.souls:
+	for soul in guild.souls:
 		add_veteran(soul)
 
 func add_veteran(soul_: SoulData) -> void:

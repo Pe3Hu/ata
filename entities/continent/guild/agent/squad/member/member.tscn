@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://c54rtqlyoc2i3"]
+
+[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/echo/images/talent/2.png" id="1_dqpp6"]
+[ext_resource type="Script" uid="uid://c5jffs5jjstco" path="res://entities/continent/guild/agent/squad/member/member.gd" id="1_gtvgm"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="2_gtvgm"]
+[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_ctikv"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_hifum"]
+[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/echo/images/rank/f.png" id="5_oqlty"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqpp6"]
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl6b4"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+border_color = Color(0.11119684, 0.11119687, 0.11119675, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lvgf5"]
+resource_local_to_scene = true
+font = ExtResource("2_gtvgm")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Member" type="PanelContainer" unique_id=1816623092]
+custom_minimum_size = Vector2(244, 48)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dqpp6")
+script = ExtResource("1_gtvgm")
+
+[node name="Top" type="Panel" parent="." unique_id=759459382]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_gl6b4")
+
+[node name="TalentIcon" type="TextureRect" parent="Top" unique_id=411976918]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-8, 0)
+texture = ExtResource("1_dqpp6")
+
+[node name="MemberName" type="Label" parent="Top" unique_id=723934270]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -8.0
+offset_right = 36.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Member"
+label_settings = SubResource("LabelSettings_lvgf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Top" unique_id=1125862043]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -20.0
+offset_right = 71.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 78
+
+[node name="PreviousSoulButton" type="TextureButton" parent="Top/HBox" unique_id=1288878676]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture_normal = ExtResource("3_ctikv")
+texture_pressed = ExtResource("3_ctikv")
+texture_hover = ExtResource("3_ctikv")
+flip_h = true
+script = ExtResource("4_hifum")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NextSoulButton" type="TextureButton" parent="Top/HBox" unique_id=1168832653]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+mouse_filter = 1
+texture_normal = ExtResource("3_ctikv")
+texture_pressed = ExtResource("3_ctikv")
+texture_hover = ExtResource("3_ctikv")
+script = ExtResource("4_hifum")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="GradeIcon" type="TextureRect" parent="Top" unique_id=1423990618]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+texture = ExtResource("5_oqlty")
+
+[connection signal="pressed" from="Top/HBox/PreviousSoulButton" to="." method="_on_previous_soul_button_pressed"]
+[connection signal="pressed" from="Top/HBox/NextSoulButton" to="." method="_on_next_soul_button_pressed"]

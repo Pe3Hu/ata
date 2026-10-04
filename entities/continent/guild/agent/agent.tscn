@@ -1,13 +1,9 @@
 [gd_scene format=3 uid="uid://lx762uqy0d6d"]
 
 [ext_resource type="Script" uid="uid://cn505b15yp5jl" path="res://entities/continent/guild/agent/agent.gd" id="1_rk4ea"]
-[ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/echo/images/talent/2.png" id="2_lvgf5"]
-[ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/echo/images/rank/f.png" id="3_etprk"]
-[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_ipsu7"]
-[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="3_ntiry"]
+[ext_resource type="PackedScene" uid="uid://c6hlu4x0c3luf" path="res://entities/continent/guild/agent/squad/squad.tscn" id="2_724r4"]
 [ext_resource type="PackedScene" uid="uid://dya2galeartfl" path="res://entities/continent/guild/agent/hourglass/hourglass.tscn" id="4_etprk"]
 [ext_resource type="PackedScene" uid="uid://bl303f1gm4iw8" path="res://entities/continent/guild/agent/workload/workload.tscn" id="4_gl6b4"]
-[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_h5ua1"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_uasgc"]
 [ext_resource type="PackedScene" uid="uid://t1702e0u2fqx" path="res://entities/isle/ladder/fake/fake_dice.tscn" id="7_724r4"]
 [ext_resource type="PackedScene" uid="uid://cpce7h1kdvvoh" path="res://entities/continent/guild/agent/calendar/calendar.tscn" id="10_h5ua1"]
@@ -21,25 +17,14 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl6b4"]
-resource_local_to_scene = true
-bg_color = Color(0, 0.7529412, 0.47058824, 1)
-border_color = Color(0.11119684, 0.11119687, 0.11119675, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_lvgf5"]
-resource_local_to_scene = true
-font = ExtResource("3_ntiry")
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enm1i"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_uasgc"]
 grow_begin = 0.0
 grow_end = 0.0
 thickness = 4
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enm1i"]
-
-[sub_resource type="Shader" id="Shader_lvgf5"]
+[sub_resource type="Shader" id="Shader_724r4"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -173,9 +158,9 @@ void fragment() {
     COLOR = vec4(color, 1.0);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ry650"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipsu7"]
 resource_local_to_scene = true
-shader = SubResource("Shader_lvgf5")
+shader = SubResource("Shader_724r4")
 shader_parameter/speed = 0.3
 shader_parameter/scale = 2.2
 shader_parameter/octaves = 4
@@ -201,109 +186,9 @@ script = ExtResource("1_rk4ea")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Top" type="Panel" parent="VBoxContainer" unique_id=1170062607]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-offset_transform_enabled = true
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_gl6b4")
-
-[node name="TalentIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=471454187]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -16.0
-offset_bottom = 16.0
-grow_horizontal = 0
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-8, 0)
-texture = ExtResource("2_lvgf5")
-
-[node name="AgentName" type="Label" parent="VBoxContainer/Top" unique_id=1239312195]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 0
-offset_left = 83.0
-offset_top = 12.0
-offset_right = 155.0
-offset_bottom = 28.0
-size_flags_horizontal = 4
-text = "Agent Name"
-label_settings = SubResource("LabelSettings_lvgf5")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AgentHBox" type="HBoxContainer" parent="VBoxContainer/Top" unique_id=1685011924]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -20.0
-offset_right = 76.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 78
-
-[node name="PreviousAgentButton" type="TextureButton" parent="VBoxContainer/Top/AgentHBox" unique_id=906712825]
+[node name="Squad" parent="VBoxContainer" unique_id=2049424503 instance=ExtResource("2_724r4")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-offset_transform_enabled = true
-texture_normal = ExtResource("3_ipsu7")
-texture_pressed = ExtResource("3_ipsu7")
-texture_hover = ExtResource("3_ipsu7")
-flip_h = true
-script = ExtResource("4_h5ua1")
-metadata/_custom_type_script = "uid://c3ji6eownkceu"
-
-[node name="NextAgentButton" type="TextureButton" parent="VBoxContainer/Top/AgentHBox" unique_id=1749071378]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_visual_only = false
-mouse_filter = 1
-texture_normal = ExtResource("3_ipsu7")
-texture_pressed = ExtResource("3_ipsu7")
-texture_hover = ExtResource("3_ipsu7")
-script = ExtResource("4_h5ua1")
-metadata/_custom_type_script = "uid://c3ji6eownkceu"
-
-[node name="GradeIcon" type="TextureRect" parent="VBoxContainer/Top" unique_id=2116983595]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -16.0
-offset_right = 32.0
-offset_bottom = 16.0
-grow_vertical = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(8, 0)
-texture = ExtResource("3_etprk")
-
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=810698935]
-layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=807598106]
 layout_mode = 2
@@ -356,7 +241,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_uasgc")
 
 [node name="Workload" parent="VBoxContainer/PanelContainer/HBoxContainer/VBox" unique_id=1961124138 instance=ExtResource("4_gl6b4")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_ry650")
+material = SubResource("ShaderMaterial_ipsu7")
 layout_mode = 2
 offset_transform_position = Vector2(0, 3)
 
@@ -460,6 +345,3 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 offset_transform_position = Vector2(4, 92)
-
-[connection signal="pressed" from="VBoxContainer/Top/AgentHBox/PreviousAgentButton" to="." method="_on_previous_agent_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Top/AgentHBox/NextAgentButton" to="." method="_on_next_agent_button_pressed"]

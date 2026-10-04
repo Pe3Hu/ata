@@ -50,7 +50,7 @@ func _on_finished() -> void:
 	super._on_finished()
 
 func reinforcement() -> void:
-	Mother.guild.barkeeper.recruiment_phase(soul)
+	Mother.guild.souls.append(soul)
 	restatic()
 
 func restatic() -> void:

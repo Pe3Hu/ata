@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c6hlu4x0c3luf"]
+
+[ext_resource type="Script" uid="uid://ch7sw1c6brkda" path="res://entities/continent/guild/agent/squad/squad.gd" id="1_2fubl"]
+[ext_resource type="PackedScene" uid="uid://c54rtqlyoc2i3" path="res://entities/continent/guild/agent/squad/member/member.tscn" id="2_du3rv"]
+
+[node name="Squad" type="PanelContainer" unique_id=2049424503]
+script = ExtResource("1_2fubl")
+
+[node name="Members" type="VBoxContainer" parent="." unique_id=894747172]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Member" parent="Members" unique_id=1816623092 instance=ExtResource("2_du3rv")]
+layout_mode = 2

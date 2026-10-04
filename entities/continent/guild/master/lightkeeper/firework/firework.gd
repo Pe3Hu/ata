@@ -2,7 +2,6 @@ class_name Firework
 extends Task
 
 
-
 func connect_signals() -> void:
 	super.connect_signals()
 	apply_shelters()

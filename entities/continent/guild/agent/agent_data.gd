@@ -6,17 +6,22 @@ signal locked_changed
 signal quotums_changed
 
 var task: TaskData
-var soul: SoulData
+var squad: SquadData
 var workload: WorkloadData
 var quotums: Array[QuotumData]
 
 var is_locked: bool:
-	get: return task != null and task.agent == self
+	get:
+		if task == null: return false
+		for m in squad.members:
+			if m.virtual_soul != null: return true
+		return false
 
 
 func _init(task_: TaskData) -> void:
 	task = task_
 	workload = WorkloadData.new(self)
+	squad = SquadData.new(self)
 	_sync_quotums_from_tributes()
 
 # Снимок/пересинхронизация из task.tributes
@@ -58,9 +63,10 @@ func changed_quotum(tribute_idx: int, shift_: int) -> bool:
 	return set_quotum(tribute_idx, list[i])
 
 # ЕДИНСТВЕННАЯ точка, которая привязывает рабочего к задаче.
-func assign(new_soul: SoulData) -> void:
+func assign(new_soul: SoulData, member_index_: int = 0) -> void:
 	if new_soul == null: return
-	if new_soul == soul and task.agent == self: return
+	var member = squad.members[member_index_]
+	if new_soul == member.virtual_soul: return
 
 	# снять текущего с этой задачи (если он не мы)
 	if task.agent != null and task.agent != self:
@@ -71,9 +77,16 @@ func assign(new_soul: SoulData) -> void:
 		var old := new_soul.task.agent
 		if old != null: old.unassign()
 
-	soul = new_soul
+	# снять прежний soul ЭТОГО ЖЕ member с этой задачи
+	if member.virtual_soul != null and member.virtual_soul != new_soul \
+			and member.virtual_soul.task == task:
+		member.virtual_soul.task = null
+
+	member.virtual_soul = new_soul
 	task.agent = self
-	soul.task = task
+	new_soul.task = task
+
+	member.update_preview()   # превью должно догнать virtual_soul
 	
 	_sync_quotums_from_tributes()
 
@@ -81,44 +94,65 @@ func assign(new_soul: SoulData) -> void:
 	locked_changed.emit()
 
 # Снять привязку, НЕ трогая soul (AgentData остаётся как «draft»)
-func _detach() -> void:
+func _detach(member_index_: int = 0) -> void:
+	var member = squad.members[member_index_]
 	var changed := false
 
-	if task != null and task.agent == self:
+	if member.virtual_soul != null and member.virtual_soul.task == task:
+		member.virtual_soul.task = null
+		changed = true
+
+	# task.agent снимаем только если больше нет привязанных member-ов
+	var any_assigned := false
+	for m in squad.members:
+		if m.virtual_soul != null and m.virtual_soul.task == task:
+			any_assigned = true
+			break
+
+	if not any_assigned and task.agent == self:
 		task.agent = null
 		changed = true
 
-	if soul != null and soul.task == task:
-		soul.task = null
-		changed = true
-
-	Mother.overseer.remove_agent(self)   # сам проверит, есть ли в списке
+	if not any_assigned:
+		Mother.overseer.remove_agent(self)
 
 	if changed:
 		locked_changed.emit()
 
 func unassign() -> void:
 	if task == null: return
-	# реально нечего чистить
-	if task.agent != self and (soul == null or soul.task != task): return
-	_detach()
+	for _i in squad.members.size():
+		_detach(_i)
 
 func get_avg_dice() -> float:
-	if soul == null: return 0.0
-	var value: float = float(soul.intro.get_sum())
+	if squad.members.front().virtual_soul == null: return 0.0
+	var value: float = float(squad.members.front().virtual_soul.intro.get_sum())
 	return snapped(value / 6, 0.01)
 
 func get_avg_hour() -> int:
-	if soul == null: return 0
+	if squad.members.front().virtual_soul == null: return 0
 	var avg_per_hour: float = get_avg_dice()
 	if avg_per_hour <= 0.0: return 0
 	var progress_left := workload.limit_progress - workload.current_progress
 	return int(ceil(progress_left / avg_per_hour))
 
 func roll_progress() -> void:
-	soul.intro.roll_result()
-	workload.current_progress += soul.intro.result * 8
+	squad.members.front().virtual_soul.intro.roll_result()
+	workload.current_progress += squad.members.front().virtual_soul.intro.result * 8
 
 func pay() -> void:
 	for quotum in quotums:
 		quotum.pay()
+
+#func get_preview(index_: int = 0) -> SoulData:
+	#if squad.members.is_empty(): return null
+	#if squad.members[index_].preview_soul:
+		#squad.members[index_].update_preview()
+	#return squad.members[index_].preview_soul
+func get_preview(index_: int = 0) -> SoulData:
+	if squad.members.is_empty(): return null
+	return squad.members[index_].preview_soul
+
+func get_virtual(index_: int = 0) -> SoulData:
+	if squad.members.is_empty(): return null
+	return squad.members[index_].virtual_soul

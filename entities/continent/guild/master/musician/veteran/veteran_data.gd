@@ -21,6 +21,6 @@ func _on_finished() -> void:
 	super._on_finished()
 
 func ascension() -> void:
-	Mother.guild.barkeeper.souls.erase(agent.soul)
-	Mother.guild.barkeeper.recruiment_phase(soul)
+	Mother.guild.souls.erase(agent.squad.members.front().virtual_soul)
+	Mother.guild.souls.append(soul)
 	restatic()

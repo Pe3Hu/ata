@@ -909,8 +909,8 @@ const pantheon_to_aspect_to_god = {
 #region master
 const master_to_structure = {
 	Bozo.Master.PRIEST: Bozo.Structure.SHRINE,
-	Bozo.Master.SHADOW: Bozo.Structure.RIFT,
-	Bozo.Master.GUARDIAN: Bozo.Structure.RUIN,
+	Bozo.Master.DEMON: Bozo.Structure.RIFT,
+	Bozo.Master.ARCHAEOLOGIST: Bozo.Structure.RUIN,
 	Bozo.Master.BLACKSMITH: Bozo.Structure.FORGE,
 	Bozo.Master.MUSICIAN: Bozo.Structure.THEATER,
 	Bozo.Master.ARCHITECT: Bozo.Structure.WORKSHOP,
@@ -923,8 +923,8 @@ const master_to_structure = {
 
 const structure_to_master = {
 	Bozo.Structure.SHRINE: Bozo.Master.PRIEST,
-	Bozo.Structure.RIFT: Bozo.Master.SHADOW,
-	Bozo.Structure.RUIN: Bozo.Master.GUARDIAN,
+	Bozo.Structure.RIFT: Bozo.Master.DEMON,
+	Bozo.Structure.RUIN: Bozo.Master.ARCHAEOLOGIST,
 	Bozo.Structure.FORGE: Bozo.Master.BLACKSMITH,
 	Bozo.Structure.THEATER: Bozo.Master.MUSICIAN,
 	Bozo.Structure.WORKSHOP: Bozo.Master.ARCHITECT,

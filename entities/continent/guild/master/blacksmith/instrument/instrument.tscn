@@ -17,7 +17,7 @@ shader_parameter/scale = 1.0
 [node name="Instrument" unique_id=1199540049 instance=ExtResource("1_7yulp")]
 script = ExtResource("1_74no5")
 
-[node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
+[node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
 material = SubResource("ShaderMaterial_dmxis")
 
 [node name="Razors" type="GridContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=326534745]

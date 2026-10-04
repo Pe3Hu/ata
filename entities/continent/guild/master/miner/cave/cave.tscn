@@ -51,7 +51,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Cave" unique_id=1199540049 instance=ExtResource("1_f3nig")]
 script = ExtResource("1_7v3nb")
 
-[node name="RankBody" parent="HBoxContainer/VBox/RankPanel/HBox/Rank" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
+[node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
 material = SubResource("ShaderMaterial_7v3nb")
 
 [node name="InfoPanel" parent="HBoxContainer/VBox" parent_id_path=PackedInt32Array(63145426) index="1" unique_id=1268189010]

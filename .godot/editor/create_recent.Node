@@ -1,9 +1,9 @@
+VBoxContainer
 PanelContainer
 ColorRect
 Control
 Label
 HBoxContainer
-VBoxContainer
 TextureRect
 HSeparator
 VSeparator

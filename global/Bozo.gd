@@ -170,8 +170,8 @@ enum Structure {
 enum Master {
 	NONE = 0,
 	PRIEST = 91,
-	SHADOW = 92,
-	GUARDIAN = 93,
+	DEMON = 92,
+	ARCHAEOLOGIST = 93,
 	BLACKSMITH = 94,
 	MUSICIAN = 95,
 	ARCHITECT = 96,

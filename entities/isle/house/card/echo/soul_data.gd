@@ -29,10 +29,10 @@ func _init(master_: MasterData, matter_: Bozo.Matter, intro_: DiceData, verse_: 
 	reincarnation_intro = Helper.roll_reincarnation(self)
 	
 	if name == '':
-		name = master.roll_name()
+		name = master.guild.roll_name()
 		
-		if master.alphabet.is_empty():
-			master.refill_alphabet()
+		if master.guild.alphabet.is_empty():
+			master.guild.refill_alphabet()
 	
 	init_echos()
 
