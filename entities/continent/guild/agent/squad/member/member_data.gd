@@ -31,10 +31,10 @@ func get_neighbor(from_: SoulData, shift_: int) -> SoulData:
 	var start := options.find(from_)
 	if start == -1: start = 0
 
-	for _i in range(1, n):# + 1)
+	for _i in range(1, n):
 		var idx := ((start + shift_ * _i) % n + n) % n
 		var soul: SoulData = options[idx]
-		if soul.task == null or soul.task == squad.agent.task:
+		if _is_available(soul):
 			return soul
 	return from_
 
@@ -45,16 +45,36 @@ func can_browse() -> bool:
 
 func update_preview() -> void:
 	preview_soul = virtual_soul if virtual_soul != null else get_first_free()
-	pass
 
 func get_first_free() -> SoulData:
-	if squad.agent.task == null or squad.agent.task.master == null: 
+	if squad.agent.task == null or squad.agent.task.master == null:
 		return null
 	var guild = squad.agent.task.master.guild
 	for soul in guild.souls:
-		if soul.task == null or soul.task == squad.agent.task:
+		if _is_available(soul):
 			return soul
 	return null
+
+# Свободный soul, либо уже на этой задаче; не занят другим member отряда.
+func _is_available(soul_: SoulData) -> bool:
+	if soul_ == null: return false
+	# свой текущий preview/virtual всегда допустим для этого member
+	if soul_ == preview_soul or soul_ == virtual_soul:
+		return true
+	# назначен на другую задачу — недоступен (пока задача не завершится)
+	if soul_.task != null and soul_.task != squad.agent.task:
+		return false
+	# уже выбран другим member этого же отряда
+	if _is_taken_by_sibling(soul_):
+		return false
+	return true
+
+func _is_taken_by_sibling(soul_: SoulData) -> bool:
+	for m in squad.members:
+		if m == self: continue
+		if m.preview_soul == soul_ or m.virtual_soul == soul_:
+			return true
+	return false
 
 # Сначала двигаем preview, потом находим задачу этого воркера
 func _shift_musician(shift_: int) -> void:

@@ -21,7 +21,7 @@ func update_spirtes() -> void:
 		var str_type = Bozo.enum_to_string(Bozo.Type.STRUCTURE, data.type)
 		
 		if data.type == Bozo.Structure.RUIN:
-			str_type += '/%d' % data.rank
+			str_type += '/%d' % data.order
 			var is_flipped = Helper.rng.randf() > 0.5
 			%Body.flip_h = is_flipped
 			%Border.flip_h = is_flipped

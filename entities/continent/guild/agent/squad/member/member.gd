@@ -20,16 +20,20 @@ func _on_preview_soul_changed() -> void:
 	var flag = data.can_browse()
 	%PreviousSoulButton.visible = flag
 	%NextSoulButton.visible = flag
+	
 	if data.preview_soul != null:
 		update_labels()
 		update_colors()
 
 func update_labels() -> void:
+	if data == null or data.preview_soul == null: return
 	%MemberName.text = data.preview_soul.name
 	%GradeIcon.texture = load('res://entities/isle/house/card/echo/images/rank/%s.png' % Bozo.enum_to_string(Bozo.Type.RANK, data.preview_soul.rank))
 	%TalentIcon.texture = load('res://entities/isle/house/card/echo/images/talent/%d.png' % data.preview_soul.talent)
 
+
 func update_colors() -> void:
+	if data == null or data.preview_soul == null: return
 	var color = Digest.matter_to_color[data.preview_soul.matter]
 	%Top.get_theme_stylebox("panel").bg_color = color
 

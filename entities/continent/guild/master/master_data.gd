@@ -27,12 +27,16 @@ func init_static_tasks() -> void:
 	pass
 
 func init_dinamic_tasks() -> void:
+	if guild.structure == null: return
 	if guild.structure.type != Digest.master_to_structure[type]: return
 	
 	var has_locked := false
 	
 	if type != Bozo.Master.MUSICIAN:
 		for task in tasks:
+			# draft AgentData всегда жив на task.agent; «есть задачи» = не пересоздаём.
+			# Назначенность (is_locked) здесь не смотрим — иначе static-мастера
+			# (barkeeper/lightkeeper) обнуляют current_task при первом заходе.
 			if task.agent != null:
 				has_locked = true
 				break
@@ -40,6 +44,9 @@ func init_dinamic_tasks() -> void:
 	if not has_locked:
 		tasks.clear()
 		init_tasks()
+		# static-мастера наполняют через init_static_tasks, не init_tasks
+		if tasks.is_empty():
+			init_static_tasks()
 
 	if tasks.is_empty():
 		current_task = null

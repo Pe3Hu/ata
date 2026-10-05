@@ -62,67 +62,123 @@ func changed_quotum(tribute_idx: int, shift_: int) -> bool:
 	i = ((i + shift_) % n + n) % n
 	return set_quotum(tribute_idx, list[i])
 
-# ЕДИНСТВЕННАЯ точка, которая привязывает рабочего к задаче.
-func assign(new_soul: SoulData, member_index_: int = 0) -> void:
-	if new_soul == null: return
-	var member = squad.members[member_index_]
-	if new_soul == member.virtual_soul: return
+func is_fully_assigned() -> bool:
+	if squad.members.is_empty(): return false
+	for m in squad.members:
+		if m.virtual_soul == null: return false
+		if m.virtual_soul.task != task: return false
+	return true
 
-	# снять текущего с этой задачи (если он не мы)
-	if task.agent != null and task.agent != self:
-		task.agent.unassign()
+# Calendar lock: все текущие preview уже назначены на эту задачу.
+# Если листаем другого soul — false (кнопка «свободна», можно назначить новый состав).
+func is_preview_committed() -> bool:
+	if squad.members.is_empty(): return false
+	for m in squad.members:
+		if m.preview_soul == null: return false
+		if m.preview_soul.task != task: return false
+	return true
 
-	# снять нового с его прежней задачи
-	if new_soul.task != null and new_soul.task != task:
-		var old := new_soul.task.agent
-		if old != null: old.unassign()
+func can_assign_squad() -> bool:
+	if workload.current_progress > 0: return false
+	var seen: Dictionary = {}
+	for m in squad.members:
+		var soul: SoulData = m.preview_soul
+		if soul == null: return false
+		if seen.has(soul): return false
+		# назначенный на другую задачу недоступен (в т.ч. ещё не начатую)
+		if soul.task != null and soul.task != task: return false
+		seen[soul] = true
+	return true
 
-	# снять прежний soul ЭТОГО ЖЕ member с этой задачи
-	if member.virtual_soul != null and member.virtual_soul != new_soul \
-			and member.virtual_soul.task == task:
-		member.virtual_soul.task = null
+# Назначить весь отряд по текущим preview_soul (все unique).
+func assign_squad() -> void:
+	if not can_assign_squad(): return
 
-	member.virtual_soul = new_soul
+	for i in squad.members.size():
+		_bind_member(i, squad.members[i].preview_soul)
+
 	task.agent = self
-	new_soul.task = task
-
-	member.update_preview()   # превью должно догнать virtual_soul
-	
+	Mother.overseer.add_agent(self)
 	_sync_quotums_from_tributes()
-
-	Mother.overseer.add_agent(self)      # подписывает на hour_passed
 	locked_changed.emit()
 
-# Снять привязку, НЕ трогая soul (AgentData остаётся как «draft»)
+# ЕДИНСТВЕННАЯ точка, которая привязывает одного рабочего к слоту.
+func assign(new_soul: SoulData, member_index_: int = 0) -> void:
+	if new_soul == null: return
+	if member_index_ < 0 or member_index_ >= squad.members.size(): return
+	if workload.current_progress > 0: return
+	# чужой назначенный soul сюда не попадает через browse; страховка
+	if new_soul.task != null and new_soul.task != task: return
+	# нельзя дублировать soul внутри отряда
+	for i in squad.members.size():
+		if i == member_index_: continue
+		var sibling: MemberData = squad.members[i]
+		if sibling.virtual_soul == new_soul or sibling.preview_soul == new_soul:
+			return
+
+	_bind_member(member_index_, new_soul)
+	task.agent = self
+	Mother.overseer.add_agent(self)
+	_sync_quotums_from_tributes()
+	locked_changed.emit()
+
+func _bind_member(member_index_: int, new_soul: SoulData) -> void:
+	var member: MemberData = squad.members[member_index_]
+	if new_soul == member.virtual_soul:
+		member.update_preview()
+		return
+
+	# снять прежний soul этого member
+	if member.virtual_soul != null and member.virtual_soul != new_soul:
+		if member.virtual_soul.task == task:
+			member.virtual_soul.task = null
+
+	member.virtual_soul = new_soul
+	new_soul.task = task
+	member.update_preview()
+
+# Снять привязку; AgentData остаётся draft на task.agent
 func _detach(member_index_: int = 0) -> void:
-	var member = squad.members[member_index_]
+	if member_index_ < 0 or member_index_ >= squad.members.size(): return
+	var member: MemberData = squad.members[member_index_]
 	var changed := false
 
-	if member.virtual_soul != null and member.virtual_soul.task == task:
-		member.virtual_soul.task = null
+	if member.virtual_soul != null:
+		if member.virtual_soul.task == task:
+			member.virtual_soul.task = null
+		member.virtual_soul = null
 		changed = true
 
-	# task.agent снимаем только если больше нет привязанных member-ов
 	var any_assigned := false
 	for m in squad.members:
-		if m.virtual_soul != null and m.virtual_soul.task == task:
+		if m.virtual_soul != null:
 			any_assigned = true
 			break
 
-	if not any_assigned and task.agent == self:
-		task.agent = null
-		changed = true
-
+	# draft остаётся: task.agent не обнуляем
 	if not any_assigned:
 		Mother.overseer.remove_agent(self)
 
 	if changed:
 		locked_changed.emit()
 
-func unassign() -> void:
+func unassign(force_: bool = false) -> void:
 	if task == null: return
-	for _i in squad.members.size():
-		_detach(_i)
+	# во время исполнения снимать нельзя; force — завершение задачи
+	if not force_ and workload.current_progress > 0: return
+
+	var changed := false
+	for m in squad.members:
+		if m.virtual_soul == null: continue
+		if m.virtual_soul.task == task:
+			m.virtual_soul.task = null
+		m.virtual_soul = null
+		changed = true
+
+	# draft остаётся на task.agent
+	Mother.overseer.remove_agent(self)
+	if changed:
+		locked_changed.emit()
 
 func get_avg_dice() -> float:
 	if squad.members.front().virtual_soul == null: return 0.0
@@ -144,15 +200,12 @@ func pay() -> void:
 	for quotum in quotums:
 		quotum.pay()
 
-#func get_preview(index_: int = 0) -> SoulData:
-	#if squad.members.is_empty(): return null
-	#if squad.members[index_].preview_soul:
-		#squad.members[index_].update_preview()
-	#return squad.members[index_].preview_soul
 func get_preview(index_: int = 0) -> SoulData:
 	if squad.members.is_empty(): return null
+	if index_ < 0 or index_ >= squad.members.size(): return null
 	return squad.members[index_].preview_soul
 
 func get_virtual(index_: int = 0) -> SoulData:
 	if squad.members.is_empty(): return null
+	if index_ < 0 or index_ >= squad.members.size(): return null
 	return squad.members[index_].virtual_soul

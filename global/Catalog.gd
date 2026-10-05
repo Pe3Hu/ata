@@ -243,7 +243,7 @@ const matter_sctructures = [Bozo.Structure.THEATER, Bozo.Structure.WORKSHOP, Boz
 const mixed_sctructures = [Bozo.Structure.ATELIER, Bozo.Structure.FORGE]
 const single_sctructures = [Bozo.Structure.TAVERN, Bozo.Structure.OBSERVATORY]
 
-const complexity_ranks = [
+const complexity_orders = [
 	[0, 0, 0],
 	[0, 0, 1],
 	[0, 1, 1],
@@ -274,6 +274,7 @@ const TROD_SELECTED_FACTOR: float = 3
 
 const BARKEEPER_RECRUIT_AMOUNT: int = 3
 const MINER_SPOIL_FACTOR: int = 2
+const ARCHAEOLOGIST_SPOIL_FACTOR: int = 3
 const miner_max_spoil_amount = [5, 4, 3, 2]
 const DEMON_DEFAULT_COMPLEXITY: int = 35
 
@@ -287,7 +288,7 @@ var MAX_OVERTIME = OVERTIME_GRID.x * OVERTIME_GRID.y
 #endregion
 
 const vowels = ['A', 'E', 'I', 'O', 'U']
-const noicon_masters = [Bozo.Master.ARCHITECT, Bozo.Master.SCOUT, Bozo.Master.BARKEEPER, Bozo.Master.MUSICIAN]
+const noicon_masters = [Bozo.Master.ARCHITECT, Bozo.Master.SCOUT, Bozo.Master.BARKEEPER, Bozo.Master.MUSICIAN, Bozo.Master.ARCHAEOLOGIST, Bozo.Master.DEMON]
 
 const AVG_HOUR_PROGRESS: int = 8
 const REAL_SECONDS_PER_GAME_HOUR: float = 0.25

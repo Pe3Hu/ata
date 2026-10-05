@@ -45,7 +45,7 @@ func _init() -> void:
 func init_default_souls() -> void:
 	refill_alphabet()
 	souls.clear()
-	var n = 3
+	var n = 4
 	var recruiment_matters = []
 	
 	for _i in n:
@@ -74,7 +74,8 @@ func set_current_master(type_: Bozo.Master):
 	if current_master:
 		match current_master.type:
 			Bozo.Master.SCOUT:
-				if current_master.current_task.agent.get_virtual() == null:
+				var scout_agent = current_master.current_task.agent if current_master.current_task else null
+				if scout_agent == null or not scout_agent.is_locked:
 					Mother.mainland.beam.reset()
 			Bozo.Master.MINER:
 				current_master.tasks.clear()

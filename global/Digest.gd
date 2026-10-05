@@ -932,7 +932,7 @@ const structure_to_master = {
 	Bozo.Structure.MINE: Bozo.Master.MINER,
 	Bozo.Structure.ATELIER: Bozo.Master.TAILOR,
 	Bozo.Structure.TAVERN: Bozo.Master.BARKEEPER,
-	Bozo.Structure.OBSERVATORY: Bozo.Master.SCOUT
+	Bozo.Structure.OBSERVATORY: Bozo.Master.SCOUT,
 }
 
 const master_to_price = {
@@ -943,6 +943,7 @@ const master_to_price = {
 	Bozo.Master.MINER: 60,
 	Bozo.Master.BARKEEPER: 18,
 	Bozo.Master.SCOUT: 32,
+	Bozo.Master.ARCHAEOLOGIST: 36,
 }
 
 const master_to_volumes = {
@@ -954,6 +955,7 @@ const master_to_volumes = {
 	Bozo.Master.TAILOR: [6, 10, 15],
 	Bozo.Master.BARKEEPER: [9, 18, 27],
 	Bozo.Master.SCOUT: [4, 8, 32],
+	Bozo.Master.ARCHAEOLOGIST: [12, 18]
 }
 
 const master_to_order = {
@@ -965,6 +967,7 @@ const master_to_order = {
 	Bozo.Master.TAILOR: 3,
 	Bozo.Master.BARKEEPER: 6,
 	Bozo.Master.SCOUT: 2,
+	Bozo.Master.ARCHAEOLOGIST: 1,
 }
 
 const master_to_matter = {
@@ -984,6 +987,7 @@ const master_to_workloads = {
 	Bozo.Master.TAILOR: [6, 9, 12],
 	Bozo.Master.BARKEEPER: [12, 12, 12, 12, 12, 12],
 	Bozo.Master.SCOUT: [16, 16, 16],
+	Bozo.Master.ARCHAEOLOGIST: [0, 0]
 }
 
 const master_to_task = {
@@ -995,6 +999,20 @@ const master_to_task = {
 	Bozo.Master.TAILOR: 'attire',
 	Bozo.Master.BARKEEPER: 'recruit',
 	Bozo.Master.SCOUT: 'spotlight',
+	Bozo.Master.ARCHAEOLOGIST: 'excavation',
+}
+
+const master_to_squad_size = {
+	Bozo.Master.BLACKSMITH: 1,
+	Bozo.Master.MUSICIAN: 1,
+	Bozo.Master.ARCHITECT: 1,
+	Bozo.Master.LIGHTKEEPER: 1,
+	Bozo.Master.MINER: 1,
+	Bozo.Master.TAILOR: 1,
+	Bozo.Master.BARKEEPER: 1,
+	Bozo.Master.SCOUT: 1,
+	Bozo.Master.DEMON: 2,
+	Bozo.Master.ARCHAEOLOGIST: 3,
 }
 #endregion
 
@@ -1075,6 +1093,13 @@ const matter_to_order_to_volume_to_percent = {
 	}
 }
 
+
+const matter_to_volumes = {
+	Bozo.Matter.GAS: [2, 4, 6, 8, 10, 12, 18, 20, 30, 32],
+	Bozo.Matter.LIQUID: [3, 6, 9, 12, 15, 18, 27, 30],
+	Bozo.Matter.SOLID: [5, 10, 15, 20, 25, 30]
+}
+
 const order_to_avg = {
 	0: 8,
 	1: 13,
@@ -1142,6 +1167,66 @@ const month_to_recruit_intros:  = [
 	[60, 50, 20],
 ]
 
+const ruin_to_sparks = {
+  0: [
+	{10: 2, 5: 1},
+	{10: 2, 4: 1},
+	{10: 2, 3: 1},
+	{10: 2, 2: 2},
+	{9: 2, 5: 1},
+	{9: 2, 3: 2},
+	{9: 2, 2: 3},
+	{8: 3, 0: 0},
+	{7: 3, 3: 1},
+	{7: 3, 2: 2},
+	{6: 3, 5: 1},
+	{6: 3, 3: 2},
+	{6: 3, 2: 3}
+  ],
+  1: [
+	{10: 1, 4: 2},
+	{10: 1, 3: 3},
+	{10: 1, 2: 4},
+	{9: 2},
+	{9: 1, 5: 2},
+	{9: 1, 4: 2},
+	{9: 1, 3: 3},
+	{9: 1, 2: 5},
+	{8: 2, 3: 1},
+	{8: 2, 2: 1},
+	{8: 1, 5: 2},
+	{8: 1, 3: 3},
+	{8: 1, 2: 5},
+	{7: 2, 5: 1},
+	{7: 2, 4: 1},
+	{7: 2, 3: 1},
+	{7: 2, 2: 2},
+	{7: 1, 5: 2},
+	{7: 1, 4: 3},
+	{7: 1, 3: 4},
+	{7: 1, 2: 6},
+	{6: 3},
+	{6: 2, 5: 1},
+	{6: 2, 3: 2},
+	{6: 2, 2: 3}
+  ],
+  2: [
+	{10: 1, 1: 1},
+	{10: 1, 1: 1},
+	{9: 1, 1: 1},
+	{9: 1, 1: 1},
+	{9: 1, 1: 1},
+	{8: 1, 1: 1},
+	{8: 1, 1: 1},
+	{8: 1, 2: 2},
+	{7: 1, 1: 1},
+	{7: 1, 1: 1},
+	{6: 2},
+	{6: 1, 1: 1},
+	{6: 1, 2: 2},
+	{6: 1, 3: 3}
+  ]
+}
 
 #region color
 var matter_to_color = {

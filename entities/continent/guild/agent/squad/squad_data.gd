@@ -12,4 +12,8 @@ func _init(agent_: AgentData) -> void:
 	init_members()
 
 func init_members() -> void:
-	MemberData.new(self)
+	var size := 1
+	if agent.task != null and agent.task.master != null:
+		size = Digest.master_to_squad_size.get(agent.task.master.type, 1)
+	for _i in size:
+		MemberData.new(self)

@@ -27,7 +27,8 @@ func init_tributes() -> void:
 	tributes = [TributeData.new(price, volumes)]
 
 func _on_finished() -> void:
-	agent.unassign()
+	if agent != null:
+		agent.unassign(true)
 	master.tasks.clear()
 	master.init_static_tasks()
 	

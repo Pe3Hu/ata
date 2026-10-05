@@ -330,7 +330,7 @@ func resolve_structure_exceptions() -> void:
 
 func init_ruin_structures() -> void:
 	var empty_wastelands = wastelands.filter(func (a): return a.structures.is_empty())
-	var complexity = Catalog.complexity_ranks.size() - 1
+	var complexity = Catalog.complexity_orders.size() - 1
 	empty_wastelands.front().fill_ruins(complexity)
 	var not_visited_wastelands: Array
 	var visited_wastelands: Array = [empty_wastelands.front()]
@@ -345,7 +345,7 @@ func init_ruin_structures() -> void:
 	visited_wastelands.append_array(empty_wastelands)
 	not_visited_wastelands = not_visited_wastelands.filter(func (a): return not visited_wastelands.has(a))
 	
-	while complexity < Catalog.complexity_ranks.size() - 2:
+	while complexity < Catalog.complexity_orders.size() - 2:
 		complexity += 1
 		
 		for _i in Catalog.complexity_amounts[complexity]:

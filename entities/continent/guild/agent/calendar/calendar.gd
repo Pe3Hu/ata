@@ -20,12 +20,14 @@ func connect_signals() -> void:
 
 func _on_button_pressed() -> void:
 	if agent == null or agent.data == null: return
+	if not Mother.mainland.route.is_calendar(): return
 	if agent.data.workload.current_progress > 0: return
 
-	if agent.data.get_preview() != null and agent.data.get_preview().task == agent.data.task:
+	# кнопка действует на весь отряд по текущим preview
+	if agent.data.is_preview_committed():
 		agent.data.unassign()
 	else:
-		agent.data.assign(agent.data.get_preview())
+		agent.data.assign_squad()
 
 	agent.update_view()
 	update_textures()
@@ -35,10 +37,11 @@ func update_textures() -> void:
 		_apply(false)
 		return
 	
-	_apply(agent.data.get_preview() != null and agent.data.get_preview().task == agent.data.task)
+	_apply(agent.data.is_preview_committed())
 
 func update_visible() -> void:
 	visible = Mother.mainland.route.is_calendar()
+	update_colors()
 
 func _apply(locked_: bool) -> void:
 	update_visible()
@@ -50,5 +53,8 @@ func _apply(locked_: bool) -> void:
 		%Button.texture_normal = TEX_FREE_NORMAL
 		%Button.texture_hover  = TEX_FREE_HOVER
 
-func apply_matter(matter_: Bozo.Matter) -> void:
-	Helper.update_matter_colors(%Button, [matter_])
+func update_colors() -> void:
+	if agent == null or agent.data == null: return
+	var preview = agent.data.get_preview()
+	if preview == null: return
+	Helper.update_matter_colors(%Button, [preview.matter])

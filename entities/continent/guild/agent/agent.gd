@@ -11,6 +11,8 @@ var data: AgentData:
 		connect_signals()
 		update_view()
 
+@export var calendar: Calendar
+
 
 #region init
 func _ready() -> void:
@@ -55,19 +57,25 @@ func update_view() -> void:
 		return
 
 	%Squad.visible = true
-	%Calendar.visible = true
 	update_colors()
 	update_labels()
 	_on_overtime_changed()
 
+	# visible calendar зависит от локации (is_calendar) внутри update_textures
 	%Calendar.update_textures()
 
 func update_colors() -> void:
-	%Calendar.apply_matter(data.get_preview().matter)
+	%Calendar.update_colors()
 	%Squad.update_colors()
 
 func update_labels() -> void:
+	if data == null: return
 	%Squad.update_labels()
-	%DiceLabel.text = str(snapped(float(data.get_preview().intro.get_sum()) / 6.0, 0.01))
+	var preview = data.get_preview()
+	if preview == null:
+		%DiceLabel.text = "—"
+		_on_overtime_changed()
+		return
+	%DiceLabel.text = str(snapped(float(preview.intro.get_sum()) / 6.0, 0.01))
 	_on_overtime_changed()
 #endregion

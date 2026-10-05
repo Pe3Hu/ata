@@ -2,6 +2,6 @@ class_name ArchaeologistData
 extends MasterData
 
 
-
-func get_ruin() -> StructureData:
-	return guild.structure
+func init_tasks() -> void:
+	tasks.clear()
+	ExcavationData.new(self, guild.structure.order)

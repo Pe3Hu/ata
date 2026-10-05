@@ -32,7 +32,7 @@ func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) 
 		pattern_coords.append_array(Catalog.wasteland_pattern_coords)
 		pattern_coords.shuffle()
 
-func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_: int = -1, is_forced_: bool = false) -> bool:
+func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, order_: int = -1, is_forced_: bool = false) -> bool:
 	if not is_forced_ and not structures.is_empty():
 		refused_structures.append(type_)
 		return false
@@ -55,8 +55,8 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, rank_
 		var matter = Catalog.matters.pick_random()
 		structure.matters.append(matter)
 	
-		if rank_ > 0:
-			structure.rank = rank_
+		if order_ > 0:
+			structure.order = order_
 	
 	if type_ == Bozo.Structure.MINE:
 		pass
@@ -75,16 +75,17 @@ func remove_structure(type_: Bozo.Structure) -> bool:
 	cells_options.append(cell)
 
 	return true
+
 func fill_ruins(complexity_: int) -> void:
-	var ranks = Catalog.complexity_ranks[complexity_]
+	var orders = Catalog.complexity_orders[complexity_]
 	cells_options.shuffle()
 	
-	for rank in ranks:
+	for order in orders:
 		if cells_options.is_empty():
 			print_debug('fill_ruins bug')
 			return
 		var cell = cells_options.back()
-		add_structure(Bozo.Structure.RUIN, cell, rank, true)
+		add_structure(Bozo.Structure.RUIN, cell, order, true)
 
 func init_trods() -> void:
 	for _i in structures.size():
