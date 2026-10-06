@@ -4,10 +4,7 @@ class_name Footprint
 
 var data: FootprintData:
 	set(value_):
-		if data == value_:
-			return
-		if data and data.structures_changed.is_connected(_on_structures_changed):
-			data.structures_changed.disconnect(_on_structures_changed)
+		if data == value_: return
 		data = value_
 		connect_signals()
 
@@ -52,8 +49,13 @@ var _elapsed_real: float = 0.0      # сколько реальных секун
 
 #region init
 func connect_signals() -> void:
-	data.structures_changed.connect(_on_structures_changed)
+	if data and not data.structures_changed.is_connected(_on_structures_changed):
+		data.structures_changed.connect(_on_structures_changed)
+	
 	_on_structures_changed()
+	
+	if data and not data.route_started.is_connected(_on_route_started):
+		data.route_started.connect(_on_route_started)
 
 func _on_structures_changed() -> void:
 	if data == null or data.current_structure == null:
@@ -238,10 +240,9 @@ func _arrive(new_center: Vector2) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE:
-		start_route()
-		get_viewport().set_input_as_handled()
+		_on_route_started()
 
-func start_route() -> void:
+func _on_route_started() -> void:
 	if data == null or data.mainland == null: return
 	var route_data: RouteData = data.mainland.route
 	if route_data == null: return
@@ -287,6 +288,7 @@ func start_route() -> void:
 	_path_index = 1
 	_timer = 0.0
 	_state = Bozo.Footprint.ROUTE
+	get_viewport().set_input_as_handled()
 
 func _build_route_path(structures: Array, p_start: Vector2, d_start: Vector2) -> void:
 	var k: int = structures.size()

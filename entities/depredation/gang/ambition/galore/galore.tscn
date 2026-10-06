@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dju7h6ybm4abl"]
+
+[ext_resource type="PackedScene" uid="uid://bp26pss2vvex8" path="res://entities/depredation/gang/ambition/ambition.tscn" id="1_8mtgl"]
+[ext_resource type="Script" uid="uid://dy52lqq7ftgdk" path="res://entities/depredation/gang/ambition/galore/galore.gd" id="2_yikke"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syst4"]
+
+[node name="Galore" unique_id=1410252468 instance=ExtResource("1_8mtgl")]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_syst4")
+script = ExtResource("2_yikke")
+
+[node name="Potentials" parent="." index="0" unique_id=1417805834]
+mouse_filter = 2

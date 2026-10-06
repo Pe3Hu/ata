@@ -31,11 +31,13 @@ func update_labels() -> void:
 	%GradeIcon.texture = load('res://entities/isle/house/card/echo/images/rank/%s.png' % Bozo.enum_to_string(Bozo.Type.RANK, data.preview_soul.rank))
 	%TalentIcon.texture = load('res://entities/isle/house/card/echo/images/talent/%d.png' % data.preview_soul.talent)
 
-
 func update_colors() -> void:
 	if data == null or data.preview_soul == null: return
 	var color = Digest.matter_to_color[data.preview_soul.matter]
 	%Top.get_theme_stylebox("panel").bg_color = color
+
+func update_separtor(flag_: bool) -> void:
+	get_theme_stylebox("panel").border_width_bottom = 4 if flag_ else 0
 
 #region buttons
 func _on_next_soul_button_pressed() -> void:

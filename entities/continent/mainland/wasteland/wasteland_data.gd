@@ -54,14 +54,13 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, order
 	if type_ == Bozo.Structure.RUIN:
 		var matter = Catalog.matters.pick_random()
 		structure.matters.append(matter)
-	
-		if order_ > 0:
-			structure.order = order_
+		structure.reorder(order_)
 	
 	if type_ == Bozo.Structure.MINE:
 		pass
 	
 	return true
+
 func remove_structure(type_: Bozo.Structure) -> bool:
 	if not type_to_structure.has(type_):
 		return false

@@ -987,7 +987,7 @@ const master_to_workloads = {
 	Bozo.Master.TAILOR: [6, 9, 12],
 	Bozo.Master.BARKEEPER: [12, 12, 12, 12, 12, 12],
 	Bozo.Master.SCOUT: [16, 16, 16],
-	Bozo.Master.ARCHAEOLOGIST: [0, 0]
+	Bozo.Master.ARCHAEOLOGIST: [0, 0, 0, 0]
 }
 
 const master_to_task = {
@@ -1011,8 +1011,8 @@ const master_to_squad_size = {
 	Bozo.Master.TAILOR: 1,
 	Bozo.Master.BARKEEPER: 1,
 	Bozo.Master.SCOUT: 1,
-	Bozo.Master.DEMON: 2,
-	Bozo.Master.ARCHAEOLOGIST: 3,
+	Bozo.Master.DEMON: 3,
+	Bozo.Master.ARCHAEOLOGIST: 2,
 }
 #endregion
 
@@ -1226,6 +1226,12 @@ const ruin_to_sparks = {
 	{6: 1, 2: 2},
 	{6: 1, 3: 3}
   ]
+}
+
+const ruin_to_ideas = {
+	0: 4,
+	1: 6,
+	2: 8
 }
 
 #region color

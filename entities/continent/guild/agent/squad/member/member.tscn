@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/echo/images/rank/f.png" id="5_oqlty"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqpp6"]
+resource_local_to_scene = true
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 

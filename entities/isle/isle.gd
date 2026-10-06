@@ -8,7 +8,6 @@ extends Control
 
 @export var arsenal: Arsenal
 
-@export var misson: Mission
 @export var welkin: Welkin
 
 
@@ -25,7 +24,6 @@ func connect_datas() -> void:
 	odeum.data = Mother.odeum
 	arsenal.data = Mother.arsenal
 	
-	misson.data = Mother.mission
 	#welkin.data = Mother.welkin
 
 func _input(event) -> void:

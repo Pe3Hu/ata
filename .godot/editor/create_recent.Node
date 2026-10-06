@@ -1,8 +1,10 @@
-HBoxContainer
-VBoxContainer
 PanelContainer
-ColorRect
+Button
+TextureButton
+HBoxContainer
 Control
+VBoxContainer
+ColorRect
 Label
 TextureRect
 HSeparator
@@ -10,5 +12,3 @@ VSeparator
 Node2D
 CustomButton
 CheckBox
-CheckButton
-Button

@@ -6,7 +6,7 @@ var cluster: ClusterData
 var coord: Vector2i
 var type: Bozo.Structure
 var matters: Array[Bozo.Matter]
-var order: int = 0
+var order: int
 
 var trod_to_structure: Dictionary
 

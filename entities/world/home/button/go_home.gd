@@ -2,7 +2,7 @@ class_name GoHome
 extends Node 
 
 
-@export var home_path: String = "res://entities/world/home/home.tscn"
+var home_path: String = "res://entities/world/home/home.tscn"
 
 
 func _ready() -> void:

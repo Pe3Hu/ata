@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://boghsuc83roqn"]
+
+[ext_resource type="Script" uid="uid://ctheq842y5ru2" path="res://entities/depredation/gang/gang.gd" id="1_wdykg"]
+[ext_resource type="PackedScene" uid="uid://bp26pss2vvex8" path="res://entities/depredation/gang/ambition/ambition.tscn" id="2_1xuec"]
+[ext_resource type="PackedScene" uid="uid://dju7h6ybm4abl" path="res://entities/depredation/gang/ambition/galore/galore.tscn" id="3_syst4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8upm4"]
+
+[node name="Gang" type="PanelContainer" unique_id=421912675]
+custom_minimum_size = Vector2(560, 560)
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8upm4")
+script = ExtResource("1_wdykg")
+
+[node name="Ideas" type="Control" parent="." unique_id=695238100]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_visual_only = false
+
+[node name="Ambition" parent="." unique_id=1410252468 instance=ExtResource("2_1xuec")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Galore" parent="." unique_id=2018479779 instance=ExtResource("3_syst4")]
+unique_name_in_owner = true
+layout_mode = 2

@@ -12,8 +12,8 @@ var spoils: Array[SpoilData]
 var sparks: Array[SparkData]
 
 
-func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vector2i.ZERO) -> void:
-	super._init(cluster_, type_, coord_)
+func reorder(order_: int) -> void:
+	order = order_
 	init_obstacles()
 	init_spoils()
 	init_sparks()
@@ -46,16 +46,13 @@ func init_sparks() -> void:
 		sparks.append(spark)
 
 func init_spoils() -> void:
-	var shift = randi_range(0, 1) * 2 - 1
-	roll_matters(shift)
 	var total_spoil_amount: int = Digest.master_to_price[Bozo.Master.ARCHAEOLOGIST] * (order + 1) * Catalog.ARCHAEOLOGIST_SPOIL_FACTOR
-	
-	var default_spoil_sum = total_spoil_amount / 4
+	var default_spoil_sum = total_spoil_amount * 0.25
 	var volume = Digest.matter_to_volumes[matters.back()][0]
 	var amount = ceil(float(default_spoil_sum) / volume)
 	var spoil = SpoilData.new(matters.front(), volume, amount)
 	spoils.append(spoil)
-	var volume_options = Digest.matter_to_volumes[matters.back()]
+	var volume_options = Digest.matter_to_volumes[matters.back()].duplicate()
 	volume_options.pop_front()
 	volume = volume_options.pick_random()
 	amount = ceil(float(default_spoil_sum) / volume)
@@ -63,19 +60,29 @@ func init_spoils() -> void:
 	spoils.append(spoil)
 	
 	for _spoil in spoils:
-		total_spoil_amount -= _spoil.amount * _spoil.volume
+		total_spoil_amount -= _spoil.amount * _spoil.shard.volume
 	
 	var spoil_index := 0
 	
 	while total_spoil_amount > 0:
 		var _spoil = spoils[spoil_index]
-		var max_amount = ceil(60.0 / _spoil.volume)
+		var max_amount = ceil(60.0 / _spoil.shard.volume)
 		amount = Helper.rng.randi_range(1, max_amount)
 		
-		if amount * _spoil.volume > total_spoil_amount:
-			amount = max(floor(float(total_spoil_amount) / _spoil.volume), 0)
+		if amount * _spoil.shard.volume > total_spoil_amount:
+			amount = max(floor(float(total_spoil_amount) / _spoil.shard.volume), 0)
 		
 		_spoil.amount += amount
-		total_spoil_amount -= amount * _spoil.volume
+		total_spoil_amount -= amount * _spoil.shard.volume
 		spoil_index = (spoil_index + 1) % spoils.size()
+		
+		if amount == 0: break
 	
+	var check_sum := Digest.master_to_price[Bozo.Master.ARCHAEOLOGIST] * (order + 1) * Catalog.ARCHAEOLOGIST_SPOIL_FACTOR
+	
+	for _spoil in spoils:
+		check_sum -= _spoil.amount * _spoil.shard.volume
+	
+	amount = ceil(float(check_sum) / spoils.front().shard.volume)
+	spoils.front().amount += amount
+	check_sum -= amount * spoils.front().shard.volume

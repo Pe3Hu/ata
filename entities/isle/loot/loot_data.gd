@@ -2,13 +2,13 @@ class_name LootData
 extends RefCounted
 
 
-var mission: MissionData
+var depredation: DepredationData
 var shards: Array[ShardData]
 var matter_to_shard: Dictionary
 
 
-func _init(mission_: MissionData) -> void:
-	mission = mission_
+func _init(depredation_: DepredationData) -> void:
+	depredation = depredation_
 	
 	init_shards()
 

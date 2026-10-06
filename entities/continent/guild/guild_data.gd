@@ -79,6 +79,8 @@ func set_current_master(type_: Bozo.Master):
 					Mother.mainland.beam.reset()
 			Bozo.Master.MINER:
 				current_master.tasks.clear()
+			Bozo.Master.ARCHAEOLOGIST:
+				current_master.tasks.clear()
 	
 	if master:
 		current_master = master

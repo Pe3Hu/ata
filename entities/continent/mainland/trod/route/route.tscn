@@ -15,7 +15,7 @@ border_color = Color(0, 0, 0, 1)
 thickness = 4
 
 [node name="Route" type="PanelContainer" unique_id=1537280593]
-custom_minimum_size = Vector2(72, 0)
+custom_minimum_size = Vector2(72, 88)
 offset_right = 72.0
 offset_bottom = 84.0
 size_flags_horizontal = 4
@@ -31,7 +31,7 @@ theme_override_constants/separation = 0
 
 [node name="TravelTitle" type="Label" parent="VBox" unique_id=1202091764]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(64, 52)
 layout_mode = 2
 text = "Travel
 time"
@@ -45,7 +45,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_lxk3t")
 
 [node name="TravelTime" type="Label" parent="VBox" unique_id=1904017950]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(22, 23)
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("2_wt78s")

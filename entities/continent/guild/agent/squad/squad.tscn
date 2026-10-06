@@ -3,7 +3,21 @@
 [ext_resource type="Script" uid="uid://ch7sw1c6brkda" path="res://entities/continent/guild/agent/squad/squad.gd" id="1_2fubl"]
 [ext_resource type="PackedScene" uid="uid://c54rtqlyoc2i3" path="res://entities/continent/guild/agent/squad/member/member.tscn" id="2_du3rv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntiry"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du3rv"]
+resource_local_to_scene = true
+border_width_bottom = 4
+border_color = Color(0.427493, 0.42749307, 0.42749307, 1)
+
 [node name="Squad" type="PanelContainer" unique_id=2049424503]
+theme_override_styles/panel = SubResource("StyleBoxFlat_ntiry")
 script = ExtResource("1_2fubl")
 
 [node name="Members" type="VBoxContainer" parent="." unique_id=894747172]
@@ -13,3 +27,4 @@ theme_override_constants/separation = 0
 
 [node name="Member" parent="Members" unique_id=1816623092 instance=ExtResource("2_du3rv")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_du3rv")

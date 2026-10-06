@@ -9,13 +9,15 @@ static var house: HouseData
 static var odeum: OdeumData
 
 static var arsenal: ArsenalData
-static var mission: MissionData
 static var welkin: WelkinData
 
 static var mainland: MainlandData
 static var guild: GuildData
 static var clock: ClockData
 static var overseer: OverseerData
+
+static var cottage: CottageData
+static var depredation: DepredationData
 
 
 func _ready() -> void:
@@ -27,11 +29,13 @@ func _ready() -> void:
 	guild = GuildData.new()
 	
 	arsenal = ArsenalData.new()
-	mission = MissionData.new()
 	
 	kernel = KernelData.new()
 	clock = ClockData.new()
 	overseer = OverseerData.new()
+	
+	cottage = CottageData.new()
+	depredation = DepredationData.new()
 	
 	declare_gameover.connect(_on_declare_gameover)
 	clock.time_changed.connect(func(_t): clock_updated.emit(clock.get_hand_angle()))

@@ -45,3 +45,7 @@ func update_colors() -> void:
 func update_labels() -> void:
 	for member in %Members.get_children():
 		member.update_labels()
+
+func last_member_separator(flag_: bool) -> void:
+	var member = %Members.get_child(-1)
+	member.update_separtor(flag_)

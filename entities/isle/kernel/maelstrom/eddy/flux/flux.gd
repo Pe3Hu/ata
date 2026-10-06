@@ -44,18 +44,19 @@ func upadete_position() -> void:
 			#arr.append(point + shift)
 		#print(arr)
 
-func _input(event) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_Q:
-				if data and data.eddy:
-					var eddy_index = Digest.element_to_index[data.eddy.element] - 1
-					
-					if eddy_index == 1:
-						var flux_index = Catalog.volumes.find(data.volume) + 1
-						data.volume = Catalog.volumes[flux_index]
-				pass
+#func _input(event) -> void:
+	#if event is InputEventKey and event.pressed and not event.echo:
+		#match event.keycode:
+			#KEY_Q:
+				#test_eddy()
 
+func test_eddy() -> void:
+	if data and data.eddy:
+		var eddy_index = Digest.element_to_index[data.eddy.element] - 1
+		
+		if eddy_index == 1:
+			var flux_index = Catalog.volumes.find(data.volume) + 1
+			data.volume = Catalog.volumes[flux_index]
 
 func _on_background_mouse_entered() -> void:
 	data.eddy.maelstrom.kernel.stepladder.flux = data

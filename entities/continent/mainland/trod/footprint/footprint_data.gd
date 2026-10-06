@@ -3,6 +3,8 @@ extends RefCounted
 
 
 @warning_ignore("unused_signal")
+signal route_started
+@warning_ignore("unused_signal")
 signal route_finished
 signal structures_changed
 

@@ -15,14 +15,15 @@ var data: AgentData:
 
 
 #region init
-func _ready() -> void:
-	var color = Digest.element_to_color[Bozo.Element.SAND]
-	%Dice.update_color(color)
+#func _ready() -> void:
+	#var color = Digest.element_to_color[Bozo.Element.SAND]
+	#%Dice.update_color(color)
 
 func connect_datas() -> void:
 	%Workload.data = data.workload
 	%Squad.data = data.squad
 	%Calendar.update_textures()
+	update_visibles()
 
 func connect_signals() -> void:
 	if not data.workload.overtime_changed.is_connected(_on_overtime_changed):
@@ -30,7 +31,7 @@ func connect_signals() -> void:
 	#_on_overtime_changed()
 
 func _on_overtime_changed() -> void:
-	%WorkoadLabel.text = '%d/%d' % [data.workload.current_progress, data.workload.limit_progress]
+	#%WorkoadLabel.text = '%d/%d' % [data.workload.current_progress, data.workload.limit_progress]
 
 	if data.get_preview() == null:
 		%HourglassLabel.text = "0"
@@ -51,9 +52,9 @@ func update_view() -> void:
 	if data.get_preview() == null:
 		%Squad.visible = false
 		%Calendar.visible = false
-		%WorkoadLabel.text = "—"
+		#%WorkoadLabel.text = "—"
 		%HourglassLabel.text = "—"
-		%DiceLabel.text = "—"
+		#%DiceLabel.text = "—"
 		return
 
 	%Squad.visible = true
@@ -73,9 +74,14 @@ func update_labels() -> void:
 	%Squad.update_labels()
 	var preview = data.get_preview()
 	if preview == null:
-		%DiceLabel.text = "—"
+		#%DiceLabel.text = "—"
 		_on_overtime_changed()
 		return
-	%DiceLabel.text = str(snapped(float(preview.intro.get_sum()) / 6.0, 0.01))
+	#%DiceLabel.text = str(snapped(float(preview.intro.get_sum()) / 6.0, 0.01))
 	_on_overtime_changed()
+
+func update_visibles() -> void:
+	var flag = Digest.master_to_squad_size[data.task.master.type] == 1
+	%WorkloadPanel.visible = flag
+	%Squad.last_member_separator(false)
 #endregion
