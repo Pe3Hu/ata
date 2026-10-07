@@ -2,9 +2,11 @@ class_name DepredationData
 extends RefCounted
 
 
+@warning_ignore("unused_signal")
+signal obstacle_cleared(obstacle_)
+
 var bank: BankData
 var gang: GangData
-var loot: LootData
 
 var counter = 1000
 var method_to_sum: Dictionary
@@ -13,7 +15,10 @@ var method_to_sum: Dictionary
 func _init() -> void:
 	bank = BankData.new(self)
 	gang = GangData.new(self)
-	loot = LootData.new(self)
+	obstacle_cleared.connect(_on_obstacle_cleared)
+
+func _on_obstacle_cleared(_obstacle_data_) -> void:
+	bank.ruin.demolish()
 
 func test_avg_difficulty() -> void:
 	for method in Catalog.methods:

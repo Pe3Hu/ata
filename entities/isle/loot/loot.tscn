@@ -2,10 +2,42 @@
 
 [ext_resource type="Script" uid="uid://bo5pyxlaf8x4q" path="res://entities/isle/loot/loot.gd" id="1_ufjhw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg6au"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
 [node name="Loot" type="PanelContainer" unique_id=503262578]
+theme_override_styles/panel = SubResource("StyleBoxFlat_qg6au")
 script = ExtResource("1_ufjhw")
 
-[node name="Shards" type="VBoxContainer" parent="." unique_id=1302425607]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1757452287]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="MarginContainer" unique_id=422969420]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Spoils" type="VBoxContainer" parent="MarginContainer/HBox" unique_id=1146678119]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 8
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Sparks" type="VBoxContainer" parent="MarginContainer/HBox" unique_id=1333886009]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1

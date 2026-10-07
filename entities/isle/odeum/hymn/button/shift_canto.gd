@@ -1,1 +1,1 @@
-extends CustomButton
+extends CustomTextureButton

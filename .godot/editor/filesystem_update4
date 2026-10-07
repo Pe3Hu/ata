@@ -1,0 +1,46 @@
+res://entities/depredation/depredation.tscn
+res://entities/depredation/bank/method/perfect method.gdshader
+res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader
+res://entities/isle/loot/spark/spark.gdshader
+res://entities/isle/welkin/shaders/asterism.gdshader
+res://entities/ui/button/menu/continue button.tscn
+res://entities/ui/button/menu/continue.gd
+res://entities/world/home/button/button.tscn
+res://entities/world/home/button/button.gd
+res://shared/buttons/custom button.gd
+res://entities/ui/button/menu/collect button.tscn
+res://entities/isle/odeum/hymn/button/shift_canto.gd
+res://entities/isle/loot/loot.tscn
+res://entities/depredation/bank/method/method.tscn
+res://entities/isle/kernel/maelstrom/maelstrom_data.gd
+res://entities/isle/kernel/maelstrom/eddy/eddy_data.gd
+res://entities/depredation/bank/method/method.gd
+res://entities/isle/kernel/maelstrom/eddy/eddy.tscn
+res://entities/isle/kernel/maelstrom/maelstrom.gd
+res://entities/world/home/home.gd
+res://entities/continent/mainland/mainland_data.gd
+res://entities/continent/mainland/structure/structure_data.gd
+res://entities/continent/mainland/wasteland/wasteland.tscn
+res://entities/continent/mainland/wasteland/wasteland.gd
+res://entities/continent/mainland/structure/structure.gd
+res://entities/continent/mainland/wasteland/wasteland_data.gd
+res://entities/isle/biome/biome_data.gd
+res://global/Catalog.gd
+res://entities/continent/guild/agent/hourglass/hourglass.gd
+res://entities/continent/mainland/banner/banner.tscn
+res://entities/continent/mainland/banner/banner.gd
+res://entities/continent/mainland/banner/banner_data.gd
+res://entities/continent/mainland/mainland.tscn
+res://entities/depredation/depredation.gd
+res://entities/depredation/depredation_data.gd
+res://entities/depredation/bank/method/method_data.gd
+res://entities/isle/isle.tscn
+res://entities/continent/guild/agent/workload/workload.tscn
+res://shared/wallpapers/2/crimson swirl.gdshader
+res://shared/wallpapers/2/crimson hole.gdshader
+res://shared/wallpapers/2/pink void.gdshader
+res://shared/wallpapers/2/space curves.gdshader
+res://entities/isle/kernel/maelstrom/eddy/element.gdshader
+res://global/Digest.gd
+res://entities/depredation/gang/ambition/potential/potential.tscn
+res://entities/depredation/bank/bank.tscn

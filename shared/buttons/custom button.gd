@@ -1,4 +1,4 @@
-class_name CustomButton
+class_name CustomTextureButton
 extends TextureButton
 
 

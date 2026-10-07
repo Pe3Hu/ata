@@ -2,6 +2,8 @@ class_name StructureData
 extends RefCounted
 
 
+signal is_demolished
+
 var cluster: ClusterData
 var coord: Vector2i
 var type: Bozo.Structure
@@ -27,3 +29,10 @@ func roll_matters(shift_: int) -> void:
 
 func get_global_coord() -> Vector2i:
 	return Vector2i.ONE + cluster.internals.front() + coord
+
+func demolish() -> void:
+	if not Catalog.demolish_sctructures.has(type): return
+	cluster.mainland.demolished_coords.append(get_global_coord())
+	is_demolished.emit()
+	cluster.structures.erase(self)
+	cluster.coord_options.append(coord)

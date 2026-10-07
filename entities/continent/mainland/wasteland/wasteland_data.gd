@@ -6,10 +6,10 @@ var biome: BiomeData
 
 var structures: Array[StructureData]
 var type_to_structure: Dictionary
-var type_to_cell: Dictionary
+var type_to_coord: Dictionary
 
 var pattern_coords: Array[Vector2i]
-var cells_options: Array[Vector2i]
+var coord_options: Array[Vector2i]
 
 var refused_structures: Array[Bozo.Structure]
 
@@ -28,28 +28,30 @@ func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) 
 		
 		mainland.terrain_to_clusters[terrain].append(self)
 		
-		cells_options.append_array(Catalog.structure_coords)
+		coord_options.append_array(Catalog.structure_coords)
 		pattern_coords.append_array(Catalog.wasteland_pattern_coords)
 		pattern_coords.shuffle()
 
-func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, order_: int = -1, is_forced_: bool = false) -> bool:
+func add_structure(type_: Bozo.Structure, coord_: Vector2i = -Vector2i.ONE, order_: int = -1, is_forced_: bool = false) -> bool:
 	if not is_forced_ and not structures.is_empty():
 		refused_structures.append(type_)
 		return false
 	
-	if cell_ == -Vector2i.ONE:
-		cell_ = cells_options.pick_random()
+	if coord_ == -Vector2i.ONE:
+		coord_ = coord_options.pick_random()
 	
-	var structure = StructureData.new(self, type_, cell_)
+	var structure = StructureData.new(self, type_, coord_)
 	
 	match type_:
 		Bozo.Structure.RUIN:
-			structure = RuinData.new(self, type_, cell_)
+			structure = RuinData.new(self, type_, coord_)
+		Bozo.Structure.RIFT:
+			structure = RiftData.new(self, type_, coord_)
 	
 	structures.append(structure)
-	cells_options.erase(cell_)
+	coord_options.erase(coord_)
 	type_to_structure[type_] = structure
-	type_to_cell[type_] = cell_
+	type_to_coord[type_] = coord_
 	
 	if type_ == Bozo.Structure.RUIN:
 		var matter = Catalog.matters.pick_random()
@@ -62,29 +64,28 @@ func add_structure(type_: Bozo.Structure, cell_: Vector2i = -Vector2i.ONE, order
 	return true
 
 func remove_structure(type_: Bozo.Structure) -> bool:
-	if not type_to_structure.has(type_):
-		return false
+	if not type_to_structure.has(type_): return false
 
 	var structure: StructureData = type_to_structure[type_]
-	var cell: Vector2i = type_to_cell[type_]
+	var coord: Vector2i = type_to_coord[type_]
 
 	structures.erase(structure)
 	type_to_structure.erase(type_)
-	type_to_cell.erase(type_)
-	cells_options.append(cell)
+	type_to_coord.erase(type_)
+	coord_options.append(coord)
 
 	return true
 
 func fill_ruins(complexity_: int) -> void:
 	var orders = Catalog.complexity_orders[complexity_]
-	cells_options.shuffle()
+	coord_options.shuffle()
 	
 	for order in orders:
-		if cells_options.is_empty():
+		if coord_options.is_empty():
 			print_debug('fill_ruins bug')
 			return
-		var cell = cells_options.back()
-		add_structure(Bozo.Structure.RUIN, cell, order, true)
+		var coord = coord_options.back()
+		add_structure(Bozo.Structure.RUIN, coord, order, true)
 
 func init_trods() -> void:
 	for _i in structures.size():

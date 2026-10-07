@@ -21,14 +21,14 @@ var first_idea: IdeaData:
 					if first_idea:
 						first_idea.is_active = true
 					
-					idea_chaged.emit()
+					#idea_chaged.emit()
 			else:
 				first_idea = value_
 			
 				if first_idea:
 					first_idea.is_active = true
 				
-				idea_chaged.emit()
+				#idea_chaged.emit()
 		else:
 			if second_idea:
 				first_idea.is_active = false
@@ -39,6 +39,8 @@ var first_idea: IdeaData:
 					first_idea.is_active = false
 				
 				first_idea = null
+			
+		idea_chaged.emit()
 		
 		if second_idea == null:
 			gang.ambition.reset_potentials()

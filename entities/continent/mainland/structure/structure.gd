@@ -10,11 +10,15 @@ var data: StructureData:
 		update_spirtes()
 		position = Helper.get_structure_position(data)
 
-var hover_tween: Tween
+#var hover_tween: Tween
 
 
 func connect_signals() -> void:
-	pass
+	data.is_demolished.connect(_on_demolished)
+
+func _on_demolished() -> void:
+	get_parent().remove_child(self)
+	queue_free()
 
 func update_spirtes() -> void:
 	if data.type != Bozo.Structure.SHRINE:
@@ -54,12 +58,13 @@ func update_spirtes() -> void:
 		Helper.update_matter_colors(%Body, data.matters)
 
 func _on_area_mouse_entered() -> void:
-	if hover_tween and hover_tween.is_running():
-		hover_tween.kill()
-	
-	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	hover_tween.tween_property(self, "scale", Vector2.ONE * 1.25, 0.15)
-	data.cluster.mainland.footprint.target_structure = data
+	#if hover_tween and hover_tween.is_running():
+		#hover_tween.kill()
+	#
+	#hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
+	#hover_tween.tween_property(self, "scale", Vector2.ONE * 1.25, 0.15)
+	Mother.mainland.footprint.target_structure = data
+	Mother.mainland.banner.structure = data
 	
 	#if data.cluster as ShelterData:
 		#print([data.cluster.index, data.cluster.count_total_fog_pixels()])
@@ -68,9 +73,10 @@ func _on_area_mouse_entered() -> void:
 	#print(data.cluster.index)
 
 func _on_area_mouse_exited() -> void:
-	if hover_tween and hover_tween.is_running():
-		hover_tween.kill()
-	
-	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	hover_tween.tween_property(self, "scale", Vector2.ONE, 0.15)
-	data.cluster.mainland.footprint.target_structure = null
+	#if hover_tween and hover_tween.is_running():
+		#hover_tween.kill()
+	#
+	#hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
+	#hover_tween.tween_property(self, "scale", Vector2.ONE, 0.15)
+	Mother.mainland.footprint.target_structure = null
+	Mother.mainland.banner.structure = null

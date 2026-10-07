@@ -9,7 +9,19 @@ var data: MaelstromData:
 		data = value_
 		
 		init_eddies()
+		connect_signals()
 
+
+
+func connect_signals() -> void:
+	data.eddy_focused.connect(_on_eddy_focused)
+
+func _on_eddy_focused() -> void:
+	for eddy in %Eddies.get_children():
+		if data.focused_eddy == null:
+			eddy.visible = true
+		else:
+			eddy.visible = eddy.data == data.focused_eddy
 
 func init_eddies() -> void:
 	%Eddies.offset_transform_position = -Catalog.EDDY_SIZE / 2

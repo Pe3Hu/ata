@@ -11,6 +11,10 @@ var methods: Array[Bozo.Method]
 var current_difficulty: int:
 	set(value_):
 		current_difficulty = value_
+		
+		if current_difficulty <= 0:
+			Mother.depredation.obstacle_cleared.emit(obstacle)
+		
 		difficulty_changed.emit()
 var impulse: ImpulseData
 

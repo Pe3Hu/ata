@@ -170,18 +170,12 @@ const element_anchors = [
 ]
 
 const methods = [
-	Bozo.Method.KILL,
 	Bozo.Method.BREAK,
-	Bozo.Method.FIND,
+	Bozo.Method.KILL,
 	Bozo.Method.HACK,
-	Bozo.Method.RAKE,
+	Bozo.Method.FIND,
 	Bozo.Method.STEAL,
-	#Bozo.Method.RAKE,
-	#Bozo.Method.HACK,
-	#Bozo.Method.BREAK,
-	#Bozo.Method.FIND,
-	#Bozo.Method.KILL
-	#Bozo.Method.STEAL,
+	Bozo.Method.RAKE,
 ]
 
 const ELEMENT_IMPULSE_FACTOR: int = 1
@@ -242,6 +236,7 @@ const large_sctructures = [Bozo.Structure.FORGE, Bozo.Structure.MINE, Bozo.Struc
 const matter_sctructures = [Bozo.Structure.THEATER, Bozo.Structure.WORKSHOP, Bozo.Structure.LIGHTHOUSE, Bozo.Structure.MINE]
 const mixed_sctructures = [Bozo.Structure.ATELIER, Bozo.Structure.FORGE]
 const single_sctructures = [Bozo.Structure.TAVERN, Bozo.Structure.OBSERVATORY]
+const demolish_sctructures = [Bozo.Structure.RUIN, Bozo.Structure.RIFT]
 
 const complexity_orders = [
 	[0, 0, 0],
@@ -303,3 +298,5 @@ const LODE_SECTOR_HEIGHT: float = 96.0
 const LODE_ARC_SUBDIVISIONS: int = 32
 const LODE_THICKNESS: float = 4.0
 #endregion
+
+const BANNER_OFFSET := Vector2(29, -31)

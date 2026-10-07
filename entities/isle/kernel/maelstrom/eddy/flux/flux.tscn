@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://coyx0730s7ygh"]
 
 [ext_resource type="Script" uid="uid://dxffvdyjn7efh" path="res://entities/isle/kernel/maelstrom/eddy/flux/flux.gd" id="1_dl3rv"]
-[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/shaders/element.gdshader" id="2_sqvjn"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/element.gdshader" id="2_sqvjn"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="3_dl3rv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cjr6n"]

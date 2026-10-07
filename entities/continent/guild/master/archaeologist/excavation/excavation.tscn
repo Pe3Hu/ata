@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_030dm"]
 [ext_resource type="Script" uid="uid://bmpds2snxiudq" path="res://entities/continent/guild/master/archaeologist/excavation/excavation.gd" id="2_dig2a"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_oocyp"]
+[ext_resource type="PackedScene" uid="uid://cr01ac3swtew" path="res://entities/isle/loot/loot.tscn" id="4_dig2a"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oocyp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cjm2"]
 resource_local_to_scene = true
 shader = ExtResource("2_oocyp")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -21,7 +22,7 @@ script = ExtResource("2_dig2a")
 visible = false
 
 [node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_oocyp")
+material = SubResource("ShaderMaterial_7cjm2")
 
 [node name="VBox" type="VBoxContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=480614033]
 layout_mode = 2
@@ -34,23 +35,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="HBox" type="HBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox" index="1" unique_id=1892132179]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="Spoils" type="VBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox/HBox" index="0" unique_id=1340324516]
+[node name="Loot" parent="HBoxContainer/VBox/InfoPanel/VBox" index="1" unique_id=503262578 instance=ExtResource("4_dig2a")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="Sparks" type="VBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox/HBox" index="1" unique_id=2067315175]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1

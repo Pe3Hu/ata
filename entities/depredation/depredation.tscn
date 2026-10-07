@@ -1,22 +1,26 @@
 [gd_scene format=3 uid="uid://dklrx1v4ittfx"]
 
-[ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="1_iw7us"]
 [ext_resource type="Script" uid="uid://b66vpjd2mmwf8" path="res://entities/depredation/depredation.gd" id="1_qg6au"]
+[ext_resource type="Shader" uid="uid://ntoggi7fnj8s" path="res://shared/wallpapers/2/pink void.gdshader" id="2_18q5s"]
+[ext_resource type="PackedScene" uid="uid://cr01ac3swtew" path="res://entities/isle/loot/loot.tscn" id="3_18q5s"]
 [ext_resource type="PackedScene" uid="uid://boghsuc83roqn" path="res://entities/depredation/gang/gang.tscn" id="3_qg6au"]
+[ext_resource type="PackedScene" uid="uid://b318mwx0cgo1e" path="res://entities/ui/button/menu/collect button.tscn" id="4_5c77m"]
 [ext_resource type="PackedScene" uid="uid://dagb3csq52hrm" path="res://entities/depredation/bank/bank.tscn" id="4_18q5s"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="4_t4lk7"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="8_ppi71"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="9_qhbyt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hxdvn"]
-shader = ExtResource("1_iw7us")
-shader_parameter/size = 45.00000209
-shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
-shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
+shader = ExtResource("2_18q5s")
+shader_parameter/pixel_size = 8.0
+shader_parameter/black_hole_center = Vector2(1, 1.33)
+shader_parameter/stretch = Vector2(1.33, 0.66)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rbpm5"]
 
-[node name="Depredation" type="Control" unique_id=1878424957 node_paths=PackedStringArray("bank", "gang")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5c77m"]
+
+[node name="Depredation" type="Control" unique_id=1878424957 node_paths=PackedStringArray("bank", "gang", "loot")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,8 +29,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qg6au")
-bank = NodePath("HBox/LeftPanel/HBox/Bank")
-gang = NodePath("HBox/LeftPanel/HBox/Gang")
+bank = NodePath("HBox/LeftPanel/HBoxStart/Bank")
+gang = NodePath("HBox/LeftPanel/HBoxStart/Gang")
+loot = NodePath("HBox/LeftPanel/VBoxEnd/Loot")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1626458807]
 material = SubResource("ShaderMaterial_hxdvn")
@@ -58,15 +63,32 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rbpm5")
 
-[node name="HBox" type="HBoxContainer" parent="HBox/LeftPanel" unique_id=120447492]
+[node name="VBoxEnd" type="VBoxContainer" parent="HBox/LeftPanel" unique_id=1644833370]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Loot" parent="HBox/LeftPanel/VBoxEnd" unique_id=503262578 instance=ExtResource("3_18q5s")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CollectButton" parent="HBox/LeftPanel/VBoxEnd" unique_id=250034607 instance=ExtResource("4_5c77m")]
 layout_mode = 2
 
-[node name="Gang" parent="HBox/LeftPanel/HBox" unique_id=421912675 instance=ExtResource("3_qg6au")]
+[node name="HBoxStart" type="HBoxContainer" parent="HBox/LeftPanel" unique_id=120447492]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Gang" parent="HBox/LeftPanel/HBoxStart" unique_id=421912675 instance=ExtResource("3_qg6au")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="Bank" parent="HBox/LeftPanel/HBox" unique_id=898567607 instance=ExtResource("4_18q5s")]
+[node name="Bank" parent="HBox/LeftPanel/HBoxStart" unique_id=898567607 instance=ExtResource("4_18q5s")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -75,6 +97,7 @@ size_flags_vertical = 6
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5c77m")
 
 [node name="Kernel" parent="HBox/RightPanel" unique_id=601409116 instance=ExtResource("4_t4lk7")]
 layout_mode = 2

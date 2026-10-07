@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://buory3vjnq2bm" path="res://entities/continent/mainland/trod/footprint/footprint.tscn" id="6_hrun0"]
 [ext_resource type="PackedScene" uid="uid://co3w8het156f" path="res://entities/continent/haze/haze.tscn" id="6_x1b5c"]
 [ext_resource type="PackedScene" uid="uid://jwupei73adu3" path="res://entities/continent/mainland/beam/beam.tscn" id="7_1n7ec"]
+[ext_resource type="PackedScene" uid="uid://b61grecyqjovj" path="res://entities/continent/mainland/banner/banner.tscn" id="7_68cqy"]
 [ext_resource type="PackedScene" uid="uid://bmtpa7b07ovby" path="res://entities/continent/mainland/camera/camera.tscn" id="9_cugl8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2hdj"]
@@ -1035,6 +1036,8 @@ unique_name_in_owner = true
 
 [node name="Trods" type="Node2D" parent="." unique_id=2143786788]
 unique_name_in_owner = true
+
+[node name="Banner" parent="." unique_id=2072357531 instance=ExtResource("7_68cqy")]
 
 [node name="Shelters" type="Node2D" parent="." unique_id=1747237073]
 unique_name_in_owner = true

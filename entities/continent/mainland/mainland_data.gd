@@ -19,6 +19,8 @@ var magistrals: Array[MagistralData]
 var trods: Array[TrodData]
 
 var route: RouteData = RouteData.new(self)
+var banner: BannerData = BannerData.new(self)
+var demolished_coords: Array[Vector2i]
 
 
 #region init
@@ -30,6 +32,9 @@ func _init() -> void:
 	init_magistrals()
 	init_trods()
 	update_start_structure()
+	
+	test_demolish()
+	summon_rifts()
 
 func init_shelters_and_wastelands() -> void:
 	var terrains = [Bozo.Terrain.DESERT, Bozo.Terrain.SWAMP, Bozo.Terrain.FOREST]
@@ -419,3 +424,41 @@ func validate_pre_ruin_distribution() -> void:
 	print_debug("empty=%d, duplicates=%d" % [empty_count, duplicate_count])
 	assert(empty_count == 1, "Должна остаться ровно одна пустая пустошь")
 	assert(duplicate_count == 0, "Дублирований быть не должно")
+
+func test_demolish() -> void:
+	var ruins = []
+	#for wasteland in wastelands:
+		#for structure in wasteland.structures:
+			#if structure.type == Bozo.Structure.RUIN and structure.order == 0:
+				#ruins.append(structure)
+	
+	for index in Catalog.center_wasteland_indexs:
+		var wasteland = wastelands[index]
+		
+		for structure in wasteland.structures:
+			if structure.type == Bozo.Structure.RUIN and structure.order == 0:
+				ruins.append(structure)
+	
+	ruins.shuffle()
+	var n = 3
+	ruins.resize(n)
+	
+	for _i in range(n-1, -1, -1):
+		var ruin = ruins[_i]
+		ruin.demolish()
+
+func summon_rifts() -> void:
+	var n = 1
+	demolished_coords.shuffle()
+	var coords = demolished_coords.duplicate()
+	coords.resize(n)
+	var rift_order = 1
+	
+	for coord in coords:
+		summon_rift(coord, rift_order)
+
+func summon_rift(coord_: Vector2i, order_: int) -> void:
+	var cluster = coord_to_cluster[coord_]
+	var local_coord = coord_ - Vector2i.ONE - cluster.internals.front()
+	cluster.add_structure(Bozo.Structure.RIFT, local_coord, order_, true)
+	

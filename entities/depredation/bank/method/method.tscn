@@ -8,6 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://b042a0qkk4j6" path="res://entities/depredation/bank/method/images/border/difficulty.png" id="4_4ad3u"]
 [ext_resource type="Texture2D" uid="uid://dylkfbddl8q64" path="res://entities/depredation/bank/method/images/body/impulse.png" id="5_qj25r"]
 [ext_resource type="Texture2D" uid="uid://cdd86p0gpwa4" path="res://entities/depredation/bank/method/images/border/impulse.png" id="6_6e2lp"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/element.gdshader" id="6_ge5ld"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku0tm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3v272"]
 resource_local_to_scene = true
@@ -22,6 +31,7 @@ shader_parameter/async_speed_factor = 0.1
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/center_offset = 0.5
 shader_parameter/circle_radius = 0.25
+shader_parameter/wave_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ad3u"]
 resource_local_to_scene = true
@@ -36,17 +46,33 @@ shader_parameter/async_speed_factor = 0.1
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/center_offset = 0.5
 shader_parameter/circle_radius = 0.25
+shader_parameter/wave_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5862"]
+resource_local_to_scene = true
+shader = ExtResource("6_ge5ld")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
 
 [node name="Method" type="PanelContainer" unique_id=1137265849]
 custom_minimum_size = Vector2(0, 24)
 offset_right = 116.0
 offset_bottom = 23.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ku0tm")
 script = ExtResource("1_i61tk")
 
-[node name="VBox" type="VBoxContainer" parent="." unique_id=1287536069]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=518876394]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="Title" type="Label" parent="VBox" unique_id=404648499]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer" unique_id=1287536069]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBox" unique_id=404648499]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(52, 0)
 layout_mode = 2
@@ -55,16 +81,16 @@ label_settings = ExtResource("2_51i02")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBox" type="HBoxContainer" parent="VBox" unique_id=1713082335]
+[node name="HBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1713082335]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="DifficultyContainer" type="Control" parent="VBox/HBox" unique_id=475013064]
+[node name="DifficultyContainer" type="Control" parent="MarginContainer/VBox/HBox" unique_id=475013064]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="DifficultyPerfect" type="TextureRect" parent="VBox/HBox/DifficultyContainer" unique_id=808957670]
+[node name="DifficultyPerfect" type="TextureRect" parent="MarginContainer/VBox/HBox/DifficultyContainer" unique_id=808957670]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_3v272")
 layout_mode = 0
@@ -76,13 +102,14 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(0.9, 0.9)
 texture = ExtResource("3_r2hyf")
 
-[node name="Border" type="TextureRect" parent="VBox/HBox/DifficultyContainer" unique_id=313361692]
+[node name="Border" type="TextureRect" parent="MarginContainer/VBox/HBox/DifficultyContainer" unique_id=313361692]
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
 texture = ExtResource("4_4ad3u")
 
-[node name="Difficulty" type="Label" parent="VBox/HBox/DifficultyContainer" unique_id=986493305]
+[node name="Difficulty" type="Label" parent="MarginContainer/VBox/HBox/DifficultyContainer" unique_id=986493305]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -102,11 +129,11 @@ label_settings = ExtResource("2_51i02")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ImpulseContainer" type="Control" parent="VBox/HBox" unique_id=720008075]
+[node name="ImpulseContainer" type="Control" parent="MarginContainer/VBox/HBox" unique_id=720008075]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="ImpulsePerfect" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=84183478]
+[node name="ImpulsePerfect" type="TextureRect" parent="MarginContainer/VBox/HBox/ImpulseContainer" unique_id=84183478]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_4ad3u")
 layout_mode = 1
@@ -127,7 +154,9 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(0.9, 0.9)
 texture = ExtResource("3_r2hyf")
 
-[node name="Body" type="TextureButton" parent="VBox/HBox/ImpulseContainer" unique_id=1739924008]
+[node name="ImpulseBody" type="TextureButton" parent="MarginContainer/VBox/HBox/ImpulseContainer" unique_id=1739924008]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_o5862")
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
@@ -137,14 +166,15 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(0.9, 0.9)
 texture_hover = ExtResource("5_qj25r")
 
-[node name="Border" type="TextureRect" parent="VBox/HBox/ImpulseContainer" unique_id=811703606]
+[node name="Border" type="TextureRect" parent="MarginContainer/VBox/HBox/ImpulseContainer" unique_id=811703606]
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 48.0
 offset_bottom = 48.0
 mouse_filter = 2
 texture = ExtResource("6_6e2lp")
 
-[node name="Impulse" type="Label" parent="VBox/HBox/ImpulseContainer" unique_id=1232997497]
+[node name="Impulse" type="Label" parent="MarginContainer/VBox/HBox/ImpulseContainer" unique_id=1232997497]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -164,24 +194,27 @@ label_settings = ExtResource("2_51i02")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Aspects" type="HBoxContainer" parent="VBox" unique_id=1375553803]
+[node name="Aspects" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1375553803]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="Intention1" parent="VBox/Aspects" unique_id=18713569 instance=ExtResource("3_dmfkq")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Intention2" parent="VBox/Aspects" unique_id=476463097 instance=ExtResource("3_dmfkq")]
+[node name="Intention1" parent="MarginContainer/VBox/Aspects" unique_id=18713569 instance=ExtResource("3_dmfkq")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Intention3" parent="VBox/Aspects" unique_id=780229363 instance=ExtResource("3_dmfkq")]
+[node name="Intention2" parent="MarginContainer/VBox/Aspects" unique_id=476463097 instance=ExtResource("3_dmfkq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Intention3" parent="MarginContainer/VBox/Aspects" unique_id=780229363 instance=ExtResource("3_dmfkq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="pressed" from="VBox/HBox/ImpulseContainer/Body" to="." method="_on_body_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBox/HBox/ImpulseContainer/ImpulseBody" to="." method="_on_impulse_body_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBox/HBox/ImpulseContainer/ImpulseBody" to="." method="_on_impulse_body_mouse_exited"]
+[connection signal="pressed" from="MarginContainer/VBox/HBox/ImpulseContainer/ImpulseBody" to="." method="_on_body_pressed"]

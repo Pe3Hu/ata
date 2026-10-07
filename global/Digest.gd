@@ -612,13 +612,13 @@ const element_to_method = {
 }
 
 const element_to_index = {
-	Bozo.Element.SAND: 4,
-	Bozo.Element.ICE: 2,
-	Bozo.Element.LAVA: 1,
-	Bozo.Element.CLOUD: 5,
-	Bozo.Element.DUST: 6,
+	Bozo.Element.CHAOS: 0,
+	Bozo.Element.CLOUD: 1,
+	Bozo.Element.SAND: 2,
 	Bozo.Element.VAPOR: 3,
-	Bozo.Element.CHAOS: 0
+	Bozo.Element.ICE: 4,
+	Bozo.Element.LAVA: 5,
+	Bozo.Element.DUST: 6,
 }
 
 const elememt_to_in = {

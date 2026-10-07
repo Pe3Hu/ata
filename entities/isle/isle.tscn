@@ -4,14 +4,14 @@
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="2_5o34a"]
 [ext_resource type="PackedScene" uid="uid://2nb4d141dq5e" path="res://entities/isle/kernel/lantern/lantern.tscn" id="3_6kinf"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_dc2yg"]
-[ext_resource type="Shader" uid="uid://c7ddiq806filg" path="res://entities/isle/welkin/shaders/sun.gdshader" id="3_tor64"]
+[ext_resource type="Shader" uid="uid://d3j514wy5pijm" path="res://shared/wallpapers/2/space curves.gdshader" id="3_tor64"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_yl3e5"]
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/house/house.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_gqudx"]
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="5_y02by"]
 [ext_resource type="PackedScene" uid="uid://bv2lnr34ta3bu" path="res://entities/isle/welkin/welkin.tscn" id="9_5qj5p"]
 [ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/arsenal/arsenal.tscn" id="9_egsfe"]
-[ext_resource type="Shader" uid="uid://dws1h5tr1lmg4" path="res://entities/isle/welkin/shaders/abstract lines.gdshader" id="11_egsfe"]
+[ext_resource type="Shader" uid="uid://dws1h5tr1lmg4" path="res://shared/wallpapers/1/abstract lines.gdshader" id="11_egsfe"]
 [ext_resource type="Shader" uid="uid://coecb03gqhstb" path="res://entities/depredation/gene.gdshader" id="12_nhhp3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
@@ -21,8 +21,8 @@ shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
 shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8pd4q"]
+resource_local_to_scene = true
 shader = ExtResource("3_tor64")
-shader_parameter/tint = Color(2.4065375e-08, 0.30637825, 0.2256991, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
 shader = ExtResource("11_egsfe")

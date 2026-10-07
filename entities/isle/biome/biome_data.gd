@@ -18,12 +18,12 @@ func _init(type_: Bozo.Biome, wastelands_: Array) -> void:
 		wasteland.biome = self
 
 func add_structure(structure_type_: Bozo.Structure) -> void:
-	wastelands.sort_custom(func (a, b): return a.cells_options.size() > b.cells_options.size())
-	var options = wastelands.filter(func (a): return wastelands.front().cells_options.size() == a.cells_options.size())
+	wastelands.sort_custom(func (a, b): return a.coord_options.size() > b.coord_options.size())
+	var options = wastelands.filter(func (a): return wastelands.front().coord_options.size() == a.coord_options.size())
 	options = options.filter(func (a): return not Helper.wasteland_already_has_neighbor_structure(a, structure_type_))
 	
 	if options.is_empty():
-		options = wastelands.filter(func (a): return wastelands.front().cells_options.size() == a.cells_options.size())
+		options = wastelands.filter(func (a): return wastelands.front().coord_options.size() == a.coord_options.size())
 	
 	var wasteland = options.pick_random()
 	wasteland.add_structure(structure_type_)

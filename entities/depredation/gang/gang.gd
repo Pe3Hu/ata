@@ -26,6 +26,8 @@ func connect_datas() -> void:
 	%Galore.data = data.galore
 
 func _on_idea_changed() -> void:
+	%Galore.visible = data.attempt.first_idea == null
+	
 	if data.attempt.first_idea and data.attempt.second_idea:
 		var intention_data = Helper.find_intersection(data.attempt.first_idea, data.attempt.second_idea).front()
 		data.attempt.first_idea.bond_aspect = intention_data.aspect

@@ -16,6 +16,9 @@ uniform float aspect_ratio = 1.0;                                // соотно
 uniform float center_offset : hint_range(0.0, 1.0) = 0.5;        // 0 = центр, 0.5 = середина диагонали, 1 = угол
 uniform float circle_radius : hint_range(0.01, 1.0) = 0.25;      // радиус круга (в долях высоты экрана)
 
+// --- Цвет волны ---
+uniform vec4 wave_color : source_color = vec4(1.0, 1.0, 1.0, 1.0); // цвет радарной волны
+
 void fragment() {
     // Переходим к координатам с центром (0,0) и корректируем аспект,
     // чтобы круги оставались круглыми на любом экране.
@@ -32,7 +35,6 @@ void fragment() {
     centers[3] = vec2(-base.x, -base.y); // левый нижний
 
     float alpha = 0.0;
-    vec3 color = vec3(1.0); // цвет волны (можно сделать uniform)
 
     // Проверяем, в какой из кругов попала текущая точка
     for (int i = 0; i < 4; i++) {
@@ -41,12 +43,10 @@ void fragment() {
 
         if (dist <= circle_radius) {
             // --- Индивидуальный ритм для i-го круга ---
-            // Скорость этого круга отличается от базовой
             float speed_i = speed * (1.0 + async_speed_factor * float(i));
-            // Фаза сдвигается для каждого круга
             float phase = TIME * speed_i + async_origin_offset + async_phase_offset * float(i);
 
-            // Радарная развёртка (как в исходном примере, но с индивидуальной фазой)
+            // Радарная развёртка
             float mod_dist = dist - mod(phase, circle_radius + wait_time) + circle_radius;
 
             float radar = 1.0 - step(circle_radius, mod_dist);
@@ -60,10 +60,10 @@ void fragment() {
             float edge = smoothstep(circle_radius, circle_radius - 0.02, dist);
             alpha *= edge;
 
-            // Выходим, так как круги не пересекаются
             break;
         }
     }
 
-    COLOR = vec4(color, alpha);
+    // Учитываем альфу из цвета и общую прозрачность
+    COLOR = vec4(wave_color.rgb, wave_color.a * alpha);
 }

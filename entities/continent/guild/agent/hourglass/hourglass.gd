@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	if Mother.mainland.route.finish_structure == null or Mother.mainland.route.finish_structure == Mother.mainland.route.start_structure:
-		start_depredation()
+		#start_depredation()
+		test_demolish()
 		return
 	
 	Mother.mainland.footprint.route_started.emit()
@@ -28,3 +29,6 @@ func start_depredation() -> void:
 	if Mother.mainland.route.start_structure.type != Bozo.Structure.RUIN: return
 	Mother.depredation.bank.ruin = Mother.mainland.route.start_structure
 	get_tree().change_scene_to_file("res://entities/depredation/depredation.tscn")
+
+func test_demolish() -> void:
+	Mother.mainland.route.start_structure.demolish()

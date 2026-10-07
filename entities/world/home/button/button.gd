@@ -1,3 +1,4 @@
+class_name CustomTextButton
 extends Button
 
 
@@ -7,6 +8,7 @@ var tween: Tween
 func _ready() -> void:
 	mouse_entered.connect(hover)
 	mouse_exited.connect(unhover)
+	pressed.connect(_button_pressed)
 	
 	pivot_offset_ratio = Vector2(0.5, 0.5)
 
@@ -31,3 +33,6 @@ func unhover() -> void:
 	tween.set_parallel(true)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.15)
 	tween.tween_property(self, "rotation_degrees", 0.0, 0.15)
+
+func _button_pressed() -> void:
+	pass
