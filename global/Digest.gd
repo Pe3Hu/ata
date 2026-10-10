@@ -305,9 +305,9 @@ const tune_to_stake = {
 	Bozo.Tune.OUTRO: Bozo.Stake.LEFT,
 }
 
-const tune_to_math = {
-	Bozo.Tune.VERSE: Bozo.Math.PLUS,
-	Bozo.Tune.OUTRO: Bozo.Math.MULTIPLY,
+const tune_to_suffix = {
+	Bozo.Tune.VERSE: Bozo.Suffix.PLUS,
+	Bozo.Tune.OUTRO: Bozo.Suffix.MULTIPLY,
 }
 
 const verse_to_spoil = {
@@ -944,6 +944,7 @@ const master_to_price = {
 	Bozo.Master.BARKEEPER: 18,
 	Bozo.Master.SCOUT: 32,
 	Bozo.Master.ARCHAEOLOGIST: 36,
+	Bozo.Master.DEMON: 30,
 }
 
 const master_to_volumes = {
@@ -955,7 +956,8 @@ const master_to_volumes = {
 	Bozo.Master.TAILOR: [6, 10, 15],
 	Bozo.Master.BARKEEPER: [9, 18, 27],
 	Bozo.Master.SCOUT: [4, 8, 32],
-	Bozo.Master.ARCHAEOLOGIST: [12, 18]
+	Bozo.Master.ARCHAEOLOGIST: [12, 18],
+	Bozo.Master.DEMON: [30],
 }
 
 const master_to_order = {
@@ -968,6 +970,7 @@ const master_to_order = {
 	Bozo.Master.BARKEEPER: 6,
 	Bozo.Master.SCOUT: 2,
 	Bozo.Master.ARCHAEOLOGIST: 1,
+	Bozo.Master.DEMON: 1,
 }
 
 const master_to_matter = {
@@ -987,7 +990,8 @@ const master_to_workloads = {
 	Bozo.Master.TAILOR: [6, 9, 12],
 	Bozo.Master.BARKEEPER: [12, 12, 12, 12, 12, 12],
 	Bozo.Master.SCOUT: [16, 16, 16],
-	Bozo.Master.ARCHAEOLOGIST: [0, 0, 0, 0]
+	Bozo.Master.ARCHAEOLOGIST: [0, 0, 0, 0],
+	Bozo.Master.DEMON: [0, 0, 0, 0]
 }
 
 const master_to_task = {
@@ -1000,6 +1004,7 @@ const master_to_task = {
 	Bozo.Master.BARKEEPER: 'recruit',
 	Bozo.Master.SCOUT: 'spotlight',
 	Bozo.Master.ARCHAEOLOGIST: 'excavation',
+	Bozo.Master.DEMON: 'slumber',
 }
 
 const master_to_squad_size = {

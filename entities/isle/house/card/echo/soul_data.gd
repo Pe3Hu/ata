@@ -65,10 +65,6 @@ func init_echos() -> void:
 func add_echo(intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	var echo = EchoData.new(self, intro_values_, verse_values_)
 	echos.append(echo)
-	
-	if master is BarkeeperData:
-		Mother.house.attic.echos.append(echo)
-	
 	var str_mark = ""
 	
 	for _i in intro_values_.size():

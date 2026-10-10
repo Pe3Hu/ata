@@ -12,7 +12,6 @@ var data: EchoData:
 		init_stakes()
 		update_colors()
 		update_marks()
-		%Spoil.texture = load("res://entities/dice/images/%d.png" % data.spoil_value)
 
 @export var border: Panel
 
@@ -27,15 +26,20 @@ func connect_signals() -> void:
 	_on_locked_changed()
 
 func _on_locked_changed() -> void:
+	if card and card.hover_tween and card.hover_tween.is_running():
+		card.hover_tween.kill()
+	
 	if data.is_locked:
 		if card:
 			card.custom_minimum_size.x = card.min_size_x_hover
-			offset_transform_position.x = (card.min_size_x_hover - card.min_size_x_default) / 2
+			position.x = (card.min_size_x_hover - card.min_size_x_default) / 2.0
+		offset_transform_position.x = 0
 		border.self_modulate.a = 1.0
 	else:
 		if card:
 			card.custom_minimum_size.x = card.min_size_x_default
 		border.self_modulate.a = 0.0
+		position.x = 0
 		offset_transform_position.x = 0
 
 func init_stakes() -> void:
@@ -71,14 +75,15 @@ func update_colors() -> void:
 		card.dice.update_color(color) 
 
 func update_marks() -> void:
-	#%CardMarkLetter.text = data.soul.mark_letter
+	%CardMarkLetter.text = data.soul.name[0]
 	%CardMarkDigits.text = data.mark_digits
+	%EchoName.text = data.soul.name
 #endregion
 
 func process_click() -> void:
 	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	if data.is_locked: return
-	data.soul.atheneum.faction.odeum.current_canto = null
+	Mother.odeum.current_canto = null
 	var local_mouse_pos = get_local_mouse_position()
 	
 	var part_height = size.y / 5

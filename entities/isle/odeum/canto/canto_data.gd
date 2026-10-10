@@ -83,7 +83,7 @@ func update_pulse() -> void:
 			#print([intro.stake.value, "*", outro.stake.value, "=", pulse_value])
 
 func is_affordable() -> bool:
-	var pie = hymn.scenario.odeum.faction.kernel.pie
+	var pie = Mother.kernel.pie
 	var demand_volume_to_amount: Dictionary
 	
 	for type in type_to_stake:
@@ -105,7 +105,7 @@ func is_affordable() -> bool:
 
 func apply_voice() -> void:
 	type_to_stake[Bozo.Stake.LEFT].is_voiced = true
-	var pie = hymn.scenario.odeum.faction.kernel.pie
+	var pie = Mother.kernel.pie
 	var penalty_values = []
 	var penalty_matters = []
 	
@@ -127,7 +127,7 @@ func apply_voice() -> void:
 	
 	if outro:
 		penalty_values.append(get_penalty())
-		penalty_matters.append(outro.echo.origin.matter)
+		penalty_matters.append(outro.echo.soul.matter)
 	
 	if not penalty_matters.is_empty():
 		var usurer = pie.kernel.usurer
@@ -158,7 +158,7 @@ func update_perfect() -> void:
 	is_perfect = false
 	
 	for echo in Mother.house.parlor.echos:
-		if echo.shadow.current_shade == pulse_value:
+		if echo.shadow.shade.current_value == pulse_value:
 			is_perfect = true
 			
 			if not echo.shadow.perfect_cantos.has(self):

@@ -55,8 +55,8 @@ func test_card_animation() -> void:
 	
 	await get_tree().create_timer(0.5).timeout
 	#for _card in kitchen.cards:
-	#	_card.stamp.data.is_locked = true
-	card.stamp.data.is_locked = true
+	#	_card.echo.data.is_locked = true
+	card.echo.data.is_locked = true
 	
 	Arbitrator.apply_pass()
 
@@ -66,7 +66,7 @@ func _on_discard_phase() -> void:
 	for _i in range(kitchen.cards.size()-1, -1, -1):
 		var card = kitchen.cards[_i]
 		
-		if card.stamp.data.is_locked:
+		if card.echo.data.is_locked:
 			card.last_disappear()
 		else:
 			deactivate_cards.append(card)

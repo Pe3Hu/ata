@@ -20,6 +20,9 @@ func enter_phase():
 	
 	status = Bozo.Status.PLAYING_ANIMATION
 	Mother.house.draw_phase.emit()
+	
+	if animation_tweens.is_empty():
+		exit_phase()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

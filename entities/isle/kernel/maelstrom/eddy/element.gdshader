@@ -69,12 +69,18 @@ void fragment() {
     float brightness = noise_val * 2.0;
     brightness = clamp(brightness, 0.0, 1.5);
 
-    float saturation = mix(0.2, 1.0, smoothstep(0.0, 0.8, noise_val));
+    // подняли минимум и добавили общий буст насыщенности
+	float saturation = mix(0.55, 1.35, smoothstep(0.0, 0.8, noise_val));
 
-    float gray = dot(base, vec3(0.299, 0.587, 0.114));
-    vec3 desaturated = vec3(gray);
+	float gray = dot(base, vec3(0.299, 0.587, 0.114));
+	vec3 desaturated = vec3(gray);
 
-    vec3 col = mix(desaturated, base, saturation);
+	vec3 col = mix(desaturated, base, saturation);
+	col *= brightness;
+
+	// дополнительный буст насыщенности на финальном цвете
+	float post_gray = dot(col, vec3(0.299, 0.587, 0.114));
+	col = mix(vec3(post_gray), col, 1.2);
     col *= brightness;
 
     // Исправление: dot(vec2, vec2)

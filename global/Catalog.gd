@@ -72,17 +72,19 @@ const OUTRO_BASE_LIMIT: int = 5
 #endregion
 
 #region card
-const GYRE_BEDROOM_STAMP_SIZE = 4
-const GYRE_PARLOR_STAMP_SIZE = 4
+const GYRE_BEDROOM_ECHO_SIZE = 4
+const GYRE_PARLOR_ECHO_SIZE = 4
+const GYRE_ATTIC_ECHOS_LIMIT = 4
+
 
 const CARD_APPEAR_DISTANCE = -1000
-const STAMP_SIZE: Vector2 = Vector2(144, 312)
+const ECHO_SIZE: Vector2 = Vector2(144, 312)
 const SHADOW_SIZE: Vector2 = Vector2(144, 80)
-const STAMP_SIDE_HEIGHT: int = 40
+const ECHO_SIDE_HEIGHT: int = 40
 const JOINT_SIZE = Vector2(36, 36)
 const JOINT_OFFEST: float = -4.0
 const STAKE_SIGN_OFFEST: float = 4.0
-const STAMPS_LIMIT_FOR_RECRUITMENT = GYRE_BEDROOM_STAMP_SIZE * 2
+const ECHOS_LIMIT_FOR_RECRUITMENT = GYRE_BEDROOM_ECHO_SIZE * 2
 
 const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]
 

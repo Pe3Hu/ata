@@ -15,21 +15,21 @@ func _init(shadow_: ShadowData, is_advisor_: bool = false) -> void:
 	animation_left = 2
 
 func execute() -> void:
-	var canto = shadow.stamp.origin.atheneum.faction.odeum.current_canto
+	var canto = Mother.odeum.current_canto
 	if not canto: return
 	super.execute()
 	canto.apply_voice()
 	shadow.action = self
 	
 	if canto:
-		var damage = shadow.current_shade - canto.pulse_value
+		var damage = shadow.shade.current_value - canto.pulse_value
 		
 		if damage == 0:
 			is_perfect = true
 			print("PERFECT ATTACK")
 		
 		if damage > 0:
-			shadow.current_shade -= canto.pulse_value
+			shadow.shade.current_value -= canto.pulse_value
 			animation_left = 0
 		else:
-			shadow.current_shade = 0
+			shadow.shade.current_value = 0

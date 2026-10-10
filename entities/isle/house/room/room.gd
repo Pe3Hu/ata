@@ -42,7 +42,7 @@ func init_cards() -> void:
 	
 	if data.type == Bozo.Room.PARLOR:
 		var offset = get_parent().get("theme_override_constants/separation")
-		%Cards.offset_transform_position.y = -(Catalog.STAMP_SIZE.y - Catalog.SHADOW_SIZE.y) / 2 + offset
+		%Cards.offset_transform_position.y = -(Catalog.ECHO_SIZE.y - Catalog.SHADOW_SIZE.y) / 2 + offset
 
 func add_card(echo_data_: EchoData) -> void:
 	var card = card_scene.instantiate()
@@ -76,16 +76,18 @@ func shift_card(card_: Card, shift_: int) -> void:
 	
 	shift_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 	var duration = Gear.jalousies[Gear.tempo]
-	
-	var l = get_card_shift_length(card_)
+	var direction = sign(shift_)
+	var travel = 0.0
 	card_.z_index = 1
 	
-	shift_tween.tween_property(card_, "offset_transform_position:x", l * shift_, duration)
-	
 	for _i in abs(shift_):
-		var neighbour_index = card_.get_index() + (_i + 1) * sign(shift_)
-		var neighbour_card = %Cards.get_child(neighbour_index)
-		shift_tween.tween_property(neighbour_card, "offset_transform_position:x", -l * sign(shift_), duration)
+		var neighbour_index = card_.get_index() + (_i + 1) * direction
+		var neighbour_card := %Cards.get_child(neighbour_index) as Card
+		if neighbour_card == null: continue
+		travel += get_card_shift_length(neighbour_card)
+		shift_tween.tween_property(neighbour_card, "offset_transform_position:x", -get_card_shift_length(card_) * direction, duration)
+	
+	shift_tween.tween_property(card_, "offset_transform_position:x", travel * direction, duration)
 	
 	await shift_tween.finished
 	
@@ -101,7 +103,7 @@ func shift_card(card_: Card, shift_: int) -> void:
 	cards.insert(new_index, card_)
 	
 	update_echos()
-	data.house.atheneum.faction.odeum.recalc_scenario(data.type)
+	Mother.odeum.recalc_scenario(data.type)
 
 func update_echos() -> void:
 	var echo_datas = []
@@ -121,25 +123,34 @@ func sort_cards(with_animation_: bool = true) -> void:
 	
 	var scenario = scenarios.front()
 	cards.clear()
-	for card in %Cards.get_children():
-		cards.append(card)
+	for child in %Cards.get_children():
+		if child is Card:
+			cards.append(child)
 	var sorted_cards = cards.duplicate()
 	if sorted_cards.size() == 1: return
 	
-	for card in cards:
-		card.unhover()
-	
 	var all_found = sorted_cards.all(func(c): return scenario.chains.has(c.echo.data))
 	if not all_found: return
+	if sort_tween and sort_tween.is_running(): return
 	
-	if sort_tween and sort_tween.is_running():
-		sort_tween.kill()
+	for card in cards:
+		card.snap_unhover()
 	
 	sorted_cards.sort_custom(func (a, b): return scenario.chains.find(a.echo.data) < scenario.chains.find(b.echo.data))
+	
+	var old_edges = _left_edges(cards)
+	var new_edges = _left_edges(sorted_cards)
+	var needs_move = false
+	
+	for card in sorted_cards:
+		if abs(new_edges[card] - old_edges[card]) > 0.5:
+			needs_move = true
+			break
 
-	if not with_animation_:
+	if not with_animation_ or not needs_move:
 		for _i in sorted_cards.size():
 			%Cards.move_child(sorted_cards[_i], _i)
+			sorted_cards[_i].offset_transform_position = Vector2.ZERO
 	else:
 		for card in cards:
 			card.offset_transform_position = Vector2.ZERO
@@ -149,10 +160,8 @@ func sort_cards(with_animation_: bool = true) -> void:
 		var duration = Gear.sorts[Gear.tempo]
 		sort_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 		
-		for new_index in sorted_cards.size():
-			var card = sorted_cards[new_index]
-			var old_index = cards.find(card)
-			var l = card.min_size_x_default * (new_index - old_index)
+		for card in sorted_cards:
+			var l = new_edges[card] - old_edges[card]
 			sort_tween.tween_property(card, "offset_transform_position:x", l, duration)
 		
 		await sort_tween.finished
@@ -177,7 +186,8 @@ func close_up_cards(card_: Card) -> void:
 	if shift_tween and shift_tween.is_running(): return
 	if %Cards.get_child_count() == 0: return
 	jalousie(card_)
-	await shift_tween.finished
+	if shift_tween and shift_tween.is_running():
+		await shift_tween.finished
 	card_.visible = false
 	
 	reset_offsets()
@@ -186,41 +196,56 @@ func close_up_cards(card_: Card) -> void:
 		data.echos.erase(card_.echo.data)
 		#find_best_scenario()
 
-func slide_away() -> void:
+func slide_away(card_: Card) -> void:
 	if shift_tween and shift_tween.is_running(): return
 	if %Cards.get_child_count() == 0: return
 	shift_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 	var duration = Gear.jalousies[Gear.tempo]
+	var l = -get_card_shift_length(card_) * 0.5
 	
 	for card in %Cards.get_children():
 		if card as Card:
 			card.offset_transform_position = Vector2.ZERO
-			var l = -get_card_shift_length(card) * 0.5
 			shift_tween.tween_property(card, "offset_transform_position:x", l, duration)
 
 func jalousie(card_: Card = null, is_inside_: bool = true) -> void:
+	if card_ == null: return
 	if shift_tween and shift_tween.is_running(): return
 	if %Cards.get_child_count() <= 1: return
 	shift_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 	var duration = Gear.jalousies[Gear.tempo]
 	var close_index = card_.get_index()
+	var l = get_card_shift_length(card_) * 0.5
 	
 	for _i in %Cards.get_child_count():
 		var neighbour_card = %Cards.get_child(_i)
 		
 		if neighbour_card != card_ and neighbour_card is Card:
-			var l = get_card_shift_length(neighbour_card) * 0.5
+			var shift = l
 			
 			if _i > close_index:
-				l *= -1
+				shift *= -1
 			
 			if not is_inside_:
-				l *= -1
+				shift *= -1
 			
-			shift_tween.tween_property(neighbour_card, "offset_transform_position:x", l, duration)
+			shift_tween.tween_property(neighbour_card, "offset_transform_position:x", shift, duration)
 
 func get_card_shift_length(card_: Card) -> float:
-	return card_.size.x + %Cards.get("theme_override_constants/separation")
+	var width = card_.custom_minimum_size.x
+	if width <= 0.0:
+		width = card_.size.x
+	return width + %Cards.get("theme_override_constants/separation")
+
+func _left_edges(ordered: Array) -> Dictionary:
+	var edges = {}
+	var x = 0.0
+	
+	for card in ordered:
+		edges[card] = x
+		x += get_card_shift_length(card)
+	
+	return edges
 
 func reset_offsets() -> void:
 	for card in %Cards.get_children():
@@ -248,15 +273,15 @@ func plus_card(card_: Card) -> void:
 	card_.room.echo_to_card.erase(card_.echo.data)
 	card_.room.cards.erase(card_)
 	card_.room.data.echos.erase(card_.echo.data)
-	#data.house.atheneum.faction.odeum.kitchen_scenario.chains.erase(card_.echo.data)
+	#Mother.odeum.kitchen_scenario.chains.erase(card_.echo.data)
 	#card_.room.find_best_scenario()
 	
-	#if not data.house.atheneum.faction.odeum.has_kitchen_not_locked_echos():
+	#if not Mother.odeum.has_kitchen_not_locked_echos():
 		#pass
 	#if card_.room.data.type == Bozo.Room.KITCHEN:
 		#pass
-	#if card_.room.data.type == Bozo.Room.KITCHEN and not data.house.atheneum.faction.odeum.has_kitchen_not_locked_echos():
-		#data.house.atheneum.faction.odeum.kitchen_scenario = null
+	#if card_.room.data.type == Bozo.Room.KITCHEN and not Mother.odeum.has_kitchen_not_locked_echos():
+		#Mother.odeum.kitchen_scenario = null
 	
 	%Cards.add_child(card_)
 	echo_to_card[card_.echo.data] = card_
@@ -266,7 +291,7 @@ func plus_card(card_: Card) -> void:
 	#find_best_scenario()
 
 func find_best_scenario() -> void:
-	data.house.atheneum.faction.odeum.init_scenarios(data.type)
+	Mother.odeum.init_scenarios(data.type)
 	sort_cards()
 
 func skip_phase() -> void:
@@ -275,10 +300,6 @@ func skip_phase() -> void:
 func reset_cards() -> void:
 	cards.clear()
 	
-	for _i in range(%Cards.get_child_count()-1, -1, -1):
-		var card = %Cards.get_child(_i)
-		
-		if card:
-			cards.append(card)
-		else:
-			%Cards.remove_child(card)
+	for child in %Cards.get_children():
+		if child is Card:
+			cards.append(child)

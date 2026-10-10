@@ -14,3 +14,7 @@ var is_current: bool:
 	set(value_):
 		is_current = value_
 		%Highlight.visible = is_current
+
+
+func update_color(element_: Bozo.Element) -> void:
+	%Body.material.set_shader_parameter('base_color', Digest.element_to_color[element_])

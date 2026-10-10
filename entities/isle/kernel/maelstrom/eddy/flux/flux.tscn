@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://c3ji6eownkceu"
 [node name="Body" type="Polygon2D" parent="Background" unique_id=1542378962]
 unique_name_in_owner = true
 color = Color(0.12941177, 0.12941177, 0.12941177, 1)
-polygon = PackedVector2Array(23, 30, 15, 17, 8, 30)
+polygon = PackedVector2Array(24, 30, 16, 16, 8, 30)
 
 [node name="Border" type="Line2D" parent="Background" unique_id=2139521149]
 unique_name_in_owner = true

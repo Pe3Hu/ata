@@ -9,15 +9,16 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	#Arbitrator.faction.odeum.current_scenario = null
-	if Arbitrator.faction.atheneum.house.parlor.stamps.is_empty():
-		#exit_phase()
-		pass
+	if Mother.house.parlor.echos.is_empty():
+		exit_phase()
 	else:
-		Arbitrator.faction.atheneum.house.punishment_phase.emit()
+		Mother.house.punishment_phase.emit()
+		if animation_tweens.is_empty():
+			exit_phase()
 
 func exit_phase() -> void:
+	Mother.house._on_punishment_phase_end()
 	super.exit_phase()
-	Arbitrator.faction.atheneum.house._on_punishment_phase_end()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

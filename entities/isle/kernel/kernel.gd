@@ -23,3 +23,6 @@ func connect_datas() -> void:
 	pie.data = data.pie
 	maelstrom.data = data.maelstrom
 	stepladder.data = data.stepladder
+	
+	#if Mother.nightmare.rift:
+		#maelstrom.visible = false

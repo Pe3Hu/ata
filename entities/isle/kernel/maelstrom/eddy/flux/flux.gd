@@ -59,7 +59,12 @@ func test_eddy() -> void:
 			data.volume = Catalog.volumes[flux_index]
 
 func _on_background_mouse_entered() -> void:
-	data.eddy.maelstrom.kernel.stepladder.flux = data
+	if Mother.kernel.stepladder.pressure != null: return
+	
+	Mother.kernel.stepladder.flux = data
 
 func _on_background_mouse_exited() -> void:
-	data.eddy.maelstrom.kernel.stepladder.flux = null
+	if Mother.kernel.stepladder.pressure != null: return
+	
+	if Mother.kernel.stepladder.flux == data:
+		Mother.kernel.stepladder.flux = null

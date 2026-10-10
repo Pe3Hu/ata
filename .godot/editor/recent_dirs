@@ -1,3 +1,5 @@
+res://entities/continent/guild/master/demon/dive/
+res://entities/continent/guild/agent/task/
 res://shared/wallpapers/2/
 res://entities/continent/mainland/banner/
 res://entities/depredation/gang/ambition/galore/
@@ -6,7 +8,6 @@ res://entities/depredation/gang/
 res://entities/depredation/bank/
 res://entities/continent/guild/agent/
 res://entities/continent/guild/master/archaeologist/excavation/
-res://entities/continent/guild/agent/task/
 D:/godot/ata/docs/systems/
 res://entities/continent/guild/agent/squad/member/
 res://entities/continent/guild/master/architect/sculpture/constellation/
@@ -21,4 +22,3 @@ res://entities/continent/guild/master/musician/veteran/
 res://entities/continent/guild/master/barkeeper/recruit/
 D:/godot/ata/global/
 res://entities/continent/marker/
-res://entities/continent/

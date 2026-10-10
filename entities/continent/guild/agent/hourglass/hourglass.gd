@@ -20,8 +20,13 @@ func _process(delta: float) -> void:
 func _on_button_pressed() -> void:
 	if Mother.mainland.route.finish_structure == null or Mother.mainland.route.finish_structure == Mother.mainland.route.start_structure:
 		#start_depredation()
-		test_demolish()
-		return
+		match Mother.mainland.route.start_structure.type:
+			Bozo.Structure.RUIN:
+				test_demolish()
+				return
+			Bozo.Structure.RIFT:
+				start_nightmare()
+				return
 	
 	Mother.mainland.footprint.route_started.emit()
 
@@ -32,3 +37,9 @@ func start_depredation() -> void:
 
 func test_demolish() -> void:
 	Mother.mainland.route.start_structure.demolish()
+
+func start_nightmare() -> void:
+	if Mother.mainland.route.start_structure.type != Bozo.Structure.RIFT: return
+	Mother.nightmare.slumber = Mother.guild.demon.current_task
+	Mother.nightmare.update_attic()
+	get_tree().change_scene_to_file("res://entities/nightmare/nightmare.tscn")

@@ -43,7 +43,7 @@ func update_texture() -> void:
 				%Sign.position.x -= Catalog.STAKE_SIGN_OFFEST
 			
 			%Sign.visible = true
-			var tune_str = Bozo.enum_to_string(Bozo.Type.MATH, Digest.tune_to_math[data.tune])
+			var tune_str = Bozo.enum_to_string(Bozo.Type.SUFFIX, Digest.tune_to_suffix[data.tune])
 			%Sign.texture = load("res://entities/isle/house/card/echo/stake/images/%s.png" % tune_str)
 
 func update_matter_colors() -> void:

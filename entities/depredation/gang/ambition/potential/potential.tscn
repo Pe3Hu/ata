@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://dq74jsgbc70e" path="res://entities/depredation/gang/ambition/potential/potential.gd" id="2_81wd2"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="3_8upm4"]
 [ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="4_81wd2"]
-[ext_resource type="Texture2D" uid="uid://b5ji12545byqg" path="res://entities/depredation/gang/idea/intention/images/body/strength.png" id="4_tswjv"]
-[ext_resource type="Texture2D" uid="uid://gfbdtfk5pa6t" path="res://entities/depredation/gang/idea/intention/images/border/strength.png" id="5_kekd6"]
+[ext_resource type="Texture2D" uid="uid://ywv006cqxoc" path="res://entities/depredation/gang/idea/intention/images/body/dexterity.png" id="4_tswjv"]
+[ext_resource type="Texture2D" uid="uid://do3brfq5osdpk" path="res://entities/depredation/gang/idea/intention/images/border/dexterity.png" id="5_kekd6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ryh4y"]
 resource_local_to_scene = true

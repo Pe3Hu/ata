@@ -18,7 +18,16 @@ func connect_datas() -> void:
 		echo.data = data.echos[_i]
 		echo.visible = true
 	
-	%NewStamp.data = data.new_echo
+	%NewEcho.data = data.new_echo
+	%PreviousButton.visible = data.arsenal.anvils.size() > 0
+	%PreviousButton.visible = data.arsenal.anvils.size() > 0
+	pass
 
 func _on_fusion_button_pressed() -> void:
 	data.fusion()
+
+func _on_previous_button_pressed() -> void:
+	arsenal.shift_anvil(1)
+
+func _on_next_button_pressed() -> void:
+	arsenal.shift_anvil(1)

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cfkmnop0s77wt" path="res://entities/isle/house/card/echo/images/rank/f.png" id="2_fnhj8"]
 [ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="3_ryeue"]
 [ext_resource type="Texture2D" uid="uid://iorfyox4iacl" path="res://entities/isle/house/card/echo/images/talent/2.png" id="4_1skf7"]
-[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="5_5s2u3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6d1l"]
 bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
@@ -66,7 +65,7 @@ border = NodePath("BorderMargin/Border")
 [node name="BGMargin" type="MarginContainer" parent="." unique_id=534604577]
 layout_mode = 2
 theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 8
 
@@ -138,7 +137,7 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(4, 0)
 texture = ExtResource("2_fnhj8")
 
-[node name="RecruitName" type="Label" parent="VBoxContainer/Top" unique_id=201566131]
+[node name="EchoName" type="Label" parent="VBoxContainer/Top" unique_id=201566131]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -263,22 +262,5 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 2
-
-[node name="Spoil" type="TextureRect" parent="VBoxContainer/Bottom" unique_id=1124751600]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_5s2u3")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

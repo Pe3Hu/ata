@@ -8,4 +8,4 @@ func _init() -> void:
 
 func enter_choice():
 	super.enter_choice()
-	Arbitrator.faction.policy.isle.forge.simulate_anvil_choice()
+	Mother.arsenal.simulate_anvil_choice()

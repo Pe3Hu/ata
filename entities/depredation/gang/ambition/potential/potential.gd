@@ -34,7 +34,7 @@ func _on_value_changed() -> void:
 	%Value.visible = data.value != 0
 	%Border.visible = data.value != 0
 	
-	%Value.text = str(data.value)
+	%Value.text = '%s%d' % [Bozo.enum_to_string(Bozo.Type.SUFFIX, data.suffix, true), data.value]
 
 func update_textures() -> void:
 	var path: String = 'element'

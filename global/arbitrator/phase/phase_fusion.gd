@@ -9,16 +9,17 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	Arbitrator.faction.policy.isle.forge.init_anvils()
+	Mother.arsenal.init_anvils()
 	
-	if Arbitrator.faction.policy.isle.forge.anvils.is_empty():
+	if Mother.arsenal.anvils.is_empty():
 		exit_phase()
 	else:
-		Advisor.apply_choice()
+		if Gear.is_auto_play:
+			Advisor.apply_choice()
 
 func exit_phase() -> void:
+	Mother.arsenal.phase_finished.emit()
 	super.exit_phase()
-	Arbitrator.faction.policy.isle.forge.phase_finished.emit()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

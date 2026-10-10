@@ -5,6 +5,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqudx"]
 
 [node name="Odeum" type="PanelContainer" unique_id=975507563]
+custom_minimum_size = Vector2(0, 312)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gqudx")
 script = ExtResource("1_btoev")
 

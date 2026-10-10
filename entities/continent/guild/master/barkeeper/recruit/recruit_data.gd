@@ -15,7 +15,7 @@ func _init(master_: MasterData, order_: int, soul_: SoulData) -> void:
 
 func init_silhouettes() -> void:
 	for echo in soul.echos:
-		var _silhouette = SilhouetteData.new(self, echo)
+		SilhouetteData.new(self, echo)
 	
 	var half = silhouettes.size() * 0.5
 	var silhouette_to_index: Dictionary

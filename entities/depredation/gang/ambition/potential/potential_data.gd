@@ -17,6 +17,7 @@ var index: int:
 	set(value_):
 		index = value_
 		index_changed.emit()
+var suffix: Bozo.Suffix = Bozo.Suffix.PLUS
 
 
 func _init(ambition_: AmbitionData, aspect_: Bozo.Aspect = Bozo.Aspect.NONE, element_: Bozo.Element = Bozo.Element.NONE) -> void:

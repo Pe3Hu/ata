@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://by50xo16jdi5b"]
+
+[ext_resource type="Script" uid="uid://ei6ex2c42tqi" path="res://entities/nightmare/nightmare.gd" id="1_sbvag"]
+[ext_resource type="Shader" uid="uid://c7ddiq806filg" path="res://shared/wallpapers/1/sun.gdshader" id="2_6dk3m"]
+[ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="2_sbvag"]
+[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="3_1jxo5"]
+[ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/arsenal/arsenal.tscn" id="3_6dk3m"]
+[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/house/house.tscn" id="4_4nj4h"]
+[ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/world/home/button/go_home.gd" id="4_6y2oi"]
+[ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="6_7psni"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxdvn"]
+shader = ExtResource("2_6dk3m")
+shader_parameter/tint = Color(0.01, 0.25, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh6ae"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8uks0"]
+bg_color = Color(0.24477634, 0.24477643, 0.24477628, 1)
+
+[node name="Nightmare" type="Control" unique_id=1878424957 node_paths=PackedStringArray("kernel", "house", "odeum", "arsenal")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_sbvag")
+kernel = NodePath("HBox/RightPanel/MarginContainer/VBox/Kernel")
+house = NodePath("HBox/LeftPanel/MarginContainer/House")
+odeum = NodePath("HBox/RightPanel/MarginContainer/VBox/Odeum")
+arsenal = NodePath("HBox/RightPanel/MarginContainer/VBox/Arsenal")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1626458807]
+material = SubResource("ShaderMaterial_hxdvn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=86508109]
+custom_minimum_size = Vector2(0, 1004)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -924.0
+offset_top = -480.0
+offset_right = 924.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="LeftPanel" type="PanelContainer" parent="HBox" unique_id=200515746]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dh6ae")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox/LeftPanel" unique_id=4603518]
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 64
+
+[node name="House" parent="HBox/LeftPanel/MarginContainer" unique_id=2124731907 instance=ExtResource("4_4nj4h")]
+layout_mode = 2
+
+[node name="RightPanel" type="PanelContainer" parent="HBox" unique_id=481269248]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8uks0")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox/RightPanel" unique_id=1785723404]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 108
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 60
+
+[node name="VBox" type="VBoxContainer" parent="HBox/RightPanel/MarginContainer" unique_id=1323945986]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 64
+
+[node name="Kernel" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=601409116 instance=ExtResource("2_sbvag")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Odeum" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=975507563 instance=ExtResource("6_7psni")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Arsenal" parent="HBox/RightPanel/MarginContainer/VBox" unique_id=1978344045 node_paths=PackedStringArray("nightmare") instance=ExtResource("3_6dk3m")]
+visible = false
+layout_mode = 2
+nightmare = NodePath("../../../../..")
+
+[node name="HomeBtn" parent="." unique_id=2083984559 instance=ExtResource("3_1jxo5")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 58.0
+text = "HOME"
+
+[node name="GoHome" type="Node" parent="HomeBtn" unique_id=100884945]
+script = ExtResource("4_6y2oi")
+metadata/_custom_type_script = "uid://gmp1wxiwy1n8"

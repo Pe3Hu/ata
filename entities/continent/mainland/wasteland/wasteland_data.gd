@@ -7,6 +7,7 @@ var biome: BiomeData
 var structures: Array[StructureData]
 var type_to_structure: Dictionary
 var type_to_coord: Dictionary
+var coord_to_structure: Dictionary
 
 var pattern_coords: Array[Vector2i]
 var coord_options: Array[Vector2i]
@@ -37,6 +38,14 @@ func add_structure(type_: Bozo.Structure, coord_: Vector2i = -Vector2i.ONE, orde
 		refused_structures.append(type_)
 		return false
 	
+	if type_ == Bozo.Structure.RIFT:
+		var old_structure: StructureData = coord_to_structure[coord_]
+		var rift := RiftData.new(self, type_, coord_)
+		if order_ >= 0:
+			rift.order = order_
+		rift.restore_trods(old_structure)
+		return true
+	
 	if coord_ == -Vector2i.ONE:
 		coord_ = coord_options.pick_random()
 	
@@ -45,21 +54,17 @@ func add_structure(type_: Bozo.Structure, coord_: Vector2i = -Vector2i.ONE, orde
 	match type_:
 		Bozo.Structure.RUIN:
 			structure = RuinData.new(self, type_, coord_)
-		Bozo.Structure.RIFT:
-			structure = RiftData.new(self, type_, coord_)
 	
 	structures.append(structure)
 	coord_options.erase(coord_)
 	type_to_structure[type_] = structure
 	type_to_coord[type_] = coord_
+	coord_to_structure[coord_] = structure
 	
 	if type_ == Bozo.Structure.RUIN:
 		var matter = Catalog.matters.pick_random()
 		structure.matters.append(matter)
 		structure.reorder(order_)
-	
-	if type_ == Bozo.Structure.MINE:
-		pass
 	
 	return true
 

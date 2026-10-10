@@ -8,6 +8,7 @@ var type: Bozo.Phase
 var status: Bozo.Status = Bozo.Status.IDLE
 
 var animation_tweens: Array[Tween]
+var animation_epoch: int = 0
 
 var is_waiting_animations: bool = true
 
@@ -35,7 +36,14 @@ func try_execute_action(action: ActionData) -> bool:
 	action.execute()
 	return true
 
-func _on_tween_finished(tween_: Tween) -> void:
+func drop_animations() -> void:
+	animation_epoch += 1
+	animation_tweens.clear()
+
+func _on_tween_finished(tween_: Tween, epoch_: int) -> void:
+	if epoch_ != animation_epoch:
+		return
+	
 	animation_tweens.erase(tween_)
 	
 	if animation_tweens.is_empty():

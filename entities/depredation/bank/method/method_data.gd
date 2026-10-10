@@ -17,6 +17,7 @@ var current_difficulty: int:
 		
 		difficulty_changed.emit()
 var impulse: ImpulseData
+var intentions: Array[IntentionData]
 
 
 func _init(obstacle_: ObstacleData, type_: Bozo.Method) -> void:
@@ -31,7 +32,21 @@ func _init(obstacle_: ObstacleData, type_: Bozo.Method) -> void:
 	var attempt = obstacle.ruin.bank.depredation.gang.attempt
 	if attempt:
 		impulse = attempt.method_to_impulse[type]
+	
+	init_intentions()
 
+
+func init_intentions() -> void:
+	var factors = [2, 1]
+	
+	for factor in factors:
+		var intention = IntentionData.new()
+		intention.aspect = Digest.method_to_factor_to_aspect[type][factor]
+		intention.element = Digest.method_to_element[type]
+		intention.suffix = Bozo.Suffix.MULTIPLY
+		intention.value = factor
+		intentions.append(intention)
+	
 func execute() -> void:
 	current_difficulty -= impulse.value
 	obstacle.ruin.bank.depredation.gang.attempt.implement()

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://1x1ma0vlldcc"]
+
+[ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_iakli"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_dbps8"]
+[ext_resource type="Script" uid="uid://bvbtt1mplko3o" path="res://entities/continent/guild/master/demon/slumber/slumber.gd" id="2_okxty"]
+[ext_resource type="PackedScene" uid="uid://j1xn2qxki16i" path="res://entities/continent/guild/master/demon/gloom/gloom.tscn" id="4_okxty"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okxty"]
+resource_local_to_scene = true
+shader = ExtResource("2_dbps8")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Slumber" unique_id=1199540049 instance=ExtResource("1_iakli")]
+script = ExtResource("2_okxty")
+
+[node name="HBox" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="0" unique_id=1691597745]
+visible = false
+
+[node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
+material = SubResource("ShaderMaterial_okxty")
+
+[node name="Gloom" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=1671658297 instance=ExtResource("4_okxty")]
+unique_name_in_owner = true
+layout_mode = 2

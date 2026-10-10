@@ -14,4 +14,3 @@ func _init(ladder_: LadderData, volume_: int) -> void:
 	
 	ladder.stairs.append(self)
 	ladder.volume_to_stair[volume] = self
-	

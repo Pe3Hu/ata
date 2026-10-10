@@ -1,9 +1,7 @@
 shader_type canvas_item;
 
-// Цвет вынесен в uniform — можно менять из инспектора/кода.
-// Текущий (голубой): vec3(0.01, 0.25, 0.5)
-// Оранжевый вариант: vec3(0.75, 0.25, 0.02)
 uniform vec3 tint : source_color = vec3(0.01, 0.25, 0.5);
+
 
 vec3 change_exposure(vec3 col, vec3 b) {
     b *= col;
@@ -27,7 +25,6 @@ void fragment() {
     vec2 res = 1.0 / SCREEN_PIXEL_SIZE;
 
     // ---- ОТРАЖЕНИЕ ПО Y ----
-    // Инвертируем вертикальную координату относительно центра экрана
     vec2 fragCoord = vec2(FRAGCOORD.x, res.y - FRAGCOORD.y);
 
     vec2 uv = (fragCoord - 0.5 * res) / res.x;
@@ -44,5 +41,10 @@ void fragment() {
         exp2(1.0) * vignette * (1.0 + circle * 16.0 * pow(uv.y, 8.0))
     );
 
-    COLOR = vec4(col, 1.0);
+    // Берём альфу из текстуры узла.
+    // Для TextureRect — реальная прозрачность картинки.
+    // Для ColorRect — всегда 1.0 (белый пиксель по умолчанию).
+    float tex_alpha = texture(TEXTURE, UV).a;
+
+    COLOR = vec4(col, tex_alpha);
 }

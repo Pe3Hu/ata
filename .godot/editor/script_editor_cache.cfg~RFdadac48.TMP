@@ -1,0 +1,3473 @@
+[res://entities/continent/mainland/mainland.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 98,
+"scroll_position": 76.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/wasteland/wasteland.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 19,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 3.0,
+"selection": true,
+"selection_from_column": 19,
+"selection_from_line": 10,
+"selection_to_column": 46,
+"selection_to_line": 11,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/haze/haze_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 562,
+"scroll_position": 552.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/mainland_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 28,
+"folded_lines": PackedInt32Array(25, 70, 234, 367, 389, 403, 415, 427, 449, 459),
+"h_scroll_position": 0,
+"row": 449,
+"scroll_position": 25.4,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/beam/beam.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 11,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/beam/beam_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 29,
+"scroll_position": 23.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/Catalog.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 25,
+"folded_lines": PackedInt32Array(23),
+"h_scroll_position": 0,
+"row": 89,
+"scroll_position": 77.0,
+"selection": true,
+"selection_from_column": 6,
+"selection_from_line": 89,
+"selection_to_column": 25,
+"selection_to_line": 89,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/haze/haze.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 29,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 41,
+"scroll_position": 31.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/wasteland/wasteland_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(17),
+"h_scroll_position": 0,
+"row": 41,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/cluster_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 36,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 11,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/Mother.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 24,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 27,
+"scroll_position": 20.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/Helper.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(7, 10, 16, 100, 109, 115, 141, 145, 155, 158, 182, 185, 197, 204),
+"h_scroll_position": 0,
+"row": 246,
+"scroll_position": 82.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/structure.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 59,
+"scroll_position": 47.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/structure_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 18,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 15,
+"selection_to_column": 15,
+"selection_to_line": 18,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/shrine/shrine.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 20,
+"scroll_position": 10.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/shelter/shelter_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 27,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 36,
+"scroll_position": 23.8,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 36,
+"selection_to_column": 27,
+"selection_to_line": 36,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/shelter/shelter.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 13,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/shrine/shrine_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 25,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/Bozo.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 11,
+"folded_lines": PackedInt32Array(3, 11, 21, 37, 44, 50, 59, 66, 73, 80, 87, 98, 109, 116, 123, 130, 140, 147, 154, 169, 184, 241, 247, 258),
+"h_scroll_position": 0,
+"row": 202,
+"scroll_position": 63.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 202,
+"selection_to_column": 11,
+"selection_to_line": 202,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/data/ruin_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 13,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/data/mine_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/biome/source/source_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/biome/biome_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 28,
+"scroll_position": 16.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/usurer/dept/fine/fine.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 46,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 18,
+"scroll_position": 4.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/pie/slice/slice.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 72,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 0,
+"selection_to_column": 0,
+"selection_to_line": 72,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/loot/shard/shard.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 25,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 20,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/footprint/footprint.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 48,
+"folded_lines": PackedInt32Array(76, 88, 121, 164, 292, 330, 365, 371, 377, 413),
+"h_scroll_position": 0,
+"row": 246,
+"scroll_position": 79.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/footprint/footprint_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 32,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/trod_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 20,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 4,
+"selection_from_line": 20,
+"selection_to_column": 15,
+"selection_to_line": 20,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/trod.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 14,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/magistral/magistral_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 54,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 23,
+"scroll_position": 9.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/route/route_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 18,
+"folded_lines": PackedInt32Array(8, 13, 24, 196, 205, 213),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 0,
+"selection_to_column": 18,
+"selection_to_line": 1,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/camera/camera.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 14,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/trod/route/route.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 9,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 24,
+"scroll_position": 7.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/isle.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 35,
+"scroll_position": 14.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 27,
+"selection_to_column": 0,
+"selection_to_line": 35,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/continent.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 2,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/mainland_panel.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 39,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/marker/marker.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/world/home/button/go_home.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 3,
+"selection_to_column": 2,
+"selection_to_line": 11,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/world/home/home.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 37,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 41,
+"scroll_position": 34.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/guild.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 27,
+"scroll_position": 10.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/blacksmith/blacksmith.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 2,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/blacksmith/blacksmith_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 3,
+"selection_to_column": 0,
+"selection_to_line": 9,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/master.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/master_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 16,
+"folded_lines": PackedInt32Array(12, 52),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/demon/demon.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 18,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/demon/demon_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 7,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/musician/musician_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/musician/musician.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/architect_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 28,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/architect.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 4,
+"selection_to_column": 36,
+"selection_to_line": 8,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/lightkeeper/lightkeeper_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/lightkeeper/lightkeeper.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 8,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/miner_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 27,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 26,
+"selection_from_line": 5,
+"selection_to_column": 27,
+"selection_to_line": 5,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/miner.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/tailor/tailor_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/tailor/tailor.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 33,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/barkeeper/barkeeper.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/barkeeper/barkeeper_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 17,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 35,
+"scroll_position": 22.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/scout/scout.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/scout/scout_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 83,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/world/world.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 27,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/kernel.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 17,
+"scroll_position": 8.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/ladder/stepladder.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 117,
+"scroll_position": 14.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/welkin/welkin.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 20,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 1.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/welkin/welkin_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 24,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 15,
+"scroll_position": 3.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 15,
+"selection_to_column": 24,
+"selection_to_line": 15,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/welkin/asterism/asterism_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 24,
+"scroll_position": 10.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/welkin/asterism/asterism.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 14,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 26,
+"row": 26,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://shared/buttons/custom button.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 0,
+"selection_to_column": 30,
+"selection_to_line": 0,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/hymn/hymn.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 35.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/welkin/asterism/star_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 10,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 4,
+"selection_from_line": 7,
+"selection_to_column": 10,
+"selection_to_line": 7,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/guild_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 20,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 15,
+"scroll_position": 7.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/barkeeper/recruit/recruit_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 13,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/barkeeper/recruit/silhouette/silhouette_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 16,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/barkeeper/recruit/silhouette/silhouette.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 22,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 36,
+"scroll_position": 21.92,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/barkeeper/recruit/recruit.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 9,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/blacksmith/instrument/instrument_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/blacksmith/instrument/instrument.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 23,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 14,
+"scroll_position": 2.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/blacksmith/instrument/razor/razor.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 23,
+"scroll_position": 4.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/blacksmith/instrument/razor/razor_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/arsenal/anvil/anvil_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 27,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 13,
+"scroll_position": 3.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/arsenal/arsenal_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 40,
+"scroll_position": 30.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/arsenal/arsenal.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 25,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 47,
+"scroll_position": 45.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/arsenal/anvil/anvil.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 30,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 22,
+"scroll_position": 12.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/loot/shard/shard_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 37,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 13,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 26,
+"selection_from_line": 12,
+"selection_to_column": 37,
+"selection_to_line": 13,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/loot/loot_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 50,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 61,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/structure/data/rift_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(8, 12, 16),
+"h_scroll_position": 0,
+"row": 46,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/lightkeeper/firework/firework_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 13,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/lightkeeper/firework/firework.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 2,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/cave/cave.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 3,
+"selection_to_column": 24,
+"selection_to_line": 5,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/cave/cave_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 16,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/cave/lode/lode_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 39,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 55,
+"scroll_position": 29.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 37,
+"selection_to_column": 39,
+"selection_to_line": 55,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/cave/lode/vein/vein_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 16,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/pie/pie.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 2,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 26,
+"scroll_position": 9.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/cave/lode/lode.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 12,
+"scroll_position": 7.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/miner/cave/lode/vein/vein.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 23,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/pie/slice/slice_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 10,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 9,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 4,
+"selection_from_line": 9,
+"selection_to_column": 10,
+"selection_to_line": 9,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/musician/veteran/veteran.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 11,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/musician/veteran/veteran_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 21,
+"scroll_position": 5.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/tailor/attire/attire.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 23,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 16,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/tailor/attire/attire_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 37,
+"folded_lines": PackedInt32Array(8, 47),
+"h_scroll_position": 0,
+"row": 60,
+"scroll_position": 33.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/scout/spotlight/spotlight_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/scout/spotlight/spotlight.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 16,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/agent.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 29,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 67,
+"scroll_position": 67.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/maelstrom/eddy/flux/flux.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 27,
+"scroll_position": 10.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/hourglass/hourglass.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 43,
+"scroll_position": 24.92,
+"selection": true,
+"selection_from_column": 1,
+"selection_from_line": 43,
+"selection_to_column": 32,
+"selection_to_line": 43,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/kernel_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 14,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/odeum_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 16,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 30,
+"scroll_position": 21.0,
+"selection": true,
+"selection_from_column": 4,
+"selection_from_line": 30,
+"selection_to_column": 16,
+"selection_to_line": 30,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/Arbitrator.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 49.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/shadow/shadow_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 13,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 16,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/card.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 23,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 285,
+"scroll_position": 277.0,
+"selection": true,
+"selection_from_column": 8,
+"selection_from_line": 285,
+"selection_to_column": 23,
+"selection_to_line": 285,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/house.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 4,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 81,
+"scroll_position": 75.0,
+"selection": true,
+"selection_from_column": 2,
+"selection_from_line": 81,
+"selection_to_column": 4,
+"selection_to_line": 81,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/house_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 14,
+"scroll_position": 23.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/phase/phase_draw.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/canto/canto_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 30,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 160,
+"scroll_position": 144.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/room/room_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 26,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 13,
+"scroll_position": 6.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/room/room.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 268,
+"scroll_position": 258.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/workload/workload.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 40,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/workload/workload_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 33,
+"scroll_position": 22.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/agent_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 11,
+"folded_lines": PackedInt32Array(20, 27, 35, 50, 126, 131, 138, 142, 155),
+"h_scroll_position": 0,
+"row": 65,
+"scroll_position": 24.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 65,
+"selection_to_column": 11,
+"selection_to_line": 65,
+"syntax_highlighter": "GDScript"
+}
+
+[res://shared/jsons/names.json]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 8,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 212,
+"scroll_position": 202.0,
+"selection": true,
+"selection_from_column": 4,
+"selection_from_line": 212,
+"selection_to_column": 8,
+"selection_to_line": 212,
+"syntax_highlighter": "JSON"
+}
+
+[res://entities/continent/guild/agent/workload/overtime/overtime.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 11,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/Gear.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 18,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/ladder/fake/fake_dice.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 309,
+"scroll_position": 291.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/Digest.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 32,
+"folded_lines": PackedInt32Array(766, 779, 1023, 1101, 1107, 1113, 1148, 1154, 1164, 1174, 1235, 1307, 1310),
+"h_scroll_position": 0,
+"row": 114,
+"scroll_position": 104.0,
+"selection": true,
+"selection_from_column": 6,
+"selection_from_line": 114,
+"selection_to_column": 32,
+"selection_to_line": 114,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/task/task_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 24,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/task/task.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 33,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/sculpture/sculpture_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/sculpture/sculpture.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 37,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 33,
+"scroll_position": 16.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/tribute/quotum/spoil/spoil.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 2,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 0,
+"selection_to_column": 0,
+"selection_to_line": 2,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/tribute/quotum/spoil/spoil_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/tribute/quotum/quotum.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 36,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 9,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 26,
+"selection_from_line": 8,
+"selection_to_column": 36,
+"selection_to_line": 9,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/tribute/quotum/quotum_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 63,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 8,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/tribute/tribute_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 23,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 30,
+"scroll_position": 17.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/calendar/calendar.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 60,
+"scroll_position": 42.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/dice/datas/dice_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 23,
+"scroll_position": 6.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 23,
+"selection_to_column": 12,
+"selection_to_line": 23,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/clock/clock.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 49,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 8,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/usurer/usurer.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/usurer/dept/debt.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/clock/clock_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 21,
+"scroll_position": 12.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/clock/overseer_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 42,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/pie/pie_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 20,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 123,
+"scroll_position": 114.88,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/circuit/circuit.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 5,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 52,
+"scroll_position": 42.0,
+"selection": true,
+"selection_from_column": 2,
+"selection_from_line": 52,
+"selection_to_column": 5,
+"selection_to_line": 52,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/circuit/scout/scout_circuit.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 15,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 0,
+"selection_to_column": 0,
+"selection_to_line": 15,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/circuit/lightkeeper/lightkeeper_circuit.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 11,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 11,
+"selection_from_line": 0,
+"selection_to_column": 22,
+"selection_to_line": 0,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/sculpture/constellation/constellation.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 14,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 6,
+"selection_from_line": 4,
+"selection_to_column": 14,
+"selection_to_line": 4,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/not altar/altar.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 56,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/not altar/altar_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 21,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 9,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 21,
+"selection_from_line": 9,
+"selection_to_column": 5,
+"selection_to_line": 16,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/architect/altar/altar_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/loot/spark/spark.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/loot/spark/spark_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 17,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/loot/loot.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 28,
+"scroll_position": 14.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/shadow/shadow.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 28,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 30,
+"scroll_position": 12.0,
+"selection": true,
+"selection_from_column": 23,
+"selection_from_line": 30,
+"selection_to_column": 28,
+"selection_to_line": 30,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/canto/tune/tune_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/hymn/hymn_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/scenario_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/action/action_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/phase/phase_discard.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 25,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/action/action_move_card.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 11,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/echo/stake/stake.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 54,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 45,
+"scroll_position": 34.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/echo/stake/stake_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/echo/echo.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 75,
+"scroll_position": 65.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/echo/echo_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 13,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/echo/soul_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 19,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 66,
+"scroll_position": 54.92,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://shared/jsons/totems.json]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 39,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 9,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "JSON"
+}
+
+[res://entities/continent/guild/master/archaeologist/obstacle/obstacle.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 76,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 12,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/archaeologist/obstacle/obstacle_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/archaeologist/archaeologist.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 2,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/archaeologist/archaeologist_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 7,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/squad/squad.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 24,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 42,
+"scroll_position": 30.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/squad/member/member.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 20,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 38,
+"scroll_position": 25.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 38,
+"selection_to_column": 20,
+"selection_to_line": 38,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/squad/member/member_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 19,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 45,
+"scroll_position": 41.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/agent/squad/squad_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 15,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 0,
+"selection_to_column": 0,
+"selection_to_line": 15,
+"syntax_highlighter": "GDScript"
+}
+
+[res://docs/00-index.md]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 65,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 43,
+"scroll_position": 23.96,
+"selection": false,
+"syntax_highlighter": "Markdown"
+}
+
+[res://entities/continent/guild/master/archaeologist/excavation/excavation.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 28,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 2.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 6,
+"selection_to_column": 28,
+"selection_to_line": 10,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/archaeologist/excavation/excavation_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/bank/method/method_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 21,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 39,
+"scroll_position": 32.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/bank/bank_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 31,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/depredation.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 14,
+"scroll_position": 7.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/depredation_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(22),
+"h_scroll_position": 0,
+"row": 18,
+"scroll_position": 2.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/bank/bank.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 20,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/depredation.tscn::GDScript_qg6au]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 10,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/ambition/potential/potential.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 80,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 36,
+"scroll_position": 32.0,
+"selection": true,
+"selection_from_column": 74,
+"selection_from_line": 36,
+"selection_to_column": 80,
+"selection_to_line": 36,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/attempt/attempt_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(12, 48, 80, 93),
+"h_scroll_position": 0,
+"row": 91,
+"scroll_position": 56.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/attempt/impulse_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 11,
+"scroll_position": 1.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/attempt/plan_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 86,
+"scroll_position": 78.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/idea/idea_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 12,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 71,
+"scroll_position": 55.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/gang.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 28,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/gang_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(58),
+"h_scroll_position": 0,
+"row": 52,
+"scroll_position": 9.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/idea/intention/intention.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 89,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 29,
+"scroll_position": 20.0,
+"selection": true,
+"selection_from_column": 57,
+"selection_from_line": 28,
+"selection_to_column": 89,
+"selection_to_line": 29,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/bank/method/method.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 33,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 43,
+"scroll_position": 32.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/cottage/chamber_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 32,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 31,
+"scroll_position": 22.0,
+"selection": true,
+"selection_from_column": 1,
+"selection_from_line": 31,
+"selection_to_column": 32,
+"selection_to_line": 31,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/cottage/cottage_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 23,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 57,
+"scroll_position": 40.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/idea/idea.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 19,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 124,
+"scroll_position": 107.0,
+"selection": true,
+"selection_from_column": 1,
+"selection_from_line": 124,
+"selection_to_column": 19,
+"selection_to_line": 124,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/ambition/ambition.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 12,
+"scroll_position": 6.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/ambition/ambition_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 50,
+"scroll_position": 30.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/ambition/galore/galore_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 1.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/ambition/galore/galore.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/idea/intention/intention_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 18,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 12.0,
+"selection": true,
+"selection_from_column": 18,
+"selection_from_line": 10,
+"selection_to_column": 42,
+"selection_to_line": 11,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/depredation/gang/ambition/potential/potential_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 42,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 19,
+"scroll_position": 14.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/ui/button/menu/continue.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/world/home/button/button.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 32,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 3.0,
+"selection": true,
+"selection_from_column": 17,
+"selection_from_line": 10,
+"selection_to_column": 32,
+"selection_to_line": 10,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/hymn/button/shift_canto.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 1,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/maelstrom/eddy/flux/flux_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 14,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 6,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/maelstrom/eddy/eddy_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 16,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 25,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 25,
+"selection_to_column": 16,
+"selection_to_line": 25,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/maelstrom/maelstrom_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 32,
+"scroll_position": 13.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/maelstrom/maelstrom.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 21,
+"scroll_position": 13.0,
+"selection": true,
+"selection_from_column": 8,
+"selection_from_line": 21,
+"selection_to_column": 15,
+"selection_to_line": 21,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/kernel/maelstrom/eddy/eddy.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 37,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 14,
+"scroll_position": 9.0,
+"selection": true,
+"selection_from_column": 21,
+"selection_from_line": 14,
+"selection_to_column": 37,
+"selection_to_line": 14,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/banner/banner.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 19,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/mainland/banner/banner_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/demon/gloom/gloom.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 22,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 7,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/demon/slumber/slumber.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(4),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/continent/guild/master/demon/slumber/slumber_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 3,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/nightmare/nightmare.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 26,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 24,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/nightmare/nightmare_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 22,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 18,
+"scroll_position": 6.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 18,
+"selection_to_column": 22,
+"selection_to_line": 18,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/action/action_attack_shadow.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 35,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 24,
+"scroll_position": 14.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/advisor/choice/choice_decision.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 8,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 22,
+"scroll_position": 6.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/advisor/choice/choice_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 12.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/phase/phase_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 29.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/phase/phase_decision.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 1,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 4,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 0,
+"selection_from_line": 4,
+"selection_to_column": 1,
+"selection_to_line": 4,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/phase/phase_fusion.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 3,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 17,
+"scroll_position": 4.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/arbitrator/phase/phase_punishment.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 7,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 11,
+"scroll_position": 2.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/advisor/choice/choice_fusion.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 15,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 10,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/odeum/odeum.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 0,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/shadow/pressure/pressure.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 89,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 22,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 35,
+"selection_from_line": 21,
+"selection_to_column": 89,
+"selection_to_line": 22,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/shadow/pressure/pressure_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 18,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/shadow/shade/shade.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 47,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 9,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/ladder/stepladder_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 20,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 16,
+"scroll_position": 12.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/house/card/shadow/shade/shade_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 39,
+"scroll_position": 24.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/ladder/stair/stair.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 17,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 18,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 5,
+"selection_from_line": 18,
+"selection_to_column": 17,
+"selection_to_line": 18,
+"syntax_highlighter": "GDScript"
+}
+
+[res://entities/isle/ladder/stair/stair_data.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 27,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 14,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://global/advisor/Advisor.gd]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 0,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 15,
+"scroll_position": 0.0,
+"selection": false,
+"syntax_highlighter": "GDScript"
+}
+
+[res://docs/systems/SYS-13-advisor-autoplay.md]
+
+state={
+"bookmarks": PackedInt32Array(),
+"breakpoints": PackedInt32Array(),
+"column": 81,
+"folded_lines": PackedInt32Array(),
+"h_scroll_position": 0,
+"row": 5,
+"scroll_position": 0.0,
+"selection": true,
+"selection_from_column": 69,
+"selection_from_line": 5,
+"selection_to_column": 81,
+"selection_to_line": 5,
+"syntax_highlighter": "Markdown"
+}

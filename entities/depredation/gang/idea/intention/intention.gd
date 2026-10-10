@@ -23,6 +23,7 @@ func connect_signals() -> void:
 
 func _on_bond_changed() -> void:
 	%Body.visible = not data.is_bond
+	%Border.visible = not data.is_bond
 
 func update_textures() -> void:
 	%Circle.modulate = Digest.element_to_color[data.element]
@@ -30,6 +31,9 @@ func update_textures() -> void:
 	var path = Bozo.enum_to_string(Bozo.Type.ASPECT, data.aspect)
 	%Body.texture = load('res://entities/depredation/gang/idea/intention/images/body/%s.png' % path)
 	%Border.texture = load('res://entities/depredation/gang/idea/intention/images/border/%s.png' % path)
+	
+	%Value.visible = data.value > 1 or data.suffix != Bozo.Suffix.PLUS
+	%Value.text = '%s%d' % [Bozo.enum_to_string(Bozo.Type.SUFFIX, data.suffix, true), data.value]
 
 func calc_anchor_angle() -> void:
 	if not idea: return

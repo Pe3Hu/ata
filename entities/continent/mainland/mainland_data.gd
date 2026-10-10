@@ -452,7 +452,7 @@ func summon_rifts() -> void:
 	demolished_coords.shuffle()
 	var coords = demolished_coords.duplicate()
 	coords.resize(n)
-	var rift_order = 1
+	var rift_order = 0
 	
 	for coord in coords:
 		summon_rift(coord, rift_order)

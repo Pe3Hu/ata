@@ -2,32 +2,12 @@ class_name ShadowData
 extends RefCounted
 
 
-signal shade_changed
+@warning_ignore("unused_signal")
 signal is_perished
 
 var echo: EchoData
 var pressure: PressureData
-
-var current_shade: int:
-	set(value_):
-		current_shade = value_
-		perfect_cantos.clear()
-		
-		if Mother.odeum.kitchen_scenario:
-			Mother.odeum.kitchen_scenario.update_perfect_cantos()
-		if Mother.odeum.bedroom_scenario:
-			Mother.odeum.bedroom_scenario.update_perfect_cantos()
-		
-		shade_changed.emit()
-		
-		if current_shade == 0:# and Arbitrator and Arbitrator.current_phase and Arbitrator.current_phase.type == Bozo.Phase.DECISION:
-			pressure.apply()
-			is_perished.emit()
-
-var limit_shade: int:
-	set(value_):
-		limit_shade = value_
-		current_shade = int(limit_shade)
+var shade: ShadeData
 
 var perfect_cantos: Array[CantoData]
 var action: ActionData
@@ -38,22 +18,10 @@ func _init(echo_: EchoData) -> void:
 	
 	pressure = PressureData.new()
 	pressure.shadow = self
-	roll_pressure_element()
-	calc_limit_shade()
-
-func calc_limit_shade() -> void:
-	var value = float(echo.soul.intro.get_sum()) / 10 * 3
-	
-	for intro in echo.intro_values:
-		value += intro
-	
-	limit_shade = int(value)
+	shade = ShadeData.new(self)
 
 func reset() -> void:
 	perfect_cantos.clear()
-	current_shade = int(limit_shade)
+	shade.reset()
 	action = null
-	roll_pressure_element()
-
-func roll_pressure_element() -> void:
-	pressure.element = Catalog.basic_elements.pick_random()
+	pressure.roll_element()

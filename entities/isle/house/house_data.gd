@@ -66,7 +66,7 @@ func refill_parlor() -> void:
 		attic.ere.clear()
 		attic.echos.shuffle()
 	
-	var n = min(get_remaining_amount(), Catalog.GYRE_PARLOR_STAMP_SIZE)
+	var n = min(get_remaining_amount(), Catalog.GYRE_PARLOR_ECHO_SIZE)
 	
 	while parlor.echos.size() < n:
 		attic.transfer_echo()
@@ -76,7 +76,7 @@ func direct_refill_bedroom() -> void:
 		attic.ere.clear()
 		attic.echos.shuffle()
 	
-	var n = min(get_remaining_amount(), Catalog.GYRE_BEDROOM_STAMP_SIZE)
+	var n = min(get_remaining_amount(), Catalog.GYRE_BEDROOM_ECHO_SIZE)
 	
 	while parlor.echos.size() < n:
 		attic.transfer_echo()

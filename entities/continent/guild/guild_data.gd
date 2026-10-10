@@ -51,8 +51,6 @@ func init_default_souls() -> void:
 	for _i in n:
 		var soul = make_random_soul(recruiment_matters)
 		souls.append(soul)
-	
-	Mother.house.attic.echos.shuffle()
 
 func make_random_soul(recruiment_matters_: Array) -> SoulData:
 	if recruiment_matters_.is_empty():

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cfclpjbuylq5h"]
+
+[ext_resource type="Script" uid="uid://bfds86w0aiy6u" path="res://entities/isle/house/card/shadow/shade/shade.gd" id="1_aca6m"]
+[ext_resource type="Shader" uid="uid://c7ddiq806filg" path="res://shared/wallpapers/1/sun.gdshader" id="2_3vp32"]
+[ext_resource type="Texture2D" uid="uid://dsyliad8l1vg1" path="res://entities/isle/house/card/shadow/shade/images/body.png" id="3_u0x1a"]
+[ext_resource type="Texture2D" uid="uid://5au6c7thupmi" path="res://entities/dice/images/6.png" id="5_3vp32"]
+[ext_resource type="Texture2D" uid="uid://d1ge7x1xc6nns" path="res://entities/isle/house/card/shadow/shade/images/border.png" id="5_44vvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+shader = ExtResource("2_3vp32")
+shader_parameter/tint = Color(0.01, 0.25, 0.5, 1)
+
+[node name="Shade" type="PanelContainer" unique_id=1368152663]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_aca6m")
+
+[node name="Body" type="TextureRect" parent="." unique_id=874707549]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_60rxr")
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("3_u0x1a")
+
+[node name="Border" type="TextureRect" parent="." unique_id=1284590755]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_44vvv")
+
+[node name="Value" type="TextureRect" parent="." unique_id=1273055549]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("5_3vp32")

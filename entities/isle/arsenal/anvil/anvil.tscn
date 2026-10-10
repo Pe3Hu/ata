@@ -2,43 +2,69 @@
 
 [ext_resource type="Script" uid="uid://bijh34xnmsy0f" path="res://entities/isle/arsenal/anvil/anvil.gd" id="1_q2oa5"]
 [ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/house/card/echo/echo.tscn" id="2_xfejm"]
+[ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_gawhl"]
 [ext_resource type="Texture2D" uid="uid://31c65owf3bu7" path="res://entities/isle/arsenal/anvil/images/fusion 2.png" id="3_nhw1j"]
 [ext_resource type="Texture2D" uid="uid://b0vwl84c10qr8" path="res://entities/isle/arsenal/anvil/images/fusion 0.png" id="3_r7gt8"]
+[ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_6mxes"]
 [ext_resource type="Texture2D" uid="uid://imhhs3ipj6ry" path="res://entities/isle/arsenal/anvil/images/fusion 1.png" id="4_6oe1o"]
 
-[node name="Anvil" type="PanelContainer" unique_id=1554707744 node_paths=PackedStringArray("old_stamps")]
-visible = false
-custom_minimum_size = Vector2(716, 296)
-offset_right = 716.0
-offset_bottom = 296.0
-script = ExtResource("1_q2oa5")
-old_stamps = [NodePath("Stamps/OldStamps/Stamp1"), NodePath("Stamps/OldStamps/Stamp2"), NodePath("Stamps/OldStamps/Stamp3")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxnbi"]
 
-[node name="Stamps" type="HBoxContainer" parent="." unique_id=1501160653]
+[node name="Anvil" type="PanelContainer" unique_id=1554707744 node_paths=PackedStringArray("old_echos")]
+visible = false
+custom_minimum_size = Vector2(668, 312)
+offset_right = 668.0
+offset_bottom = 312.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rxnbi")
+script = ExtResource("1_q2oa5")
+old_echos = [NodePath("Echos/OldEchos/Echo1"), NodePath("Echos/OldEchos/Echo2"), NodePath("Echos/OldEchos/Echo3")]
+
+[node name="Echos" type="HBoxContainer" parent="." unique_id=1501160653]
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="OldStamps" type="HBoxContainer" parent="Stamps" unique_id=357159141]
+[node name="OldEchos" type="HBoxContainer" parent="Echos" unique_id=357159141]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Stamp1" parent="Stamps/OldStamps" unique_id=1990971153 instance=ExtResource("2_xfejm")]
+[node name="Echo1" parent="Echos/OldEchos" unique_id=1990971153 instance=ExtResource("2_xfejm")]
 visible = false
 layout_mode = 2
 
-[node name="Stamp2" parent="Stamps/OldStamps" unique_id=795791444 instance=ExtResource("2_xfejm")]
+[node name="Echo2" parent="Echos/OldEchos" unique_id=1848305183 instance=ExtResource("2_xfejm")]
 visible = false
 layout_mode = 2
 
-[node name="Stamp3" parent="Stamps/OldStamps" unique_id=502858873 instance=ExtResource("2_xfejm")]
+[node name="Echo3" parent="Echos/OldEchos" unique_id=141790312 instance=ExtResource("2_xfejm")]
 visible = false
 layout_mode = 2
 
-[node name="FusionButton" type="TextureButton" parent="Stamps" unique_id=1453759818]
+[node name="HBox" type="VBoxContainer" parent="Echos" unique_id=1861100175]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 24
+
+[node name="PreviousButton" type="TextureButton" parent="Echos/HBox" unique_id=1102867879]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 4.712389
+texture_normal = ExtResource("3_gawhl")
+texture_pressed = ExtResource("3_gawhl")
+texture_hover = ExtResource("3_gawhl")
+script = ExtResource("4_6mxes")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="FusionButton" type="TextureButton" parent="Echos/HBox" unique_id=1453759818]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -46,8 +72,24 @@ texture_normal = ExtResource("3_r7gt8")
 texture_pressed = ExtResource("4_6oe1o")
 texture_hover = ExtResource("3_nhw1j")
 
-[node name="NewStamp" parent="Stamps" unique_id=1332509346 instance=ExtResource("2_xfejm")]
+[node name="NextButton" type="TextureButton" parent="Echos/HBox" unique_id=77706347]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
+mouse_filter = 1
+texture_normal = ExtResource("3_gawhl")
+texture_pressed = ExtResource("3_gawhl")
+texture_hover = ExtResource("3_gawhl")
+script = ExtResource("4_6mxes")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="NewEcho" parent="Echos" unique_id=85656758 instance=ExtResource("2_xfejm")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="pressed" from="Stamps/FusionButton" to="." method="_on_fusion_button_pressed"]
+[connection signal="pressed" from="Echos/HBox/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="Echos/HBox/FusionButton" to="." method="_on_fusion_button_pressed"]
+[connection signal="pressed" from="Echos/HBox/NextButton" to="." method="_on_next_button_pressed"]

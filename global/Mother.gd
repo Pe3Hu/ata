@@ -4,8 +4,10 @@ extends Node
 signal declare_gameover
 signal clock_updated(hand_angle: float)
 
-static var kernel: KernelData
+static var nightmare: NightmareData
 static var house: HouseData
+
+static var kernel: KernelData
 static var odeum: OdeumData
 
 static var arsenal: ArsenalData
@@ -24,6 +26,7 @@ func _ready() -> void:
 	welkin = WelkinData.new()
 	odeum = OdeumData.new()
 	house = HouseData.new()
+	nightmare = NightmareData.new()
 	
 	mainland = MainlandData.new()
 	guild = GuildData.new()

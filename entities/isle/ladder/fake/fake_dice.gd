@@ -293,7 +293,7 @@ func start_dissolve_animation() -> void:
 		get_parent().remove_child(self)
 		queue_free()
 
-func start_pressure_animation(stepladder_: Stepladder) -> void:
+func start_pressure_animation(stepladder_: Stepladder, flux_: FluxData) -> void:
 	if pressure_tween and pressure_tween.is_running():
 		pressure_tween.kill()
 	
@@ -308,7 +308,9 @@ func start_pressure_animation(stepladder_: Stepladder) -> void:
 	
 	await pressure_tween.finished
 	
-	stepladder_.data.flux.volume += get_current_value()
+	if flux_:
+		flux_.volume += get_current_value()
+	
 	stepladder_.dissolve_dices()
 
 

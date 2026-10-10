@@ -11,10 +11,6 @@ var data: ShadowData:
 		update_colors()
 
 @export var card: Card
-@export var top_shade: TextureRect
-@export var bottom_shade: TextureRect
-@export var top_pressure: Pressure
-@export var bottom_pressure: Pressure
 
 var expand_tween: Tween
 var cant_tween: Tween
@@ -23,20 +19,18 @@ var flip_tween: Tween
 
 #region init
 func connect_signals() -> void:
-	data.shade_changed.connect(_on_shade_changed)
-	_on_shade_changed()
 	data.is_perished.connect(_on_perished)
 
-func _on_shade_changed() -> void:
-	top_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
-	bottom_shade.texture = load("res://entities/dice/images/%d.png" % data.current_shade)
 
 func _on_perished() -> void:
-	card.flip_on_echo()
+	card.is_face_echo = true
+	expand_out()
 
 func connect_datas() -> void:
-	top_pressure.data = data.pressure
-	bottom_pressure.data = data.pressure
+	%TopPressure.data = data.pressure
+	%BottomPressure.data = data.pressure
+	%TopShade.data = data.shade
+	%BottomShade.data = data.shade
 
 func update_colors() -> void:
 	var color = Digest.matter_to_color[data.echo.soul.matter]
@@ -59,10 +53,10 @@ func expand_in() -> void:
 	
 	cant_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 	cant_tween.tween_property(self, "offset_transform_rotation", PI / 2, duration)
-	cant_tween.tween_property(bottom_shade, "offset_transform_rotation", -PI / 2, duration)
-	cant_tween.tween_property(top_shade, "offset_transform_rotation", -PI / 2, duration)
-	cant_tween.tween_property(bottom_pressure, "offset_transform_rotation", -PI / 2, duration)
-	cant_tween.tween_property(top_pressure, "offset_transform_rotation", -PI / 2, duration)
+	cant_tween.tween_property(%BottomShade, "offset_transform_rotation", -PI / 2, duration)
+	cant_tween.tween_property(%TopShade, "offset_transform_rotation", -PI / 2, duration)
+	cant_tween.tween_property(%BottomPressure, "offset_transform_rotation", -PI / 2, duration)
+	cant_tween.tween_property(%TopPressure, "offset_transform_rotation", -PI / 2, duration)
 
 func expand_out() -> void:
 	var duration = Gear.cants[Gear.tempo]
@@ -72,10 +66,10 @@ func expand_out() -> void:
 	
 	cant_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
 	cant_tween.tween_property(self, "offset_transform_rotation", 0, duration)
-	cant_tween.tween_property(top_shade, "offset_transform_rotation", 0, duration)
-	cant_tween.tween_property(bottom_shade, "offset_transform_rotation", 0, duration)
-	cant_tween.tween_property(bottom_pressure, "offset_transform_rotation", 0, duration)
-	cant_tween.tween_property(top_pressure, "offset_transform_rotation", 0, duration)
+	cant_tween.tween_property(%TopShade, "offset_transform_rotation", 0, duration)
+	cant_tween.tween_property(%BottomShade, "offset_transform_rotation", 0, duration)
+	cant_tween.tween_property(%BottomPressure, "offset_transform_rotation", 0, duration)
+	cant_tween.tween_property(%TopPressure, "offset_transform_rotation", 0, duration)
 	
 	await cant_tween.finished
 	cant_tween.kill()
@@ -83,14 +77,21 @@ func expand_out() -> void:
 	duration = Gear.expands[Gear.tempo]
 	
 	expand_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
-	expand_tween.tween_property(self, "size:y", Catalog.STAMP_SIZE.y, duration)
-	var y = -(Catalog.STAMP_SIZE.y - Catalog.SHADOW_SIZE.y) * 0.5
+	expand_tween.tween_property(self, "size:y", Catalog.ECHO_SIZE.y, duration)
+	var y = -(Catalog.ECHO_SIZE.y - Catalog.SHADOW_SIZE.y) * 0.5
 	expand_tween.tween_property(self, "offset_transform_position:y", y, duration)
 	
 	await expand_tween.finished
 	expand_tween.kill()
 	
 	card.flip_on_echo()
+
+func rotate_textures(angle_: float) -> void:
+	offset_transform_rotation = angle_
+	%TopShade.offset_transform_rotation = -angle_
+	%BottomShade.offset_transform_rotation = -angle_
+	%TopPressure.offset_transform_rotation = -angle_
+	%BottomPressure.offset_transform_rotation = -angle_
 #endregion
 
 func process_click() -> void:

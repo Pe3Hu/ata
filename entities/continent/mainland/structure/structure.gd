@@ -21,7 +21,8 @@ func _on_demolished() -> void:
 	queue_free()
 
 func update_spirtes() -> void:
-	if data.type != Bozo.Structure.SHRINE:
+	visible = data.type != Bozo.Structure.NONE
+	if data.type != Bozo.Structure.SHRINE and data.type != Bozo.Structure.NONE:
 		var str_type = Bozo.enum_to_string(Bozo.Type.STRUCTURE, data.type)
 		
 		if data.type == Bozo.Structure.RUIN:
@@ -58,25 +59,9 @@ func update_spirtes() -> void:
 		Helper.update_matter_colors(%Body, data.matters)
 
 func _on_area_mouse_entered() -> void:
-	#if hover_tween and hover_tween.is_running():
-		#hover_tween.kill()
-	#
-	#hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	#hover_tween.tween_property(self, "scale", Vector2.ONE * 1.25, 0.15)
 	Mother.mainland.footprint.target_structure = data
 	Mother.mainland.banner.structure = data
-	
-	#if data.cluster as ShelterData:
-		#print([data.cluster.index, data.cluster.count_total_fog_pixels()])
-	#print(Helper.get_structure_position(data, true))
-	#print(data.cluster.internals.front())
-	#print(data.cluster.index)
 
 func _on_area_mouse_exited() -> void:
-	#if hover_tween and hover_tween.is_running():
-		#hover_tween.kill()
-	#
-	#hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	#hover_tween.tween_property(self, "scale", Vector2.ONE, 0.15)
 	Mother.mainland.footprint.target_structure = null
 	Mother.mainland.banner.structure = null

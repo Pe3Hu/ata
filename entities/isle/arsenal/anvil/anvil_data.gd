@@ -35,8 +35,8 @@ func init_new_echo() -> void:
 	intro_values.sort()
 	intro_values.reverse()
 	
-	var origin = echos.front().origin
-	new_echo = EchoData.new(origin, intro_values, verse_values)
+	var soul = echos.front().soul
+	new_echo = EchoData.new(soul, intro_values, verse_values)
 	
 	letters.sort()
 	var str_mark = ""
@@ -48,12 +48,12 @@ func init_new_echo() -> void:
 #endregion
 
 func fusion() -> void:
-	var origin = echos.front().origin
+	var soul = echos.front().soul
 	
 	for echo in echos:
-		origin.echos.erase(echo)
-		origin.atheneum.house.cellar.echos.erase(echo)
+		soul.echos.erase(echo)
+		Mother.house.cellar.echos.erase(echo)
 	
-	origin.echos.append(new_echo)
-	origin.atheneum.house.cellar.echos.append(new_echo)
+	soul.echos.append(new_echo)
+	Mother.house.cellar.echos.append(new_echo)
 	Arbitrator.current_phase.exit_phase()

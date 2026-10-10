@@ -9,6 +9,7 @@ signal bond_changed
 var idea: IdeaData
 
 var value: int = 1
+var suffix: Bozo.Suffix = Bozo.Suffix.PLUS
 var is_bond: bool = false:
 	set(value_):
 		is_bond = value_

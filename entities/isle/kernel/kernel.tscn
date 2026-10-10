@@ -8,6 +8,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqudx"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
 [node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("usurer", "pie", "maelstrom", "stepladder")]
 custom_minimum_size = Vector2(732, 460)
 anchors_preset = 5
@@ -20,20 +22,26 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_gqudx")
 script = ExtResource("1_is0h4")
 usurer = NodePath("VBoxContainer/Usurer")
 pie = NodePath("VBoxContainer/Usurer/Pie")
-maelstrom = NodePath("VBoxContainer/Maelstrom")
-stepladder = NodePath("VBoxContainer/Maelstrom/Stepladder")
+maelstrom = NodePath("VBoxContainer/PanelContainer/Maelstrom")
+stepladder = NodePath("VBoxContainer/PanelContainer/Maelstrom/Stepladder")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=1204869068]
 layout_mode = 2
 theme_override_constants/separation = 148
 
-[node name="Maelstrom" parent="VBoxContainer" unique_id=727603077 instance=ExtResource("4_jymj8")]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1633749647]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="Maelstrom" parent="VBoxContainer/PanelContainer" unique_id=727603077 instance=ExtResource("4_jymj8")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Stepladder" parent="VBoxContainer/Maelstrom" unique_id=1091981830 instance=ExtResource("5_oy8l0")]
-position = Vector2(70, 0)
+[node name="Stepladder" parent="VBoxContainer/PanelContainer/Maelstrom" unique_id=1091981830 instance=ExtResource("5_oy8l0")]
 
 [node name="Usurer" parent="VBoxContainer" unique_id=1197846844 node_paths=PackedStringArray("kernel") instance=ExtResource("5_2vrfl")]
 layout_mode = 2

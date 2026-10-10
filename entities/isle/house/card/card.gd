@@ -24,6 +24,7 @@ var activate_tween: Tween
 var flip_tween: Tween
 
 var is_face_echo: bool = true
+var is_busy: bool = false
 
 @export var dice: FakeDice
 
@@ -99,15 +100,17 @@ func last_disappear() -> void:
 
 #region hover
 func hover() -> void:
+	if is_busy: return
 	if appear_tween and appear_tween.is_running(): return
 	if room and room.shift_tween and room.shift_tween.is_running(): return
+	if room and room.sort_tween and room.sort_tween.is_running(): return
 	#if room.current_card == self: return
 	if hover_tween and hover_tween.is_running(): return
 	if room and room.data.type == Bozo.Room.PARLOR: return
 	if echo.data.is_locked: return
 	
 	z_index = 1
-	var current_x = echo.position.x
+	var border_shift = (min_size_x_hover - min_size_x_default) / 2.0
 	
 	if room and room.current_card and room.current_card != self:
 		room.current_card.unhover()
@@ -119,10 +122,10 @@ func hover() -> void:
 	#	hover_tween.kill()
 	
 	hover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	hover_tween.tween_property(echo, "offset_transform_position:y", -Catalog.STAMP_SIDE_HEIGHT, 0.15)
+	hover_tween.tween_property(echo, "offset_transform_position:y", -Catalog.ECHO_SIDE_HEIGHT, 0.15)
 	hover_tween.tween_property(echo.border, "self_modulate:a", 1.0, 0.1)
 	hover_tween.tween_property(self, "custom_minimum_size:x", min_size_x_hover, 0.2)
-	hover_tween.tween_property(echo, "position:x", current_x + (min_size_x_hover - min_size_x_default) / 2, 0.2)
+	hover_tween.tween_property(echo, "position:x", border_shift, 0.2)
 	
 	await hover_tween.finished
 	
@@ -133,14 +136,14 @@ func hover() -> void:
 		unhover()
 
 func unhover() -> void:
+	if is_busy: return
 	if appear_tween and appear_tween.is_running(): return
 	if hover_tween and hover_tween.is_running(): return
+	if room and room.shift_tween and room.shift_tween.is_running(): return
+	if room and room.sort_tween and room.sort_tween.is_running(): return
 	if room.data.type == Bozo.Room.PARLOR: return
 	if echo.data.is_locked: return
 	z_index = 0
-	
-	if room.shift_tween and room.shift_tween.is_running():
-		z_index = 1
 	
 	if room.current_card == self:
 		room.current_card = null
@@ -161,6 +164,29 @@ func unhover() -> void:
 	
 	if is_inside:
 		hover()
+
+func snap_unhover() -> void:
+	if hover_tween and hover_tween.is_running():
+		hover_tween.kill()
+	
+	z_index = 0
+	
+	if room and room.current_card == self:
+		room.current_card = null
+	
+	echo.offset_transform_position.y = 0
+	
+	if echo.data.is_locked:
+		custom_minimum_size.x = min_size_x_hover
+		echo.position.x = (min_size_x_hover - min_size_x_default) / 2.0
+		echo.offset_transform_position.x = 0
+		echo.border.self_modulate.a = 1.0
+		return
+	
+	custom_minimum_size.x = min_size_x_default
+	echo.position.x = 0
+	echo.offset_transform_position.x = 0
+	echo.border.self_modulate.a = 0.0
 #endregion
 
 #region activate
@@ -168,15 +194,24 @@ func spoil() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	echo.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	unhover()
-	await hover_tween.finished
+	if hover_tween and hover_tween.is_running():
+		await hover_tween.finished
 	disappear()
-	await appear_tween.finished
+	if appear_tween and appear_tween.is_running():
+		await appear_tween.finished
 
 func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = false) -> void:
+	if is_busy: return
 	if is_fol and not room.house.room_to_fol.has(room): return
 	if not is_fol and not room.house.room_to_ere.has(room): return
 	if not room.house.active_tweens.is_empty(): return
-	unhover()
+	if Mother.house.attic.echos.size() == Catalog.GYRE_ATTIC_ECHOS_LIMIT: return
+	is_busy = true
+	snap_unhover()
+	
+	for card in room.cards:
+		if card != self:
+			card.snap_unhover()
 	
 	var next_room: Room
 	
@@ -185,12 +220,14 @@ func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = f
 	else:
 		next_room = room.house.room_to_ere[room]
 	
+	for card in next_room.cards:
+		card.snap_unhover()
+	
 	var target_global = await next_room.get_card_target(self)
-	var target_offset = target_global - global_position
-
 	offset_transform_position = Vector2.ZERO
+	var target_offset = target_global - global_position
 	room.jalousie(self)
-	next_room.slide_away()
+	next_room.slide_away(self)
 	var duration = Gear.jalousies[Gear.tempo]
 	
 	activate_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC).set_parallel(true)
@@ -202,11 +239,14 @@ func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = f
 	
 	await activate_tween.finished
 	
-	finish_activate(is_fol)
+	await finish_activate(is_fol)
 	z_index = 0
+	is_busy = false
 	
 	if is_advisor_:
-		Advisor.get_choice().next_action()
+		var choice = Advisor.get_choice()
+		if choice:
+			choice.next_action()
 		return
 	
 	#if shadow.data.action and shadow.data.action.is_advisor:
@@ -220,13 +260,10 @@ func finish_activate(is_fol: bool = true) -> void:
 	
 	if is_fol and room.house.room_to_fol.has(room):
 		next_room = room.house.room_to_fol[room]
-	else:
-		return
-	
-	if not is_fol and room.house.room_to_ere.has(room):
+	elif not is_fol and room.house.room_to_ere.has(room):
 		next_room = room.house.room_to_ere[room]
 	else:
-		pass
+		return
 	
 	var previous_room = room
 	next_room.plus_card(self)
@@ -234,6 +271,12 @@ func finish_activate(is_fol: bool = true) -> void:
 	next_room.reset_offsets()
 	next_room.find_best_scenario()
 	previous_room.find_best_scenario()
+	
+	if next_room.sort_tween and next_room.sort_tween.is_running():
+		await next_room.sort_tween.finished
+	
+	if previous_room.sort_tween and previous_room.sort_tween.is_running():
+		await previous_room.sort_tween.finished
 #endregion
 
 #region flip
@@ -283,11 +326,7 @@ func skip_on_shadow() -> void:
 	shadow.size.y = Catalog.SHADOW_SIZE.y
 	shadow.offset_transform_position.y = 0
 	
-	shadow.offset_transform_rotation = PI / 2
-	shadow.top_shade.offset_transform_rotation = -PI / 2
-	shadow.bottom_shade.offset_transform_rotation = -PI / 2
-	shadow.top_pressure.offset_transform_rotation = -PI / 2
-	shadow.bottom_pressure.offset_transform_rotation = -PI / 2
+	shadow.rotate_textures(PI / 2)
 
 func skip_on_echo() -> void:
 	is_face_echo = true
@@ -295,14 +334,10 @@ func skip_on_echo() -> void:
 	echo.offset_transform_scale.x = 1
 	shadow.offset_transform_scale.x = 0
 	
-	shadow.size.y = Catalog.STAMP_SIZE.y
-	shadow.offset_transform_position.y = -(Catalog.STAMP_SIZE.y - Catalog.SHADOW_SIZE.y) * 0.5
+	shadow.size.y = Catalog.ECHO_SIZE.y
+	shadow.offset_transform_position.y = -(Catalog.ECHO_SIZE.y - Catalog.SHADOW_SIZE.y) * 0.5
 	
-	shadow.offset_transform_rotation = 0
-	shadow.top_shade.offset_transform_rotation = 0
-	shadow.bottom_shade.offset_transform_rotation = 0
-	shadow.top_pressure.offset_transform_rotation = 0
-	shadow.bottom_pressure.offset_transform_rotation = 0
+	shadow.rotate_textures(0)
 
 func switch_face() -> void:
 	if is_face_echo:

@@ -27,15 +27,15 @@ func init_anvils() -> void:
 		var arrangements = Helper.generate_unique_arrangements_fixed_size(echos, size)
 		
 		for arrangement in arrangements:
-			if is_echos_has_same_origin(arrangement):
+			if is_echos_has_same_soul(arrangement):
 				if try_fuse_echos(arrangement):
-					var _anvil = AnvilData.new(self, arrangement)
+					AnvilData.new(self, arrangement)
 	
 	fusion_phase.emit()
 
-func is_echos_has_same_origin(echos_: Array) -> bool:
+func is_echos_has_same_soul(echos_: Array) -> bool:
 	for echo in echos_:
-		if echo.origin != echos_.front().origin:
+		if echo.soul != echos_.front().soul:
 			return false
 	
 	return true

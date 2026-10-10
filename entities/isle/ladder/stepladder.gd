@@ -18,13 +18,18 @@ var data: StepladderData:
 var current_stair: Stair
 var volume_to_stair: Dictionary
 
+var _roll_id: int = 0
+var _rolls_left: int = 0
+var _roll_flux: FluxData
+
 
 #region init
 func _ready() -> void:
 	position = get_parent().size / 2
 	position -= Vector2(Catalog.LADDER_GRID) * Catalog.STAIR_SIZE / 2 
 	position += Catalog.STEPLADDER_OFFSET
-	position += Vector2(122, 9)
+	#position += Vector2(122, 9)
+	position += Vector2(324, 300)
 	
 	%DiceContainer.offset_transform_position = Vector2(-Catalog.STAIR_SIZE.x / 3, Catalog.STEPLADDER_SIZE.y)
 
@@ -43,10 +48,12 @@ func _on_volume_changed() -> void:
 	if data.flux:
 		current_stair = volume_to_stair[data.flux.volume]
 		current_stair.is_current = true
+		update_colors()
 
 func _on_pressure_changed() -> void:
-	visible = data.pressure != null
 	if data.pressure == null: return
+	if Arbitrator.last_action == null: return
+	visible = data.pressure != null
 	
 	var n = data.pressure.amount
 	var element = Arbitrator.last_action.shadow.pressure.element
@@ -60,6 +67,10 @@ func _on_pressure_changed() -> void:
 		add_dice()
 	
 	apply_pressure()
+
+func update_colors() -> void:
+	for stair in %Stairs.get_children():
+		stair.update_color(data.flux.eddy.element)
 
 func add_dice() -> void:
 	var dice = dice_scene.instantiate()
@@ -90,22 +101,47 @@ func add_girder(girder_data_: GirderData) -> void:
 #endregion
 
 func apply_pressure() -> void:
-	Arbitrator.current_phase.animation_tweens.clear()
+	_roll_id += 1
+	var roll_id := _roll_id
+	_roll_flux = data.flux
+	
+	if Arbitrator.current_phase:
+		Arbitrator.current_phase.drop_animations()
+	
+	_rolls_left = 0
 	
 	for dice in %Dices.get_children():
 		dice.visible = true
 		dice.start_roll()
+		if dice.digit_tween == null:
+			continue
+		
+		_rolls_left += 1
+		dice.digit_tween.finished.connect(_on_punishment_roll_end.bind(dice, roll_id), CONNECT_ONE_SHOT)
 		Arbitrator.queue_an_animation(dice.digit_tween)
-		dice.digit_tween.finished.connect(_on_punishment_roll_end.bind(dice))
+	
+	if _rolls_left == 0:
+		choose_dice()
 
-func _on_punishment_roll_end(_dice: FakeDice) -> void:
-	if Arbitrator.current_phase.animation_tweens.is_empty():
+func _on_punishment_roll_end(_dice: FakeDice, roll_id_: int) -> void:
+	if roll_id_ != _roll_id:
+		return
+	
+	_rolls_left -= 1
+	
+	if _rolls_left == 0:
 		choose_dice()
 
 func choose_dice() -> void:
 	var pressure_dice: FakeDice
+	var flux := _roll_flux
+	
+	if flux == null or not Digest.volume_to_matter_to_volume.has(flux.volume):
+		dissolve_dices()
+		return
+	
 	#var options = %Dices.get_children()
-	var useful_matters = Digest.volume_to_matter_to_volume[data.flux.volume].keys()
+	var useful_matters = Digest.volume_to_matter_to_volume[flux.volume].keys()
 	var useful_volumes = []
 	var useful_dices = []
 	
@@ -123,11 +159,22 @@ func choose_dice() -> void:
 		useful_dices.sort_custom(func (a, b): return useful_volumes.find(a.get_current_value()) < useful_volumes.find(b.get_current_value()))
 		pressure_dice = useful_dices.front()
 		#options.erase(pressure_dice)
-		pressure_dice.start_pressure_animation(self)
+		pressure_dice.start_pressure_animation(self, flux)
 	else:
 		dissolve_dices()
-
 
 func dissolve_dices() -> void:
 	for dice in %Dices.get_children():
 		dice.start_dissolve_animation()
+
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_CTRL:
+				test_flux()
+
+func test_flux() -> void:
+	data.flux = data.kernel.maelstrom.eddies.front().flux
+	var matter = Digest.volume_to_matter_to_volume[data.flux.volume].keys().pick_random()
+	if matter:
+		data.flux.volume = Digest.volume_to_matter_to_volume[data.flux.volume][matter]

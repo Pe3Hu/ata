@@ -57,7 +57,7 @@ enum Room {
 	CELLAR = 32,
 }
 
-enum Math {
+enum Suffix {
 	NONE = 0,
 	PLUS = 33,
 	MINUS = 34,
@@ -200,6 +200,12 @@ enum Trod {
 	TERTIARY = 111,
 }
 
+enum Filter {
+	NONE = 0,
+	PERFECT = 112,
+	OVERKILL = 113,
+	MAX = 114,
+}
 
 enum Pantheon {
 	NONE = 0,
@@ -265,7 +271,7 @@ enum Type {
 	BIOME = -4,
 	STAKE = -5,
 	ROOM = -6,
-	MATH = -7,
+	SUFFIX = -7,
 	EVALUATION = -8,
 	RELIC = -9,
 	TEMPERATURE = -10,
@@ -293,7 +299,7 @@ const type_to_index = {
 	Type.BIOME: 23,
 	Type.STAKE: 26,
 	Type.ROOM: 28,
-	Type.MATH: 33,
+	Type.SUFFIX: 33,
 	Type.EVALUATION: 36,
 	Type.RELIC: 39,
 	Type.TEMPERATURE: 42,
@@ -318,7 +324,7 @@ const type_to_enum = {
 	Type.TUNE: Bozo.Tune,
 	Type.BIOME: Bozo.Biome,
 	Type.STAKE: Bozo.Stake,
-	Type.MATH: Bozo.Math,
+	Type.SUFFIX: Bozo.Suffix,
 	Type.EVALUATION : Bozo.Evaluation,
 	Type.ROOM: Bozo.Room,
 	Type.ELENMENT: Bozo.Element,
@@ -337,7 +343,18 @@ const type_to_enum = {
 	Type.PHASE: Bozo.Phase,
 }
 
-func enum_to_string(type_: Variant, value_: int) -> String:
+func enum_to_string(type_: Variant, value_: int, is_suffix_: bool = false) -> String:
+	if is_suffix_:
+		match value_:
+			Bozo.Suffix.PLUS:
+				return '+'
+			Bozo.Suffix.MINUS:
+				return '-'
+			Bozo.Suffix.MULTIPLY:
+				return 'x'
+			_:
+				return ''
+	
 	var index = value_ - type_to_index[type_] + 1
 	var enum_ = type_to_enum[type_]
 	var key_name: String = enum_.keys()[index]

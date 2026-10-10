@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://j1xn2qxki16i"]
+
+[ext_resource type="Script" uid="uid://ds71tqds23v4x" path="res://entities/continent/guild/master/demon/gloom/gloom.gd" id="1_c7e2v"]
+[ext_resource type="Shader" uid="uid://bdmksfc6m002l" path="res://entities/isle/kernel/maelstrom/eddy/element.gdshader" id="2_k2cq5"]
+[ext_resource type="Texture2D" uid="uid://b21ajmhiighgo" path="res://entities/continent/guild/master/demon/gloom/images/body.png" id="3_11vg4"]
+[ext_resource type="Texture2D" uid="uid://h14yy6aqptfg" path="res://entities/continent/guild/master/demon/gloom/images/border.png" id="4_7s4y7"]
+[ext_resource type="FontFile" uid="uid://djaflot4rx25i" path="res://shared/fonts/dpcomic.ttf" id="5_egeh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_805om"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkbw3"]
+resource_local_to_scene = true
+shader = ExtResource("2_k2cq5")
+shader_parameter/base_color = Color(0.5, 0.7, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_thpb3"]
+resource_local_to_scene = true
+font = ExtResource("5_egeh7")
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Gloom" type="PanelContainer" unique_id=1671658297 node_paths=PackedStringArray("value")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_805om")
+script = ExtResource("1_c7e2v")
+value = NodePath("Control/Value")
+
+[node name="Body" type="TextureRect" parent="." unique_id=332701700]
+unique_name_in_owner = true
+texture_filter = 2
+material = SubResource("ShaderMaterial_xkbw3")
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("3_11vg4")
+
+[node name="Border" type="TextureRect" parent="." unique_id=1155460423]
+unique_name_in_owner = true
+z_index = 1
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("4_7s4y7")
+
+[node name="Control" type="Control" parent="." unique_id=1761761946]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Value" type="Label" parent="Control" unique_id=223040812]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -8)
+text = "0"
+label_settings = SubResource("LabelSettings_thpb3")
+horizontal_alignment = 1
+vertical_alignment = 1

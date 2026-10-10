@@ -14,11 +14,10 @@ var last_action: ActionData:
 	set(value_):
 		last_action = value_
 		
-		if Gear.is_auto_play:
-			if last_action == null:
-				Advisor.get_choice().next_action()
-			else:
-				pass
+		if Gear.is_auto_play and last_action == null:
+			var choice = Advisor.get_choice()
+			if choice and choice.has_method("next_action"):
+				choice.next_action()
 
 
 func _ready() -> void:
@@ -48,7 +47,6 @@ func start_next_phase() -> void:
 	current_phase.enter_phase()
 
 func _on_phase_completed() -> void:
-	current_phase.exit_phase()
 	current_phase = null
 	current_phase_index += 1
 	
@@ -62,7 +60,8 @@ func queue_an_animation(tween_: Tween) -> void:
 	if not current_phase: return
 	if current_phase.animation_tweens.has(tween_): return
 	current_phase.animation_tweens.append(tween_)
-	tween_.finished.connect(current_phase._on_tween_finished.bind(tween_))
+	tween_.finished.connect(current_phase._on_tween_finished.bind(tween_, current_phase.animation_epoch))
 
 func skip_phase() -> void:
-	current_phase.phase_completed.emit()
+	if current_phase:
+		current_phase.exit_phase()

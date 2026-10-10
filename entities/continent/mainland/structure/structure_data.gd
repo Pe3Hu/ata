@@ -34,5 +34,6 @@ func demolish() -> void:
 	if not Catalog.demolish_sctructures.has(type): return
 	cluster.mainland.demolished_coords.append(get_global_coord())
 	is_demolished.emit()
-	cluster.structures.erase(self)
-	cluster.coord_options.append(coord)
+	type = Bozo.Structure.NONE
+	#cluster.structures.erase(self)
+	#cluster.coord_options.append(coord)

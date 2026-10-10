@@ -14,11 +14,10 @@ func enter_phase():
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()
 	
-	if Arbitrator.last_action and Arbitrator.last_action.type == Bozo.Action.ATTACK_SHADOW:
-		Arbitrator.last_action.animation_left -= 1
+	var action = Arbitrator.last_action
+	
+	if action and action.type == Bozo.Action.ATTACK_SHADOW:
+		if action.animation_left <= 1:
+			Mother.kernel.stepladder.finish_pressure()
 		
-		if not Arbitrator.last_action and Advisor.get_choice():
-			Arbitrator.faction.kernel.stepladder.finish_pressure()
-			Advisor.get_choice().next_action()
-		else:
-			pass
+		action.animation_left -= 1
