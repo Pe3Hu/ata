@@ -13,11 +13,14 @@ var next_value: int:
 	set(value_):
 		next_value = max(value_, 0)
 var limit_value: int
+var element: Bozo.Element = Bozo.Element.SAND
+var is_elite: bool = true
 
 
-
-func _init(rift_: RiftData) -> void:
+func _init(rift_: RiftData, element_: Bozo.Element) -> void:
 	rift = rift_
+	element = element_
+	
 	roll_value()
 
 func roll_value() -> void:

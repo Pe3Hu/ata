@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_iakli"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_dbps8"]
 [ext_resource type="Script" uid="uid://bvbtt1mplko3o" path="res://entities/continent/guild/master/demon/slumber/slumber.gd" id="2_okxty"]
-[ext_resource type="PackedScene" uid="uid://j1xn2qxki16i" path="res://entities/continent/guild/master/demon/gloom/gloom.tscn" id="4_okxty"]
+[ext_resource type="PackedScene" uid="uid://dy4nanu4visnj" path="res://entities/continent/guild/master/demon/slumber/elite/elite.tscn" id="4_3y1r7"]
+[ext_resource type="PackedScene" uid="uid://wsnved7dk0jg" path="res://entities/continent/guild/master/demon/slumber/elite/turnpike/turnpike.tscn" id="4_ia7uo"]
 [ext_resource type="PackedScene" uid="uid://babgcqfdnxf0t" path="res://entities/continent/guild/master/demon/slumber/chart/chart.tscn" id="5_3y1r7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3y1r7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia7uo"]
 resource_local_to_scene = true
 shader = ExtResource("2_dbps8")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -19,18 +20,37 @@ shader_parameter/scale = 1.0
 [node name="Slumber" unique_id=1199540049 instance=ExtResource("1_iakli")]
 script = ExtResource("2_okxty")
 
+[node name="HBoxContainer" parent="." index="0" unique_id=1677823058]
+theme_override_constants/separation = 42
+
+[node name="VBox" parent="HBoxContainer" index="0" unique_id=63145426]
+theme_override_constants/separation = 8
+
 [node name="HBox" parent="HBoxContainer/VBox/RankPanel" parent_id_path=PackedInt32Array(1450579454) index="0" unique_id=1691597745]
 visible = false
+theme_override_constants/separation = 4
 
 [node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_3y1r7")
+material = SubResource("ShaderMaterial_ia7uo")
 
-[node name="VBox" type="VBoxContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=1938407989]
+[node name="Turnpike" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=579902074 node_paths=PackedStringArray("slumber") instance=ExtResource("4_ia7uo")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_position = Vector2(112, 40)
+slumber = NodePath("../../../..")
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="1" unique_id=1938407989]
 layout_mode = 2
 
-[node name="Gloom" parent="HBoxContainer/VBox/InfoPanel/VBox" index="0" unique_id=1671658297 instance=ExtResource("4_okxty")]
+[node name="Elite" parent="HBoxContainer/VBox/InfoPanel/VBox" index="0" unique_id=1032326017 node_paths=PackedStringArray("slumber") instance=ExtResource("4_3y1r7")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+slumber = NodePath("../../../../..")
 
 [node name="Charts" type="HBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox" index="1" unique_id=1862681723]
 unique_name_in_owner = true

@@ -25,6 +25,13 @@ func browse(shift_: int) -> void:
 
 func get_neighbor(from_: SoulData, shift_: int) -> SoulData:
 	var options: Array = Mother.guild.souls
+	
+	match squad.agent.task.master.type:
+		Bozo.Master.BLACKSMITH:
+			options = options.filter(func (a): return Mother.guild.structure.matters.has(a.matter))
+		Bozo.Master.DEMON:
+			options = squad.agent.task.get_member_options(self)
+	
 	var n := options.size()
 	if n == 0: return from_
 
@@ -49,8 +56,15 @@ func update_preview() -> void:
 func get_first_free() -> SoulData:
 	if squad.agent.task == null or squad.agent.task.master == null:
 		return null
-	var guild = squad.agent.task.master.guild
-	for soul in guild.souls:
+	var options = squad.agent.task.master.guild.souls
+	
+	match squad.agent.task.master.type:
+		Bozo.Master.BLACKSMITH:
+			options = options.filter(func (a): return Mother.guild.structure.matters.has(a.matter))
+		Bozo.Master.DEMON:
+			options = squad.agent.task.get_member_options(self)
+	
+	for soul in options:
 		if _is_available(soul):
 			return soul
 	return null

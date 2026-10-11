@@ -321,7 +321,7 @@ const type_to_index = {
 	Type.STRUCTURE: 80,
 	Type.MASTER: 91,
 	Type.RANK: 102,
-	Type.COMPARISON: 116,
+	Type.COMPARISON: 115,
 	Type.PANTHEON: 126,
 	Type.GOD: 132,
 	
@@ -363,6 +363,8 @@ func enum_to_string(type_: Variant, value_: int, is_suffix_: bool = false) -> St
 				return '-'
 			Bozo.Suffix.MULTIPLY:
 				return 'x'
+			Bozo.Suffix.NONE:
+				return ''
 			_:
 				return ''
 	

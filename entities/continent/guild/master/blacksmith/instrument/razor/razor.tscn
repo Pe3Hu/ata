@@ -10,8 +10,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tax58"]
 resource_local_to_scene = true
 shader = ExtResource("2_7xtky")
-shader_parameter/pattern_speed = 0.1
-shader_parameter/palette_speed = 0.05
+shader_parameter/pattern_speed = 0.2000000095
+shader_parameter/palette_speed = 0.15
 shader_parameter/hueA = 0.05
 shader_parameter/hueB = 0.75
 shader_parameter/palette_t0 = 0.0

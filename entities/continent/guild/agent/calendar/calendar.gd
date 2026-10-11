@@ -40,6 +40,9 @@ func update_textures() -> void:
 	_apply(agent.data.is_preview_committed())
 
 func update_visible() -> void:
+	if agent and agent.data and agent.data.task is SlumberData and not agent.data.task.can_fill_squad():
+		visible = false
+		return
 	visible = Mother.mainland.route.is_calendar()
 	update_colors()
 

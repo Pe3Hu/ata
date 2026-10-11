@@ -30,8 +30,15 @@ func connect_signals() -> void:
 		data.workload.overtime_changed.connect(_on_overtime_changed)
 	#_on_overtime_changed()
 
+func _is_vacant_slumber() -> bool:
+	return data.task is SlumberData and not data.task.can_fill_squad()
+
 func _on_overtime_changed() -> void:
 	#%WorkoadLabel.text = '%d/%d' % [data.workload.current_progress, data.workload.limit_progress]
+
+	if _is_vacant_slumber():
+		%HourglassLabel.text = "—"
+		return
 
 	if data.get_preview() == null:
 		%HourglassLabel.text = "0"
@@ -47,6 +54,14 @@ func _on_overtime_changed() -> void:
 
 func update_view() -> void:
 	if data == null: return
+
+	# элитный slumber без возможного состава — три пустых слота
+	if _is_vacant_slumber():
+		%Squad.visible = true
+		%Calendar.visible = false
+		update_colors()
+		update_labels()
+		return
 
 	# некого показывать — прячем содержимое
 	if data.get_preview() == null:

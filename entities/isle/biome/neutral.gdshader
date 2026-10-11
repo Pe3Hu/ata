@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform float pattern_speed : hint_range(0.0, 1.0) = 0.1;  // движение дыма
-uniform float palette_speed : hint_range(0.0, 1.0) = 0.05; // перелив цвета
+uniform float pattern_speed : hint_range(0.0, 1.0) = 0.2;  // движение дыма
+uniform float palette_speed : hint_range(0.0, 1.0) = 0.15; // перелив цвета
 
 // Только оттенок (H ∈ 0..1). S и V жёстко = 1.0
 uniform float hueA : hint_range(0.0, 1.0) = 0.05;
@@ -105,12 +105,11 @@ void fragment()
 
     // Общая подсветка итогового цвета
     colour = clamp(colour + vec3(brightness), 0.0, 1.0);
+	float palettePhase = abs(sin(uv.x * uv.y + palette_time)) + palette_time;
+	vec3 col = palette_eval(pal, palettePhase);
+	col = mix(vec3(1.0), col, colour);   // ← было col *= colour;
 
-    float palettePhase = abs(sin(uv.x * uv.y + palette_time)) + palette_time;
-    vec3 col = palette_eval(pal, palettePhase);
-    col *= colour;
-
-    float mask = tex.a;
-    vec3 rgb = mix(col, col * tex.rgb, 1.0);
-    COLOR = vec4(rgb * modulate.rgb, mask * modulate.a);
+	float mask = tex.a;
+	vec3 rgb = mix(col, col * tex.rgb, 1.0);
+	COLOR = vec4(rgb * modulate.rgb, mask * modulate.a);
 }

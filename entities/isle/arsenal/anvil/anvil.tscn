@@ -3,15 +3,26 @@
 [ext_resource type="Script" uid="uid://bijh34xnmsy0f" path="res://entities/isle/arsenal/anvil/anvil.gd" id="1_q2oa5"]
 [ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/house/card/echo/echo.tscn" id="2_xfejm"]
 [ext_resource type="Texture2D" uid="uid://bhtotka312r73" path="res://entities/isle/odeum/hymn/images/shift.png" id="3_gawhl"]
-[ext_resource type="Texture2D" uid="uid://31c65owf3bu7" path="res://entities/isle/arsenal/anvil/images/fusion 2.png" id="3_nhw1j"]
-[ext_resource type="Texture2D" uid="uid://b0vwl84c10qr8" path="res://entities/isle/arsenal/anvil/images/fusion 0.png" id="3_r7gt8"]
 [ext_resource type="Script" uid="uid://c3ji6eownkceu" path="res://shared/buttons/custom button.gd" id="4_6mxes"]
-[ext_resource type="Texture2D" uid="uid://imhhs3ipj6ry" path="res://entities/isle/arsenal/anvil/images/fusion 1.png" id="4_6oe1o"]
+[ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="5_gawhl"]
+[ext_resource type="Texture2D" uid="uid://h5heb78i165f" path="res://entities/isle/arsenal/anvil/images/2/body.png" id="6_6mxes"]
+[ext_resource type="Texture2D" uid="uid://wm361tdeygju" path="res://entities/isle/arsenal/anvil/images/2/border.png" id="7_yhd3f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxnbi"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7q8m"]
+resource_local_to_scene = true
+shader = ExtResource("5_gawhl")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
 [node name="Anvil" type="PanelContainer" unique_id=1554707744 node_paths=PackedStringArray("old_echos")]
-visible = false
 custom_minimum_size = Vector2(668, 312)
 offset_right = 668.0
 offset_bottom = 312.0
@@ -22,7 +33,7 @@ old_echos = [NodePath("Echos/OldEchos/Echo1"), NodePath("Echos/OldEchos/Echo2"),
 [node name="Echos" type="HBoxContainer" parent="." unique_id=1501160653]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_constants/separation = 10
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="OldEchos" type="HBoxContainer" parent="Echos" unique_id=357159141]
@@ -64,13 +75,28 @@ texture_hover = ExtResource("3_gawhl")
 script = ExtResource("4_6mxes")
 metadata/_custom_type_script = "uid://c3ji6eownkceu"
 
-[node name="FusionButton" type="TextureButton" parent="Echos/HBox" unique_id=1453759818]
+[node name="Control" type="PanelContainer" parent="Echos/HBox" unique_id=494840423]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("3_r7gt8")
-texture_pressed = ExtResource("4_6oe1o")
-texture_hover = ExtResource("3_nhw1j")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="FusionButton" type="TextureButton" parent="Echos/HBox/Control" unique_id=1219918690]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_q7q8m")
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_visual_only = false
+texture_normal = ExtResource("6_6mxes")
+script = ExtResource("4_6mxes")
+metadata/_custom_type_script = "uid://c3ji6eownkceu"
+
+[node name="FusionBorder" type="TextureRect" parent="Echos/HBox/Control/FusionButton" unique_id=494297416]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("7_yhd3f")
 
 [node name="NextButton" type="TextureButton" parent="Echos/HBox" unique_id=77706347]
 unique_name_in_owner = true
@@ -91,5 +117,5 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="pressed" from="Echos/HBox/PreviousButton" to="." method="_on_previous_button_pressed"]
-[connection signal="pressed" from="Echos/HBox/FusionButton" to="." method="_on_fusion_button_pressed"]
+[connection signal="pressed" from="Echos/HBox/Control/FusionButton" to="." method="_on_fusion_button_pressed"]
 [connection signal="pressed" from="Echos/HBox/NextButton" to="." method="_on_next_button_pressed"]

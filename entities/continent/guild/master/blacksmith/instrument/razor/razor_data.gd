@@ -2,7 +2,12 @@ class_name RazorData
 extends RefCounted
 
 
-var volume: int
+signal volume_changed
+
+var volume: int:
+	set(value_):
+		volume = value_
+		volume_changed.emit()
 #var suffix: Bozo.Suffix
 var matters: Array[Bozo.Matter]
 

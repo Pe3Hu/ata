@@ -17,7 +17,9 @@ alignment = 1
 [node name="IntroShowcase" parent="HBox" unique_id=2053851529 instance=ExtResource("2_3hr85")]
 unique_name_in_owner = true
 layout_mode = 2
+tune = 5
 
 [node name="VerseShowcase" parent="HBox" unique_id=514028636 instance=ExtResource("2_3hr85")]
 unique_name_in_owner = true
 layout_mode = 2
+tune = 6

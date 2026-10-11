@@ -5,9 +5,9 @@ extends StructureData
 var gloom: GloomData
 
 
-func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vector2i.ZERO) -> void:
+func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vector2i.ZERO, element_: Bozo.Element = Bozo.Element.NONE) -> void:
 	super._init(cluster_, type_, coord_)
-	gloom = GloomData.new(self)
+	gloom = GloomData.new(self, element_)
 
 func restore_trods(old_structure_: StructureData) -> void:
 	trod_to_structure = old_structure_.trod_to_structure.duplicate()

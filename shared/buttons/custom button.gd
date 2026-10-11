@@ -15,6 +15,7 @@ func _ready() -> void:
 	mouse_exited.connect(_button_pressed)
 	
 	call_deferred("_init_pivot")
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 func _init_pivot() -> void:
 	pivot_offset = size / 2.0

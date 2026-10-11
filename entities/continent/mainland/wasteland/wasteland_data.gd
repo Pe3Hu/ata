@@ -33,14 +33,14 @@ func _init(maindland_: MainlandData, anchor_: Vector2i, terrain_: Bozo.Terrain) 
 		pattern_coords.append_array(Catalog.wasteland_pattern_coords)
 		pattern_coords.shuffle()
 
-func add_structure(type_: Bozo.Structure, coord_: Vector2i = -Vector2i.ONE, order_: int = -1, is_forced_: bool = false) -> bool:
+func add_structure(type_: Bozo.Structure, coord_: Vector2i = -Vector2i.ONE, order_: int = -1, is_forced_: bool = false, element_: Bozo.Element = Bozo.Element.NONE) -> bool:
 	if not is_forced_ and not structures.is_empty():
 		refused_structures.append(type_)
 		return false
 	
 	if type_ == Bozo.Structure.RIFT:
 		var old_structure: StructureData = coord_to_structure[coord_]
-		var rift := RiftData.new(self, type_, coord_)
+		var rift := RiftData.new(self, type_, coord_, element_)
 		if order_ >= 0:
 			rift.order = order_
 		rift.restore_trods(old_structure)

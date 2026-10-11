@@ -1,9 +1,10 @@
-HBoxContainer
-TextureRect
 VBoxContainer
 PanelContainer
-Sprite2D
 Control
+TextureRect
+CustomTextureButton
+HBoxContainer
+Sprite2D
 ColorRect
 TextureButton
 AnimatedSprite2D
@@ -11,4 +12,3 @@ MarginContainer
 Button
 Label
 HSeparator
-VSeparator

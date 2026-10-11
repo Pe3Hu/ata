@@ -441,7 +441,7 @@ func test_demolish() -> void:
 				ruins.append(structure)
 	
 	ruins.shuffle()
-	var n = 3
+	var n = 6
 	ruins.resize(n)
 	
 	for _i in range(n-1, -1, -1):
@@ -449,17 +449,19 @@ func test_demolish() -> void:
 		ruin.demolish()
 
 func summon_rifts() -> void:
-	var n = 1
+	var n = 6
 	demolished_coords.shuffle()
 	var coords = demolished_coords.duplicate()
 	coords.resize(n)
 	var rift_order = 0
+	var elements = Catalog.elements.duplicate()
+	#elements.erase(Bozo.Element.VAPOR)
 	
-	for coord in coords:
-		summon_rift(coord, rift_order)
+	for _i in coords.size():
+		summon_rift(coords[_i], rift_order, elements[_i])
 
-func summon_rift(coord_: Vector2i, order_: int) -> void:
+func summon_rift(coord_: Vector2i, order_: int, element_: Bozo.Element) -> void:
 	var cluster = coord_to_cluster[coord_]
 	var local_coord = coord_ - Vector2i.ONE - cluster.internals.front()
-	cluster.add_structure(Bozo.Structure.RIFT, local_coord, order_, true)
+	cluster.add_structure(Bozo.Structure.RIFT, local_coord, order_, true, element_)
 	

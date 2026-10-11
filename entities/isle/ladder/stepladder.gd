@@ -167,11 +167,11 @@ func dissolve_dices() -> void:
 	for dice in %Dices.get_children():
 		dice.start_dissolve_animation()
 
-func _input(event) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_CTRL:
-				test_flux()
+#func _input(event) -> void:
+	#if event is InputEventKey and event.pressed and not event.echo:
+		#match event.keycode:
+			#KEY_CTRL:
+				#test_flux()
 
 func test_flux() -> void:
 	data.flux = data.kernel.maelstrom.eddies.front().flux

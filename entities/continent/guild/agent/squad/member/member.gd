@@ -9,6 +9,8 @@ var data: MemberData:
 		
 		connect_signals()
 
+var squad: Squad
+
 
 func connect_signals() -> void:
 	if not data.preview_soul_changed.is_connected(_on_preview_soul_changed):
@@ -20,19 +22,29 @@ func _on_preview_soul_changed() -> void:
 	var flag = data.can_browse()
 	%PreviousSoulButton.visible = flag
 	%NextSoulButton.visible = flag
-	
-	if data.preview_soul != null:
-		update_labels()
-		update_colors()
+	update_labels()
+	update_colors()
+
+func sync_browse() -> void:
+	%PreviousSoulButton.visible = false
+	%NextSoulButton.visible = false
 
 func update_labels() -> void:
-	if data == null or data.preview_soul == null: return
+	if data == null or data.preview_soul == null:
+		%MemberName.text = ""
+		%GradeIcon.visible = false
+		%TalentIcon.visible = false
+		return
+	%GradeIcon.visible = true
+	%TalentIcon.visible = true
 	%MemberName.text = data.preview_soul.name
 	%GradeIcon.texture = load('res://entities/isle/house/card/echo/images/rank/%s.png' % Bozo.enum_to_string(Bozo.Type.RANK, data.preview_soul.rank))
 	%TalentIcon.texture = load('res://entities/isle/house/card/echo/images/talent/%d.png' % data.preview_soul.talent)
 
 func update_colors() -> void:
-	if data == null or data.preview_soul == null: return
+	if data == null or data.preview_soul == null:
+		%Top.get_theme_stylebox("panel").bg_color = Color(0.2, 0.2, 0.2, 1)
+		return
 	var color = Digest.matter_to_color[data.preview_soul.matter]
 	%Top.get_theme_stylebox("panel").bg_color = color
 

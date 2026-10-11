@@ -14,11 +14,6 @@ var hymn: Hymn
 
 @export var pulse: Pulse
 
-@export var intro: Tune
-@export var verse: Tune
-@export var outro: Tune
-
-
 #region init
 func connect_signals() -> void:
 	data.is_perfect_changed.connect(pulse._on_is_perfect_changed)
@@ -33,13 +28,7 @@ func connect_signals() -> void:
 	data.voice_up.connect(_on_voice_up)
 
 func connect_datas() -> void:
-	intro.data = data.intro
-	
-	if data.verse:
-		verse.data = data.verse
-	
 	if data.outro:
-		outro.data = data.outro
 		pulse.get_node('%Body').offset_transform_rotation = PI / 2
 
 func _on_voice_up() -> void:

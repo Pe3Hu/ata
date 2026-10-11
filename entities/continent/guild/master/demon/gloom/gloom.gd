@@ -2,20 +2,26 @@ class_name Gloom
 extends PanelContainer
 
 
+@export var elite: Elite
+
 var data: GloomData:
 	set(value_):
 		data = value_
 		
 		connect_signals()
-		%Body.material.set_shader_parameter('base_color', Digest.element_to_color[Bozo.Element.CHAOS])
+		%Body.material.set_shader_parameter('base_color', Digest.element_to_color[data.element])
 
 var sync_tween: Tween
 
 
 func connect_signals() -> void:
-	data.value_changed.connect(_on_value_changed)
+	if not Mother.nightmare.admit_defeat.is_connected(_on_defeat):
+		Mother.nightmare.admit_defeat.connect(_on_defeat)
+	
+	if not data.value_changed.is_connected(_on_value_changed):
+		data.value_changed.connect(_on_value_changed)
+	
 	_on_value_changed()
-	Mother.nightmare.admit_defeat.connect(_on_defeat)
 
 func _on_value_changed() -> void:
 	%Value.text = str(data.current_value)

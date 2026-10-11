@@ -75,3 +75,15 @@ func add_echo(intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	
 	echo.mark_digits = str_mark
 #endregion
+
+func is_unique(reserved_sums_: Array) -> bool:
+	var owned_sums = []
+	
+	for tune in Catalog.UNIQUE_TUNES:
+		var dice_str = Bozo.enum_to_string(Bozo.Type.TUNE, tune)
+		var dice_sum = get(dice_str).get_sum()
+		
+		if reserved_sums_.has(dice_sum) or owned_sums.has(dice_sum): return false
+		owned_sums.append(dice_sum)
+	
+	return true

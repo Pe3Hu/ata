@@ -74,11 +74,25 @@ const verse_to_matter = {
 	],
 }
 
-const matter_to_verse = {
-	Bozo.Matter.NONE: [34, 35, 36],
-	Bozo.Matter.GAS: [34, 35],
-	Bozo.Matter.LIQUID: [35, 36],
-	Bozo.Matter.SOLID: [34, 36],
+const order_to_matter_to_verses = {
+	0: {
+		Bozo.Matter.NONE: [34, 35, 36],
+		Bozo.Matter.GAS: [34, 35],
+		Bozo.Matter.LIQUID: [35, 36],
+		Bozo.Matter.SOLID: [34, 36],
+	},
+	1: {
+		Bozo.Matter.NONE: [57, 58, 59],
+		Bozo.Matter.GAS: [57, 59],
+		Bozo.Matter.LIQUID: [58, 59],
+		Bozo.Matter.SOLID: [57, 58],
+	},
+	2: {
+		Bozo.Matter.NONE: [87, 88, 89],
+		Bozo.Matter.GAS: [87, 89],
+		Bozo.Matter.LIQUID: [88, 89],
+		Bozo.Matter.SOLID: [87, 88],
+	},
 }
 
 const matter_to_factors = {
@@ -253,6 +267,88 @@ const order_to_matter_to_matter_to_vesre = {
 		},
 	},
 }
+const matter_to_matter_to_volume = {
+	Bozo.Matter.GAS: {
+		Bozo.Matter.LIQUID: 6,
+		Bozo.Matter.SOLID: 10,
+	},
+	Bozo.Matter.LIQUID: {
+		Bozo.Matter.GAS: 6,
+		Bozo.Matter.SOLID: 15,
+	},
+	Bozo.Matter.SOLID: {
+		Bozo.Matter.GAS: 10,
+		Bozo.Matter.LIQUID: 15,
+	},
+}
+
+const matter_to_order_to_volume_to_percent = {
+	Bozo.Matter.GAS: {
+		0: {
+			2: 30,
+			4: 20,
+			6: 20,
+			18: 30
+		},
+		1: {
+			2: 15,
+			8: 15,
+			10: 25,
+			20: 45
+		},
+		2: {
+			2: 25,
+			12: 20,
+			30: 25,
+			32: 30
+		},
+	},
+	Bozo.Matter.LIQUID: {
+		0: {
+			3: 35,
+			6: 25,
+			12: 20,
+			15: 20
+		},
+		1: {
+			3: 15,
+			9: 15,
+			15: 45,
+			18: 25
+		},
+		2: {
+			3: 25,
+			18: 20,
+			27: 30,
+			30: 25
+		}
+	},
+	Bozo.Matter.SOLID: {
+		0: {
+			5: 55,
+			10: 30,
+			15: 15,
+		},
+		1: {
+			5: 35,
+			10: 25,
+			20: 25,
+			25: 15
+		},
+		2: {
+			5: 20,
+			15: 25,
+			25: 25,
+			30: 30
+		}
+	}
+}
+
+const matter_to_volumes = {
+	Bozo.Matter.GAS: [2, 4, 6, 8, 10, 12, 18, 20, 30, 32],
+	Bozo.Matter.LIQUID: [3, 6, 9, 12, 15, 18, 27, 30],
+	Bozo.Matter.SOLID: [5, 10, 15, 20, 25, 30]
+}
 #endregion
 
 #region intro
@@ -306,11 +402,12 @@ const tune_to_stake = {
 }
 
 const tune_to_suffix = {
+	Bozo.Tune.INTRO: Bozo.Suffix.NONE,
 	Bozo.Tune.VERSE: Bozo.Suffix.PLUS,
 	Bozo.Tune.OUTRO: Bozo.Suffix.MULTIPLY,
 }
 
-const verse_to_spoil = {
+const verse_to_grade = {
 	34: 1,
 	35: 1,
 	36: 1,
@@ -649,14 +746,14 @@ const element_to_comparison = {
 	Bozo.Element.CHAOS: Bozo.Comparison.UNIQUE,
 }
 
-const element_to_tunes = {
-	Bozo.Element.CLOUD: [Bozo.Tune.VERSE],
-	Bozo.Element.VAPOR: [Bozo.Tune.INTRO],
-	Bozo.Element.DUST: [Bozo.Tune.VERSE],
-	Bozo.Element.SAND: [Bozo.Tune.INTRO],
-	Bozo.Element.ICE: [Bozo.Tune.VERSE],
-	Bozo.Element.LAVA: [Bozo.Tune.INTRO],
-	Bozo.Element.CHAOS: [Bozo.Tune.INTRO, Bozo.Tune.VERSE],
+const element_to_tune = {
+	Bozo.Element.CLOUD: Bozo.Tune.VERSE,
+	Bozo.Element.VAPOR: Bozo.Tune.INTRO,
+	Bozo.Element.DUST: Bozo.Tune.VERSE,
+	Bozo.Element.SAND: Bozo.Tune.INTRO,
+	Bozo.Element.ICE: Bozo.Tune.VERSE,#[Bozo.Tune.VERSE],
+	Bozo.Element.LAVA: Bozo.Tune.INTRO,#[Bozo.Tune.INTRO],
+	Bozo.Element.CHAOS: Bozo.Tune.NONE,#[Bozo.Tune.INTRO, Bozo.Tune.VERSE],
 }
 
 const element_to_sum = {
@@ -796,6 +893,7 @@ const crown_to_face_to_points = {
 }
 #endregion
 
+#region welkin
 const asterism_to_amount = {
 	0: 0,
 	2: 10,
@@ -816,6 +914,7 @@ const external_to_internal = {
 	9: 2,
 	10: 0
 }
+#endregion
 
 #region terrain
 const terraint_to_index = {
@@ -867,6 +966,72 @@ const sctructure_to_matter = {
 const flag_to_travel_time = {
 	true: 2,
 	false: 3
+}
+const ruin_to_sparks = {
+  0: [
+	{10: 2, 5: 1},
+	{10: 2, 4: 1},
+	{10: 2, 3: 1},
+	{10: 2, 2: 2},
+	{9: 2, 5: 1},
+	{9: 2, 3: 2},
+	{9: 2, 2: 3},
+	{8: 3, 0: 0},
+	{7: 3, 3: 1},
+	{7: 3, 2: 2},
+	{6: 3, 5: 1},
+	{6: 3, 3: 2},
+	{6: 3, 2: 3}
+  ],
+  1: [
+	{10: 1, 4: 2},
+	{10: 1, 3: 3},
+	{10: 1, 2: 4},
+	{9: 2},
+	{9: 1, 5: 2},
+	{9: 1, 4: 2},
+	{9: 1, 3: 3},
+	{9: 1, 2: 5},
+	{8: 2, 3: 1},
+	{8: 2, 2: 1},
+	{8: 1, 5: 2},
+	{8: 1, 3: 3},
+	{8: 1, 2: 5},
+	{7: 2, 5: 1},
+	{7: 2, 4: 1},
+	{7: 2, 3: 1},
+	{7: 2, 2: 2},
+	{7: 1, 5: 2},
+	{7: 1, 4: 3},
+	{7: 1, 3: 4},
+	{7: 1, 2: 6},
+	{6: 3},
+	{6: 2, 5: 1},
+	{6: 2, 3: 2},
+	{6: 2, 2: 3}
+  ],
+  2: [
+	{10: 1, 1: 1},
+	{10: 1, 1: 1},
+	{9: 1, 1: 1},
+	{9: 1, 1: 1},
+	{9: 1, 1: 1},
+	{8: 1, 1: 1},
+	{8: 1, 1: 1},
+	{8: 1, 2: 2},
+	{7: 1, 1: 1},
+	{7: 1, 1: 1},
+	{6: 2},
+	{6: 1, 1: 1},
+	{6: 1, 2: 2},
+	{6: 1, 3: 3}
+  ]
+}
+
+const ruin_to_ideas = {
+	0: 4,
+	1: 6,
+	2: 8
 }
 #endregion
 
@@ -1053,90 +1218,7 @@ const master_to_squad_size = {
 }
 #endregion
 
-const matter_to_matter_to_volume = {
-	Bozo.Matter.GAS: {
-		Bozo.Matter.LIQUID: 6,
-		Bozo.Matter.SOLID: 10,
-	},
-	Bozo.Matter.LIQUID: {
-		Bozo.Matter.GAS: 6,
-		Bozo.Matter.SOLID: 15,
-	},
-	Bozo.Matter.SOLID: {
-		Bozo.Matter.GAS: 10,
-		Bozo.Matter.LIQUID: 15,
-	},
-}
-
-const matter_to_order_to_volume_to_percent = {
-	Bozo.Matter.GAS: {
-		0: {
-			2: 30,
-			4: 20,
-			6: 20,
-			18: 30
-		},
-		1: {
-			2: 15,
-			8: 15,
-			10: 25,
-			20: 45
-		},
-		2: {
-			2: 25,
-			12: 20,
-			30: 25,
-			32: 30
-		},
-	},
-	Bozo.Matter.LIQUID: {
-		0: {
-			3: 35,
-			6: 25,
-			12: 20,
-			15: 20
-		},
-		1: {
-			3: 15,
-			9: 15,
-			15: 45,
-			18: 25
-		},
-		2: {
-			3: 25,
-			18: 20,
-			27: 30,
-			30: 25
-		}
-	},
-	Bozo.Matter.SOLID: {
-		0: {
-			5: 55,
-			10: 30,
-			15: 15,
-		},
-		1: {
-			5: 35,
-			10: 25,
-			20: 25,
-			25: 15
-		},
-		2: {
-			5: 20,
-			15: 25,
-			25: 25,
-			30: 30
-		}
-	}
-}
-
-
-const matter_to_volumes = {
-	Bozo.Matter.GAS: [2, 4, 6, 8, 10, 12, 18, 20, 30, 32],
-	Bozo.Matter.LIQUID: [3, 6, 9, 12, 15, 18, 27, 30],
-	Bozo.Matter.SOLID: [5, 10, 15, 20, 25, 30]
-}
-
+#region recruit
 const order_to_avg = {
 	0: 8,
 	1: 13,
@@ -1183,8 +1265,10 @@ const talent_to_veteran = {
 	1: 20,
 	2: 30
 } 
+#endregion
 
-const month_to_recruit_talents: = [
+#region time
+const month_to_recruit_talents = [
 	[0, 0, 0],
 	[0, 0, 1],
 	[0, 0, 1],
@@ -1194,7 +1278,7 @@ const month_to_recruit_talents: = [
 	[0, 1, 2],
 ]
 
-const month_to_recruit_intros:  = [
+const month_to_recruit_intros = [
 	[40, 40, 40],
 	[40, 40, 30],
 	[40, 50, 30],
@@ -1203,75 +1287,20 @@ const month_to_recruit_intros:  = [
 	[60, 30, 20],
 	[60, 50, 20],
 ]
+#endregion
 
-const ruin_to_sparks = {
-  0: [
-	{10: 2, 5: 1},
-	{10: 2, 4: 1},
-	{10: 2, 3: 1},
-	{10: 2, 2: 2},
-	{9: 2, 5: 1},
-	{9: 2, 3: 2},
-	{9: 2, 2: 3},
-	{8: 3, 0: 0},
-	{7: 3, 3: 1},
-	{7: 3, 2: 2},
-	{6: 3, 5: 1},
-	{6: 3, 3: 2},
-	{6: 3, 2: 3}
-  ],
-  1: [
-	{10: 1, 4: 2},
-	{10: 1, 3: 3},
-	{10: 1, 2: 4},
-	{9: 2},
-	{9: 1, 5: 2},
-	{9: 1, 4: 2},
-	{9: 1, 3: 3},
-	{9: 1, 2: 5},
-	{8: 2, 3: 1},
-	{8: 2, 2: 1},
-	{8: 1, 5: 2},
-	{8: 1, 3: 3},
-	{8: 1, 2: 5},
-	{7: 2, 5: 1},
-	{7: 2, 4: 1},
-	{7: 2, 3: 1},
-	{7: 2, 2: 2},
-	{7: 1, 5: 2},
-	{7: 1, 4: 3},
-	{7: 1, 3: 4},
-	{7: 1, 2: 6},
-	{6: 3},
-	{6: 2, 5: 1},
-	{6: 2, 3: 2},
-	{6: 2, 2: 3}
-  ],
-  2: [
-	{10: 1, 1: 1},
-	{10: 1, 1: 1},
-	{9: 1, 1: 1},
-	{9: 1, 1: 1},
-	{9: 1, 1: 1},
-	{8: 1, 1: 1},
-	{8: 1, 1: 1},
-	{8: 1, 2: 2},
-	{7: 1, 1: 1},
-	{7: 1, 1: 1},
-	{6: 2},
-	{6: 1, 1: 1},
-	{6: 1, 2: 2},
-	{6: 1, 3: 3}
-  ]
+const comparison_to_mirror = {
+	Bozo.Comparison.LESS: Bozo.Comparison.MORE,
+	Bozo.Comparison.MORE: Bozo.Comparison.LESS,
+	Bozo.Comparison.EQUAL: Bozo.Comparison.UNIQUE,
+	Bozo.Comparison.UNIQUE: Bozo.Comparison.EQUAL,
 }
 
-const ruin_to_ideas = {
-	0: 4,
-	1: 6,
-	2: 8
+const tune_to_turnpikes = {
+	Bozo.Tune.NONE: [0],
+	Bozo.Tune.INTRO: [20, 30, 40, 50, 60, 70, 80, 90, 100],
+	Bozo.Tune.VERSE: [34, 35, 36, 57, 58, 59, 87, 88, 89]
 }
-
-
 
 #region color
 var matter_to_color = {
@@ -1301,6 +1330,7 @@ var matter_to_pallete = [
 ]
 
 var element_to_color = {
+	Bozo.Element.NONE: Color.from_hsv(0 / 360.0, 0.0, 0.0),
 	Bozo.Element.CLOUD: Color.from_hsv(0 / 360.0, 0.0, 0.75),
 	Bozo.Element.DUST: Color.from_hsv(125 / 360.0, 0.75, 0.75),
 	Bozo.Element.VAPOR: Color.from_hsv(0 / 360.0, 0.0, 0.15),

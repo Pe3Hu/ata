@@ -12,11 +12,11 @@ var structure: StructureData:
 			if structure and structure.type != Bozo.Master.NONE:
 				set_current_master(Digest.structure_to_master[structure.type])
 
-var demon: DemonData
-var barkeeper: BarkeeperData
-var architect: ArchitectData
-var blacksmith: BlacksmithData
 var archaeologist: ArchaeologistData
+var architect: ArchitectData
+var barkeeper: BarkeeperData
+var blacksmith: BlacksmithData
+var demon: DemonData
 var lightkeeper: LightkeeperData
 var miner: MinerData
 var musician: MusicianData
@@ -45,7 +45,7 @@ func _init() -> void:
 func init_default_souls() -> void:
 	refill_alphabet()
 	souls.clear()
-	var n = 4
+	var n = 12
 	var recruiment_matters = []
 	
 	for _i in n:
@@ -56,11 +56,17 @@ func make_random_soul(recruiment_matters_: Array) -> SoulData:
 	if recruiment_matters_.is_empty():
 		recruiment_matters_.append_array(Catalog.matters)
 		recruiment_matters_.shuffle()
+	
 	var matter = recruiment_matters_.pop_back()
-	var weights = Digest.sum_to_matter_to_intro_to_weight[Catalog.DEFAULT_RECRUIT_INTRO][matter]
+	var test_intro_sums = [20, 30, 40, 90, 100]
+	var intro_sum = test_intro_sums.pick_random()#Catalog.DEFAULT_RECRUIT_INTRO
+	var weights = Digest.sum_to_matter_to_intro_to_weight[intro_sum][matter]
 	var intro = Helper.get_random_key(weights)
-	var verse = load("res://entities/dice/datas/verse/%d.tres" % Digest.matter_to_verse[matter].pick_random())
-	return SoulData.new(demon, matter, intro, verse, Catalog.DEFAULT_RECRUIT_TALENT)
+	var verse_order = Digest.order_to_matter_to_verses.keys().pick_random()
+	var verse_sum = Digest.order_to_matter_to_verses[verse_order][matter].pick_random()
+	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_sum)
+	var talent = Digest.intro_to_talent_to_rank[intro_sum].keys().pick_random()#Catalog.DEFAULT_RECRUIT_TALENT
+	return SoulData.new(demon, matter, intro, verse, talent)
 
 func set_current_master(type_: Bozo.Master):
 	if type_ == Bozo.Master.NONE:
@@ -81,6 +87,8 @@ func set_current_master(type_: Bozo.Master):
 			Bozo.Master.ARCHAEOLOGIST:
 				current_master.tasks.clear()
 			Bozo.Master.BLACKSMITH:
+				current_master.tasks.clear()
+			Bozo.Master.DEMON:
 				current_master.tasks.clear()
 	
 	if master:

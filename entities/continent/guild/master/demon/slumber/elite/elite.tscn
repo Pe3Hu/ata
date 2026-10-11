@@ -6,25 +6,30 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vhna"]
 
-[node name="Elite" type="PanelContainer" unique_id=1032326017]
+[node name="Elite" type="PanelContainer" unique_id=1032326017 node_paths=PackedStringArray("gloom")]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_8vhna")
 script = ExtResource("1_fwi2q")
+gloom = NodePath("HBoxLimiters/Gloom")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=166899525]
+[node name="HBoxLimiters" type="HBoxContainer" parent="." unique_id=166899525]
 layout_mode = 2
-theme_override_constants/separation = -2
+theme_override_constants/separation = -7
 
-[node name="IntroLimiter" parent="HBoxContainer" unique_id=579902074 instance=ExtResource("2_atcw8")]
+[node name="IntroLimiter" parent="HBoxLimiters" unique_id=579902074 node_paths=PackedStringArray("elite") instance=ExtResource("2_atcw8")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+elite = NodePath("../..")
+tune = 5
 
-[node name="Gloom" parent="HBoxContainer" unique_id=1671658297 instance=ExtResource("3_x6cth")]
+[node name="Gloom" parent="HBoxLimiters" unique_id=1671658297 node_paths=PackedStringArray("elite") instance=ExtResource("3_x6cth")]
 unique_name_in_owner = true
 layout_mode = 2
-offset_transform_position = Vector2(16, 0)
+elite = NodePath("../..")
 
-[node name="VerseLimiter" parent="HBoxContainer" unique_id=402735479 instance=ExtResource("2_atcw8")]
+[node name="VerseLimiter" parent="HBoxLimiters" unique_id=402735479 node_paths=PackedStringArray("elite") instance=ExtResource("2_atcw8")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+elite = NodePath("../..")
+tune = 6

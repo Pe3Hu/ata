@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b3w0rfsmjd6jj" path="res://entities/continent/guild/master/demon/slumber/chart/showcase/showcase.gd" id="1_3rhia"]
 [ext_resource type="PackedScene" uid="uid://2smcb1akyroc" path="res://entities/continent/guild/master/blacksmith/instrument/razor/razor.tscn" id="2_rosku"]
+[ext_resource type="PackedScene" uid="uid://5jljgptuvwlp" path="res://entities/continent/guild/master/blacksmith/instrument/rein/rein.tscn" id="3_v6tjg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eopfk"]
 
@@ -37,6 +38,6 @@ layout_mode = 2
 [node name="Razor6" parent="VBox/Razors" unique_id=1260013932 instance=ExtResource("2_rosku")]
 layout_mode = 2
 
-[node name="SumRazor" parent="VBox" unique_id=20188275 instance=ExtResource("2_rosku")]
+[node name="SumRein" parent="VBox" unique_id=444184113 instance=ExtResource("3_v6tjg")]
 unique_name_in_owner = true
 layout_mode = 2

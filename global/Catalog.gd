@@ -77,7 +77,6 @@ const GYRE_PARLOR_ECHO_SIZE = 3
 const GYRE_KITCHEN_ECHOS_LIMIT = 7
 const REINFORCEMENT_ECHOS_LIMIT = 3
 
-
 const CARD_APPEAR_DISTANCE = -1000
 const ECHO_SIZE: Vector2 = Vector2(144, 312)
 const SHADOW_SIZE: Vector2 = Vector2(144, 80)
@@ -149,6 +148,9 @@ const basic_elements = [
 	Bozo.Element.ICE,
 	Bozo.Element.LAVA,
 ]
+
+const limiter_elements = [Bozo.Element.VAPOR, Bozo.Element.SAND, Bozo.Element.CLOUD, Bozo.Element.DUST]
+const turnpike_elements = [Bozo.Element.VAPOR, Bozo.Element.SAND, Bozo.Element.ICE, Bozo.Element.LAVA, Bozo.Element.CHAOS]
 
 const aspects = [
 	Bozo.Aspect.STRENGTH,
@@ -303,3 +305,8 @@ const LODE_THICKNESS: float = 4.0
 #endregion
 
 const BANNER_OFFSET := Vector2(29, -31)
+
+const GLOOM_OFFSET: int = 19
+const TURNPIKE_OFFSET: int = 40
+
+const UNIQUE_TUNES = [Bozo.Tune.INTRO, Bozo.Tune.VERSE]

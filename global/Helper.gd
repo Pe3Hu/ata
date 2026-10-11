@@ -245,3 +245,47 @@ func roll_reincarnation(soul_: SoulData) -> DiceData:
 	var weights = Digest.sum_to_matter_to_intro_to_weight[intro_sum][soul_.matter]
 	var intro = Helper.get_random_key(weights)
 	return intro
+
+func get_turnpike_options(tune_: Bozo.Tune) -> Array:
+	var options = Digest.tune_to_turnpikes[tune_]
+	options = options.filter(func (a): return get_allowance_turnpike(tune_, a))
+	return options
+
+func get_allowance_turnpike(tune_: Bozo.Tune, turnpike_: int) -> bool:
+	var future_members: Array
+	var n = Digest.master_to_squad_size[Bozo.Master.DEMON]
+	
+	for soul in Mother.guild.souls:
+		var dice_str = Bozo.enum_to_string(Bozo.Type.TUNE, tune_)
+		var is_equal = soul.get(dice_str).get_sum() == turnpike_
+		
+		if is_equal:
+			future_members.append(soul)
+		
+		if future_members.size() >= n:
+			return true
+	
+	return false
+
+func get_allowance_unique() -> bool:
+	var future_members: Array
+	var n = Digest.master_to_squad_size[Bozo.Master.DEMON]
+	var reserved_sums = []
+	
+	for soul in Mother.guild.souls:
+		var soul_sums = []
+		
+		for tune in Catalog.UNIQUE_TUNES:
+			var dice_str = Bozo.enum_to_string(Bozo.Type.TUNE, tune)
+			var dice_sum = soul.get(dice_str).get_sum()
+			if not reserved_sums.has(dice_sum) and not soul_sums.has(dice_sum):
+				soul_sums.append(dice_sum)
+			
+		if soul_sums.size() == Catalog.UNIQUE_TUNES.size():
+			future_members.append(soul)
+			reserved_sums.append_array(soul_sums)
+		
+		if future_members.size() >= n:
+			return true
+	
+	return false

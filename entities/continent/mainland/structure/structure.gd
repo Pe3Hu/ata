@@ -10,8 +10,6 @@ var data: StructureData:
 		update_spirtes()
 		position = Helper.get_structure_position(data)
 
-#var hover_tween: Tween
-
 
 func connect_signals() -> void:
 	data.is_demolished.connect(_on_demolished)
@@ -38,12 +36,19 @@ func update_spirtes() -> void:
 	
 	match data.type:
 		Bozo.Structure.RIFT:
-			%Body.material.shader = load('uid://cjs2bnp6dr05c')
-			%Body.scale *= 1.5
+			
+			if data.gloom.is_elite:
+				%Body.material.shader = load('uid://cjs2bnp6dr05c')
+				%Body.scale *= 1.5
+			else:
+				%Body.material.shader = load('uid://bm75rvg4imua5')
+			
 			var speed_factor = Helper.rng.randf_range(0.95, 1.05)
 			%Body.material.set_shader_parameter('animation_speed', speed_factor)
 			var time_offset = Helper.rng.randf_range(0, 100)
 			%Body.material.set_shader_parameter('time_offset', time_offset)
+			var element_color = Digest.element_to_color[data.gloom.element]
+			%Body.material.set_shader_parameter('portal_color', element_color)
 	
 	if Catalog.matter_sctructures.has(data.type) or Catalog.single_sctructures.has(data.type):
 		var matter = data.cluster.biome.source.matter
