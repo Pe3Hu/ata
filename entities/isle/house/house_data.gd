@@ -40,6 +40,9 @@ func _init() -> void:
 	type_to_room[Bozo.Room.BEDROOM] = bedroom
 	type_to_room[Bozo.Room.KITCHEN] = kitchen
 	type_to_room[Bozo.Room.CELLAR] = cellar
+	
+	bedroom.is_autosort = true
+	kitchen.is_autosort = true
 
 func update_room_fol() -> void:
 	attic.fol = parlor
@@ -84,8 +87,22 @@ func direct_refill_bedroom() -> void:
 	while bedroom.echos.size() < n:
 		parlor.transfer_echo()
 
+func refill_bedroom_from_reinforcement() -> void:
+	var echos = Mother.nightmare.slumber.get_reinforcements()
+	attic.echos.append_array(echos)
+	
+	for _i in echos.size():
+		attic.transfer_echo()
+		parlor.transfer_echo()
+
 func get_remaining_amount() -> int:
-	return attic.echos.size() + cellar.echos.size() + parlor.echos.size()
+	#return attic.echos.size() + cellar.echos.size() + parlor.echos.size()
+	var amount := 0
+	
+	for room in rooms:
+		amount += room.echos.size()
+	
+	return amount
 #endregion
 
 func _on_punishment_phase_end() -> void:

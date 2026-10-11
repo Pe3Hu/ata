@@ -16,6 +16,13 @@ uniform float animation_speed : hint_range(0.0, 5.0) = 1.0;
 // объектов, чтобы они не крутились синхронно.
 uniform float time_offset : hint_range(0.0, 100.0) = 0.0;
 
+// Оттенок цвета ядра портала (0..1 по кругу HSV). 0.09 ≈ оранжевый.
+uniform float color_hue : hint_range(0.0, 1.0) = 0.85;
+
+// Насыщенность и яркость. Можно оставить по умолчанию.
+uniform float color_saturation : hint_range(0.0, 1.0) = 1.0;
+uniform float color_value : hint_range(0.0, 2.0) = 1.0;
+
 vec4 permute_3d(vec4 x) {
     return mod(((x * 34.0) + 1.0) * x, 289.0);
 }
@@ -135,6 +142,12 @@ vec3 emission(vec3 color, float strength) {
     return color * strength;
 }
 
+vec3 hsv2rgb(vec3 c) {
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
 void fragment() {
     // --- Анимационное время: скорость + стартовый сдвиг ---
     float instance_offset = 0.0;
@@ -182,8 +195,9 @@ void fragment() {
     noiseColorLength = 0.770 - noiseColorLength;
     noiseColorLength *= 4.2;
     noiseColorLength = pow(noiseColorLength, 1.0);
-
-    vec3 emissionColor = emission(vec3(0.961, 0.592, 0.078), noiseColorLength * 0.4);
+	
+	vec3 hue_color = hsv2rgb(vec3(color_hue, color_saturation, color_value));
+	vec3 emissionColor = emission(hue_color, noiseColorLength * 0.4);
 
     float fac = length(uv) - facture(color + vec3(0.32));
     fac += 0.1;

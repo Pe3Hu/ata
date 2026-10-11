@@ -4,8 +4,9 @@
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_dbps8"]
 [ext_resource type="Script" uid="uid://bvbtt1mplko3o" path="res://entities/continent/guild/master/demon/slumber/slumber.gd" id="2_okxty"]
 [ext_resource type="PackedScene" uid="uid://j1xn2qxki16i" path="res://entities/continent/guild/master/demon/gloom/gloom.tscn" id="4_okxty"]
+[ext_resource type="PackedScene" uid="uid://babgcqfdnxf0t" path="res://entities/continent/guild/master/demon/slumber/chart/chart.tscn" id="5_3y1r7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_okxty"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3y1r7"]
 resource_local_to_scene = true
 shader = ExtResource("2_dbps8")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
@@ -22,8 +23,27 @@ script = ExtResource("2_okxty")
 visible = false
 
 [node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
-material = SubResource("ShaderMaterial_okxty")
+material = SubResource("ShaderMaterial_3y1r7")
 
-[node name="Gloom" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=1671658297 instance=ExtResource("4_okxty")]
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=1938407989]
+layout_mode = 2
+
+[node name="Gloom" parent="HBoxContainer/VBox/InfoPanel/VBox" index="0" unique_id=1671658297 instance=ExtResource("4_okxty")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Charts" type="HBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox" index="1" unique_id=1862681723]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Chart1" parent="HBoxContainer/VBox/InfoPanel/VBox/Charts" index="0" unique_id=1672945018 instance=ExtResource("5_3y1r7")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Chart2" parent="HBoxContainer/VBox/InfoPanel/VBox/Charts" index="1" unique_id=481566044 instance=ExtResource("5_3y1r7")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Chart3" parent="HBoxContainer/VBox/InfoPanel/VBox/Charts" index="2" unique_id=1096145963 instance=ExtResource("5_3y1r7")]
 unique_name_in_owner = true
 layout_mode = 2

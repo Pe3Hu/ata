@@ -31,7 +31,8 @@ func add_recruit(intro_sum_: int = 40, talent_: int = 0, matter_: Variant = null
 	if matter_ == null:
 		matter_ = Catalog.matters.pick_random()
 	
-	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter_].pick_random()
+	var weights = Digest.sum_to_matter_to_intro_to_weight[intro_sum_][matter_]
+	var intro = Helper.get_random_key(weights)
 	var verse = load("res://entities/dice/datas/verse/0.tres")
 	var soul = SoulData.new(self, matter_, intro, verse, talent_, name_)
 	RecruitData.new(self, 0, soul)

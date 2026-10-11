@@ -50,6 +50,7 @@ func add_anvil(anvil_data: AnvilData) -> void:
 	anvil.data = anvil_data
 
 func _on_phase_finished() -> void:
+	nightmare.odeum.reset()
 	visible = false
 	nightmare.odeum.visible = true
 	nightmare.house.visible = true

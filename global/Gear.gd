@@ -2,7 +2,7 @@ extends Node
 
 
 var tempo: int = 0
-var is_auto_play: bool = true#true false
+var is_auto_play: bool = false#true false
 var is_pause: bool = false
 
 
@@ -19,7 +19,7 @@ const sorts: Array[float] = [0.2, 0.4, 0.8]
 const bonds: Array[float] = [0.2, 0.4, 0.8]
 const dissolves: Array[float] = [0.2, 0.4, 0.8]
 const pressures: Array[float] = [0.2, 0.4, 0.8]
-
+const glooms: Array[float] = [1.2, 0.4, 0.8]
 
 const workloads: Array[float] = [0.25, 1.5, 1.5]
 const hourglass: Array[float] = [0.5, 1.5, 1.5]

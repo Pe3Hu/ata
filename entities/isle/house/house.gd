@@ -9,7 +9,7 @@ var data: HouseData:
 		connect_datas()
 		connect_signals()
 
-@export var isle: Isle
+@export var nightmare: Nightmare
 
 @export var parlor: Room
 @export var kitchen: Room

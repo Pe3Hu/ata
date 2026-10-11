@@ -9,6 +9,7 @@ var matter: Bozo.Matter
 var intro: DiceData
 var reincarnation_intro: DiceData
 var verse: DiceData
+var chart: ChartData
 
 var echos: Array[EchoData]
 
@@ -27,6 +28,7 @@ func _init(master_: MasterData, matter_: Bozo.Matter, intro_: DiceData, verse_: 
 	name = name_
 	rank = Digest.intro_to_talent_to_rank[intro.get_sum()][talent]
 	reincarnation_intro = Helper.roll_reincarnation(self)
+	chart = ChartData.new(self)
 	
 	if name == '':
 		name = master.guild.roll_name()

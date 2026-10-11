@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7422stye5c3g"]
 
-[ext_resource type="Shader" uid="uid://dbiajvi1cd45m" path="res://entities/isle/welkin/shaders/asterism.gdshader" id="1_vngxx"]
+[ext_resource type="Shader" uid="uid://dbiajvi1cd45m" path="res://entities/isle/welkin/asterism/asterism.gdshader" id="1_vngxx"]
 [ext_resource type="Script" uid="uid://l5m66f1j7rsx" path="res://entities/isle/welkin/asterism/asterism.gd" id="2_2048v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xo13o"]

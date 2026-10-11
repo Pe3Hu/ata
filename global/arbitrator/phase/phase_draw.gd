@@ -12,8 +12,13 @@ func enter_phase():
 	
 	if Mother.house.bedroom.echos.size() < 2:
 		if Arbitrator.current_round > 1:
-			pass
-		Mother.house.direct_refill_bedroom()
+			Mother.house.refill_bedroom_from_reinforcement()
+		else:
+			Mother.house.direct_refill_bedroom()
+			
+	if Arbitrator.current_round > 1 and Mother.house.bedroom.echos.size() < 10:
+		Mother.nightmare.admit_defeat.emit()
+		return
 	
 	Mother.house.refill_parlor()
 	Mother.odeum.init_scenarios()

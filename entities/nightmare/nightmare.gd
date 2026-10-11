@@ -9,14 +9,14 @@ var data: NightmareData
 @export var odeum: Odeum
 
 @export var arsenal: Arsenal
+@export var gloom: Gloom
 
 
 func _ready() -> void:
 	connect_datas()
+	connect_signals()
 	
-	if Arbitrator.is_gameover:
-		Arbitrator.is_gameover = false
-		Arbitrator.start_new_round()
+	Arbitrator.start_new_round()
 
 func connect_datas() -> void:
 	data = Mother.nightmare
@@ -24,6 +24,17 @@ func connect_datas() -> void:
 	house.data = Mother.house
 	odeum.data = Mother.odeum
 	arsenal.data = Mother.arsenal
+	
+	gloom.data = Mother.nightmare.slumber.rift.gloom
+
+func connect_signals() -> void:
+	data.admit_defeat.connect(_on_defeat)
+
+func _on_defeat() -> void:
+	odeum.visible = false
+	
+	for card in house.parlor.cards:
+		card.reset()
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

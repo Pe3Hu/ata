@@ -19,9 +19,8 @@ func connect_datas() -> void:
 		echo.visible = true
 	
 	%NewEcho.data = data.new_echo
-	%PreviousButton.visible = data.arsenal.anvils.size() > 0
-	%PreviousButton.visible = data.arsenal.anvils.size() > 0
-	pass
+	%PreviousButton.visible = data.arsenal.anvils.size() > 1
+	%NextButton.visible = data.arsenal.anvils.size() > 1
 
 func _on_fusion_button_pressed() -> void:
 	data.fusion()

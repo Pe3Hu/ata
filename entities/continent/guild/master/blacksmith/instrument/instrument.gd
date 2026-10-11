@@ -2,20 +2,14 @@ class_name Instrument
 extends Task
 
 
-var razor_scene = preload('uid://2smcb1akyroc')
-
-
 func connect_signals() -> void:
 	super.connect_signals()
-	init_razors()
+	%Showcase.update_razors(data.razors)
 
-func init_razors() -> void:
-	Helper.clear_children(%Razors)
+	if not data.agent.squad.members[0].preview_soul_changed.is_connected(_on_preview_soul_changed):
+		data.agent.squad.members[0].preview_soul_changed.connect(_on_preview_soul_changed)
 	
-	for razor_data in data.razors:
-		add_razor(razor_data)
+	_on_preview_soul_changed()
 
-func add_razor(razor_data_: RazorData) -> void:
-	var razor = razor_scene.instantiate()
-	%Razors.add_child(razor)
-	razor.data = razor_data_
+func _on_preview_soul_changed() -> void:
+	%Chart.data = data.agent.squad.members[0].preview_soul.chart

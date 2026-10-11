@@ -242,5 +242,6 @@ func get_random_names(letter_: String) -> Dictionary:
 
 func roll_reincarnation(soul_: SoulData) -> DiceData:
 	var intro_sum = soul_.intro.get_sum()
-	var intro = Digest.sum_to_matter_to_intro[intro_sum][soul_.matter].pick_random()
+	var weights = Digest.sum_to_matter_to_intro_to_weight[intro_sum][soul_.matter]
+	var intro = Helper.get_random_key(weights)
 	return intro

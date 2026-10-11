@@ -9,11 +9,10 @@ extends Control
 
 
 func _ready() -> void:
-	if Arbitrator.is_gameover:
-		await get_tree().process_frame
-		_on_nightmare_button_pressed()
-		#_on_continent_button_pressed()
-		#_on_depredation_button_pressed()
+	await get_tree().process_frame
+	#_on_nightmare_button_pressed()
+	_on_continent_button_pressed()
+	#_on_depredation_button_pressed()
 
 func _on_isle_button_pressed() -> void:
 	get_tree().change_scene_to_packed(isle_scene)
@@ -49,7 +48,8 @@ func _on_nightmare_button_pressed() -> void:
 			break
 	
 	Mother.guild.structure = rifts.pick_random()
-	#Mother.nightmare.rift = Mother.guild.structure
-	Mother.nightmare.test_update_attic()
+	Mother.guild.set_current_master(Bozo.Master.DEMON)
+	Mother.nightmare.slumber = Mother.guild.current_master.current_task
+	Mother.nightmare.slumber.test_update_attic()
 	#await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_packed(nightmare_scene)

@@ -100,6 +100,7 @@ func last_disappear() -> void:
 
 #region hover
 func hover() -> void:
+	if Mother.nightmare.is_defeated: return
 	if is_busy: return
 	if appear_tween and appear_tween.is_running(): return
 	if room and room.shift_tween and room.shift_tween.is_running(): return
@@ -190,28 +191,21 @@ func snap_unhover() -> void:
 #endregion
 
 #region activate
-func spoil() -> void:
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	echo.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	unhover()
-	if hover_tween and hover_tween.is_running():
-		await hover_tween.finished
-	disappear()
-	if appear_tween and appear_tween.is_running():
-		await appear_tween.finished
+#func spoil() -> void:
+	#mouse_filter = Control.MOUSE_FILTER_IGNORE
+	#echo.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	#unhover()
+	#if hover_tween and hover_tween.is_running():
+		#await hover_tween.finished
+	#disappear()
+	#if appear_tween and appear_tween.is_running():
+		#await appear_tween.finished
 
 func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = false) -> void:
 	if is_busy: return
 	if is_fol and not room.house.room_to_fol.has(room): return
 	if not is_fol and not room.house.room_to_ere.has(room): return
 	if not room.house.active_tweens.is_empty(): return
-	if Mother.house.attic.echos.size() == Catalog.GYRE_ATTIC_ECHOS_LIMIT: return
-	is_busy = true
-	snap_unhover()
-	
-	for card in room.cards:
-		if card != self:
-			card.snap_unhover()
 	
 	var next_room: Room
 	
@@ -219,6 +213,15 @@ func activate(is_fol: bool = true, is_last_: bool = false, is_advisor_: bool = f
 		next_room = room.house.room_to_fol[room]
 	else:
 		next_room = room.house.room_to_ere[room]
+	
+	if Mother.house.kitchen.echos.size() == Catalog.GYRE_KITCHEN_ECHOS_LIMIT and next_room.data.type == Bozo.Room.KITCHEN: return
+	
+	is_busy = true
+	snap_unhover()
+	
+	for card in room.cards:
+		if card != self:
+			card.snap_unhover()
 	
 	for card in next_room.cards:
 		card.snap_unhover()
@@ -356,3 +359,6 @@ func apply_punushment() -> void:
 	
 	#await dice.digit_tween.finished
 	#dice.visible = false
+
+func reset() -> void:
+	%PunishmentDice.visible = false

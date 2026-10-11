@@ -2,17 +2,12 @@ class_name RiftData
 extends StructureData
 
 
-var current_gloom: int
-var limit_gloom: int
+var gloom: GloomData
 
 
 func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vector2i.ZERO) -> void:
 	super._init(cluster_, type_, coord_)
-	roll_gloom()
-
-func roll_gloom() -> void:
-	limit_gloom = 10
-	current_gloom = int(limit_gloom)
+	gloom = GloomData.new(self)
 
 func restore_trods(old_structure_: StructureData) -> void:
 	trod_to_structure = old_structure_.trod_to_structure.duplicate()

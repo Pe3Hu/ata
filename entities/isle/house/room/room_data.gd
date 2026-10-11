@@ -13,6 +13,8 @@ var ere: RoomData
 
 var echos: Array[EchoData]
 
+var is_autosort: bool = false
+
 
 #region init
 func _init(house_: HouseData, type_: Bozo.Room) -> void:

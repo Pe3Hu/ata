@@ -2,7 +2,7 @@ extends Node
 
 
 var faction_to_color: Dictionary
-var sum_to_matter_to_intro: Dictionary
+var sum_to_matter_to_intro_to_weight: Dictionary
 
 
 
@@ -638,6 +638,38 @@ const elememt_to_out = {
 	Bozo.Element.ICE: Bozo.Matter.SOLID,
 	Bozo.Element.LAVA: Bozo.Matter.LIQUID,
 }
+
+const element_to_comparison = {
+	Bozo.Element.CLOUD: Bozo.Comparison.LESS,
+	Bozo.Element.VAPOR: Bozo.Comparison.LESS,
+	Bozo.Element.DUST: Bozo.Comparison.MORE,
+	Bozo.Element.SAND: Bozo.Comparison.MORE,
+	Bozo.Element.ICE: Bozo.Comparison.EQUAL,
+	Bozo.Element.LAVA: Bozo.Comparison.EQUAL,
+	Bozo.Element.CHAOS: Bozo.Comparison.UNIQUE,
+}
+
+const element_to_tunes = {
+	Bozo.Element.CLOUD: [Bozo.Tune.VERSE],
+	Bozo.Element.VAPOR: [Bozo.Tune.INTRO],
+	Bozo.Element.DUST: [Bozo.Tune.VERSE],
+	Bozo.Element.SAND: [Bozo.Tune.INTRO],
+	Bozo.Element.ICE: [Bozo.Tune.VERSE],
+	Bozo.Element.LAVA: [Bozo.Tune.INTRO],
+	Bozo.Element.CHAOS: [Bozo.Tune.INTRO, Bozo.Tune.VERSE],
+}
+
+const element_to_sum = {
+	Bozo.Element.CLOUD: 120,
+	Bozo.Element.VAPOR: 120,
+	Bozo.Element.DUST: 170,
+	Bozo.Element.SAND: 240,
+}
+
+const element_to_addend = {
+	Bozo.Element.VAPOR: 60,
+	Bozo.Element.SAND: 50,
+}
 #endregion
 
 #region flux
@@ -1239,6 +1271,8 @@ const ruin_to_ideas = {
 	2: 8
 }
 
+
+
 #region color
 var matter_to_color = {
 	Bozo.Matter.NONE: Color.WHITE,
@@ -1269,7 +1303,7 @@ var matter_to_pallete = [
 var element_to_color = {
 	Bozo.Element.CLOUD: Color.from_hsv(0 / 360.0, 0.0, 0.75),
 	Bozo.Element.DUST: Color.from_hsv(125 / 360.0, 0.75, 0.75),
-	Bozo.Element.VAPOR: Color.from_hsv(0 / 360.0, 0.0, 0.25),
+	Bozo.Element.VAPOR: Color.from_hsv(0 / 360.0, 0.0, 0.15),
 	Bozo.Element.SAND: Color.from_hsv(55 / 360.0, 0.75, 0.75),
 	Bozo.Element.ICE: Color.from_hsv(205 / 360.0, 0.75, 0.75),
 	Bozo.Element.LAVA: Color.from_hsv(0 / 360.0, 0.75, 0.75),
@@ -1309,23 +1343,31 @@ func _init() -> void:
 	init_intros()
 
 func init_intros() -> void:
-	sum_to_matter_to_intro.clear()
+	sum_to_matter_to_intro_to_weight.clear()
 
 	for sum in sum_to_index:
-		sum_to_matter_to_intro[sum] = {}
+		sum_to_matter_to_intro_to_weight[sum] = {}
 
 		for matter in Catalog.matters:
-			sum_to_matter_to_intro[sum][matter] = []
+			sum_to_matter_to_intro_to_weight[sum][matter] = {}
 
 		for index in sum_to_index[sum] + 1:
 			var matters: Array[Bozo.Matter] = []
 			var dice = load("res://entities/dice/datas/intro/%d_%d.tres" % [sum, index])
-
+		
 			for value in dice.values:
 				for matter in Helper.get_matters(value):
 					if not matters.has(matter):
 						matters.append(matter)
 
 			for matter in matters:
-				sum_to_matter_to_intro[sum][matter].append(dice)
+				var weight = 0
+				var factor = matter_to_factor[matter]
+				
+				for value in dice.values:
+					if value % factor == 0:
+						weight += value / factor
+				
+				if weight > 0:
+					sum_to_matter_to_intro_to_weight[sum][matter][dice] = weight
 	

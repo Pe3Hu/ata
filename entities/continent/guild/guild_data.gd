@@ -57,7 +57,8 @@ func make_random_soul(recruiment_matters_: Array) -> SoulData:
 		recruiment_matters_.append_array(Catalog.matters)
 		recruiment_matters_.shuffle()
 	var matter = recruiment_matters_.pop_back()
-	var intro = Digest.sum_to_matter_to_intro[Catalog.DEFAULT_RECRUIT_INTRO][matter].pick_random()
+	var weights = Digest.sum_to_matter_to_intro_to_weight[Catalog.DEFAULT_RECRUIT_INTRO][matter]
+	var intro = Helper.get_random_key(weights)
 	var verse = load("res://entities/dice/datas/verse/%d.tres" % Digest.matter_to_verse[matter].pick_random())
 	return SoulData.new(demon, matter, intro, verse, Catalog.DEFAULT_RECRUIT_TALENT)
 
@@ -78,6 +79,8 @@ func set_current_master(type_: Bozo.Master):
 			Bozo.Master.MINER:
 				current_master.tasks.clear()
 			Bozo.Master.ARCHAEOLOGIST:
+				current_master.tasks.clear()
+			Bozo.Master.BLACKSMITH:
 				current_master.tasks.clear()
 	
 	if master:

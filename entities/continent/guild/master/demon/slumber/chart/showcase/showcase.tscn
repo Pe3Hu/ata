@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c2qx73j8we2xb"]
+
+[ext_resource type="Script" uid="uid://b3w0rfsmjd6jj" path="res://entities/continent/guild/master/demon/slumber/chart/showcase/showcase.gd" id="1_3rhia"]
+[ext_resource type="PackedScene" uid="uid://2smcb1akyroc" path="res://entities/continent/guild/master/blacksmith/instrument/razor/razor.tscn" id="2_rosku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eopfk"]
+
+[node name="Showcase" type="PanelContainer" unique_id=2053851529]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_eopfk")
+script = ExtResource("1_3rhia")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1076285264]
+layout_mode = 2
+alignment = 1
+
+[node name="Razors" type="VBoxContainer" parent="VBox" unique_id=793129893]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="Razor1" parent="VBox/Razors" unique_id=468789252 instance=ExtResource("2_rosku")]
+layout_mode = 2
+
+[node name="Razor2" parent="VBox/Razors" unique_id=1963342544 instance=ExtResource("2_rosku")]
+layout_mode = 2
+
+[node name="Razor3" parent="VBox/Razors" unique_id=1218953863 instance=ExtResource("2_rosku")]
+layout_mode = 2
+
+[node name="Razor4" parent="VBox/Razors" unique_id=946757117 instance=ExtResource("2_rosku")]
+layout_mode = 2
+
+[node name="Razor5" parent="VBox/Razors" unique_id=177139752 instance=ExtResource("2_rosku")]
+layout_mode = 2
+
+[node name="Razor6" parent="VBox/Razors" unique_id=1260013932 instance=ExtResource("2_rosku")]
+layout_mode = 2
+
+[node name="SumRazor" parent="VBox" unique_id=20188275 instance=ExtResource("2_rosku")]
+unique_name_in_owner = true
+layout_mode = 2

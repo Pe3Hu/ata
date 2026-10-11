@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dbe6epw5qcmap" path="res://entities/continent/guild/agent/task/task.tscn" id="1_7yulp"]
 [ext_resource type="Script" uid="uid://cjmxq16gadn67" path="res://entities/continent/guild/master/blacksmith/instrument/instrument.gd" id="1_74no5"]
 [ext_resource type="Shader" uid="uid://bq3tymajw0eqn" path="res://entities/isle/biome/matter.gdshader" id="2_vo7xk"]
+[ext_resource type="PackedScene" uid="uid://babgcqfdnxf0t" path="res://entities/continent/guild/master/demon/slumber/chart/chart.tscn" id="4_trx8v"]
+[ext_resource type="PackedScene" uid="uid://c2qx73j8we2xb" path="res://entities/continent/guild/master/demon/slumber/chart/showcase/showcase.tscn" id="5_dqr50"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dmxis"]
 resource_local_to_scene = true
@@ -20,10 +22,15 @@ script = ExtResource("1_74no5")
 [node name="OrderBody" parent="HBoxContainer/VBox/RankPanel/HBox/Order" parent_id_path=PackedInt32Array(835826759) index="0" unique_id=1569300309]
 material = SubResource("ShaderMaterial_dmxis")
 
-[node name="Razors" type="GridContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=326534745]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(136, 92)
+[node name="HBox" type="HBoxContainer" parent="HBoxContainer/VBox/InfoPanel" parent_id_path=PackedInt32Array(1268189010) index="0" unique_id=1780281471]
 layout_mode = 2
-theme_override_constants/h_separation = -4
-theme_override_constants/v_separation = -4
-columns = 3
+
+[node name="Chart" parent="HBoxContainer/VBox/InfoPanel/HBox" index="0" unique_id=1672945018 instance=ExtResource("4_trx8v")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Showcase" parent="HBoxContainer/VBox/InfoPanel/HBox" index="1" unique_id=2053851529 instance=ExtResource("5_dqr50")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

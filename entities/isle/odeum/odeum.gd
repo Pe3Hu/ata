@@ -38,3 +38,6 @@ func add_hymn(hymn_data_: HymnData, hbox_: BoxContainer) -> void:
 	hymn.data = hymn_data_
 	hymn.odeum = self
 #endregion
+
+func reset() -> void:
+	data.bedroom_scenario = null

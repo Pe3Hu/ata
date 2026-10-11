@@ -27,9 +27,8 @@ func init_anvils() -> void:
 		var arrangements = Helper.generate_unique_arrangements_fixed_size(echos, size)
 		
 		for arrangement in arrangements:
-			if is_echos_has_same_soul(arrangement):
-				if try_fuse_echos(arrangement):
-					AnvilData.new(self, arrangement)
+			if is_echos_has_same_soul(arrangement) and try_fuse_echos(arrangement) and check_reinforcement(arrangement):
+				AnvilData.new(self, arrangement)
 	
 	fusion_phase.emit()
 
@@ -57,6 +56,11 @@ func try_fuse_echos(echos_: Array) -> bool:
 			return false
 	
 	return Catalog.fusion_mark_lengths.has(digits_length)
+
+func check_reinforcement(echos_: Array) -> bool:
+	var requirement = Catalog.GYRE_BEDROOM_ECHO_SIZE + Catalog.GYRE_PARLOR_ECHO_SIZE
+	var presence = Mother.nightmare.slumber.reinforcement_echos.size() + Mother.house.get_remaining_amount() - echos_.size() + 1
+	return presence >= requirement
 
 func init_sources() -> void:
 	for biome in Catalog.biomes:

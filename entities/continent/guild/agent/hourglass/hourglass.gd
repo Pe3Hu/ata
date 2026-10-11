@@ -40,6 +40,5 @@ func test_demolish() -> void:
 
 func start_nightmare() -> void:
 	if Mother.mainland.route.start_structure.type != Bozo.Structure.RIFT: return
-	Mother.nightmare.slumber = Mother.guild.demon.current_task
-	Mother.nightmare.update_attic()
+	Mother.guild.demon.current_task.prepare_nightmare()
 	get_tree().change_scene_to_file("res://entities/nightmare/nightmare.tscn")

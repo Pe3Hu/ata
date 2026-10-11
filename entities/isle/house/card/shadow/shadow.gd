@@ -21,9 +21,10 @@ var flip_tween: Tween
 func connect_signals() -> void:
 	data.is_perished.connect(_on_perished)
 
-
 func _on_perished() -> void:
 	card.is_face_echo = true
+	Mother.nightmare.slumber.rift.gloom.next_value -= data.shade.limit_value
+	card.room.house.nightmare.gloom.sync_values()
 	expand_out()
 
 func connect_datas() -> void:
@@ -95,6 +96,7 @@ func rotate_textures(angle_: float) -> void:
 #endregion
 
 func process_click() -> void:
+	if Mother.nightmare.is_defeated: return
 	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	var local_mouse_pos = get_local_mouse_position()
 	var rect = Rect2(

@@ -207,6 +207,14 @@ enum Filter {
 	MAX = 114,
 }
 
+enum Comparison {
+	NONE = 0,
+	LESS = 115,
+	EQUAL = 116,
+	MORE = 117,
+	UNIQUE = 118,
+}
+
 enum Pantheon {
 	NONE = 0,
 	EGYPTIAN = 126,
@@ -284,8 +292,9 @@ enum Type {
 	STRUCTURE = -20,
 	MASTER = -21,
 	RANK = -22,
-	PANTHEON = -23,
-	GOD = -24,
+	COMPARISON = -23,
+	PANTHEON = -24,
+	GOD = -25,
 	
 	ACTION = -100,
 	PHASE = -200,
@@ -312,6 +321,7 @@ const type_to_index = {
 	Type.STRUCTURE: 80,
 	Type.MASTER: 91,
 	Type.RANK: 102,
+	Type.COMPARISON: 116,
 	Type.PANTHEON: 126,
 	Type.GOD: 132,
 	
@@ -336,6 +346,7 @@ const type_to_enum = {
 	Type.STRUCTURE: Bozo.Structure,
 	Type.MASTER: Bozo.Master,
 	Type.RANK: Bozo.Rank,
+	Type.COMPARISON: Bozo.Comparison,
 	Type.PANTHEON: Bozo.Pantheon,
 	Type.GOD: Bozo.God,
 	

@@ -3,7 +3,6 @@ extends Node
 
 signal phase_changed(phase: Bozo.Phase)
 
-var is_gameover: bool = true
 var current_round: int = 0
 
 var phases: Array[Phase]
@@ -40,7 +39,7 @@ func start_new_round() -> void:
 #region phase
 func start_next_phase() -> void:
 	if Gear.is_pause: return
-	if is_gameover: return
+	if Mother.nightmare.is_defeated: return
 	current_phase = phases[current_phase_index]
 	current_phase.phase_completed.connect(_on_phase_completed, CONNECT_ONE_SHOT)
 	phase_changed.emit(current_phase.type)

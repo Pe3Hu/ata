@@ -287,7 +287,8 @@ func init_matter_structures() -> void:
 
 func update_mixed_matters() -> void:
 	for structure_type in Catalog.mixed_sctructures:
-		var shift = randi_range(0, 1) * 2 - 1
+		var shift = 1
+		#var shift = randi_range(0, 1) * 2 - 1
 		
 		for wasteland in wastelands:
 			if wasteland.type_to_structure.has(structure_type):

@@ -117,19 +117,22 @@ func sort_cards(with_animation_: bool = true) -> void:
 	if %Cards.get_child_count() == 0: return
 	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION and Arbitrator.current_phase.type != Bozo.Phase.DRAW: return
 	if data.echos.is_empty(): return
+	if not data.is_autosort: return
 	
 	var scenarios = Mother.odeum.room_to_scenarios[data.type]
 	if scenarios.is_empty(): return
 	
 	var scenario = scenarios.front()
 	cards.clear()
+	
 	for child in %Cards.get_children():
 		if child is Card:
 			cards.append(child)
+	
 	var sorted_cards = cards.duplicate()
 	if sorted_cards.size() == 1: return
 	
-	var all_found = sorted_cards.all(func(c): return scenario.chains.has(c.echo.data))
+	var all_found = sorted_cards.all(func(a): return scenario.chains.has(a.echo.data))
 	if not all_found: return
 	if sort_tween and sort_tween.is_running(): return
 	

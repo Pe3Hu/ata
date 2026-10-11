@@ -1,2 +1,14 @@
-res://global/Gear.gd
-res://entities/isle/kernel/maelstrom/eddy/flux/flux.gd
+res://entities/continent/guild/master/demon/slumber/elite/limiter/limiter.tscn
+res://entities/continent/mainland/structure/shaders/rift.gdshader
+res://entities/continent/guild/master/demon/slumber/elite/elite.tscn
+res://global/Digest.gd
+res://entities/continent/guild/master/demon/slumber/elite/elite.gd
+res://entities/continent/guild/master/demon/slumber/elite/elite_data.gd
+res://entities/continent/guild/master/demon/slumber/elite/limiter/limiter.gd
+res://entities/continent/guild/guild_data.gd
+res://global/Helper.gd
+res://entities/continent/guild/master/barkeeper/barkeeper_data.gd
+res://entities/continent/mainland/mainland_data.gd
+res://entities/continent/mainland/structure/structure_data.gd
+res://entities/nightmare/nightmare.tscn
+res://entities/continent/guild/master/blacksmith/blacksmith_data.gd

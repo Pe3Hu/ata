@@ -2,12 +2,12 @@ class_name RazorData
 extends RefCounted
 
 
-var instrument: InstrumentData
 var volume: int
+#var suffix: Bozo.Suffix
+var matters: Array[Bozo.Matter]
 
 
-func _init(instrument_: InstrumentData, volume_: int) -> void:
-	instrument = instrument_
+func _init(volume_: int, matters_: Array) -> void:
 	volume = volume_
-	
-	instrument.razors.append(self)
+	#suffix = suffix_ suffix_: Bozo.Suffix = Bozo.Suffix.PLUS
+	matters.append_array(matters_)

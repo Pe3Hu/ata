@@ -23,6 +23,7 @@ var outer_radius: float
 var thickness = 4
 
 
+#region init
 func _ready() -> void:
 	#position = get_parent().size / 2
 	inner_radius = inner_radius
@@ -38,3 +39,4 @@ func add_slice(slice_data_: SliceData) -> void:
 	%Slices.add_child(slice)
 	slice.pie = self
 	slice.data = slice_data_
+#endregion

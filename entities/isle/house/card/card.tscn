@@ -28,6 +28,7 @@ offset_transform_scale = Vector2(0, 1)
 card = NodePath("..")
 
 [node name="PunishmentDice" parent="." unique_id=518126039 instance=ExtResource("4_nol8u")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
 offset_transform_position = Vector2(40, 78)

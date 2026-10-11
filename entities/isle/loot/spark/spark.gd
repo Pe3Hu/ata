@@ -8,3 +8,4 @@ var data: SparkData:
 		
 		%Volume.frame_coords = Helper.get_coord_based_on_value(data.volume)
 		%Amount.text = 'x%d' % data.amount
+		visible = data.volume > 1

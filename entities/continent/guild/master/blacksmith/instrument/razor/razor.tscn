@@ -44,7 +44,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="MatterBG" type="ColorRect" parent="MarginContainer" unique_id=1457471449]
+[node name="Body" type="ColorRect" parent="MarginContainer" unique_id=1457471449]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_tax58")
 layout_mode = 2

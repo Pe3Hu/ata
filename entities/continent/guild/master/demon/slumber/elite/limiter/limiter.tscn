@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cv50vswyxxxps"]
+
+[ext_resource type="Script" uid="uid://504jkjbtlhvp" path="res://entities/continent/guild/master/demon/slumber/elite/limiter/limiter.gd" id="1_k0ylb"]
+[ext_resource type="PackedScene" uid="uid://2smcb1akyroc" path="res://entities/continent/guild/master/blacksmith/instrument/razor/razor.tscn" id="1_rbyc5"]
+[ext_resource type="Texture2D" uid="uid://cntmom8bfapf0" path="res://entities/continent/guild/master/demon/slumber/elite/images/equal/body.png" id="2_k0ylb"]
+[ext_resource type="Texture2D" uid="uid://vbpdqx7kok23" path="res://entities/continent/guild/master/demon/slumber/elite/images/equal/border.png" id="3_dk6fn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oebin"]
+
+[node name="Limiter" type="PanelContainer" unique_id=579902074]
+custom_minimum_size = Vector2(160, 48)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_oebin")
+script = ExtResource("1_k0ylb")
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=73270860]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CurrentRazor" parent="HBox" unique_id=468789252 instance=ExtResource("1_rbyc5")]
+layout_mode = 2
+
+[node name="IntroBody" type="TextureRect" parent="HBox" unique_id=1798872788]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_k0ylb")
+
+[node name="IntroBorder" type="TextureRect" parent="HBox/IntroBody" unique_id=1537188456]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dk6fn")
+
+[node name="TargetRazor" parent="HBox" unique_id=369468054 instance=ExtResource("1_rbyc5")]
+layout_mode = 2

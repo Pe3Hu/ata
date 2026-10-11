@@ -81,6 +81,7 @@ func update_marks() -> void:
 #endregion
 
 func process_click() -> void:
+	if Mother.nightmare.is_defeated: return
 	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	if data.is_locked: return
 	Mother.odeum.current_canto = null
