@@ -19,7 +19,6 @@ func _on_illuminate_changed() -> void:
 
 func _on_area_mouse_entered() -> void:
 	super._on_area_mouse_entered()
-	
 	#if is_available_for_llumination():
 		#data.cluster.mainland.beam.next_shelter = data.cluster
 

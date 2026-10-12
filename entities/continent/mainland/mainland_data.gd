@@ -26,6 +26,7 @@ var demolished_coords: Array[Vector2i]
 #region init
 func _init() -> void:
 	init_shelters_and_wastelands()
+	update_coord_to_cluster()
 	init_neighbors()
 	init_biomes()
 	init_structures()
@@ -45,11 +46,9 @@ func init_shelters_and_wastelands() -> void:
 				var anchor =  Digest.terrain_to_start_coord[terrain] + _x * Digest.terrain_to_col_shift[terrain] + _y * Digest.terrain_to_row_shift[terrain]
 				
 				if terrain == Bozo.Terrain.DESERT:
-					var _shelter = ShelterData.new(self, anchor, terrain)
+					ShelterData.new(self, anchor, terrain)
 				else:
-					var _wastelnad = WastelandData.new(self, anchor, terrain)
-	
-	update_coord_to_cluster()
+					WastelandData.new(self, anchor, terrain)
 
 func update_coord_to_cluster() -> void:
 	coord_to_cluster.clear()

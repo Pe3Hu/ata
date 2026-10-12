@@ -12,7 +12,6 @@ var order: int
 
 var trod_to_structure: Dictionary
 
-
 func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vector2i.ZERO) -> void:
 	cluster = cluster_
 	type = type_
@@ -20,6 +19,10 @@ func _init(cluster_: ClusterData, type_: Bozo.Structure, coord_: Vector2i = Vect
 	
 	if type == Bozo.Structure.MINE:
 		matters.append(cluster.biome.source.matter)
+	
+	if Catalog.mixed_sctructures.has(type) and Tutorial.is_active:
+		matters.clear()
+		matters.append_array(Tutorial.mixed_matters)
 
 func roll_matters(shift_: int) -> void:
 	var index = Catalog.matters.find(cluster.biome.source.matter)

@@ -10,6 +10,7 @@ var data: StakeData:
 		update_texture()
 		update_matter_colors()
 		custom_minimum_size.y = data.joints.size() * Catalog.JOINT_SIZE.y + (data.joints.size() - 1) * Catalog.JOINT_OFFEST
+		Focus.register(data, self)
 
 @export var card: Card
 @export var border: Panel

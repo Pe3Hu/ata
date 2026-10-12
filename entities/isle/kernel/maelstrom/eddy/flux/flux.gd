@@ -8,6 +8,7 @@ var data:
 		
 		connect_signals()
 		upadete_position()
+		Focus.register(data, self)
 
 @export var eddy: Eddy
 @export var value_label: Label

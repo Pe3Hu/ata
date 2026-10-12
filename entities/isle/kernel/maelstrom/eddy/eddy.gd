@@ -18,6 +18,7 @@ var data: EddyData:
 			var angle = TAU / 6 * index  
 			position = Vector2.from_angle(angle) * Catalog.EDDY_RADIUS
 			%Flux.data = data.flux
+		Focus.register(data, self)
 
 @export var maelstrom: Maelstrom
 

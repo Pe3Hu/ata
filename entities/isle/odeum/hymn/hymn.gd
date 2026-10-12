@@ -8,6 +8,7 @@ var data: HymnData:
 	set(value_):
 		data = value_
 		init_cantos()
+		Focus.register(data, self)
 
 var odeum: Odeum
 

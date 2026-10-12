@@ -28,7 +28,8 @@ func _ready() -> void:
 	house = HouseData.new()
 	nightmare = NightmareData.new()
 	
-	mainland = MainlandData.new()
+	#mainland = MainlandData.new()
+	mainland = TutorialMainlandData.new()
 	guild = GuildData.new()
 	
 	arsenal = ArsenalData.new()

@@ -1,5 +1,5 @@
-VBoxContainer
 PanelContainer
+VBoxContainer
 Control
 TextureRect
 CustomTextureButton

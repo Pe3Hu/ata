@@ -17,6 +17,8 @@ shader_parameter/discomode = false
 shader_parameter/speed = 0.2
 shader_parameter/scale = 1.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
 [node name="Slumber" unique_id=1199540049 instance=ExtResource("1_iakli")]
 script = ExtResource("2_okxty")
 
@@ -52,18 +54,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 slumber = NodePath("../../../../..")
 
-[node name="Charts" type="HBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox" index="1" unique_id=1862681723]
+[node name="PaneCharts" type="PanelContainer" parent="HBoxContainer/VBox/InfoPanel/VBox" index="1" unique_id=1213326704]
+custom_minimum_size = Vector2(284, 320)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="Charts" type="HBoxContainer" parent="HBoxContainer/VBox/InfoPanel/VBox/PaneCharts" index="0" unique_id=1862681723]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Chart1" parent="HBoxContainer/VBox/InfoPanel/VBox/PaneCharts/Charts" index="0" unique_id=1672945018 instance=ExtResource("5_3y1r7")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Chart1" parent="HBoxContainer/VBox/InfoPanel/VBox/Charts" index="0" unique_id=1672945018 instance=ExtResource("5_3y1r7")]
+[node name="Chart2" parent="HBoxContainer/VBox/InfoPanel/VBox/PaneCharts/Charts" index="1" unique_id=481566044 instance=ExtResource("5_3y1r7")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Chart2" parent="HBoxContainer/VBox/InfoPanel/VBox/Charts" index="1" unique_id=481566044 instance=ExtResource("5_3y1r7")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Chart3" parent="HBoxContainer/VBox/InfoPanel/VBox/Charts" index="2" unique_id=1096145963 instance=ExtResource("5_3y1r7")]
+[node name="Chart3" parent="HBoxContainer/VBox/InfoPanel/VBox/PaneCharts/Charts" index="2" unique_id=1096145963 instance=ExtResource("5_3y1r7")]
 unique_name_in_owner = true
 layout_mode = 2

@@ -7,8 +7,8 @@ var data: HazeData:
 		data = value_
 		
 		connect_signals()
-		reveal_center_shelters()
-		reveal_debug_shelters()
+		#reveal_center_shelters()
+		#reveal_debug_shelters()
 
 
 func reveal_center_shelters() -> void:

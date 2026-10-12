@@ -29,6 +29,9 @@ Arbitrator="*uid://cnsm58ppi8y5d"
 Gear="*uid://cch7k4rk0hd7t"
 Advisor="*uid://bpdbd73doaqsr"
 Mother="*uid://i7oiq7b6wl0p"
+Tutorial="*uid://ckvs0hckh4lsv"
+Focus="*res://global/focus/Focus.gd"
+Book="*res://global/book/Book.gd"
 
 [display]
 

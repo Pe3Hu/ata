@@ -10,6 +10,7 @@ var data: SliceData:
 		calc_angles()
 		create_polygon()
 		%Volume.texture = load("res://entities/dice/images/%d.png" % data.volume)
+		Focus.register(data, self)
 
 var pie: Pie
 

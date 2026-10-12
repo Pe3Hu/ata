@@ -17,7 +17,10 @@ func get_tinted_shelters() -> Array:
 	
 	var shelters = Mother.guild.scout.internals.duplicate()
 	shelters.sort_custom(func (a, b): return shelter_to_fog[a] > shelter_to_fog[b])
-	shelters.resize(order + 1)
+	var count = order + 1
+	if Tutorial.is_active:
+		count = mini(count, shelters.size())
+	shelters.resize(count)
 	return shelters
 
 func light_up() -> void:

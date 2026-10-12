@@ -9,6 +9,7 @@ var data: StructureData:
 		connect_signals()
 		update_spirtes()
 		position = Helper.get_structure_position(data)
+		Focus.register(data, self)
 
 
 func connect_signals() -> void:

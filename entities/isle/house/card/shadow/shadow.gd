@@ -9,6 +9,7 @@ var data: ShadowData:
 		connect_signals()
 		connect_datas()
 		update_colors()
+		Focus.register(data, self)
 
 @export var card: Card
 

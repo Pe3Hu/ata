@@ -9,6 +9,7 @@ var data: StairData:
 		var coord = Vector2(Digest.volume_to_coord[data.volume])
 		position = coord * Catalog.STAIR_SIZE
 		%Number.texture = load("res://entities/dice/images/%d.png" % data.volume)
+		Focus.register(data, self)
 
 var is_current: bool:
 	set(value_):

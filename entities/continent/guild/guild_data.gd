@@ -45,7 +45,7 @@ func _init() -> void:
 func init_default_souls() -> void:
 	refill_alphabet()
 	souls.clear()
-	var n = 12
+	var n = 6
 	var recruiment_matters = []
 	
 	for _i in n:

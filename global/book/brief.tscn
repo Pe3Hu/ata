@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://cnio0cmn3p1sf"]
+
+[ext_resource type="Script" uid="uid://bjho0cmobtqxa" path="res://global/book/brief.gd" id="1_brief"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="2_4s323"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 24.0
+content_margin_top = 24.0
+content_margin_right = 24.0
+content_margin_bottom = 24.0
+bg_color = Color(0.09, 0.09, 0.11, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.78, 0.6, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0.392, 0.922, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0.298, 0.716, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.22, 0.52, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Brief" type="CanvasLayer" unique_id=1849203311]
+process_mode = 3
+layer = 130
+visible = false
+script = ExtResource("1_brief")
+
+[node name="Host" type="Control" parent="." unique_id=1849203312]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Host" unique_id=1849203313]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 146.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Box" type="VBoxContainer" parent="Host/Panel" unique_id=1849203314]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Text" type="Label" parent="Host/Panel/Box" unique_id=1849203315]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.88, 1)
+theme_override_font_sizes/font_size = 28
+label_settings = ExtResource("2_4s323")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Continue" type="Button" parent="Host/Panel/Box" unique_id=1849203316]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_normal")
+text = "Continue"
+
+[connection signal="pressed" from="Host/Panel/Box/Continue" to="." method="_on_continue_pressed"]

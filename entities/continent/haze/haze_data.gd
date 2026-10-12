@@ -604,11 +604,26 @@ func _apply_pulse() -> bool:
 
 #region debug-triggers
 
+func shelter_at(index_: int) -> ShelterData:
+	if mainland == null:
+		return null
+	
+	if Tutorial.is_active:
+		for shelter in mainland.shelters:
+			if shelter.index == index_:
+				return shelter
+		return null
+	
+	if index_ < 0 or index_ >= mainland.shelters.size():
+		return null
+	
+	return mainland.shelters[index_]
+
 func reveal_shelter_wave(shelter_index: int = 0, duration_: float = 0.5,
 		wave_jitter_: float = 0.8, edge_jitter_: float = 1.5, reveal_radius_scale: float = 2.0) -> void:
-	if mainland == null: return
-	if mainland.shelters.is_empty(): return
-	reveal_cluster_wave(mainland.shelters[shelter_index], duration_, wave_jitter_, edge_jitter_, true, null, 0.0, reveal_radius_scale)
+	var shelter := shelter_at(shelter_index)
+	if shelter == null: return
+	reveal_cluster_wave(shelter, duration_, wave_jitter_, edge_jitter_, true, null, 0.0, reveal_radius_scale)
 
 
 func reveal_current_wasteland_wave(duration_: float = 0.5,
@@ -623,10 +638,8 @@ func reveal_shelter_then_neighbors_wave(shelter_index_: int = 3,
 		wave_jitter_: float = 0.8,
 		edge_jitter_: float = 1.5,
 		reveal_radius_scale_: float = 1.0) -> void:
-	if mainland == null: return
-	if shelter_index_ < 0 or shelter_index_ >= mainland.shelters.size(): return
-
-	var shelter: ShelterData = mainland.shelters[shelter_index_]
+	var shelter := shelter_at(shelter_index_)
+	if shelter == null: return
 
 	var shelter_info = _collect_cluster_circle(shelter, edge_jitter_, true, reveal_radius_scale_)
 	var shelter_pixels: Dictionary = shelter_info["pixels"]

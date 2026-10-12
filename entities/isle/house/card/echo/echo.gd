@@ -12,6 +12,7 @@ var data: EchoData:
 		init_stakes()
 		update_colors()
 		update_marks()
+		Focus.register(data, self)
 
 @export var border: Panel
 

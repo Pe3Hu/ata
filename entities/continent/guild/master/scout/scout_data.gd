@@ -13,13 +13,27 @@ var internals: Array[ShelterData] = []
 func _init(guild_: GuildData, type_: Bozo.Master) -> void:
 	super._init(guild_, type_)
 	
-	init_internals()
-	debug_internals()
+	if Tutorial.is_active:
+		init_internals()
+	#debug_internals()
 
 func init_internals() -> void:
-	for index in Catalog.center_shelter_indexs:
-		var shelter = Mother.mainland.shelters[index]
-		add_internal(shelter)
+	var indexs = Tutorial.shelter_indexs if Tutorial.is_active else Catalog.center_shelter_indexs
+	
+	for index in indexs:
+		var shelter = find_center_shelter(index)
+		if shelter:
+			add_internal(shelter)
+
+func find_center_shelter(index_: int) -> ShelterData:
+	if not Tutorial.is_active:
+		return Mother.mainland.shelters[index_]
+	
+	for shelter in Mother.mainland.shelters:
+		if shelter.index == index_:
+			return shelter
+	
+	return null
 
 func debug_internals() -> void:
 	for index in Catalog.debug_shelter_indexs:
